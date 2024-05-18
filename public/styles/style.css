@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *::-webkit-scrollbar {
+    @apply w-2 h-1;
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply bg-gray-200;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-site;
+  }
+}
+
+@layer components {
+  body {
+    @apply font-system text-gray-900;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thick::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+
+}
