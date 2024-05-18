@@ -68,7 +68,7 @@ function Favorite() {
 
   if (!favoriteProducts)
     return (
-      <div className="flex flex-col gap-4 w-full h-[calc(100svh-69px)] justify-center items-center text-gray-300">
+      <div className="flex flex-col gap-4 w-full h-[calc(100dvh-69px)] justify-center items-center text-gray-300">
         <div className="flex flex-col gap-4 justify-center items-center animate-pulse">
           <IoFileTrayOutline className="text-8xl " />
           <span className="font-gemunu font-semibold text-3xl">
@@ -78,7 +78,7 @@ function Favorite() {
       </div>
     );
   return (
-    <div className="flex flex-col w-full h-[calc(100svh-69px)] justify-between">
+    <div className="flex flex-col w-full h-[calc(100dvh-69px)] justify-between">
       <div className="flex flex-col w-full overflow-y-auto h-full lg:px-8 px-4 py-4">
         <FavoriteProducts products={favoriteProducts} />
       </div>

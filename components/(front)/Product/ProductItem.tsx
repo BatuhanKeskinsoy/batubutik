@@ -117,7 +117,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
             onClick={() => setShowProductArea(false)}
           ></div>
           <div
-            className={`relative bg-white rounded-sm 2xl:w-[calc(100vw-34%)] xl:w-[calc(100vw-250px)] lg:w-[calc(100vw-250px)] lg:h-[calc(100svh-18%)] w-screen h-screen shadow-lg shadow-gray-600 transition-all duration-300 animate-modalContentSmooth z-20`}
+            className={`relative bg-white rounded-sm 2xl:w-[calc(100vw-34%)] xl:w-[calc(100vw-250px)] lg:w-[calc(100vw-250px)] lg:h-[calc(100dvh-18%)] w-screen h-screen shadow-lg shadow-gray-600 transition-all duration-300 animate-modalContentSmooth z-20`}
           >
             <CustomButton
               containerStyles="absolute lg:-right-4 lg:-top-4 right-6 top-6 text-gray-600 hover:bg-red-500 hover:text-white transition-all duration-300 z-10 bg-white rounded-full "
