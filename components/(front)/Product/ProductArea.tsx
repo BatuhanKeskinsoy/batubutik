@@ -65,17 +65,6 @@ function ProductArea({ product }: IProductAreaProps) {
       setTimeout(() => {
         const newQuantity = Math.max(1, productQuantity - 1);
         setProductQuantity(newQuantity);
-        /* setBasketItems((prevItems) => {
-          if (!prevItems) return null;
-          const index = prevItems.lastIndexOf(product.code);
-          if (index !== -1) {
-            const newItems = [...prevItems];
-            newItems.splice(index, 1);
-            localStorage.setItem("basketItems", JSON.stringify(newItems));
-            return newItems;
-          }
-          return prevItems;
-        }); */
         setLoadingQuantity(false);
       }, 500);
     }
@@ -87,12 +76,6 @@ function ProductArea({ product }: IProductAreaProps) {
       setTimeout(() => {
         const newQuantity = productQuantity + 1;
         setProductQuantity(newQuantity);
-        /* setBasketItems((prevItems) => {
-          if (!prevItems) return [product.code];
-          const newItems = [...prevItems, product.code];
-          localStorage.setItem("basketItems", JSON.stringify(newItems));
-          return newItems;
-        }); */
         setLoadingQuantity(false);
       }, 500);
     }
@@ -389,7 +372,7 @@ function ProductArea({ product }: IProductAreaProps) {
               />
             </div>
             <CustomButton
-              title="Favorilere Ekle"
+              title={product && favoriteItems?.includes(product.code) ? "Bu Ürün Favori Listenizde" : "Favorilere Ekle"}
               textStyles="lg:hidden"
               containerStyles="flex items-center justify-center gap-2 max-lg:w-full px-4 bg-gray-100 border border-gray-200 text-gray-600 rounded-md h-[50px] transition-all duration-300 hover:bg-site hover:border-site hover:text-white h-[50px] group/favorite"
               leftIcon={

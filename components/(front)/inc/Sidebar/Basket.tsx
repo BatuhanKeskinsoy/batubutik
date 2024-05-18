@@ -88,8 +88,8 @@ function Basket() {
     return (
       <div className="flex flex-col gap-4 w-full h-[calc(100dvh-69px)] justify-center items-center text-gray-300">
         <div className="flex flex-col gap-4 justify-center items-center animate-pulse">
-          <IoFileTrayOutline className="text-8xl " />
-          <span className="font-gemunu font-semibold text-3xl">
+          <IoFileTrayOutline className="lg:text-8xl text-6xl" />
+          <span className="font-gemunu font-semibold lg:text-3xl tracking-wide text-xl">
             Sepetiniz Boş
           </span>
         </div>
