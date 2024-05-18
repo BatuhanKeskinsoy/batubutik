@@ -24,7 +24,7 @@ interface IProductAreaProps {
 }
 
 function ProductArea({ product }: IProductAreaProps) {
-  const { basketItems, setBasketItems, favoriteItems, setFavoriteItems } =
+  const { setBasketItems, favoriteItems, setFavoriteItems } =
     useGlobalContext();
   const [loadingQuantity, setLoadingQuantity] = useState(false);
   const [loadingAddToBasket, setLoadingAddToBasket] = useState(false);
