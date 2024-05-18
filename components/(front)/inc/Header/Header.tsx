@@ -50,7 +50,7 @@ function Header() {
   useEffect(() => {
     const loadingTimeout = setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 500);
 
     return () => {
       clearTimeout(loadingTimeout);
