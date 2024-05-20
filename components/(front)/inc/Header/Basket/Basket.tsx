@@ -15,24 +15,27 @@ function Basket() {
   const [basketTotalPrice, setBasketTotalPrice] = useState(0);
 
   useEffect(() => {
-    setBasketItemCount(basketItems ? basketItems.length : 0);
-  
     if (basketItems && basketItems.length > 0) {
-      // APİ BAĞLANDIĞINDA LOCALDEN DİNAMİK HALE GETİRİLECEK
-  
-      const totalPrice = basketItems.reduce((total, code) => {
+      const totalPrice = basketItems.reduce((total, basketItem) => {
         const matchedProduct = instantProducts.find(
-          (product) => product.code === code
+          (product) => product.code === basketItem.product_code
         );
+
         if (matchedProduct) {
-          return total + matchedProduct.amount;
+          return total + matchedProduct.amount * basketItem.quantity;
         }
         return total;
       }, 0);
-      
+
+      const totalQuantity = basketItems.reduce((total, basketItem) => {
+        return total + basketItem.quantity;
+      }, 0);
+
+      setBasketItemCount(totalQuantity);
       setBasketTotalPrice(totalPrice);
     } else {
       setBasketTotalPrice(0);
+      setBasketItemCount(0);
     }
   }, [basketItems]);
 
@@ -44,6 +47,10 @@ function Basket() {
     }
   }, [basketItemCount]);
 
+
+  useEffect(() => {
+    console.log("basketItems", basketItems);
+  }, [basketItems]);
   return (
     <div
       className="relative flex items-center rounded-full lg:hover:scale-110 transition-all duration-300 h-full cursor-pointer"

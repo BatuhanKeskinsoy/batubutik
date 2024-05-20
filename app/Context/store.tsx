@@ -1,4 +1,5 @@
 "use client";
+import { basketItemTypes } from "@/types/product/basketItemTypes";
 import React, {
   createContext,
   useContext,
@@ -13,8 +14,8 @@ interface IContextProps {
   setIsMobile: Dispatch<SetStateAction<boolean>>;
   sidebarStatus: string;
   setSidebarStatus: Dispatch<SetStateAction<string>>;
-  basketItems: string[] | null;
-  setBasketItems: Dispatch<SetStateAction<string[] | null>>;
+  basketItems: basketItemTypes[] | null;
+  setBasketItems: Dispatch<SetStateAction<basketItemTypes[] | null>>;
   favoriteItems: string[] | null;
   setFavoriteItems: Dispatch<SetStateAction<string[] | null>>;
 }
@@ -33,7 +34,7 @@ const GlobalContext = createContext<IContextProps>({
 export const GlobalContextProvider = ({ children }: any) => {
   const [sidebarStatus, setSidebarStatus] = useState("");
   const [isMobile, setIsMobile] = useState(false);
-  const [basketItems, setBasketItems] = useState<string[] | null>(() => {
+  const [basketItems, setBasketItems] = useState<basketItemTypes[] | null>(() => {
     const localStorageBasket = typeof window !== "undefined" && localStorage.getItem("basketItems");
     return localStorageBasket ? JSON.parse(localStorageBasket) : null;
   });

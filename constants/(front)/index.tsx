@@ -142,7 +142,7 @@ export const instantProducts = [
 export const instantProductDetail = {
   title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
   slug: "amor-bralet-jartiyer-ic-camasir-takimi",
-  code: "ABJ-100",
+  code: "BBD-102",
   mainCategory: "Kadın",
   mainCategory_slug: "kadin",
   category: "İç Giyim",

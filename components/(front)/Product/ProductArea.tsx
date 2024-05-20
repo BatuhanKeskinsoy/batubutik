@@ -18,6 +18,7 @@ import {
 import addToBasket from "@/components/functions/addToBasket";
 import { useGlobalContext } from "@/app/Context/store";
 import toggleToFavorite from "@/components/functions/toggleToFavorite";
+import { basketItemTypes } from "@/types/product/basketItemTypes";
 
 interface IProductAreaProps {
   product: productDetailTypes | undefined;
@@ -37,6 +38,9 @@ function ProductArea({ product }: IProductAreaProps) {
     product && product.images ? product.images[0] : null
   );
   const [productQuantity, setProductQuantity] = useState(1);
+  const [selectedAttributes, setSelectedAttributes] = useState<{
+    [key: string]: string;
+  }>({});
 
   const handleChangeCurrentImage = (image: string) => {
     setCurrentProductImage(image);
@@ -83,15 +87,25 @@ function ProductArea({ product }: IProductAreaProps) {
 
   const handleAddToBasket = (e: any) => {
     e.preventDefault();
-    if (!loadingAddToBasket && product) {
-      setLoadingAddToBasket(true);
-      setTimeout(() => {
-        for (let i = 0; i < productQuantity; i++) {
-          addToBasket(product.code, setBasketItems);
-        }
-        setProductQuantity(1);
-        setLoadingAddToBasket(false);
-      }, 1000);
+    if (product) {
+      const item: basketItemTypes = {
+        product_code: product.code,
+        quantity: productQuantity,
+        attributes: Object.keys(selectedAttributes).map((attrTitle) => ({
+          attr_title: attrTitle,
+          attr_option: selectedAttributes[attrTitle],
+        })),
+      };
+
+      if (!loadingAddToBasket && product) {
+        setLoadingAddToBasket(true);
+        setTimeout(() => {
+          addToBasket(item, setBasketItems);
+          setSelectedAttributes({}); // Reset selectedAttributes
+          setProductQuantity(1);
+          setLoadingAddToBasket(false);
+        }, 1000);
+      }
     }
   };
 
@@ -120,6 +134,13 @@ function ProductArea({ product }: IProductAreaProps) {
       )
     );
   }, [favoriteItems]);
+
+  const handleSelectAttribute = (attrTitle: string, optionName: string) => {
+    setSelectedAttributes((prev) => ({
+      ...prev,
+      [attrTitle]: optionName,
+    }));
+  };
 
   return (
     <div className="flex lg:flex-row flex-col h-full w-full">
@@ -175,7 +196,7 @@ function ProductArea({ product }: IProductAreaProps) {
 
             {product && product.stock < 1 && (
               <div className="absolute flex items-center justify-center w-full h-full overflow-hidden bg-black-900/70 animate-pulse">
-                <span className="text-white font-gemunu lg:text-5xl text-2xl font-medium tracking-wider -rotate-[35deg]">
+                <span className="text-white font-gemunu lg:text-5xl text-2xl text-center font-medium tracking-wider -rotate-[35deg]">
                   Stokta Yok
                 </span>
               </div>
@@ -282,21 +303,44 @@ function ProductArea({ product }: IProductAreaProps) {
                 </div>
               </div>
             )}
-            {product?.attributes &&
-              product.attributes.map((attribute, key) => (
-                <div key={key} className="flex flex-col gap-2">
-                  <span>{attribute.attr_title} : </span>
-                  <div className="flex gap-2 flex-wrap">
-                    {attribute.attr_options?.map((attr, key) => (
-                      <AttrOptions
-                        key={key}
-                        option_name={attr.option_name}
-                        option_stock={attr.option_stock}
-                      />
-                    ))}
+            {product?.attributes && product.attributes.length > 0 && (
+              <div className="flex flex-col gap-4">
+                {product.attributes.map((attr, index) => (
+                  <div key={index} className="flex flex-col gap-2">
+                    <div className="flex items-center flex-wrap gap-1 text-sm font-medium text-gray-600">
+                      {attr.attr_title}
+                      {" : "}
+                      {selectedAttributes[attr.attr_title] ? (
+                        <span className="text-green-500">
+                          {selectedAttributes[attr.attr_title]}
+                        </span>
+                      ) : (
+                        attr.required && (
+                          <small className="text-red-500">
+                            ( {attr.attr_title} seçimi zorunludur )
+                          </small>
+                        )
+                      )}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {attr.attr_options.map((option, optIndex) => (
+                        <AttrOptions
+                          key={optIndex}
+                          option_name={option.option_name}
+                          option_stock={option.option_stock}
+                          isSelected={
+                            selectedAttributes[attr.attr_title] ===
+                            option.option_name
+                          }
+                          onSelect={handleSelectAttribute}
+                          attrTitle={attr.attr_title}
+                        />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            )}
           </div>
           <div className="flex lg:flex-row flex-col items-center w-full lg:gap-2 gap-4">
             <div className="flex items-center w-full gap-2 h-[50px]">
@@ -372,7 +416,11 @@ function ProductArea({ product }: IProductAreaProps) {
               />
             </div>
             <CustomButton
-              title={product && favoriteItems?.includes(product.code) ? "Bu Ürün Favori Listenizde" : "Favorilere Ekle"}
+              title={
+                product && favoriteItems?.includes(product.code)
+                  ? "Bu Ürün Favori Listenizde"
+                  : "Favorilere Ekle"
+              }
               textStyles="lg:hidden"
               containerStyles="flex items-center justify-center gap-2 max-lg:w-full px-4 bg-gray-100 border border-gray-200 text-gray-600 rounded-md h-[50px] transition-all duration-300 hover:bg-site hover:border-site hover:text-white h-[50px] group/favorite"
               leftIcon={
@@ -394,19 +442,28 @@ function ProductArea({ product }: IProductAreaProps) {
 function AttrOptions({
   option_name,
   option_stock,
+  isSelected,
+  onSelect,
+  attrTitle,
 }: {
   option_name: string;
   option_stock: number;
+  isSelected: boolean;
+  onSelect: (attrTitle: string, optionName: string) => void;
+  attrTitle: string;
 }) {
   const noStock = option_stock === 0;
   return (
     <CustomButton
       title={option_name}
-      containerStyles={`flex py-2 px-4 rounded-md border border-gray-200 ${
+      containerStyles={`flex py-2 px-4 rounded-md border  ${
         !noStock
-          ? "cursor-pointer hover:bg-site/10 hover:text-site hover:border-site/30"
+          ? isSelected
+            ? "bg-site text-white"
+            : "border-gray-200 cursor-pointer hover:border-site/30 hover:bg-site/10"
           : "bg-gray-200 border-transparent line-through opacity-50 cursor-not-allowed"
-      }  transition-all duration-300 text-sm`}
+      } transition-all duration-300 text-sm`}
+      handleClick={() => !noStock && onSelect(attrTitle, option_name)}
     />
   );
 }

@@ -1,67 +1,66 @@
 "use client";
-import { useGlobalContext } from "@/app/Context/store";
 import { getPrice } from "@/components/functions/getPrice";
 import CustomButton from "@/components/others/CustomButton";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
-import { productTypes } from "@/types/product/productTypes";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { IoAdd, IoRemove } from "react-icons/io5";
+import { IoAdd, IoRemove, IoTrashOutline } from "react-icons/io5";
 
 interface IBasketProductItemProps {
   product: basketProductTypes;
-  onUpdateQuantity: (newQuantity: number) => void;
+  onUpdateQuantity: (
+    newQuantity: number,
+    attributes?: { attr_title: string; attr_option: string }[] | null
+  ) => void;
+  onRemoveItem: (
+    productCode: string,
+    attributes?: { attr_title: string; attr_option: string }[] | null
+  ) => void;
 }
 
 function BasketProductItem({
   product,
   onUpdateQuantity,
+  onRemoveItem,
 }: IBasketProductItemProps) {
   const [loadingQuantity, setLoadingQuantity] = useState(false);
-  const { setBasketItems } = useGlobalContext();
+  const [loadingRemove, setLoadingRemove] = useState(false);
 
   const decreaseQuantity = () => {
-    if (!loadingQuantity) {
+    if (!loadingQuantity && product.quantity > 1) {
       setLoadingQuantity(true);
       setTimeout(() => {
         const newQuantity = Math.max(1, product.quantity - 1);
-        onUpdateQuantity(newQuantity);
-        setBasketItems((prevItems) => {
-          if (!prevItems) return null;
-          const index = prevItems.lastIndexOf(product.code);
-          if (index !== -1) {
-            const newItems = [...prevItems];
-            newItems.splice(index, 1);
-            localStorage.setItem("basketItems", JSON.stringify(newItems));
-            return newItems;
-          }
-          return prevItems;
-        });
+        onUpdateQuantity(newQuantity, product.attributes || null);
         setLoadingQuantity(false);
       }, 500);
     }
   };
 
   const increaseQuantity = () => {
-    if (!loadingQuantity) {
+    if (!loadingQuantity && product.stock > product.quantity) {
       setLoadingQuantity(true);
       setTimeout(() => {
         const newQuantity = product.quantity + 1;
-        onUpdateQuantity(newQuantity);
-        setBasketItems((prevItems) => {
-          if (!prevItems) return [product.code];
-          const newItems = [...prevItems, product.code];
-          localStorage.setItem("basketItems", JSON.stringify(newItems));
-          return newItems;
-        });
+        onUpdateQuantity(newQuantity, product.attributes || null);
         setLoadingQuantity(false);
       }, 500);
     }
   };
 
+  const handleRemoveItem = () => {
+    if (!loadingRemove) {
+      setLoadingRemove(true);
+      setTimeout(() => {
+        onRemoveItem(product.code, product.attributes || null);
+        setLoadingRemove(false);
+      }, 500);
+    }
+  };
+
   return (
-    <div className="flex gap-4 items-center lg:h-[156px] h-40">
+    <div className="flex gap-4 items-center">
       {product.images && (
         <Link
           href={"/"}
@@ -76,11 +75,18 @@ function BasketProductItem({
             title={product.title}
             className="object-cover"
           />
+          {product && product.stock < 1 && (
+            <div className="absolute flex items-center justify-center w-full h-full overflow-hidden bg-black-900/70 animate-pulse">
+              <span className="text-white font-gemunu lg:text-xl text-center text-xl font-medium tracking-wider -rotate-[35deg]">
+                Stokta Yok
+              </span>
+            </div>
+          )}
         </Link>
       )}
       <div className="flex flex-col justify-around h-full items-start gap-2 w-full">
         <div className="flex flex-col gap-2 w-full h-full justify-around">
-          <div className="flex flex-col w-full gap-0.5">
+          <div className="flex flex-col w-full gap-1">
             <Link
               href={"/"}
               title={product.title}
@@ -89,12 +95,21 @@ function BasketProductItem({
               {product.title}
             </Link>
             <span className="text-sm text-gray-600">{product.category}</span>
-            <div className="text-sm tracking-wide">
-              {product.stock > 0 ? (
-                <span className="text-green-500">Stokta Var</span>
-              ) : (
-                <span className="text-red-600">Tükendi</span>
-              )}
+            <div className="flex text-xs flex-wrap gap-x-2 gap-y-1 line-clamp-2 max-w-full">
+              {product.attributes &&
+                product.attributes?.map((attr, key) => (
+                  <>
+                    <div
+                      key={key}
+                      className="flex after:content-[','] last:after:content-none max-w-full"
+                    >
+                      <div className="flex items-center gap-1 min-w-max">
+                        <span>{attr?.attr_title} :</span>
+                        <span>{attr?.attr_option}</span>
+                      </div>
+                    </div>
+                  </>
+                ))}
             </div>
           </div>
           <div className="flex items-center text-sm gap-2">
@@ -114,33 +129,44 @@ function BasketProductItem({
             )}
           </div>
         </div>
-        <div className="flex items-center justify-between gap-3 bg-gray-100 border border-gray-200 rounded-lg p-1">
+        <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between gap-3 bg-gray-100 border border-gray-200 rounded-lg p-1">
+            <CustomButton
+              handleClick={product.quantity > 1 ? decreaseQuantity : undefined}
+              containerStyles={`bg-white p-1 border border-gray-200 rounded-lg transition-all duration-300 group ${
+                product && product.stock > 0 && product.quantity > 1
+                  ? "hover:text-white hover:bg-site"
+                  : "opacity-50 cursor-not-allowed"
+              }`}
+              leftIcon={
+                !loadingQuantity ? (
+                  <IoRemove className="text-lg" />
+                ) : (
+                  <div className="animate-spin rounded-full m-0.5 h-[14px] w-[14px] border-t-2 border-b-2 border-gray-500 group-hover:border-white"></div>
+                )
+              }
+            />
+            <span className="select-none">{product.quantity}</span>
+            <CustomButton
+              handleClick={product.stock > 0 ? increaseQuantity : undefined}
+              containerStyles={`bg-white p-1 border border-gray-200 rounded-lg transition-all duration-300 group ${
+                product.stock > 0
+                  ? "hover:text-white hover:bg-site"
+                  : "opacity-50 cursor-not-allowed"
+              }`}
+              leftIcon={
+                !loadingQuantity ? (
+                  <IoAdd className="text-lg" />
+                ) : (
+                  <div className="animate-spin rounded-full m-0.5 h-[14px] w-[14px] border-t-2 border-b-2 border-gray-500 group-hover:border-white"></div>
+                )
+              }
+            />
+          </div>
           <CustomButton
-            handleClick={decreaseQuantity}
-            containerStyles="p-1 bg-white border border-gray-200 rounded-lg transition-all duration-300 hover:text-white hover:bg-site group"
-            leftIcon={
-              !loadingQuantity ? (
-                <IoRemove className="text-lg" />
-              ) : (
-                <div className="animate-spin rounded-full m-0.5 h-[14px] w-[14px] border-t-2 border-b-2 border-gray-500 group-hover:border-white"></div>
-              )
-            }
-          />
-          <span className="select-none">{product.quantity}</span>
-          <CustomButton
-            handleClick={product.stock > 0 ? increaseQuantity : undefined}
-            containerStyles={`bg-white p-1 border border-gray-200 rounded-lg transition-all duration-300 group ${
-              product.stock > 0
-                ? "hover:text-white hover:bg-site"
-                : "opacity-50 cursor-not-allowed"
-            }`}
-            leftIcon={
-              !loadingQuantity ? (
-                <IoAdd className="text-lg" />
-              ) : (
-                <div className="animate-spin rounded-full m-0.5 h-[14px] w-[14px] border-t-2 border-b-2 border-gray-500 group-hover:border-white"></div>
-              )
-            }
+            containerStyles="flex items-center justify-centerbg-gray-100 border border-gray-200 h-full py-2 px-3 rounded-lg transition-all duration-300 hover:text-white hover:bg-red-500 hover:border-red-500"
+            leftIcon={<IoTrashOutline className="text-lg" />}
+            handleClick={handleRemoveItem}
           />
         </div>
       </div>

@@ -1,5 +1,4 @@
 export type basketProductTypes = {
-  id: number;
   title: string;
   slug: string;
   code: string;
@@ -19,7 +18,7 @@ export type basketProductTypes = {
   attributes:
     | {
         attr_title: string;
-        attr_options: string;
+        attr_option: string;
       }[]
     | null;
 };

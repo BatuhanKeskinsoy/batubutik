@@ -17,6 +17,7 @@ import {
   IoTrashBinOutline,
 } from "react-icons/io5";
 import ProductArea from "@/components/(front)/Product/ProductArea";
+import { basketItemTypes } from "@/types/product/basketItemTypes";
 
 interface IFavoriteProductItemProps {
   product: productTypes;
@@ -50,16 +51,25 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
 
   const handleAddToBasket = (e: any) => {
     e.preventDefault();
-    if (!loadingAddToBasket) {
-      setLoadingAddToBasket(true);
-      setTimeout(() => {
-        if (!product.choise_required) {
-          addToBasket(product.code, setBasketItems);
-        } else {
-          handleShowProductArea(e);
-        }
-        setLoadingAddToBasket(false);
-      }, 1000);
+
+    if (product) {
+      const item: basketItemTypes = {
+        product_code: product.code,
+        quantity: 1,
+        attributes: null,
+      };
+
+      if (!loadingAddToBasket) {
+        setLoadingAddToBasket(true);
+        setTimeout(() => {
+          if (!product.choise_required) {
+            addToBasket(item, setBasketItems);
+          } else {
+            handleShowProductArea(e);
+          }
+          setLoadingAddToBasket(false);
+        }, 1000);
+      }
     }
   };
 

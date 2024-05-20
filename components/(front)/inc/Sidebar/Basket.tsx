@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import BasketProducts from "@/components/(front)/Basket/BasketProducts";
 import { getPrice } from "@/components/functions/getPrice";
 import Link from "next/link";
@@ -8,67 +8,174 @@ import { useGlobalContext } from "@/app/Context/store";
 import { instantProducts, generals } from "@/constants/(front)";
 import { IoFileTrayOutline } from "react-icons/io5";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
+import { basketItemTypes } from "@/types/product/basketItemTypes";
 
 function Basket() {
   const { basketItems, setBasketItems } = useGlobalContext();
   const [loadingEmptyBasket, setLoadingEmptyBasket] = useState(false);
-  const [basketProducts, setBasketProducts] = useState<basketProductTypes[] | null>(
-    null
-  );
+  const [basketProducts, setBasketProducts] = useState<
+    basketProductTypes[] | null
+  >(null);
   const [subTotal, setSubTotal] = useState(0);
 
   const freeShipping: number | null = generals.free_shipping;
 
+  const mergeSameProducts = (products: basketProductTypes[]) => {
+    const mergedProducts: Record<string, basketProductTypes> = {};
+
+    products.forEach((product) => {
+      const key = product.attributes
+        ? `${product.code}-${JSON.stringify(product.attributes)}`
+        : product.code;
+      if (mergedProducts[key]) {
+        mergedProducts[key].quantity += product.quantity;
+      } else {
+        mergedProducts[key] = { ...product };
+      }
+    });
+
+    return Object.values(mergedProducts);
+  };
+
   useEffect(() => {
     if (basketItems && basketItems.length > 0) {
-      const groupedProducts = basketItems.reduce((acc, code) => {
-        acc[code] = acc[code] ? acc[code] + 1 : 1;
-        return acc;
-      }, {} as Record<string, number>);
-
-      const productsInBasket = Object.keys(groupedProducts)
-        .map((code) => {
-          const product = instantProducts.find((p) => p.code === code);
+      const productsInBasket = basketItems
+        .map((item) => {
+          const product = instantProducts.find(
+            (p) => p.code === item.product_code
+          );
           if (product) {
             return {
               ...product,
-              quantity: groupedProducts[code],
+              quantity: item.quantity,
+              attributes: item.attributes,
             };
           }
+          return null;
         })
         .filter(Boolean) as basketProductTypes[];
 
-      setBasketProducts(productsInBasket);
+      const mergedProducts = mergeSameProducts(productsInBasket);
+
+      setBasketProducts(mergedProducts);
     } else {
       setBasketProducts(null);
     }
   }, [basketItems]);
 
-  useEffect(() => {
-    if (basketProducts && basketProducts.length > 0) {
-      const subtotal = basketProducts.reduce((acc, product) => {
+  const calculateSubTotal = useCallback(() => {
+    return (
+      basketProducts &&
+      basketProducts.reduce((acc, product) => {
         return acc + (product.amount || 0) * (product.quantity || 0);
-      }, 0);
-      setSubTotal(subtotal);
-    } else {
-      setSubTotal(0);
-    }
+      }, 0)
+    );
   }, [basketProducts]);
 
-  const handleUpdateQuantity = (productCode: string, newQuantity: number) => {
-    setBasketProducts((prevProducts) => {
-      if (!prevProducts) return null;
-      return prevProducts.map((product) =>
-        product.code === productCode ? { ...product, quantity: newQuantity } : product
+  useEffect(() => {
+    const subtotal = calculateSubTotal();
+    subtotal && setSubTotal(subtotal);
+  }, [calculateSubTotal]);
+
+  const handleUpdateQuantity = useCallback(
+    (
+      productCode: string,
+      newQuantity: number,
+      attributes?: { attr_title: string; attr_option: string }[] | null
+    ) => {
+      setBasketProducts((prevProducts) => {
+        if (!prevProducts) return null;
+        return prevProducts.map((product) => {
+          const attributesMatch =
+            (product.attributes &&
+              attributes &&
+              JSON.stringify(product.attributes) ===
+                JSON.stringify(attributes)) ||
+            (!product.attributes && !attributes);
+          if (product.code === productCode && attributesMatch) {
+            return { ...product, quantity: newQuantity };
+          }
+          return product;
+        });
+      });
+    },
+    []
+  );
+
+  const handleRemoveItem = useCallback(
+    (
+      productCode: string,
+      attributes?: { attr_title: string; attr_option: string }[] | null
+    ) => {
+      if (basketProducts) {
+        const updatedBasketProducts = basketProducts.filter((product) => {
+          if (
+            product.code === productCode &&
+            (!attributes ||
+              (product.attributes &&
+                JSON.stringify(product.attributes) ===
+                  JSON.stringify(attributes)))
+          ) {
+            return false;
+          }
+          return true;
+        });
+
+        setBasketProducts(updatedBasketProducts);
+
+        const updatedBasketItems = updatedBasketProducts.map((product) => ({
+          product_code: product.code,
+          quantity: product.quantity,
+          attributes: product.attributes || null,
+        }));
+
+        localStorage.setItem("basketItems", JSON.stringify(updatedBasketItems));
+
+        setBasketItems(updatedBasketItems);
+
+        const subtotal = calculateSubTotal();
+        setSubTotal(subtotal || 0);
+      }
+    },
+    [basketProducts, calculateSubTotal, setBasketItems]
+  );
+
+  useEffect(() => {
+    if (basketProducts) {
+      const updatedBasketItems: basketItemTypes[] = basketProducts.map(
+        (product) => ({
+          product_code: product.code,
+          quantity: product.quantity,
+          attributes: product.attributes || null,
+        })
       );
-    });
-  };
+
+      const prevBasketItemsString = localStorage.getItem("basketItems");
+      const prevBasketItems = prevBasketItemsString
+        ? JSON.parse(prevBasketItemsString)
+        : null;
+
+      const updatedBasketItemsString = JSON.stringify(updatedBasketItems);
+      if (updatedBasketItemsString !== JSON.stringify(prevBasketItems)) {
+        localStorage.setItem("basketItems", updatedBasketItemsString);
+        setBasketItems(updatedBasketItems);
+      }
+    } else {
+      // If basketProducts is null, set prevBasketItems to null
+      const prevBasketItems = null;
+      // Check if prevBasketItems is different from null
+      if (prevBasketItems !== null) {
+        localStorage.setItem("basketItems", JSON.stringify(null));
+        setBasketItems(null);
+      }
+    }
+  }, [basketProducts, setBasketItems]);
 
   const handleEmptyBasket = () => {
     if (!loadingEmptyBasket) {
       setLoadingEmptyBasket(true);
       setTimeout(() => {
-        localStorage.setItem("basketItems", JSON.stringify(null));
+        localStorage.removeItem("basketItems");
         setBasketProducts(null);
         setBasketItems(null);
         setLoadingEmptyBasket(false);
@@ -83,6 +190,10 @@ function Basket() {
     }
     return 0;
   };
+
+  useEffect(() => {
+    console.log("basketProducts", basketProducts);
+  }, [basketProducts]);
 
   if (!basketProducts)
     return (
@@ -100,7 +211,12 @@ function Basket() {
       <div className="flex flex-col w-full overflow-y-auto h-full lg:px-8 px-4 py-4">
         <BasketProducts
           products={basketProducts}
-          handleUpdateQuantity={handleUpdateQuantity}
+          handleUpdateQuantity={(productCode, newQuantity, attributes) =>
+            handleUpdateQuantity(productCode, newQuantity, attributes)
+          }
+          onRemoveItem={(productCode, attributes) =>
+            handleRemoveItem(productCode, attributes)
+          }
         />
       </div>
       <div className="flex items-center justify-between w-full bg-gray-200 lg:px-8 px-4 py-4 font-semibold">

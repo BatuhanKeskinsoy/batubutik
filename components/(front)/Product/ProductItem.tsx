@@ -19,6 +19,7 @@ import {
 import ProductArea from "@/components/(front)/Product/ProductArea";
 import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { instantProductDetail } from "@/constants/(front)";
+import { basketItemTypes } from "@/types/product/basketItemTypes";
 
 interface IProductItemProps {
   product: productTypes;
@@ -57,16 +58,25 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
 
   const handleAddToBasket = (e: any) => {
     e.preventDefault();
-    if (!loadingAddToBasket) {
-      setLoadingAddToBasket(true);
-      setTimeout(() => {
-        if (!product.choise_required) {
-          addToBasket(product.code, setBasketItems);
-        } else {
-          handleShowProductArea(e);
-        }
-        setLoadingAddToBasket(false);
-      }, 1000);
+
+    if (product) {
+      const item: basketItemTypes = {
+        product_code: product.code,
+        quantity: 1,
+        attributes: null,
+      };
+
+      if (!loadingAddToBasket) {
+        setLoadingAddToBasket(true);
+        setTimeout(() => {
+          if (!product.choise_required) {
+            addToBasket(item, setBasketItems);
+          } else {
+            handleShowProductArea(e);
+          }
+          setLoadingAddToBasket(false);
+        }, 1000);
+      }
     }
   };
 
@@ -154,7 +164,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
 
             {product.stock < 1 && (
               <div className="absolute flex items-center justify-center w-full h-full overflow-hidden bg-black-900/70 animate-pulse">
-                <span className="text-white font-gemunu lg:text-5xl text-2xl font-medium tracking-wider -rotate-[35deg]">
+                <span className="text-white font-gemunu lg:text-5xl text-2xl text-center font-medium tracking-wider -rotate-[35deg]">
                   Stokta Yok
                 </span>
               </div>
