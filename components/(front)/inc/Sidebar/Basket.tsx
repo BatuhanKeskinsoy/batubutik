@@ -191,10 +191,6 @@ function Basket() {
     return 0;
   };
 
-  useEffect(() => {
-    console.log("basketProducts", basketProducts);
-  }, [basketProducts]);
-
   if (!basketProducts)
     return (
       <div className="flex flex-col gap-4 w-full h-[calc(100dvh-69px)] justify-center items-center text-gray-300">

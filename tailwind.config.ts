@@ -25,6 +25,7 @@ const config: Config = {
         sidebarRightSmooth: 'sidebarRightSmooth .3s ease-in-out',
         sidebarBgSmooth: 'sidebarBgSmooth .3s ease-in-out',
         modalContentSmooth: 'modalContentSmooth .3s ease-in-out',
+        productScale: 'productScale .3s ease-in-out',
       },
       keyframes: {
         scaleMobile: {
@@ -50,6 +51,11 @@ const config: Config = {
         modalContentSmooth: {
           '0%': { transform: "scale(0)", opacity: '0'  },
           '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        productScale: {
+          '0%': { transform: "scale(1)"},
+          '50%': { transform: 'scale(0.7)'},
+          '100%': { transform: 'scale(1)'},
         }
       },
       backgroundImage: {

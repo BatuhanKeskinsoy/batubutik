@@ -2,6 +2,7 @@ import { CustomButtonProps } from "@/types/buttonTypes";
 import Image from "next/image";
 
 const CustomButton = ({
+  id,
   title,
   containerStyles,
   handleClick,
@@ -19,6 +20,7 @@ const CustomButton = ({
 }: CustomButtonProps) => {
   return (
     <button
+      id={id}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       type={btnType}

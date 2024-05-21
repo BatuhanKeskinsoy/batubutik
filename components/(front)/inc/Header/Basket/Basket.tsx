@@ -47,10 +47,6 @@ function Basket() {
     }
   }, [basketItemCount]);
 
-
-  useEffect(() => {
-    console.log("basketItems", basketItems);
-  }, [basketItems]);
   return (
     <div
       className="relative flex items-center rounded-full lg:hover:scale-110 transition-all duration-300 h-full cursor-pointer"
@@ -64,6 +60,7 @@ function Basket() {
         </div>
       )}
       <CustomButton
+        id="basket-icon"
         leftIcon={BasketIcon}
         containerStyles={`p-2 border transition-all duration-300 ${
           basketItemCount > 0
