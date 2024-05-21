@@ -5,7 +5,7 @@ import { basketProductTypes } from "@/types/product/basketProductTypes";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { IoAdd, IoRemove, IoTrashOutline } from "react-icons/io5";
+import { IoAdd, IoBagRemoveOutline, IoRemove } from "react-icons/io5";
 
 interface IBasketProductItemProps {
   product: basketProductTypes;
@@ -25,7 +25,6 @@ function BasketProductItem({
   onRemoveItem,
 }: IBasketProductItemProps) {
   const [loadingQuantity, setLoadingQuantity] = useState(false);
-  const [loadingRemove, setLoadingRemove] = useState(false);
 
   const decreaseQuantity = () => {
     if (!loadingQuantity && product.quantity > 1) {
@@ -50,11 +49,11 @@ function BasketProductItem({
   };
 
   const handleRemoveItem = () => {
-    if (!loadingRemove) {
-      setLoadingRemove(true);
+    if (!loadingQuantity) {
+      setLoadingQuantity(true);
       setTimeout(() => {
         onRemoveItem(product.code, product.attributes || null);
-        setLoadingRemove(false);
+        setLoadingQuantity(false);
       }, 500);
     }
   };
@@ -98,17 +97,15 @@ function BasketProductItem({
             <div className="flex text-xs flex-wrap gap-x-2 gap-y-1 line-clamp-2 max-w-full">
               {product.attributes &&
                 product.attributes?.map((attr, key) => (
-                  <>
-                    <div
-                      key={key}
-                      className="flex after:content-[','] last:after:content-none max-w-full"
-                    >
-                      <div className="flex items-center gap-1 min-w-max">
-                        <span>{attr?.attr_title} :</span>
-                        <span>{attr?.attr_option}</span>
-                      </div>
+                  <div
+                    key={key}
+                    className="flex after:content-[','] last:after:content-none max-w-full"
+                  >
+                    <div className="flex items-center gap-1 min-w-max">
+                      <span>{attr?.attr_title} :</span>
+                      <span>{attr?.attr_option}</span>
                     </div>
-                  </>
+                  </div>
                 ))}
             </div>
           </div>
@@ -132,15 +129,17 @@ function BasketProductItem({
         <div className="flex items-center gap-2">
           <div className="flex items-center justify-between gap-3 bg-gray-100 border border-gray-200 rounded-lg p-1">
             <CustomButton
-              handleClick={product.quantity > 1 ? decreaseQuantity : undefined}
-              containerStyles={`bg-white p-1 border border-gray-200 rounded-lg transition-all duration-300 group ${
-                product && product.stock > 0 && product.quantity > 1
-                  ? "hover:text-white hover:bg-site"
-                  : "opacity-50 cursor-not-allowed"
-              }`}
+              handleClick={
+                product.quantity > 1 ? decreaseQuantity : handleRemoveItem
+              }
+              containerStyles={`bg-white p-1 border border-gray-200 rounded-lg transition-all duration-300 hover:text-white hover:bg-site group`}
               leftIcon={
                 !loadingQuantity ? (
-                  <IoRemove className="text-lg" />
+                  product.quantity > 1 ? (
+                    <IoRemove className="text-lg" />
+                  ) : (
+                    <IoBagRemoveOutline className="text-lg" />
+                  )
                 ) : (
                   <div className="animate-spin rounded-full m-0.5 h-[14px] w-[14px] border-t-2 border-b-2 border-gray-500 group-hover:border-white"></div>
                 )
@@ -163,11 +162,6 @@ function BasketProductItem({
               }
             />
           </div>
-          <CustomButton
-            containerStyles="flex items-center justify-centerbg-gray-100 border border-gray-200 h-full py-2 px-3 rounded-lg transition-all duration-300 hover:text-white hover:bg-red-500 hover:border-red-500"
-            leftIcon={<IoTrashOutline className="text-lg" />}
-            handleClick={handleRemoveItem}
-          />
         </div>
       </div>
     </div>

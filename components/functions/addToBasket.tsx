@@ -26,7 +26,6 @@ function addToBasket(
   setBasketItems(updatedBasketItems);
 
   localStorage.setItem("basketItems", JSON.stringify(updatedBasketItems));
-  toast.success("Sepetinize Eklendi");
 }
 
 export default addToBasket;

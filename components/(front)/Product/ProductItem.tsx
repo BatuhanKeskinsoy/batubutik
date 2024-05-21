@@ -86,7 +86,6 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
       setLoadingAddToFavorite(true);
       setTimeout(() => {
         toggleToFavorite(
-          product.title,
           product.code,
           favoriteItems,
           setFavoriteItems

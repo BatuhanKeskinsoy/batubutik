@@ -115,7 +115,6 @@ function ProductArea({ product }: IProductAreaProps) {
       setLoadingAddToFavorite(true);
       setTimeout(() => {
         toggleToFavorite(
-          product.title,
           product.code,
           favoriteItems,
           setFavoriteItems
