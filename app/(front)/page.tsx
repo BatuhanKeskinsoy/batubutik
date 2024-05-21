@@ -8,7 +8,7 @@ import FeaturedProducts from "@/components/(front)/Product/FeaturedProducts/Feat
 function Home() {
   return (
     <>
-      {/* <SliderOne /> */}
+      <SliderOne />
       <div className="container mx-auto px-4 flex flex-col gap-6">
         <h1 className="text-4xl font-semibold font-gemunu">Öne Çıkan Ürünler</h1>
         <FeaturedProducts />
