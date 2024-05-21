@@ -183,7 +183,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
           <div className="relative flex flex-col justify-center items-center w-full">
             <div
               ref={productRef}
-              className={`absolute bg-red-500 z-10 rounded-xl w-[0%] h-[0%] overflow-hidden`}
+              className={`absolute z-10 rounded-xl w-[0%] h-[0%] overflow-hidden`}
               style={{
                 transform: `translate(${position.endX - position.startX}px, ${
                   position.endY - position.startY
