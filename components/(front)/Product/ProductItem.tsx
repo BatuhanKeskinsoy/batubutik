@@ -85,10 +85,10 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
           const productRect = productElement.getBoundingClientRect();
           const basketRect = basketElement.getBoundingClientRect();
 
-          const startX = productRect.left;
-          const startY = productRect.top;
-          const endX = basketRect.left + basketRect.width / 2;
-          const endY = basketRect.top + basketRect.height / 2;
+          const startX = productRect.left + window.scrollX;
+          const startY = productRect.top + window.scrollY;
+          const endX = basketRect.left + window.scrollX + basketRect.width / 2;
+          const endY = basketRect.top + window.scrollY + basketRect.height / 2;
 
           if (!product.choise_required) {
             setPosition({ startX, startY, endX, endY });

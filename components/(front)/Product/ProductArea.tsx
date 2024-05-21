@@ -25,7 +25,7 @@ interface IProductAreaProps {
 }
 
 function ProductArea({ product }: IProductAreaProps) {
-  const { setBasketItems, favoriteItems, setFavoriteItems } =
+  const { setBasketItems, favoriteItems, setFavoriteItems, isMobile } =
     useGlobalContext();
   const [loadingQuantity, setLoadingQuantity] = useState(false);
   const [loadingAddToBasket, setLoadingAddToBasket] = useState(false);
@@ -203,7 +203,7 @@ function ProductArea({ product }: IProductAreaProps) {
           </div>
         )}
       </div>
-      <div className="lg:px-6 px-4 py-6 w-full lg:overflow-y-auto">
+      <div className={`lg:px-6 px-4 py-6 w-full lg:overflow-y-auto ${isMobile ? "pb-32" : ""}`}>
         <div className="flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-3 w-full">
             <div className="flex flex-col gap-2 w-full">
