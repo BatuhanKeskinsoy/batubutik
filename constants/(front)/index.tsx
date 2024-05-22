@@ -11,6 +11,29 @@ export const generals = {
   phone: "08505058515",
 };
 
+export const navLinks = [
+  {
+    title: "Anasayfa",
+    url: "/",
+  },
+  {
+    title: "Mağaza",
+    url: "/magaza",
+  },
+  {
+    title: "Blog",
+    url: "/",
+  },
+  {
+    title: "Hakkımızda",
+    url: "/",
+  },
+  {
+    title: "İletişim",
+    url: "/",
+  },
+];
+
 export const instantProducts = [
   {
     id: 1,
