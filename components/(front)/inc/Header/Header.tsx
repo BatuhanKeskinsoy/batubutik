@@ -23,6 +23,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { generals } from "@/constants/(front)";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { getPrice } from "@/components/functions/getPrice";
+import { getSocialIcon } from "@/components/functions/getSocialIcon";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -62,22 +63,20 @@ function Header() {
       <ToastContainer />
       {loading && <Loading />}
       <header className="relative w-full lg:h-[120px] h-20 z-10">
-        <div className="h-10 w-full max-lg:hidden bg-gray-200">
+        <div className="h-10 w-full max-lg:hidden bg-gray-300/50">
           <div className="container px-4 mx-auto flex justify-between items-center h-full text-xs text-gray-600">
             <div className="flex items-center gap-4 h-full">
               <div className="flex gap-2 items-center *:transition-all *:duration-300">
-                <Link href="/" className="hover:text-site" target="_blank">
-                  <CiFacebook className="text-xl" />
-                </Link>
-                <Link href="/" className="hover:text-site" target="_blank">
-                  <CiTwitter className="text-xl" />
-                </Link>
-                <Link href="/" className="hover:text-site" target="_blank">
-                  <CiInstagram className="text-xl" />
-                </Link>
-                <Link href="/" className="hover:text-site" target="_blank">
-                  <CiYoutube className="text-xl" />
-                </Link>
+                {generals.socials.map((social, key) => (
+                  <Link
+                    key={key}
+                    href={social.url}
+                    className="hover:text-site *:text-xl"
+                    target="_blank"
+                  >
+                    {getSocialIcon(social.platform)}
+                  </Link>
+                ))}
               </div>
               <div className="w-1 h-full border-r border-gray-300" />
               <Link
@@ -85,22 +84,24 @@ function Header() {
                 className="flex items-center gap-2 hover:text-site transition-all duration-300"
               >
                 <IoMailOutline className="text-xl" />
-                <span>commerce@gmail.com</span>
+                <span>{generals.email}</span>
               </Link>
               <Link
                 href="tel:08508508585@gmail.com"
                 className="flex items-center gap-2 hover:text-site transition-all duration-300"
               >
                 <IoCallOutline className="text-xl" />
-                <span>0850 850 85 85</span>
+                <span>{generals.phone}</span>
               </Link>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <LiaShippingFastSolid className="text-xl" />
-              <span>
-                {getPrice(generals.free_shipping)} ve üzerine {" "}
-                <strong>Kargo Ücretsiz</strong>
-              </span>
+              {generals.free_shipping > 0 && (
+                <span>{getPrice(generals.free_shipping)} ve üzerine</span>
+              )}
+              <strong className="text-site tracking-wide uppercase">
+                KARGO ÜCRETSİZ
+              </strong>
             </div>
           </div>
         </div>

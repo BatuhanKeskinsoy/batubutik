@@ -1,30 +1,17 @@
-export function getSocialIcon(platform: string): string {
+import { ReactElement } from "react";
+import { CiFacebook, CiInstagram, CiTwitter, CiYoutube } from "react-icons/ci";
+
+export function getSocialIcon(platform: string): ReactElement {
   switch (platform) {
     case "Facebook":
-      return "facebook";
-    case "Twitch":
-      return "twitch";
-    case "Youtube":
-      return "youtube";
-    case "Instagram":
-      return "instagram";
-    case "LinkedIn":
-      return "linkedin";
-    case "Snapchat":
-      return "snapchat";
-    case "Medium":
-      return "medium";
-    case "Reddit":
-      return "reddit";
-    case "Discord":
-      return "discord";
-    case "Tiktok":
-      return "tiktok";
-    case "Spotify":
-      return "spotify";
+      return <CiFacebook />;
     case "Twitter":
-      return "twitter";
+      return <CiTwitter />;
+    case "İnstagram":
+      return <CiInstagram />;
+    case "Youtube":
+      return <CiYoutube />;
     default:
-      return "no-image";
+      return <CiFacebook />;
   }
 }

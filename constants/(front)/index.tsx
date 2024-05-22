@@ -1,6 +1,14 @@
 export const generals = {
   site_name: "Batubutik",
   free_shipping: 1000,
+  socials: [
+    { platform: "Facebook", url: "/" },
+    { platform: "Twitter", url: "/" },
+    { platform: "İnstagram", url: "/" },
+    { platform: "Youtube", url: "/" },
+  ],
+  email: "batubutik@info.com",
+  phone: "08505058515",
 };
 
 export const instantProducts = [

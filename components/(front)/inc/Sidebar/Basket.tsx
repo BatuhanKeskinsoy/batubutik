@@ -266,7 +266,6 @@ function Basket() {
               </div>
             ) : (
               <span className="text-sm">
-                Siparişlerde{" "}
                 <strong className="text-green-500">KARGO ÜCRETSİZ</strong>
               </span>
             )}

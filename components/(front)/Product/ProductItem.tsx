@@ -178,7 +178,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="relative flex flex-col justify-center items-center w-full">
+          <div className="relative flex flex-col justify-center items-center w-full rounded-xl shadow-lg">
             <div
               ref={productRef}
               className={`absolute z-10 rounded-xl overflow-hidden shadow-lg`}
