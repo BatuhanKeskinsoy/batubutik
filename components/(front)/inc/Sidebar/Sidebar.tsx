@@ -6,6 +6,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import Basket from "@/components/(front)/inc/Sidebar/Basket";
 import Favorite from "@/components/(front)/inc/Sidebar/Favorite";
 import { generals } from "@/constants/(front)";
+import NavMenu from "@/components/(front)/inc/Sidebar/NavMenu";
 
 function Sidebar() {
   const { sidebarStatus, setSidebarStatus } = useGlobalContext();
@@ -60,7 +61,7 @@ function Sidebar() {
           ) : sidebarStatus === "Auth" ? (
             "Profil"
           ) : sidebarStatus === "MobileMenu" ? (
-            "Nav menü"
+            <NavMenu />
           ) : null}
         </div>
       </div>
