@@ -146,7 +146,7 @@ function ProductArea({ product }: IProductAreaProps) {
 
   return (
     <div className="flex lg:flex-row flex-col h-full w-full">
-      <div className="flex lg:flex-row flex-col h-full lg:min-h-[calc(100dvh-22%)] min-h-[100dvh]">
+      <div className="flex lg:flex-row flex-col h-full lg:min-h-[calc(100dvh-22%)] min-h-[calc(100dvw+40%)]">
         {product?.images && product.images?.length > 1 && (
           <div className="flex lg:flex-col gap-1 p-1 max-h-full min-h-[164px] overflow-auto scrollbar-thick lg:order-1 order-2">
             {product.images?.map((image, key) => (
