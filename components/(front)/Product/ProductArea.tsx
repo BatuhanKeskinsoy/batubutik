@@ -144,20 +144,6 @@ function ProductArea({ product }: IProductAreaProps) {
     );
   };
 
-  const [hasBottomBar, setHasBottomBar] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      // Adjust the threshold as necessary
-      setHasBottomBar(window.innerHeight < window.outerHeight - 100);
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <div className="flex lg:flex-row flex-col h-full w-full">
       <div className="flex lg:flex-row flex-col h-full lg:min-h-[calc(100dvh-22%)] min-h-[calc(100dvw+40%)]">
@@ -222,7 +208,7 @@ function ProductArea({ product }: IProductAreaProps) {
       </div>
       <div
         className={`lg:px-6 px-4 py-6 w-full lg:overflow-y-auto ${
-          hasBottomBar ? "pb-32" : "pb-4"
+          isMobile ? "pb-32" : ""
         }`}
       >
         <div className="flex flex-col gap-6 w-full">
