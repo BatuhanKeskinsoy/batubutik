@@ -20,7 +20,7 @@ function SliderOne() {
     <Swiper
       spaceBetween={0}
       modules={[Autoplay]}
-      className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 w-full h-[calc(100svh-150px)]"
+      className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 w-full h-[calc(100vh-200px)]"
       loop={true}
       autoplay={{
         delay: 2000,
