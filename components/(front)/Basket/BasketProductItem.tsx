@@ -25,24 +25,27 @@ function BasketProductItem({
   onRemoveItem,
 }: IBasketProductItemProps) {
   const [loadingQuantity, setLoadingQuantity] = useState(false);
+  const [productQuantity, setProductQuantity] = useState(product.quantity);
 
   const decreaseQuantity = () => {
-    if (!loadingQuantity && product.quantity > 1) {
+    if (!loadingQuantity && productQuantity > 1) {
       setLoadingQuantity(true);
       setTimeout(() => {
-        const newQuantity = Math.max(1, product.quantity - 1);
+        const newQuantity = Math.max(1, productQuantity - 1);
         onUpdateQuantity(newQuantity, product.attributes || null);
+        setProductQuantity(newQuantity);
         setLoadingQuantity(false);
       }, 500);
     }
   };
 
   const increaseQuantity = () => {
-    if (!loadingQuantity && product.stock > product.quantity) {
+    if (!loadingQuantity && product.stock > productQuantity) {
       setLoadingQuantity(true);
       setTimeout(() => {
-        const newQuantity = product.quantity + 1;
+        const newQuantity = productQuantity + 1;
         onUpdateQuantity(newQuantity, product.attributes || null);
+        setProductQuantity(newQuantity);
         setLoadingQuantity(false);
       }, 500);
     }
@@ -53,6 +56,7 @@ function BasketProductItem({
       setLoadingQuantity(true);
       setTimeout(() => {
         onRemoveItem(product.code, product.attributes || null);
+        setProductQuantity(1);
         setLoadingQuantity(false);
       }, 500);
     }
@@ -130,12 +134,14 @@ function BasketProductItem({
           <div className="flex items-center justify-between gap-3 bg-gray-100 border border-gray-200 rounded-lg p-1">
             <CustomButton
               handleClick={
-                product.quantity > 1 ? decreaseQuantity : handleRemoveItem
+                product.stock > 0 && productQuantity > 1
+                  ? decreaseQuantity
+                  : handleRemoveItem
               }
               containerStyles={`bg-white p-1 border border-gray-200 rounded-lg transition-all duration-300 hover:text-white hover:bg-site group`}
               leftIcon={
                 !loadingQuantity ? (
-                  product.quantity > 1 ? (
+                  productQuantity > 1 ? (
                     <IoRemove className="text-lg" />
                   ) : (
                     <IoBagRemoveOutline className="text-lg" />
@@ -145,11 +151,11 @@ function BasketProductItem({
                 )
               }
             />
-            <span className="select-none">{product.quantity}</span>
+            <span className="select-none">{productQuantity}</span>
             <CustomButton
-              handleClick={product.stock > 0 ? increaseQuantity : undefined}
+              handleClick={product.stock > productQuantity ? increaseQuantity : undefined}
               containerStyles={`bg-white p-1 border border-gray-200 rounded-lg transition-all duration-300 group ${
-                product.stock > 0
+                product.stock > productQuantity
                   ? "hover:text-white hover:bg-site"
                   : "opacity-50 cursor-not-allowed"
               }`}

@@ -93,9 +93,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
           if (!product.choise_required) {
             setPosition({ startX, startY, endX, endY });
             setAnimate(true);
-          }
 
-          if (!product.choise_required) {
             setTimeout(() => {
               addToBasket(item, setBasketItems);
               setAnimate(false);
@@ -183,17 +181,17 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
           <div className="relative flex flex-col justify-center items-center w-full">
             <div
               ref={productRef}
-              className={`absolute z-10 rounded-xl w-[0%] h-[0%] overflow-hidden`}
+              className={`absolute z-10 rounded-xl overflow-hidden shadow-lg`}
               style={{
                 transform: `translate(${position.endX - position.startX}px, ${
                   position.endY - position.startY
                 }px) scale(${!animate ? 1 : 0})`,
                 visibility: animate ? "visible" : "hidden",
-                scale: animate ? "1" : "1.05",
+                scale: animate ? "1" : "1.15",
                 transition:
-                  "transform 0.7s 0.3s ease-in-out, filter 0.3s ease-in-out, scale 0.3s ease-in-out",
-                width: animate ? "100%" : "0%",
-                height: animate ? "100%" : "0%",
+                  "transform 0.7s 0.3s ease-in-out, scale 0.3s ease-in-out",
+                width: animate ? "85%" : "0%",
+                height: animate ? "85%" : "0%",
               }}
             >
               {animate && (

@@ -114,11 +114,7 @@ function ProductArea({ product }: IProductAreaProps) {
     if (!loadingAddToBasket && product) {
       setLoadingAddToFavorite(true);
       setTimeout(() => {
-        toggleToFavorite(
-          product.code,
-          favoriteItems,
-          setFavoriteItems
-        );
+        toggleToFavorite(product.code, favoriteItems, setFavoriteItems);
         setLoadingAddToFavorite(false);
       }, 1000);
     }
@@ -139,6 +135,13 @@ function ProductArea({ product }: IProductAreaProps) {
       ...prev,
       [attrTitle]: optionName,
     }));
+  };
+
+  const allRequiredAttributesSelected = () => {
+    if (!product || !product.attributes) return true;
+    return product.attributes.every((attr) =>
+      attr.required ? selectedAttributes[attr.attr_title] : true
+    );
   };
 
   return (
@@ -203,7 +206,11 @@ function ProductArea({ product }: IProductAreaProps) {
           </div>
         )}
       </div>
-      <div className={`lg:px-6 px-4 py-6 w-full lg:overflow-y-auto ${isMobile ? "pb-32" : ""}`}>
+      <div
+        className={`lg:px-6 px-4 py-6 w-full lg:overflow-y-auto ${
+          isMobile ? "pb-32" : ""
+        }`}
+      >
         <div className="flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-3 w-full">
             <div className="flex flex-col gap-2 w-full">
@@ -268,6 +275,29 @@ function ProductArea({ product }: IProductAreaProps) {
                   </span>
                 </>
               )}
+            </div>
+          </div>
+          <div className="flex flex-col gap-4 w-full">
+            <span>Ürün Özellikleri :</span>
+            <div className="flex text-sm flex-col gap-2 text-gray-600">
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Numquam ipsa.
+              </p>
+              <ul className="list-disc pl-5">
+                <li>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                </li>
+                <li>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                </li>
+                <li>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                </li>
+                <li>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                </li>
+              </ul>
             </div>
           </div>
           <div className="flex flex-col gap-6 w-full">
@@ -366,10 +396,12 @@ function ProductArea({ product }: IProductAreaProps) {
                 <span className="select-none">{productQuantity}</span>
                 <CustomButton
                   handleClick={
-                    product && product.stock > 0 ? increaseQuantity : undefined
+                    product && product.stock > productQuantity
+                      ? increaseQuantity
+                      : undefined
                   }
                   containerStyles={`bg-white h-full px-2 border border-gray-200 rounded-lg transition-all duration-300 group ${
-                    product && product.stock > 0
+                    product && product.stock > productQuantity
                       ? "hover:text-white hover:bg-site"
                       : "opacity-50 cursor-not-allowed"
                   }`}
@@ -406,11 +438,14 @@ function ProductArea({ product }: IProductAreaProps) {
                   product && product.stock > 0
                     ? loadingAddToBasket
                       ? "bg-green-500 text-white"
-                      : "bg-site/80 hover:bg-site text-white"
+                      : "bg-site/80 enabled:hover:bg-site text-white"
                     : "bg-gray-200 text-gray-600 opacity-50 cursor-not-allowed"
-                } rounded-md transition-all duration-300`}
+                } rounded-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed`}
                 handleClick={
                   product && product.stock > 0 ? handleAddToBasket : undefined
+                }
+                isDisabled={
+                  loadingAddToBasket || !allRequiredAttributesSelected()
                 }
               />
             </div>
