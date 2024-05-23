@@ -14,38 +14,39 @@ import {
   IoBagCheck,
   IoBanOutline,
   IoCloseOutline,
-  IoHeartDislikeOutline,
+  IoHeart,
+  IoHeartOutline,
 } from "react-icons/io5";
 import ProductArea from "@/components/(front)/Product/ProductArea";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
+import toggleToFavorite from "@/components/functions/toggleToFavorite";
 
 interface IFavoriteProductItemProps {
   product: productTypes;
 }
 
-function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
-  const [loadingRemoveFavorite, setLoadingRemoveFavorite] = useState(false);
+function SearchProductItem({ product }: IFavoriteProductItemProps) {
+  const [loadingAddToFavorite, setLoadingAddToFavorite] = useState(false);
   const [loadingAddToBasket, setLoadingAddToBasket] = useState(false);
   const [showProductArea, setShowProductArea] = useState(false);
   const [productDetail, setProductDetail] = useState<
     productDetailTypes | undefined
   >();
-  const { setFavoriteItems, setBasketItems } = useGlobalContext();
+  const { favoriteItems, setFavoriteItems, setBasketItems } =
+    useGlobalContext();
 
-  const removeFavorite = () => {
-    if (!loadingRemoveFavorite) {
-      setLoadingRemoveFavorite(true);
+  const [FavoriteIcon, setFavoriteIcon] = useState(
+    <IoHeartOutline className="text-xl group-hover/favorite:text-white" />
+  );
+
+  const handleAddToFavorite = (e: any) => {
+    e.preventDefault();
+    if (!loadingAddToFavorite) {
+      setLoadingAddToFavorite(true);
       setTimeout(() => {
-        setFavoriteItems((prevItems) => {
-          if (!prevItems) return null;
-          const updatedItems = prevItems.filter(
-            (item) => item !== product.code
-          );
-          localStorage.setItem("favoriteItems", JSON.stringify(updatedItems));
-          return updatedItems;
-        });
-        setLoadingRemoveFavorite(false);
-      }, 500);
+        toggleToFavorite(product.code, favoriteItems, setFavoriteItems);
+        setLoadingAddToFavorite(false);
+      }, 1000);
     }
   };
 
@@ -78,6 +79,16 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
     setShowProductArea(true);
     setProductDetail(instantProductDetail);
   };
+
+  useEffect(() => {
+    setFavoriteIcon(
+      product && favoriteItems?.includes(product.code) ? (
+        <IoHeart className="text-xl text-red-500 group-hover/favorite:text-white" />
+      ) : (
+        <IoHeartOutline className="text-xl text-gray-600 group-hover/favorite:text-white" />
+      )
+    );
+  }, [favoriteItems]);
 
   return (
     <>
@@ -122,13 +133,13 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
           <div className="flex flex-col gap-2 w-full h-full justify-around">
             <div className="flex flex-col w-full gap-1">
               <Link
-                href={"/magaza"}
+                href={"/"}
                 title={product.title}
                 className="font-medium line-clamp-1 transition-all duration-300 hover:text-site text-lg"
               >
                 {product.title}
               </Link>
-              <span className="text-sm text-gray-600">{product.category}</span>
+              <span className="text-xs text-gray-600 font-medium"># {product.code}</span>
               <div className="text-sm tracking-wide">
                 {product.stock > 0 ? (
                   <span className="text-green-500">Stokta Var</span>
@@ -175,7 +186,7 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
                 )
               }
               textStyles="-mb-0.5"
-              containerStyles={`flex items-center w-full gap-2 justify-center py-2 px-4 ${
+              containerStyles={`flex items-center w-full gap-2 justify-center py-2 px-4  ${
                 product.stock > 0
                   ? "bg-site/80 hover:bg-site text-white"
                   : "bg-gray-200 text-gray-600 opacity-50 cursor-not-allowed"
@@ -183,17 +194,16 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
               handleClick={product.stock > 0 ? handleAddToBasket : undefined}
             />
             <CustomButton
-              title={!loadingRemoveFavorite ? "Kaldır" : "Kaldırılıyor.."}
               leftIcon={
-                !loadingRemoveFavorite ? (
-                  <IoHeartDislikeOutline className="text-xl" />
+                !loadingAddToFavorite ? (
+                  FavoriteIcon
                 ) : (
-                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
+                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-600  group-hover/favorite:border-white"></div>
                 )
               }
-              textStyles="max-lg:hidden -mb-0.5"
-              containerStyles="flex items-center gap-2 justify-center py-2 px-4 bg-gray-200 text-gray-600 rounded-md hover:bg-gray-700 hover:text-white transition-all duration-300"
-              handleClick={removeFavorite}
+              textStyles="hidden"
+              containerStyles="flex items-center gap-2 justify-center py-2 px-4 bg-gray-200 text-gray-600 rounded-md hover:bg-site hover:text-white transition-all duration-300 group/favorite"
+              handleClick={handleAddToFavorite}
             />
           </div>
         </div>
@@ -202,4 +212,4 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
   );
 }
 
-export default FavoriteProductItem;
+export default SearchProductItem;

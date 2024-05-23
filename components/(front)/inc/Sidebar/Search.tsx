@@ -1,21 +1,40 @@
 "use client";
-import React, { useState } from "react";
-import { useGlobalContext } from "@/app/Context/store";
-import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import SearchProducts from "@/components/(front)/Search/SearchProducts";
+import { productTypes } from "@/types/product/productTypes";
+import { IoFileTrayFullOutline, IoFileTrayOutline } from "react-icons/io5";
+import { instantProducts } from "@/constants/(front)";
 
 function Search() {
   const [search, setSearch] = useState("");
-  const { setSidebarStatus } = useGlobalContext();
-  const router = useRouter();
+  const [loadingSearch, setLoadingSearch] = useState(false);
+  const [searchProducts, setSearchProducts] = useState<productTypes[] | null>(
+    null
+  );
 
-  const handleNavLink = (link: string) => {
-    setSidebarStatus("");
-    router.push(link);
-  };
+  useEffect(() => {
+    if (search && search.length >= 3) {
+      setLoadingSearch(true);
+      setTimeout(() => {
+        const searchLower = search.toLowerCase();
+        const productsInSearch = instantProducts.filter(
+          (product) =>
+            product.title.toLowerCase().includes(searchLower) ||
+            product.code.toLowerCase().includes(searchLower)
+        );
+
+        setSearchProducts(productsInSearch);
+        setLoadingSearch(false);
+      }, 1000);
+    } else {
+      setSearchProducts(null);
+    }
+  }, [search]);
+
   return (
     <div className="flex flex-col w-full h-[calc(100dvh-69px)] justify-between">
-      <div className="flex flex-col w-full">
-        <div className="py-0">
+      <div className="flex flex-col w-full h-full">
+        <div className="p-2">
           <div className="flex gap-2 py-2 px-[14px] bg-gray-100 items-center w-full">
             <label className="relative w-full flex rounded-sm">
               <input
@@ -35,7 +54,36 @@ function Search() {
           </div>
         </div>
         <hr />
-        <div className="flex flex-col w-full p-4">Selam</div>
+        {loadingSearch ? (
+          <div className="flex flex-col gap-4 h-[calc(100dvh-136px)] justify-center items-center text-gray-300">
+            <IoFileTrayFullOutline className="lg:text-7xl text-6xl" />
+            <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
+              Ürün aranıyor...
+            </span>
+          </div>
+        ) : (
+          <>
+            {!searchProducts ? (
+              <div className="flex flex-col gap-4 h-[calc(100dvh-136px)] justify-center items-center animate-pulse text-gray-500">
+                <IoFileTrayOutline className="lg:text-7xl text-6xl" />
+                <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
+                  Lütfen en az 3 karakter giriniz.
+                </span>
+              </div>
+            ) : searchProducts.length === 0 ? (
+              <div className="flex flex-col gap-4 h-[calc(100dvh-136px)] justify-center items-center animate-pulse text-gray-300">
+                <IoFileTrayOutline className="lg:text-7xl text-6xl" />
+                <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
+                  Aradığınız Ürününüz Bulunamadı
+                </span>
+              </div>
+            ) : (
+              <div className="flex flex-col w-full overflow-y-auto h-[calc(100dvh-136px)] lg:px-8 px-4 py-4">
+                <SearchProducts products={searchProducts} />
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

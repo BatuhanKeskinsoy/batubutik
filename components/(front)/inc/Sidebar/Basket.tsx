@@ -197,7 +197,7 @@ function Basket() {
         <div className="flex flex-col gap-4 justify-center items-center animate-pulse">
           <IoFileTrayOutline className="lg:text-8xl text-6xl" />
           <span className="font-gemunu font-semibold lg:text-3xl tracking-wide text-xl">
-            Sepetiniz Boş
+            Sepetinizde Ürün Bulunamadı
           </span>
         </div>
       </div>

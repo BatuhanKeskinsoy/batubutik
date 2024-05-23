@@ -11,7 +11,7 @@ function Footer() {
   const router = useRouter();
   return (
     <footer className="relative w-full z-10 max-lg:pb-16">
-      <aside className="lg:hidden fixed bottom-0 h-16 bg-gray-100 w-full shadow-lg shadow-gray-600">
+      <aside className="flex lg:hidden fixed bottom-0 h-16 bg-gray-100 w-full shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.3)]">
         <div className="flex items-center justify-around gap-2 py-2.5 px-4 w-full h-full *:flex *:justify-center *:items-center">
           <div className="relative flex items-center rounded-full lg:hover:scale-110 transition-all duration-300 h-full cursor-pointer">
             <CustomButton
@@ -24,7 +24,7 @@ function Footer() {
           </div>
           <Search />
           <CustomButton
-            containerStyles="w-full max-w-[80px] h-[calc(100%+36px)] rounded-t-full bg-site text-white -mt-4"
+            containerStyles="w-full max-w-[80px] h-[calc(100%+36px)] rounded-t-full bg-site text-white -mt-4 shadow-[0_-5px_30px_0_rgba(0,0,0,0.3)]"
             leftIcon={<IoHomeOutline className="text-4xl -mb-2" />}
             handleClick={() => router.push("/")}
           />

@@ -62,7 +62,7 @@ export const GlobalContextProvider = ({ children }: any) => {
   }, []);
 
   return (
-    <body className={sidebarStatus ? "overflow-hidden" : ""}>
+    <body className={sidebarStatus !== "" ? "overflow-hidden" : ""}>
       <GlobalContext.Provider
         value={{
           isMobile,
