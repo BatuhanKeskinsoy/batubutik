@@ -1,3 +1,5 @@
+import { url } from "inspector";
+
 export const generals = {
   site_name: "Batubutik",
   free_shipping: 1000,
@@ -30,6 +32,29 @@ export const navLinks = [
   },
   {
     title: "İletişim",
+    url: "/",
+  },
+];
+
+export const mainCategories = [
+  {
+    name: "Erkek",
+    image: "/assets/categories/man.png",
+    url: "/",
+  },
+  {
+    name: "Kadın",
+    image: "/assets/categories/woman.png",
+    url: "/",
+  },
+  {
+    name: "Çocuk",
+    image: "/assets/categories/child.png",
+    url: "/",
+  },
+  {
+    name: "Aksesuar",
+    image: "/assets/categories/accessory.png",
     url: "/",
   },
 ];
