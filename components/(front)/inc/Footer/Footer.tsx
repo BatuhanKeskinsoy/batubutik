@@ -10,8 +10,8 @@ import { useRouter } from "next/navigation";
 function Footer() {
   const router = useRouter();
   return (
-    <footer className="relative w-full z-10">
-      <aside className="lg:hidden fixed bottom-0 h-16 bg-gray-100 w-full">
+    <footer className="relative w-full z-10 max-lg:pb-16">
+      <aside className="lg:hidden fixed bottom-0 h-16 bg-gray-100 w-full shadow-lg shadow-gray-600">
         <div className="flex items-center justify-around gap-2 py-2.5 px-4 w-full h-full *:flex *:justify-center *:items-center">
           <div className="relative flex items-center rounded-full lg:hover:scale-110 transition-all duration-300 h-full cursor-pointer">
             <CustomButton

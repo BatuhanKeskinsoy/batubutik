@@ -2,11 +2,12 @@ import { useGlobalContext } from "@/app/Context/store";
 import CustomButton from "@/components/others/CustomButton";
 import Link from "next/link";
 import React from "react";
+import { generals } from "@/constants/(front)";
 import { IoCloseOutline } from "react-icons/io5";
 import Basket from "@/components/(front)/inc/Sidebar/Basket";
 import Favorite from "@/components/(front)/inc/Sidebar/Favorite";
-import { generals } from "@/constants/(front)";
 import NavMenu from "@/components/(front)/inc/Sidebar/NavMenu";
+import Search from "@/components/(front)/inc/Sidebar/Search";
 
 function Sidebar() {
   const { sidebarStatus, setSidebarStatus } = useGlobalContext();
@@ -57,9 +58,9 @@ function Sidebar() {
           ) : sidebarStatus === "Favorite" ? (
             <Favorite />
           ) : sidebarStatus === "Search" ? (
-            "Ürün Arayın"
+            <Search />
           ) : sidebarStatus === "Auth" ? (
-            "Profil"
+            "Profil henüz hazır değil"
           ) : sidebarStatus === "MobileMenu" ? (
             <NavMenu />
           ) : null}
