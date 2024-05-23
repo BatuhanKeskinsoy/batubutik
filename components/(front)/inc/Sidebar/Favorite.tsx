@@ -55,17 +55,17 @@ function Favorite() {
 
   if (!favoriteProducts)
     return (
-      <div className="flex flex-col gap-4 w-full h-[calc(100dvh-69px)] justify-center items-center text-gray-300">
+      <div className="flex flex-col gap-4 w-full h-[calc(100dvh-77px)] justify-center items-center text-gray-300">
         <div className="flex flex-col gap-4 justify-center items-center animate-pulse">
-          <IoFileTrayOutline className="lg:text-8xl text-6xl" />
-          <span className="font-gemunu font-semibold lg:text-3xl tracking-wide text-xl">
+          <IoFileTrayOutline className="lg:text-7xl text-6xl" />
+          <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
             Favori Ürününüz Yok
           </span>
         </div>
       </div>
     );
   return (
-    <div className="flex flex-col w-full h-[calc(100dvh-69px)] justify-between">
+    <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
       <div className="flex flex-col w-full overflow-y-auto h-full lg:px-8 px-4 py-4">
         <FavoriteProducts products={favoriteProducts} />
       </div>

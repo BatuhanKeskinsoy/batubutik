@@ -173,7 +173,7 @@ export const instantProducts = [
 export const instantProductDetail = {
   title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
   slug: "amor-bralet-jartiyer-ic-camasir-takimi",
-  code: "BBD-102",
+  code: "ABJ-100",
   mainCategory: "Kadın",
   mainCategory_slug: "kadin",
   category: "İç Giyim",
@@ -198,7 +198,6 @@ export const instantProductDetail = {
     "Kırmızı Bralet Jartiyer",
   ],
   product_group: {
-    required: true,
     group_name: "Renk",
     products: [
       { choise_name: "Kırmızı", code: "BBD-103" },

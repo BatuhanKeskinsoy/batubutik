@@ -8,6 +8,7 @@ import Basket from "@/components/(front)/inc/Sidebar/Basket";
 import Favorite from "@/components/(front)/inc/Sidebar/Favorite";
 import NavMenu from "@/components/(front)/inc/Sidebar/NavMenu";
 import Search from "@/components/(front)/inc/Sidebar/Search";
+import Auth from "@/components/(front)/inc/Sidebar/Auth";
 
 function Sidebar() {
   const { sidebarStatus, setSidebarStatus } = useGlobalContext();
@@ -22,10 +23,10 @@ function Sidebar() {
           sidebarStatus === "MobileMenu"
             ? "left-0 animate-sidebarLeftSmooth"
             : "right-0 animate-sidebarRightSmooth"
-        } h-screen lg:w-[500px] w-[calc(100vw-20%)] shadow-lg shadow-gray-600 transition-all duration-300 z-20`}
+        } h-screen lg:w-[500px] w-[calc(100vw-15%)] shadow-lg shadow-gray-600 transition-all duration-300 z-20`}
       >
         <div className="flex flex-col w-full h-full">
-          <div className="flex justify-between items-center border-b lg:px-8 px-4 py-4">
+          <div className="flex justify-between items-center border-b lg:px-8 px-4 py-5">
             <div className="font-gemunu tracking-wide text-2xl">
               {sidebarStatus === "Basket" ? (
                 "Sepetim"
@@ -60,7 +61,7 @@ function Sidebar() {
           ) : sidebarStatus === "Search" ? (
             <Search />
           ) : sidebarStatus === "Auth" ? (
-            "Profil henüz hazır değil"
+            <Auth />
           ) : sidebarStatus === "MobileMenu" ? (
             <NavMenu />
           ) : null}

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { act, useEffect, useState } from "react";
 import Image from "next/image";
 import { getStar } from "@/components/functions/getStar";
 import { getPrice } from "@/components/functions/getPrice";
@@ -302,28 +302,12 @@ function ProductArea({ product }: IProductAreaProps) {
                 <span>{product.product_group.group_name} :</span>
                 <div className="flex flex-wrap gap-2 items-center">
                   {product.product_group.products.map((item, key) => (
-                    <div
+                    <ProductGroupItem
                       key={key}
-                      className="p-2 bg-gray-200 overflow-hidden rounded-md cursor-pointer hover:bg-site/20 transition-all duration-300 group"
-                    >
-                      <div className="flex flex-col text-center gap-2 w-full">
-                        {product.images && (
-                          <div className="relative w-20 h-28 overflow-hidden rounded-md">
-                            <Image
-                              src={product.images[key]}
-                              alt="Grup Ürünü"
-                              fill
-                              sizes="64px"
-                              title="Grup Ürünü"
-                              className="object-cover"
-                            />
-                          </div>
-                        )}
-                        <span className="text-xs group-hover:text-site transition-all duration-300 line-clamp-1">
-                          {item.choise_name}
-                        </span>
-                      </div>
-                    </div>
+                      item={item}
+                      product={product}
+                      index={key}
+                    />
                   ))}
                 </div>
               </div>
@@ -495,6 +479,39 @@ function AttrOptions({
       } transition-all duration-300 text-sm`}
       handleClick={() => !noStock && onSelect(attrTitle, option_name)}
     />
+  );
+}
+
+function ProductGroupItem({
+  item,
+  product,
+  index,
+}: {
+  item: { choise_name: string; code: string };
+  product: productDetailTypes;
+  index: number;
+}) {
+  const [activeGroupItem, setActiveGroupItem] = useState(true);
+  return (
+    <div className={`p-2 bg-gray-200 overflow-hidden rounded-md cursor-pointer hover:bg-site/20 transition-all duration-300 group ${activeGroupItem ? "first:bg-site/20 first:text-site" : ""}`}>
+      <div className="flex flex-col text-center gap-2 w-full">
+        {product.images && (
+          <div className="relative w-20 h-28 overflow-hidden rounded-md">
+            <Image
+              src={product.images[index]}
+              alt="Grup Ürünü"
+              fill
+              sizes="64px"
+              title="Grup Ürünü"
+              className="object-cover"
+            />
+          </div>
+        )}
+        <span className="text-xs group-hover:text-site transition-all duration-300 line-clamp-1">
+          {item.choise_name}
+        </span>
+      </div>
+    </div>
   );
 }
 

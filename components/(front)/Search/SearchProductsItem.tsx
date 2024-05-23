@@ -186,7 +186,7 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
                 )
               }
               textStyles="-mb-0.5"
-              containerStyles={`flex items-center w-full gap-2 justify-center py-2 px-4  ${
+              containerStyles={`flex items-center w-full gap-2 justify-center py-2 px-2  ${
                 product.stock > 0
                   ? "bg-site/80 hover:bg-site text-white"
                   : "bg-gray-200 text-gray-600 opacity-50 cursor-not-allowed"

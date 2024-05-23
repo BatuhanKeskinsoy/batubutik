@@ -19,7 +19,7 @@ function NavMenu() {
     router.push(link);
   };
   return (
-    <div className="flex flex-col w-full h-[calc(100dvh-69px)] justify-between">
+    <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
       <div className="flex flex-col w-full">
         <nav className="flex flex-col items-start text-lg font-gemunu tracking-wide *:px-4 *:py-2 *:flex *:items-center *:h-full *:transition-all *:duration-300 *:border-b last:*:border-b-0 *:w-full">
           {navLinks.map((link, key) => (

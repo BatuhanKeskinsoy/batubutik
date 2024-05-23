@@ -32,7 +32,7 @@ function Search() {
   }, [search]);
 
   return (
-    <div className="flex flex-col w-full h-[calc(100dvh-69px)] justify-between">
+    <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
       <div className="flex flex-col w-full h-full">
         <div className="p-2">
           <div className="flex gap-2 py-2 px-[14px] bg-gray-100 items-center w-full">

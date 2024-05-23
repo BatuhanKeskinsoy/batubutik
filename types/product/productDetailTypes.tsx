@@ -16,7 +16,6 @@ export type productDetailTypes = {
   stock: number;
   tags: string[] | null;
   product_group: {
-    required: boolean;
     group_name: string;
     products: { choise_name: string; code: string }[];
   } | null;
