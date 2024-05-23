@@ -152,7 +152,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
   return (
     <>
       {showProductArea && (
-        <div className="fixed w-screen h-screen top-0 left-0 flex items-center justify-center z-10">
+        <div className="fixed w-screen h-screen top-0 left-0 flex lg:items-center items-start lg:justify-center justify-start z-10">
           <div
             className={`bg-gray-900/60 w-screen h-screen fixed left-0 top-0 transition-all duration-300 animate-sidebarBgSmooth z-10`}
             onClick={() => setShowProductArea(false)}
