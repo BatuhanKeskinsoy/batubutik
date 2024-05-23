@@ -11,7 +11,7 @@ import NavMenu from "@/components/(front)/inc/Sidebar/NavMenu";
 function Sidebar() {
   const { sidebarStatus, setSidebarStatus } = useGlobalContext();
   return (
-    <div className="fixed w-screen h-screen z-10">
+    <div className="fixed w-screen h-screen z-20">
       <div
         className={`bg-gray-900/60 w-screen h-screen fixed left-0 top-0 transition-all duration-300 animate-sidebarBgSmooth z-10`}
         onClick={() => setSidebarStatus("")}

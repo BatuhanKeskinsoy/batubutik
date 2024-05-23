@@ -60,7 +60,7 @@ function Header() {
     <>
       <ToastContainer />
       {loading && <Loading />}
-      <header className="relative w-full lg:h-[120px] h-20 z-10">
+      <header className="relative w-full lg:h-[120px] h-20 z-20">
         <div className="h-10 w-full max-lg:hidden bg-gray-300/50">
           <div className="container px-4 mx-auto flex justify-between items-center h-full text-xs text-gray-600">
             <div className="flex items-center gap-4 h-full">
