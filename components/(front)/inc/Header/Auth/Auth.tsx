@@ -11,7 +11,7 @@ function Auth() {
       onClick={() => setSidebarStatus("Auth")}
     >
       <CustomButton
-        leftIcon={<IoPersonOutline className="text-xl" />}
+        leftIcon={<IoPersonOutline className="text-xl max-lg:text-2xl" />}
         containerStyles={`p-2 border transition-all duration-300 border-gray-200 rounded-full`}
       />
     </div>

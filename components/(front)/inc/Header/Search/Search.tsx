@@ -11,7 +11,7 @@ function Search() {
       onClick={() => setSidebarStatus("Search")}
     >
       <CustomButton
-        leftIcon={<IoSearchOutline className="text-xl" />}
+        leftIcon={<IoSearchOutline className="text-xl max-lg:text-2xl" />}
         containerStyles={`p-2 border transition-all duration-300 border-gray-200 rounded-full`}
       />
     </div>

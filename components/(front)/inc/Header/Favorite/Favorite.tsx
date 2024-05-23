@@ -8,7 +8,7 @@ function Favorite() {
   const { setSidebarStatus, favoriteItems } = useGlobalContext();
   const [favoriteItemCount, setFavoriteItemCount] = useState<number>(0);
   const [FavoriteIcon, setFavoriteIcon] = useState(
-    <IoHeartOutline className="text-xl" />
+    <IoHeartOutline className="text-xl max-lg:text-2xl" />
   );
 
   useEffect(() => {
@@ -17,9 +17,9 @@ function Favorite() {
 
   useEffect(() => {
     if (favoriteItemCount > 0) {
-      setFavoriteIcon(<IoHeart className="text-xl" />);
+      setFavoriteIcon(<IoHeart className="text-xl max-lg:text-2xl" />);
     } else {
-      setFavoriteIcon(<IoHeartOutline className="text-xl" />);
+      setFavoriteIcon(<IoHeartOutline className="text-xl max-lg:text-2xl" />);
     }
   }, [favoriteItemCount]);
   return (

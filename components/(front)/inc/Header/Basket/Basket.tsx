@@ -10,7 +10,7 @@ function Basket() {
   const { setSidebarStatus, basketItems } = useGlobalContext();
   const [basketItemCount, setBasketItemCount] = useState<number>(0);
   const [BasketIcon, setBasketIcon] = useState(
-    <IoBagHandleOutline className="text-xl" />
+    <IoBagHandleOutline className="text-xl max-lg:text-2xl" />
   );
   const [basketTotalPrice, setBasketTotalPrice] = useState(0);
 
@@ -41,9 +41,9 @@ function Basket() {
 
   useEffect(() => {
     if (basketItemCount > 0) {
-      setBasketIcon(<IoBagHandle className="text-xl" />);
+      setBasketIcon(<IoBagHandle className="text-xl max-lg:text-2xl" />);
     } else {
-      setBasketIcon(<IoBagHandleOutline className="text-xl" />);
+      setBasketIcon(<IoBagHandleOutline className="text-xl max-lg:text-2xl" />);
     }
   }, [basketItemCount]);
 

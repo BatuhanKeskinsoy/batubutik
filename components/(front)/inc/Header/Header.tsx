@@ -4,14 +4,6 @@ import Link from "next/link";
 import CustomButton from "@/components/others/CustomButton";
 import { IoCallOutline, IoMailOutline, IoMenuOutline } from "react-icons/io5";
 import { useGlobalContext } from "@/app/Context/store";
-import {
-  CiFacebook,
-  CiInstagram,
-  CiMail,
-  CiPhone,
-  CiTwitter,
-  CiYoutube,
-} from "react-icons/ci";
 import Basket from "@/components/(front)/inc/Header/Basket/Basket";
 import Favorite from "@/components/(front)/inc/Header/Favorite/Favorite";
 import Search from "@/components/(front)/inc/Header/Search/Search";
@@ -20,15 +12,17 @@ import Sidebar from "@/components/(front)/inc/Sidebar/Sidebar";
 import Loading from "@/components/others/Loading";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { generals } from "@/constants/(front)";
+import { generals, navLinks } from "@/constants/(front)";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { getPrice } from "@/components/functions/getPrice";
 import { getSocialIcon } from "@/components/functions/getSocialIcon";
+import { useRouter } from "next/navigation";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [loading, setLoading] = useState(true);
   const { sidebarStatus, setSidebarStatus, isMobile } = useGlobalContext();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,6 +52,10 @@ function Header() {
     };
   }, []);
 
+  const handleNavLink = (link: string) => {
+    setSidebarStatus("");
+    router.push(link);
+  };
   return (
     <>
       <ToastContainer />
@@ -130,21 +128,14 @@ function Header() {
                   handleClick={() => setSidebarStatus("MobileMenu")}
                 />
                 <nav className="flex items-center text-lg font-gemunu tracking-wide *:px-3 *:flex *:items-center *:h-full *:transition-all *:duration-300 max-lg:hidden">
-                  <Link href={"/"} className="hover:text-site">
-                    Anasayfa
-                  </Link>
-                  <Link href={"/magaza"} className="hover:text-site">
-                    Mağaza
-                  </Link>
-                  <Link href={""} className="hover:text-site">
-                    Blog
-                  </Link>
-                  <Link href={""} className="hover:text-site">
-                    Hakkımızda
-                  </Link>
-                  <Link href={""} className="hover:text-site">
-                    İletişim
-                  </Link>
+                  {navLinks.map((link, key) => (
+                    <CustomButton
+                      key={key}
+                      title={link.title}
+                      containerStyles="hover:text-site"
+                      handleClick={() => handleNavLink(link.url)}
+                    />
+                  ))}
                 </nav>
               </div>
             </div>
