@@ -5,7 +5,7 @@ import { mainCategories } from "@/constants/(front)";
 
 function Banner() {
   return (
-    <section className="relative lg:h-[calc(100dvh-120px)] h-[calc(100dvh-144px)] w-full ">
+    <section className="relative lg:h-[calc(100vh-120px)] h-[calc(100vh-144px)] w-full ">
       <div className="grid lg:grid-cols-2 grid-cols-1 items-center justify-center w-full h-full text-white">
         {mainCategories.map((category, key) => (
           <div
