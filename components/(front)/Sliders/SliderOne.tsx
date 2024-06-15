@@ -7,15 +7,38 @@ import Image from "next/image";
 // https://razziwp.com/fashion/
 
 const sliderPictures = [
-  "/assets/slider/slider.webp",
-  "/assets/slider/slider2.webp",
-  "/assets/slider/slider3.webp",
-  "/assets/slider/slider4.webp",
-  "/assets/slider/slider5.webp",
-  "/assets/slider/slider6.webp",
+  "/assets/slider/slider_one/slider.webp",
+  "/assets/slider/slider_one/slider2.webp",
+  "/assets/slider/slider_one/slider3.webp",
+  "/assets/slider/slider_one/slider4.webp",
+  "/assets/slider/slider_one/slider5.webp",
+  "/assets/slider/slider_one/slider6.webp",
 ];
 
-function SliderOne() {
+interface ISliderOneProps {
+  perView: number;
+}
+
+function createBreakpoints(perView: number) {
+  const breakpoints: { [key: number]: { slidesPerView: number } } = {};
+
+  breakpoints[480] = { slidesPerView: 1 };
+  if (perView >= 2) {
+    breakpoints[768] = { slidesPerView: 2 };
+  }
+  if (perView >= 3) {
+    breakpoints[1024] = { slidesPerView: 3 };
+  }
+  if (perView >= 4) {
+    breakpoints[1360] = { slidesPerView: 4 };
+  }
+
+  return breakpoints;
+}
+
+function SliderOne({ perView }: ISliderOneProps) {
+  const breakpoints = createBreakpoints(perView);
+
   return (
     <Swiper
       spaceBetween={0}
@@ -23,22 +46,10 @@ function SliderOne() {
       className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 w-full h-[calc(100dvh-200px)]"
       loop={true}
       autoplay={{
-        delay: 2000,
+        delay: 3000,
+        pauseOnMouseEnter: true,
       }}
-      breakpoints={{
-        480: {
-          slidesPerView: 1,
-        },
-        768: {
-          slidesPerView: 2,
-        },
-        1024: {
-          slidesPerView: 3,
-        },
-        1360: {
-          slidesPerView: 4,
-        },
-      }}
+      breakpoints={breakpoints}
     >
       {sliderPictures.map((picture, key) => (
         <SwiperSlide
@@ -57,7 +68,9 @@ function SliderOne() {
             <span className="font-semibold text-3xl text-white">
               Bralet Takım
             </span>
-            <p className="text-center text-lg text-gray-200">Zarafetin Özgürlüğü..</p>
+            <p className="text-center text-lg text-gray-200">
+              Zarafetin Özgürlüğü..
+            </p>
           </div>
         </SwiperSlide>
       ))}

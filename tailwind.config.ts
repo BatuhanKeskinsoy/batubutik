@@ -15,7 +15,7 @@ const config: Config = {
     extend: {
       container: {
         screens: {
-          xl: '1300px',
+          xl: '1640px',
         },
       },
       animation: {
