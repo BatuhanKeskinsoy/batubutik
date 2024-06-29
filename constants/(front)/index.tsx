@@ -39,22 +39,18 @@ export const navLinks = [
 export const mainCategories = [
   {
     name: "Erkek",
-    image: "/assets/categories/man.png",
     url: "/",
   },
   {
     name: "Kadın",
-    image: "/assets/categories/woman.png",
     url: "/",
   },
   {
     name: "Çocuk",
-    image: "/assets/categories/child.png",
     url: "/",
   },
   {
     name: "Aksesuar",
-    image: "/assets/categories/accessory.png",
     url: "/",
   },
 ];

@@ -43,11 +43,11 @@ function SliderFullWidth({ perView }: ISliderOneProps) {
       spaceBetween={0}
       modules={[Autoplay]}
       className="relative lg:bg-black-900/30 bg-black-900/50 !z-0"
-      loop={true}
-      autoplay={{
+      /* loop={true} */
+      /* autoplay={{
         delay: 3000,
         pauseOnMouseEnter: true,
-      }}
+      }} */
       breakpoints={breakpoints}
     >
       {sliderPictures.map((picture, key) => (
@@ -55,23 +55,25 @@ function SliderFullWidth({ perView }: ISliderOneProps) {
           key={key}
           className="relative !flex items-end justify-center cursor-pointer group bg-white"
         >
-          <div className="container mx-auto px-4 lg:pb-32 grid grid-cols-1 h-[calc(100vh-144px)] lg:h-[800px]">
+          <div className="container mx-auto px-4 grid grid-cols-1 lg:h-[800px]">
             <div className="relative flex items-center text-left h-full w-full">
-              <div className="max-lg:text-center flex flex-col max-lg:items-center max-lg:justify-between py-12 w-full max-lg:h-full gap-8 lg:p-4">
-                <span className="font-gemunu tracking-widest font-semibold lg:text-4xl text-2xl text-white/80">
-                  2024 Batubutik Koleksiyonu
-                </span>
-                <div className="flex flex-col justify-center py-8 w-full h-full gap-8">
+              <div className="flex flex-col w-full lg:h-full justify-center max-lg:gap-12 gap-28 py-12">
+                <div className="max-lg:text-center flex flex-col max-lg:items-center max-lg:justify-betweenw-full max-lg:h-full max-lg:gap-4 gap-12">
+                  <span className="font-gemunu tracking-widest font-semibold lg:text-4xl text-xl text-white/80">
+                    2024 Batubutik Koleksiyonu
+                  </span>
                   <span className="font-semibold lg:text-7xl text-5xl text-site font-gemunu tracking-wide drop-shadow-[0_1px_1px_rgba(255,255,255,1)]">
                     Zarafetin Özgürlüğü
                   </span>
-                  <p className="lg:text-2xl text-xl tracking-wide font-light text-white/70">
+                  <p className="lg:text-2xl text-base tracking-wide font-light text-white/70">
                     Ayrıcalıklı Batubutik koleksiyonunu keşfedin!
                   </p>
                 </div>
                 <CustomButton
                   title="KOLEKSİYONU KEŞFET"
-                  rightIcon={<IoChevronForwardOutline className="text-2xl -mr-2" />}
+                  rightIcon={
+                    <IoChevronForwardOutline className="text-2xl -mr-2" />
+                  }
                   containerStyles="flex items-center justify-center text-center gap-4 py-3 px-6 w-fit bg-white/20 text-white max-lg:w-full rounded-lg font-gemunu tracking-widest text-xl shadow-[0_-5px_30px_0_rgba(0,0,0,0.15)] hover:bg-site/20 hover:text-site transition-all duration-300"
                   textStyles="uppercase font-medium"
                 />
