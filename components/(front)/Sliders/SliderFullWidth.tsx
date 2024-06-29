@@ -43,17 +43,17 @@ function SliderFullWidth({ perView }: ISliderOneProps) {
       spaceBetween={0}
       modules={[Autoplay]}
       className="relative lg:bg-black-900/30 bg-black-900/50 !z-0"
-      /* loop={true} */
-      /* autoplay={{
+      loop={true}
+      autoplay={{
         delay: 3000,
         pauseOnMouseEnter: true,
-      }} */
+      }}
       breakpoints={breakpoints}
     >
       {sliderPictures.map((picture, key) => (
         <SwiperSlide
           key={key}
-          className="relative !flex items-end justify-center cursor-pointer group bg-white"
+          className="relative !flex items-end justify-center group bg-white"
         >
           <div className="container mx-auto px-4 grid grid-cols-1 lg:h-[800px]">
             <div className="relative flex items-center text-left h-full w-full">
@@ -62,9 +62,9 @@ function SliderFullWidth({ perView }: ISliderOneProps) {
                   <span className="font-gemunu tracking-widest font-semibold lg:text-4xl text-xl text-white/80">
                     2024 Batubutik Koleksiyonu
                   </span>
-                  <span className="font-semibold lg:text-7xl text-5xl text-site font-gemunu tracking-wide drop-shadow-[0_1px_1px_rgba(255,255,255,1)]">
+                  <h1 className="font-semibold lg:text-7xl text-5xl text-site font-gemunu tracking-wide drop-shadow-[0_1px_1px_rgba(255,255,255,1)]">
                     Zarafetin Özgürlüğü
-                  </span>
+                  </h1>
                   <p className="lg:text-2xl text-base tracking-wide font-light text-white/70">
                     Ayrıcalıklı Batubutik koleksiyonunu keşfedin!
                   </p>
@@ -74,8 +74,8 @@ function SliderFullWidth({ perView }: ISliderOneProps) {
                   rightIcon={
                     <IoChevronForwardOutline className="text-2xl -mr-2" />
                   }
-                  containerStyles="flex items-center justify-center text-center gap-4 py-3 px-6 w-fit bg-white/20 text-white max-lg:w-full rounded-lg font-gemunu tracking-widest text-xl shadow-[0_-5px_30px_0_rgba(0,0,0,0.15)] hover:bg-site/20 hover:text-site transition-all duration-300"
-                  textStyles="uppercase font-medium"
+                  containerStyles="flex items-center justify-center text-center gap-4 py-3 px-6 w-fit bg-white/20 text-white max-lg:w-full rounded-lg font-gemunu tracking-widest shadow-[0_-5px_30px_0_rgba(0,0,0,0.15)] hover:bg-site/20 hover:text-site transition-all duration-300"
+                  textStyles="uppercase font-medium lg:text-2xl text-xl"
                 />
               </div>
             </div>

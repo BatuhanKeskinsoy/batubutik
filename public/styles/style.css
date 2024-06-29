@@ -28,5 +28,4 @@
   .scrollbar-thick::-webkit-scrollbar {
     @apply w-1.5;
   }
-
 }

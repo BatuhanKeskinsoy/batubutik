@@ -1,11 +1,7 @@
 import SliderFullWidth from "@/components/(front)/Sliders/SliderFullWidth";
 
 function Banner() {
-  return (
-    <section>
-      <SliderFullWidth perView={1} />
-    </section>
-  );
+  return <SliderFullWidth perView={1} />;
 }
 
 export default Banner;

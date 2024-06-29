@@ -10,15 +10,39 @@ import Categories from "@/components/(front)/Home/Categories";
 function Home() {
   return (
     <>
-      <Banner />
-      <Categories />
-      <SliderOne perView={4} />
-      <div className="container mx-auto px-4 flex flex-col gap-6">
-        <h1 className="text-4xl font-semibold font-gemunu">
-          Öne Çıkan Ürünler
-        </h1>
+      <section>
+        <Banner />
+      </section>
+
+      <section className="container mx-auto px-4">
+        <div className="flex flex-col gap-3 w-full mb-8 max-lg:text-center">
+          <h2 className="text-4xl font-gemunu font-semibold tracking-wider">
+            Kategoriler
+          </h2>
+          <p className="text-gray-500">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
+            quisquam
+          </p>
+        </div>
+        <Categories />
+      </section>
+      
+      <section className="container mx-auto px-4">
+        <div className="flex flex-col gap-3 w-full mb-8 max-lg:text-center">
+          <h2 className="text-4xl font-gemunu font-semibold tracking-wider">
+            Öne Çıkan Ürünler
+          </h2>
+          <p className="text-gray-500">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
+            quisquam
+          </p>
+        </div>
         <FeaturedProducts />
-      </div>
+      </section>
+      
+      <section>
+        <SliderOne perView={4} />
+      </section>
     </>
   );
 }
