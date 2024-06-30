@@ -9,9 +9,9 @@ import { IoChevronForwardOutline } from "react-icons/io5";
 // https://razziwp.com/fashion/
 
 const sliderPictures = [
-  "/assets/banner/banner.jpg",
-  "/assets/banner/banner2.jpg",
-  "/assets/banner/banner3.jpg",
+  "/assets/banner/banner.webp",
+  "/assets/banner/banner2.webp",
+  "/assets/banner/banner3.webp",
 ];
 
 interface ISliderOneProps {
