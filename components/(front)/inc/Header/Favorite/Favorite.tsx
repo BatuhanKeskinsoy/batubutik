@@ -10,6 +10,7 @@ function Favorite() {
   const [FavoriteIcon, setFavoriteIcon] = useState(
     <IoHeartOutline className="text-xl max-lg:text-2xl" />
   );
+  const [pingAnimation, setPingAnimation] = useState(false);
 
   useEffect(() => {
     setFavoriteItemCount(favoriteItems ? favoriteItems.length : 0);
@@ -22,9 +23,19 @@ function Favorite() {
       setFavoriteIcon(<IoHeartOutline className="text-xl max-lg:text-2xl" />);
     }
   }, [favoriteItemCount]);
+
+  useEffect(() => {
+    if (favoriteItemCount > 0) {
+      setPingAnimation(true);
+      const timeout = setTimeout(() => setPingAnimation(false), 200);
+      return () => clearTimeout(timeout);
+    }
+  }, [favoriteItemCount]);
   return (
     <div
-      className="relative flex items-center rounded-full lg:hover:scale-110 transition-all duration-300 h-full cursor-pointer"
+      className={`relative flex items-center rounded-full lg:hover:scale-110 transition-all duration-200 h-full cursor-pointer ${
+        pingAnimation ? "scale-125" : ""
+      }`}
       onClick={() => setSidebarStatus("Favorite")}
     >
       <CustomButton

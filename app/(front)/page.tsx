@@ -7,6 +7,7 @@ import Banner from "@/components/(front)/Home/Banner";
 import Categories from "@/components/(front)/Home/Categories";
 import NewProducts from "@/components/(front)/Product/FilteredProducts/NewProducts";
 import BestSellingProducts from "@/components/(front)/Product/FilteredProducts/BestSellingProducts";
+import Subscribe from "@/components/(front)/inc/Subscribe";
 
 function Home() {
   return (
@@ -65,6 +66,10 @@ function Home() {
           </p>
         </div>
         <BestSellingProducts />
+      </section>
+
+      <section>
+        <Subscribe />
       </section>
     </>
   );

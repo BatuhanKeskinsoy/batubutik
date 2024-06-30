@@ -5,7 +5,7 @@ import { getSocialIcon } from "@/components/functions/getSocialIcon";
 import CustomButton from "@/components/others/CustomButton";
 import { generals, navLinks } from "@/constants/(front)";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { IoCallOutline, IoMailOutline } from "react-icons/io5";
 import { LiaShippingFastSolid } from "react-icons/lia";
@@ -13,10 +13,18 @@ import { LiaShippingFastSolid } from "react-icons/lia";
 function NavMenu() {
   const { setSidebarStatus } = useGlobalContext();
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavLink = (link: string) => {
     setSidebarStatus("");
     router.push(link);
+  };
+
+  const getLinkClasses = (url: string) => {
+    if (pathname === '/' && url === '/') {
+      return "text-site";
+    }
+    return pathname.startsWith(url) && url !== '/' ? "text-site" : "hover:text-site";
   };
   return (
     <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
@@ -26,7 +34,7 @@ function NavMenu() {
             <CustomButton
               key={key}
               title={link.title}
-              containerStyles="hover:text-site"
+              containerStyles={getLinkClasses(link.url)}
               handleClick={() => handleNavLink(link.url)}
             />
           ))}

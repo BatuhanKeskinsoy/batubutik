@@ -22,15 +22,15 @@ export const navLinks = [
   },
   {
     title: "Blog",
-    url: "/",
+    url: "/blog",
   },
   {
     title: "Hakkımızda",
-    url: "/",
+    url: "/hakkimizda",
   },
   {
     title: "İletişim",
-    url: "/",
+    url: "/iletisim",
   },
 ];
 

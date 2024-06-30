@@ -16,13 +16,14 @@ import { generals, navLinks } from "@/constants/(front)";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { getPrice } from "@/components/functions/getPrice";
 import { getSocialIcon } from "@/components/functions/getSocialIcon";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [loading, setLoading] = useState(true);
   const { sidebarStatus, setSidebarStatus, isMobile } = useGlobalContext();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +56,13 @@ function Header() {
   const handleNavLink = (link: string) => {
     setSidebarStatus("");
     router.push(link);
+  };
+
+  const getLinkClasses = (url: string) => {
+    if (pathname === '/' && url === '/') {
+      return "text-site";
+    }
+    return pathname.startsWith(url) && url !== '/' ? "text-site" : "hover:text-site";
   };
   return (
     <>
@@ -132,7 +140,7 @@ function Header() {
                     <CustomButton
                       key={key}
                       title={link.title}
-                      containerStyles="hover:text-site"
+                      containerStyles={getLinkClasses(link.url)}
                       handleClick={() => handleNavLink(link.url)}
                     />
                   ))}

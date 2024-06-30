@@ -5,10 +5,12 @@ import Auth from "@/components/(front)/inc/Header/Auth/Auth";
 import Favorite from "@/components/(front)/inc/Header/Favorite/Favorite";
 import Search from "@/components/(front)/inc/Header/Search/Search";
 import { IoHomeOutline, IoStorefrontOutline } from "react-icons/io5";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 function Footer() {
   const router = useRouter();
+  const pathname = usePathname();
+
   return (
     <footer className="relative w-full z-10 max-lg:pb-16">
       <aside className="flex lg:hidden fixed bottom-0 h-16 bg-gray-100 w-full shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.3)]">
@@ -18,7 +20,9 @@ function Footer() {
               leftIcon={
                 <IoStorefrontOutline className="text-xl max-lg:text-2xl" />
               }
-              containerStyles={`p-2 border transition-all duration-300 border-gray-200 rounded-full`}
+              containerStyles={`p-2 border transition-all duration-300 rounded-full ${
+                pathname.startsWith("/magaza") ? "text-white border-transparent bg-site" : "border-gray-200"
+              }`}
               handleClick={() => router.push("/magaza")}
             />
           </div>

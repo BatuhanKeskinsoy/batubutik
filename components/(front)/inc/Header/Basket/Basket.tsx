@@ -13,6 +13,7 @@ function Basket() {
     <IoBagHandleOutline className="text-xl max-lg:text-2xl" />
   );
   const [basketTotalPrice, setBasketTotalPrice] = useState(0);
+  const [pingAnimation, setPingAnimation] = useState(false);
 
   useEffect(() => {
     if (basketItems && basketItems.length > 0) {
@@ -47,9 +48,19 @@ function Basket() {
     }
   }, [basketItemCount]);
 
+  useEffect(() => {
+    if (basketItemCount > 0) {
+      setPingAnimation(true);
+      const timeout = setTimeout(() => setPingAnimation(false), 200);
+      return () => clearTimeout(timeout);
+    }
+  }, [basketItemCount]);
+
   return (
     <div
-      className="relative flex items-center rounded-full lg:hover:scale-110 transition-all duration-300 h-full cursor-pointer"
+      className={`relative flex items-center rounded-full lg:hover:scale-110 transition-all duration-200 h-full cursor-pointer ${
+        pingAnimation ? "scale-125" : ""
+      }`}
       onClick={() => setSidebarStatus("Basket")}
     >
       {basketItemCount > 0 && (
