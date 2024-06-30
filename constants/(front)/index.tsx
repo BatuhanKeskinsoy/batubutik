@@ -1,5 +1,3 @@
-import { url } from "inspector";
-
 export const generals = {
   site_name: "Batubutik",
   free_shipping: 1000,
@@ -79,6 +77,11 @@ export const instantProducts = [
     discount: 10,
     stock: 50,
     choise_required: false,
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    updated_at: null
   },
   {
     id: 2,
@@ -102,6 +105,11 @@ export const instantProducts = [
     discount: 30,
     stock: 50,
     choise_required: false,
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    updated_at: null
   },
   {
     id: 3,
@@ -125,6 +133,11 @@ export const instantProducts = [
     discount: 0,
     stock: 50,
     choise_required: true,
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    updated_at: null
   },
   {
     id: 4,
@@ -147,6 +160,11 @@ export const instantProducts = [
     discount: 15,
     stock: 50,
     choise_required: true,
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    updated_at: null
   },
   {
     id: 5,
@@ -170,6 +188,11 @@ export const instantProducts = [
     discount: 0,
     stock: 0,
     choise_required: true,
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    updated_at: null
   },
   {
     id: 6,
@@ -188,6 +211,11 @@ export const instantProducts = [
     discount: 0,
     stock: 10,
     choise_required: true,
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    updated_at: null
   },
 ];
 
@@ -265,4 +293,9 @@ export const instantProductDetail = {
     },
   ],
   choise_required: true,
+  status: true,
+  featured_status: false,
+  total_sold: 0,
+  created_at: new Date("2024-06-14T13:24:59.000000Z"),
+  updated_at: null
 };

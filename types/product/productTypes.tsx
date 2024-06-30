@@ -15,4 +15,9 @@ export type productTypes = {
   discount: number;
   stock: number;
   choise_required: boolean;
+  status: boolean;
+  featured_status: boolean;
+  total_sold: number;
+  created_at: Date;
+  updated_at: Date | null;
 };
