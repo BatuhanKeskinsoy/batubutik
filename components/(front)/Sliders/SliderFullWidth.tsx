@@ -21,7 +21,7 @@ interface ISliderOneProps {
 function createBreakpoints(perView: number) {
   const breakpoints: { [key: number]: { slidesPerView: number } } = {};
 
-  breakpoints[480] = { slidesPerView: 1 };
+  breakpoints[0] = { slidesPerView: 1 };
   if (perView >= 2) {
     breakpoints[768] = { slidesPerView: 2 };
   }
@@ -30,6 +30,9 @@ function createBreakpoints(perView: number) {
   }
   if (perView >= 4) {
     breakpoints[1360] = { slidesPerView: 4 };
+  }
+  if (perView >= 5) {
+    breakpoints[1780] = { slidesPerView: 5 };
   }
 
   return breakpoints;

@@ -11,15 +11,14 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import {
   IoBagAddOutline,
-  IoCloseOutline,
   IoExpand,
   IoHeart,
   IoHeartOutline,
 } from "react-icons/io5";
-import ProductArea from "@/components/(front)/Product/ProductArea";
 import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { instantProductDetail } from "@/constants/(front)";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
+import ModalProductDetail from "@/components/modals/ModalProductDetail";
 
 interface IProductItemProps {
   product: productTypes;
@@ -152,24 +151,10 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
   return (
     <>
       {showProductArea && (
-        <div className="fixed w-screen h-screen top-0 left-0 flex lg:items-center items-start lg:justify-center justify-start z-20">
-          <div
-            className={`bg-gray-900/60 w-screen h-screen fixed left-0 top-0 transition-all duration-300 animate-sidebarBgSmooth z-10`}
-            onClick={() => setShowProductArea(false)}
-          ></div>
-          <div
-            className={`relative bg-white rounded-sm 2xl:w-[calc(100vw-34%)] xl:w-[calc(100vw-250px)] lg:w-[calc(100vw-250px)] lg:h-[calc(100dvh-18%)] w-screen h-[100dvh] shadow-lg shadow-gray-600 transition-all duration-300 animate-modalContentSmooth z-20`}
-          >
-            <CustomButton
-              containerStyles="absolute lg:-right-4 lg:-top-4 right-6 top-6 text-gray-600 hover:bg-red-500 hover:text-white transition-all duration-300 z-10 bg-white rounded-full "
-              leftIcon={<IoCloseOutline className="text-4xl" />}
-              handleClick={() => setShowProductArea(false)}
-            />
-            <div className=" w-full h-full lg:overflow-hidden overflow-y-auto">
-              <ProductArea product={productDetail} />
-            </div>
-          </div>
-        </div>
+        <ModalProductDetail
+          productDetail={productDetail}
+          onClose={() => setShowProductArea(false)}
+        />
       )}
       <div className="relative flex flex-col w-full">
         <Link
@@ -355,7 +340,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
           <div className="flex flex-col w-full gap-1">
             <span className="text-gray-500 text-xs">{product.category}</span>
             <span className="font-medium">{product.title}</span>
-            <div className="flex items-center text-sm gap-2">
+            <div className="flex items-center text-sm gap-2 leading-6">
               <span
                 className={`font-medium ${
                   product.discount > 0 ? "text-green-500 text-base" : ""
