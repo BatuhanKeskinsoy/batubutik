@@ -198,6 +198,7 @@ function ProductArea({ product }: IProductAreaProps) {
 
             {product && product.stock < 1 && (
               <div className="absolute flex items-center justify-center w-full h-full overflow-hidden bg-black-900/70 animate-pulse">
+                <div className="absolute w-full h-full left-0 -z-10 bg-site/30"></div>
                 <span className="text-white font-gemunu lg:text-5xl text-2xl text-center font-medium tracking-wider -rotate-[35deg]">
                   Stokta Yok
                 </span>
@@ -493,7 +494,11 @@ function ProductGroupItem({
 }) {
   const [activeGroupItem, setActiveGroupItem] = useState(true);
   return (
-    <div className={`p-2 bg-gray-200 overflow-hidden rounded-md cursor-pointer hover:bg-site/20 transition-all duration-300 group ${activeGroupItem ? "first:bg-site/20 first:text-site" : ""}`}>
+    <div
+      className={`p-2 bg-gray-200 overflow-hidden rounded-md cursor-pointer hover:bg-site/20 transition-all duration-300 group ${
+        activeGroupItem ? "first:bg-site/20 first:text-site" : ""
+      }`}
+    >
       <div className="flex flex-col text-center gap-2 w-full">
         {product.images && (
           <div className="relative w-20 h-28 overflow-hidden rounded-md">

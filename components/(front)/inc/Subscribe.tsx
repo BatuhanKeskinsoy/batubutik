@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 function Subscribe() {
   const [email, setEmail] = useState("");
+  
   const handleSubscribe = (e: any) => {
     e.preventDefault();
 
@@ -39,7 +40,7 @@ function Subscribe() {
           <input
             type="email"
             required
-            className="bg-white/20 border border-white/30 focus:border-site/50 focus:bg-site/20 rounded-lg py-3 px-8 text-white outline-none text-lg lg:min-w-[350px] max-lg:w-full transition-all duration-300"
+            className="bg-white/20 border border-transparent focus:border-site/50 focus:bg-site/20 rounded-lg py-3 px-8 text-white outline-none text-lg lg:min-w-[350px] max-lg:w-full transition-all duration-300"
             placeholder="E-Mail Adresiniz"
             value={email}
             autoComplete="email"

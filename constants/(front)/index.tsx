@@ -7,6 +7,7 @@ export const generals = {
     { platform: "İnstagram", url: "/" },
     { platform: "Youtube", url: "/" },
   ],
+  address: "Meclis Mahallesi Derviş Sk. Fuat Ozal Apt No 38/1 Sancaktepe",
   email: "batubutik@info.com",
   phone: "08505058515",
 };

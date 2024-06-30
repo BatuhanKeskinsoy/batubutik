@@ -58,14 +58,14 @@ function SliderFullWidth({ perView }: ISliderOneProps) {
           key={key}
           className="relative !flex items-end justify-center group bg-white"
         >
-          <div className="container mx-auto px-4 grid grid-cols-1 lg:h-[800px]">
+          <div className="container mx-auto px-4 grid grid-cols-1 lg:h-[800px] z-30">
             <div className="relative flex items-center text-left h-full w-full">
               <div className="flex flex-col w-full lg:h-full justify-center max-lg:gap-12 gap-28 py-12">
                 <div className="max-lg:text-center flex flex-col max-lg:items-center max-lg:justify-betweenw-full max-lg:h-full max-lg:gap-4 gap-12">
                   <span className="font-gemunu tracking-widest font-semibold lg:text-4xl text-xl text-white/80">
                     2024 Batubutik Koleksiyonu
                   </span>
-                  <h1 className="font-semibold lg:text-7xl text-5xl text-site font-gemunu tracking-wide drop-shadow-[0_1px_1px_rgba(255,255,255,1)]">
+                  <h1 className="font-semibold lg:text-7xl text-5xl text-white font-gemunu tracking-wide">
                     Zarafetin Özgürlüğü
                   </h1>
                   <p className="lg:text-2xl text-base tracking-wide font-light text-white/70">
@@ -83,12 +83,15 @@ function SliderFullWidth({ perView }: ISliderOneProps) {
               </div>
             </div>
           </div>
+          <div className="absolute w-full h-full bg-site/10 z-20"></div>
+          <div className="absolute w-full h-full bg-black-900/50 z-10"></div>
           <Image
             src={picture}
             alt="banner"
             fill
             sizes="(max-width: 768px) 100vw, 100vw"
-            className="object-cover -z-10"
+            className="object-cover"
+            priority
           />
         </SwiperSlide>
       ))}

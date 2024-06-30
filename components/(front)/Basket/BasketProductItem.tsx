@@ -80,6 +80,7 @@ function BasketProductItem({
           />
           {product && product.stock < 1 && (
             <div className="absolute flex items-center justify-center w-full h-full overflow-hidden bg-black-900/70 animate-pulse">
+              <div className="absolute w-full h-full left-0 -z-10 bg-site/30"></div>
               <span className="text-white font-gemunu lg:text-xl text-center text-xl font-medium tracking-wider -rotate-[35deg]">
                 Stokta Yok
               </span>
@@ -153,7 +154,9 @@ function BasketProductItem({
             />
             <span className="select-none">{productQuantity}</span>
             <CustomButton
-              handleClick={product.stock > productQuantity ? increaseQuantity : undefined}
+              handleClick={
+                product.stock > productQuantity ? increaseQuantity : undefined
+              }
               containerStyles={`bg-white p-1 border border-gray-200 rounded-lg transition-all duration-300 group ${
                 product.stock > productQuantity
                   ? "hover:text-white hover:bg-site"

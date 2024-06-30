@@ -8,6 +8,7 @@ import Categories from "@/components/(front)/Home/Categories";
 import NewProducts from "@/components/(front)/Product/FilteredProducts/NewProducts";
 import BestSellingProducts from "@/components/(front)/Product/FilteredProducts/BestSellingProducts";
 import Subscribe from "@/components/(front)/inc/Subscribe";
+import Contact from "@/components/(front)/Contact/Contact";
 
 function Home() {
   return (
@@ -28,7 +29,7 @@ function Home() {
         </div>
         <Categories />
       </section>
-      
+
       <section className="container mx-auto px-4">
         <div className="flex flex-col gap-3 w-full mb-8 max-lg:text-center">
           <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
@@ -41,7 +42,7 @@ function Home() {
         </div>
         <FeaturedProducts />
       </section>
-      
+
       <section className="container mx-auto px-4">
         <div className="flex flex-col gap-3 w-full mb-8 max-lg:text-center">
           <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
@@ -54,7 +55,7 @@ function Home() {
         </div>
         <NewProducts />
       </section>
-      
+
       <section className="container mx-auto px-4">
         <div className="flex flex-col gap-3 w-full mb-8 max-lg:text-center">
           <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
@@ -70,6 +71,10 @@ function Home() {
 
       <section>
         <Subscribe />
+      </section>
+
+      <section>
+        <Contact />
       </section>
     </>
   );
