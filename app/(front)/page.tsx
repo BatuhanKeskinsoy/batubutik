@@ -14,7 +14,7 @@ import About from "@/components/(front)/About/About";
 
 function Home() {
   return (
-    <>
+    <main className="flex flex-col w-full gap-12">
       <section>
         <Banner />
       </section>
@@ -69,7 +69,7 @@ function Home() {
       <section>
         <Contact />
       </section>
-    </>
+    </main>
   );
 }
 

@@ -141,7 +141,7 @@ function Footer() {
                 </div>
                 <div className="flex-1">
                   <span className="font-gemunu text-2xl tracking-wide">
-                    Sözleşme ve Politika
+                    Sözleşme ve Politikalar
                   </span>
                   <hr className="my-2 border-gray-300" />
                   <ul>

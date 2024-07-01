@@ -93,6 +93,7 @@ function SliderFullWidth({ perView }: ISliderOneProps) {
             sizes="(max-width: 768px) 100vw, 100vw"
             className="object-cover"
             priority
+            quality={100}
           />
         </SwiperSlide>
       ))}

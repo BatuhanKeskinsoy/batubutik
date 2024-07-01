@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <React.Fragment>
       <Header />
-      <main className="flex flex-col w-full gap-12">{children}</main>
+      {children}
       <Footer />
     </React.Fragment>
   );
