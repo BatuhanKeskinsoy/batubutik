@@ -8,7 +8,7 @@ import { IoHomeOutline, IoStorefrontOutline } from "react-icons/io5";
 import { usePathname, useRouter } from "next/navigation";
 import Subscribe from "@/components/(front)/inc/Subscribe";
 import Link from "next/link";
-import { generals, mainCategories } from "@/constants/(front)";
+import { generals, categories } from "@/constants/(front)";
 import { getSocialIcon } from "@/components/functions/getSocialIcon";
 
 function Footer() {
@@ -126,12 +126,12 @@ function Footer() {
                   </span>
                   <hr className="my-2 border-gray-300" />
                   <ul>
-                    {mainCategories.slice(0, 4).map((category, key) => (
+                    {categories.slice(0, 4).map((category, key) => (
                       <li key={key}>
                         <Link
                           title={category.name}
                           className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
-                          href={`/magaza/${category.url}`}
+                          href={`/magaza/${category.slug}`}
                         >
                           {category.name}
                         </Link>

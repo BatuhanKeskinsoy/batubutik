@@ -35,22 +35,39 @@ export const navLinks = [
   },
 ];
 
-export const mainCategories = [
+export const categories = [
   {
     name: "Erkek",
-    url: "erkek",
+    slug: "erkek",
+    product_count: 0,
+    sub_categories: [
+      { name: "Üst Giyim", slug: "ust-giyim", product_count: 0 },
+      { name: "Alt Giyim", slug: "alt-giyim", product_count: 0 },
+    ],
   },
   {
     name: "Kadın",
-    url: "kadin",
+    slug: "kadin",
+    product_count: 6,
+    sub_categories: [
+      { name: "Üst Giyim", slug: "ust-giyim", product_count: 0 },
+      { name: "Alt Giyim", slug: "alt-giyim", product_count: 0 },
+      { name: "İç Giyim", slug: "ic-giyim", product_count: 6 },
+    ],
   },
   {
     name: "Çocuk",
-    url: "cocuk",
+    slug: "cocuk",
+    product_count: 0,
+    sub_categories: [
+      { name: "Üst Giyim", slug: "ust-giyim", product_count: 0 },
+      { name: "Alt Giyim", slug: "alt-giyim", product_count: 0 },
+    ],
   },
   {
     name: "Aksesuar",
-    url: "aksesuar",
+    slug: "aksesuar",
+    product_count: 0,
   },
 ];
 
@@ -82,7 +99,7 @@ export const instantProducts = [
     featured_status: false,
     total_sold: 0,
     created_at: new Date("2024-06-14T13:24:59.000000Z"),
-    updated_at: null
+    updated_at: null,
   },
   {
     id: 2,
@@ -110,7 +127,7 @@ export const instantProducts = [
     featured_status: false,
     total_sold: 0,
     created_at: new Date("2024-06-14T13:24:59.000000Z"),
-    updated_at: null
+    updated_at: null,
   },
   {
     id: 3,
@@ -138,7 +155,7 @@ export const instantProducts = [
     featured_status: false,
     total_sold: 0,
     created_at: new Date("2024-06-14T13:24:59.000000Z"),
-    updated_at: null
+    updated_at: null,
   },
   {
     id: 4,
@@ -165,7 +182,7 @@ export const instantProducts = [
     featured_status: false,
     total_sold: 0,
     created_at: new Date("2024-06-14T13:24:59.000000Z"),
-    updated_at: null
+    updated_at: null,
   },
   {
     id: 5,
@@ -193,7 +210,7 @@ export const instantProducts = [
     featured_status: false,
     total_sold: 0,
     created_at: new Date("2024-06-14T13:24:59.000000Z"),
-    updated_at: null
+    updated_at: null,
   },
   {
     id: 6,
@@ -216,7 +233,7 @@ export const instantProducts = [
     featured_status: false,
     total_sold: 0,
     created_at: new Date("2024-06-14T13:24:59.000000Z"),
-    updated_at: null
+    updated_at: null,
   },
 ];
 
@@ -298,5 +315,5 @@ export const instantProductDetail = {
   featured_status: false,
   total_sold: 0,
   created_at: new Date("2024-06-14T13:24:59.000000Z"),
-  updated_at: null
+  updated_at: null,
 };

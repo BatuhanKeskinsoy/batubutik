@@ -74,7 +74,7 @@ function Search() {
               <div className="flex flex-col gap-4 h-[calc(100dvh-136px)] justify-center items-center animate-pulse text-gray-300">
                 <IoFileTrayOutline className="lg:text-7xl text-6xl" />
                 <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
-                  Aradığınız Ürününüz Bulunamadı
+                  Aradığınız Ürün Bulunamadı
                 </span>
               </div>
             ) : (

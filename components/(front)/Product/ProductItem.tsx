@@ -339,7 +339,15 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
             </>
           )}
           <div className="flex flex-col w-full gap-1">
-            <span className="text-gray-500 text-xs">{product.category}</span>
+            <div className="flex justify-between items-center gap-2">
+              <span className="text-gray-500 text-xs">
+                {product.mainCategory}
+                {product.category && ` / ${product.category}`}
+              </span>
+              <span className="text-gray-500 text-xs">
+                #{product.code}
+              </span>
+            </div>
             <span className="font-medium">{product.title}</span>
             <div className="flex items-center text-sm gap-2 leading-6">
               <span

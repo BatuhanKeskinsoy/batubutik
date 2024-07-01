@@ -98,7 +98,7 @@ function BasketProductItem({
             >
               {product.title}
             </Link>
-            <span className="text-sm text-gray-600">{product.category}</span>
+            <span className="text-gray-500 text-xs">{product.mainCategory}{product.category && ` / ${product.category}`}</span>
             <div className="flex text-xs flex-wrap gap-x-2 gap-y-1 line-clamp-2 max-w-full">
               {product.attributes &&
                 product.attributes?.map((attr, key) => (

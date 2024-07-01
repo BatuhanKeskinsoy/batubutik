@@ -1,17 +1,17 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { mainCategories } from "@/constants/(front)";
+import { categories } from "@/constants/(front)";
 import { FaTags } from "react-icons/fa";
 import Link from "next/link";
 
 function Categories() {
-  if (mainCategories.length > 1) {
+  if (categories.length > 1) {
     return (
       <div className="flex lg:flex-row flex-col gap-4 lg:gap-8 items-center justify-center w-full h-full text-white">
-        {mainCategories.map((category, key) => (
+        {categories.map((category, key) => (
           <Link
-            href={`/magaza/${category.url}`}
+            href={`/magaza/${category.slug}`}
             key={key}
             className="border border-gray-200 bg-gray-100 hover:bg-site hover:border-transparent relative flex lg:items-end items-center justify-start w-full h-full overflow-hidden cursor-pointer lg:rounded-2xl lg:shadow-lg hover:lg:shadow-xl lg:shadow-gray-200 hover:lg:shadow-site/20 hover:lg:scale-105 transition-all duration-300 group"
           >

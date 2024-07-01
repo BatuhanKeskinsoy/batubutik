@@ -115,7 +115,7 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
               >
                 {product.title}
               </Link>
-              <span className="text-sm text-gray-600">{product.category}</span>
+              <span className="text-gray-500 text-xs">{product.mainCategory}{product.category && ` / ${product.category}`}</span>
               <div className="text-sm tracking-wide">
                 {product.stock > 0 ? (
                   <span className="text-green-500">Stokta Var</span>
