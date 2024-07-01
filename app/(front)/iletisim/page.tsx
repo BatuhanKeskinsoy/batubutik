@@ -3,7 +3,7 @@ import React from 'react'
 
 function page() {
   return (
-    <section className='lg:mt-8 mt-4'>
+    <section className='lg:mt-12 mt-4'>
         <Contact />
     </section>
   )

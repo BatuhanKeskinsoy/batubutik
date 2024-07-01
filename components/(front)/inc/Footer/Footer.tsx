@@ -126,7 +126,7 @@ function Footer() {
                   </span>
                   <hr className="my-2 border-gray-300" />
                   <ul>
-                    {mainCategories.slice(0,4).map((category, key) => (
+                    {mainCategories.slice(0, 4).map((category, key) => (
                       <li key={key}>
                         <Link
                           title={category.name}
@@ -141,88 +141,124 @@ function Footer() {
                 </div>
                 <div className="flex-1">
                   <span className="font-gemunu text-2xl tracking-wide">
-                    Hızlı Linkler
+                    Sözleşme ve Politika
                   </span>
                   <hr className="my-2 border-gray-300" />
                   <ul>
                     <li>
                       <Link
-                        title="Mağaza"
+                        title="Gizlilik Politikası"
                         className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
-                        href="/magaza"
+                        href="/"
                       >
-                        Mağaza
+                        Gizlilik Politikası
                       </Link>
                     </li>
                     <li>
                       <Link
-                        title="Blog"
+                        title="Şartlar ve Koşullar"
                         className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
-                        href="/blog"
+                        href="/"
                       >
-                        Blog
+                        Şartlar ve Koşullar
                       </Link>
                     </li>
                     <li>
                       <Link
-                        title="Hakkımızda"
+                        title="İptal ve İade Politikası"
                         className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
-                        href="/hakkimizda"
+                        href="/"
                       >
-                        Hakkımızda
+                        İptal ve İade Politikası
                       </Link>
                     </li>
                     <li>
                       <Link
-                        title="İletişim"
+                        title="Mesafeli Satış Sözleşmesi"
                         className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
-                        href="/iletisim"
+                        href="/"
                       >
-                        İletişim
+                        Mesafeli Satış Sözleşmesi
                       </Link>
                     </li>
                   </ul>
                 </div>
                 <div className="flex-1">
                   <span className="font-gemunu text-2xl tracking-wide">
-                    Hızlı Linkler
+                    Popüler Etiketler
                   </span>
                   <hr className="my-2 border-gray-300" />
-                  <ul>
+                  <ul className="flex flex-wrap gap-2">
                     <li>
                       <Link
-                        title="Mağaza"
-                        className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
-                        href="/magaza"
+                        title="Dantel İç Giyim"
+                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
+                        href="/"
                       >
-                        Mağaza
+                        Dantel İç Giyim
                       </Link>
                     </li>
                     <li>
                       <Link
-                        title="Blog"
-                        className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
-                        href="/blog"
+                        title="Ekonomik İç Giyim"
+                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
+                        href="/"
                       >
-                        Blog
+                        Ekonomik İç Giyim
                       </Link>
                     </li>
                     <li>
                       <Link
-                        title="Hakkımızda"
-                        className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
-                        href="/hakkimizda"
+                        title="Fantezi giyim"
+                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
+                        href="/"
                       >
-                        Hakkımızda
+                        Fantezi giyim
                       </Link>
                     </li>
                     <li>
                       <Link
-                        title="İletişim"
-                        className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
-                        href="/iletisim"
+                        title="Kadın iç giyim"
+                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
+                        href="/"
                       >
-                        İletişim
+                        Kadın iç giyim
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        title="Kadın İç Çamaşır"
+                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
+                        href="/"
+                      >
+                        Kadın İç Çamaşır
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        title="Likra İç Giyim"
+                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
+                        href="/"
+                      >
+                        Likra İç Giyim
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        title="Lüks İç Giyim"
+                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
+                        href="/"
+                      >
+                        Lüks İç Giyim
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        title="Takım İç Giyim"
+                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
+                        href="/"
+                      >
+                        Takım İç Giyim
                       </Link>
                     </li>
                   </ul>
@@ -230,8 +266,8 @@ function Footer() {
               </div>
             </div>
           </div>
-          <hr className="border-gray-300 w-full" />
-          <div className="container mx-auto px-4">
+          <hr className="border-gray-300  w-full" />
+          <div className="container mx-auto px-4 ">
             <div className="w-full flex justify-between py-4 text-gray-600 text-sm md:flex-row flex-col text-center">
               <div className="md:my-0 my-1">
                 Copyright ©{" "}
