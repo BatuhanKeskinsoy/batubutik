@@ -105,8 +105,25 @@ function Contact() {
           </div>
         </form>
       </div>
-      <div className="w-0.5 h-[590px] border-r border-gray-200 order-2 max-lg:hidden"></div>
+      <div className="w-0.5 h-[600px] border-r border-gray-200 order-2 max-lg:hidden"></div>
       <div className="flex flex-col gap-4 lg:w-1/3 w-full tracking-wide lg:order-2 order-1">
+        <span className="font-gemunu text-3xl tracking-wider font-medium">
+          Sosyal Medya
+        </span>
+        <div className="flex flex-wrap gap-4 items-center *:transition-all *:duration-300">
+          {generals.socials.map((social, key) => (
+            <Link
+              key={key}
+              href={social.url}
+              className="flex items-center gap-2 hover:text-site text-gray-600 text-3xl"
+              target="_blank"
+            >
+              {getSocialIcon(social.platform)}
+              <span className="text-base">{social.platform}</span>
+            </Link>
+          ))}
+        </div>
+        <hr />
         <span className="font-gemunu text-3xl tracking-wider font-medium">
           İletişim
         </span>
@@ -129,24 +146,8 @@ function Contact() {
           <p>{generals.email}</p>
         </Link>
         <hr />
-        <span className="font-gemunu text-3xl tracking-wider font-medium">
-          Sosyal Medya
-        </span>
-        <div className="flex flex-wrap gap-4 items-center *:transition-all *:duration-300">
-          {generals.socials.map((social, key) => (
-            <Link
-              key={key}
-              href={social.url}
-              className="flex items-center gap-2 hover:text-site text-gray-600 text-3xl"
-              target="_blank"
-            >
-              {getSocialIcon(social.platform)}
-              <span className="text-base">{social.platform}</span>
-            </Link>
-          ))}
-        </div>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48158.543460858644!2d29.096265302312904!3d41.0272475342532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac92b2df797b9%3A0xabff48934920c04a!2zw5xtcmFuaXllL8Swc3RhbmJ1bA!5e0!3m2!1str!2str!4v1719753362171!5m2!1str!2str"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3010.6196665425136!2d29.188785612436945!3d41.01169707123056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v1719828314969!5m2!1str!2str"
           className="w-full border-0"
           height="300"
           loading="lazy"

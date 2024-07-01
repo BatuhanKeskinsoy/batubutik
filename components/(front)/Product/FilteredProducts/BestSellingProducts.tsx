@@ -1,9 +1,12 @@
 import React from "react";
 import SliderOne from "@/components/(front)/Sliders/SliderOne";
-import { instantProducts } from "@/constants/(front)";
+import { productTypes } from "@/types/product/productTypes";
 
-function BestSellingProducts() {
-  return <SliderOne perView={5} products={instantProducts} />;
+interface IFeaturedProductsProps {
+  products: productTypes[];
+}
+function BestSellingProducts({ products }: IFeaturedProductsProps) {
+  return <SliderOne perView={5} products={products} />;
 }
 
 export default BestSellingProducts;

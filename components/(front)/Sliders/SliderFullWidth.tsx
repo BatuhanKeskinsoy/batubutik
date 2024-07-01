@@ -5,6 +5,7 @@ import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import CustomButton from "@/components/others/CustomButton";
 import { IoChevronForwardOutline } from "react-icons/io5";
+import { generals } from "@/constants/(front)";
 
 // https://razziwp.com/fashion/
 
@@ -63,13 +64,13 @@ function SliderFullWidth({ perView }: ISliderOneProps) {
               <div className="flex flex-col w-full lg:h-full justify-center max-lg:gap-12 gap-28 py-12">
                 <div className="max-lg:text-center flex flex-col max-lg:items-center max-lg:justify-betweenw-full max-lg:h-full max-lg:gap-4 gap-12">
                   <span className="font-gemunu tracking-widest font-semibold lg:text-4xl text-xl text-white/80">
-                    2024 Batubutik Koleksiyonu
+                    2024 {generals.site_name} Koleksiyonu
                   </span>
                   <h1 className="font-semibold lg:text-7xl text-5xl text-white font-gemunu tracking-wide">
                     Zarafetin Özgürlüğü
                   </h1>
                   <p className="lg:text-2xl text-base tracking-wide font-light text-white/70">
-                    Ayrıcalıklı Batubutik koleksiyonunu keşfedin!
+                    Ayrıcalıklı {generals.site_name} koleksiyonunu keşfedin!
                   </p>
                 </div>
                 <CustomButton

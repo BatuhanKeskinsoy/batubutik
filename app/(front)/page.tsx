@@ -9,6 +9,8 @@ import NewProducts from "@/components/(front)/Product/FilteredProducts/NewProduc
 import BestSellingProducts from "@/components/(front)/Product/FilteredProducts/BestSellingProducts";
 import Subscribe from "@/components/(front)/inc/Subscribe";
 import Contact from "@/components/(front)/Contact/Contact";
+import { generals, instantProducts } from "@/constants/(front)";
+import About from "@/components/(front)/About/About";
 
 function Home() {
   return (
@@ -17,60 +19,51 @@ function Home() {
         <Banner />
       </section>
 
-      <section className="container mx-auto px-4">
-        <div className="flex flex-col gap-3 w-full mb-8 max-lg:text-center">
-          <h2 className="text-4xl font-gemunu font-semibold tracking-wider">
-            Kategoriler
-          </h2>
-          <p className="text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-            quisquam
-          </p>
-        </div>
+      <section className="container mx-auto px-4 lg:-mt-28">
         <Categories />
       </section>
 
       <section className="container mx-auto px-4">
-        <div className="flex flex-col gap-3 w-full mb-8 max-lg:text-center">
+        <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
           <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
             Öne Çıkan Ürünler
           </h3>
           <p className="text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-            quisquam
+            {generals.site_name} koleksiyonu içerisinde öne çıkan ürünler
           </p>
         </div>
-        <FeaturedProducts />
+        <FeaturedProducts products={instantProducts} />
+      </section>
+
+      <section className="bg-gray-100 py-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
+            <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
+              Yeni Ürünler
+            </h3>
+            <p className="text-gray-500">
+              {generals.site_name} koleksiyonuna eklenen en yeni ürünler
+            </p>
+          </div>
+          <NewProducts products={instantProducts} />
+        </div>
       </section>
 
       <section className="container mx-auto px-4">
-        <div className="flex flex-col gap-3 w-full mb-8 max-lg:text-center">
-          <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
-            Yeni Ürünler
-          </h3>
-          <p className="text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-            quisquam
-          </p>
-        </div>
-        <NewProducts />
-      </section>
-
-      <section className="container mx-auto px-4">
-        <div className="flex flex-col gap-3 w-full mb-8 max-lg:text-center">
+        <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
           <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
             En Çok Satılan Ürünler
           </h3>
           <p className="text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-            quisquam
+            {generals.site_name} koleksiyonu içerisinde en çok talep edilen ve
+            en çok satılan ürünler
           </p>
         </div>
-        <BestSellingProducts />
+        <BestSellingProducts products={instantProducts} />
       </section>
 
-      <section>
-        <Subscribe />
+      <section className="bg-gray-100 py-12">
+        <About />
       </section>
 
       <section>

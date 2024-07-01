@@ -38,19 +38,19 @@ export const navLinks = [
 export const mainCategories = [
   {
     name: "Erkek",
-    url: "/",
+    url: "erkek",
   },
   {
     name: "Kadın",
-    url: "/",
+    url: "kadin",
   },
   {
     name: "Çocuk",
-    url: "/",
+    url: "cocuk",
   },
   {
     name: "Aksesuar",
-    url: "/",
+    url: "aksesuar",
   },
 ];
 
