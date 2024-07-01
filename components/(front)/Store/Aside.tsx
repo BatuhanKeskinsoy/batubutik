@@ -12,6 +12,7 @@ interface IStoreAsideProps {
   categoryParam?: string;
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
+  price: { minPrice: number; maxPrice: number };
 }
 
 function Aside({
@@ -19,6 +20,7 @@ function Aside({
   categoryParam,
   search,
   setSearch,
+  price,
 }: IStoreAsideProps) {
   const pathname = usePathname();
   const { isMobile } = useGlobalContext();
@@ -35,23 +37,21 @@ function Aside({
   return (
     <aside className="lg:w-[320px] w-full h-fit rounded-sm lg:sticky lg:top-24 transition-all duration-300">
       <div className="flex flex-col gap-3 w-full text-sm text-gray-600">
-        <div className="pb-0">
-          <label
-            htmlFor="search"
-            className="flex items-center gap-2 w-full border border-gray-200"
-          >
-            <input
-              type="text"
-              id="search"
-              required
-              className="bg-white focus:border-site/50 py-3 pl-4 outline-none w-full transition-all duration-300"
-              placeholder="Ürün adı veya ürün kodu giriniz"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <IoSearchOutline className="text-2xl mr-4" />
-          </label>
-        </div>
+        <label
+          htmlFor="search"
+          className="flex items-center gap-2 w-full border border-gray-200"
+        >
+          <input
+            type="text"
+            id="search"
+            required
+            className="bg-white focus:border-site/50 py-3 pl-4 outline-none w-full transition-all duration-300"
+            placeholder="Ürün adı veya ürün kodu giriniz"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <IoSearchOutline className="text-2xl mr-4" />
+        </label>
         <hr className="mt-2" />
         {isMobile && (
           <CustomButton
@@ -64,13 +64,18 @@ function Aside({
               )
             }
             containerStyles={`flex justify-between font-gemunu items-center border-b border-gray-200 w-full px-4 py-3 text-2xl ${
-              isFilterNav ? "bg-site/10 text-site border-b-0" : " bg-white text-gray-600"
+              isFilterNav
+                ? "bg-site/10 text-site border-b-0"
+                : " bg-white text-gray-600"
             }`}
             handleClick={() => setIsFilterNav(!isFilterNav)}
           />
         )}
         {isFilterNav && (
-          <div className="flex flex-col py-2 gap-2">
+          <div className="flex flex-col py-2 gap-4">
+            <span className="font-medium text-xl font-gemunu tracking-wide">
+              Kategori
+            </span>
             <div className="flex flex-col w-full gap-2">
               {categories.map((category, key) => (
                 <div key={key} className="flex flex-col w-full">
@@ -111,6 +116,30 @@ function Aside({
                 </div>
               ))}
             </div>
+            <hr />
+            {Number.isFinite(price.minPrice) &&
+              Number.isFinite(price.maxPrice) &&
+              price.minPrice !== 0 &&
+              price.maxPrice !== 0 && (
+                <>
+                  <span className="font-medium text-xl font-gemunu tracking-wide">
+                    Ücret Aralığı
+                  </span>
+                  <span>
+                    Range Yapılacak : {price.minPrice} - {price.maxPrice}
+                  </span>
+                  <hr />
+                </>
+              )}
+            <span className="font-medium text-xl font-gemunu tracking-wide">
+              Boyut/Beden
+            </span>
+            <span>Boyut/Beden</span>
+            <hr />
+            <span className="font-medium text-xl font-gemunu tracking-wide">
+              Renk
+            </span>
+            <span>Renk</span>
           </div>
         )}
       </div>

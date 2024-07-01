@@ -258,13 +258,13 @@ function ProductArea({ product }: IProductAreaProps) {
                   product && product.discount > 0 ? "text-green-500" : ""
                 }`}
               >
-                {getPrice(product ? product.amount : 0)}
+                {getPrice(product ? product.price : 0)}
               </span>
               {product && product.discount > 0 && (
                 <>
                   <span className="line-through font-light text-lg text-gray-400">
                     {getPrice(
-                      (product.discount * product.amount) / 100 + product.amount
+                      (product.discount * product.price) / 100 + product.price
                     )}{" "}
                   </span>
                   <span className="flex px-4 py-1 bg-green-500/10 text-green-500 rounded-full text-sm">

@@ -21,10 +21,12 @@ function NavMenu() {
   };
 
   const getLinkClasses = (url: string) => {
-    if (pathname === '/' && url === '/') {
+    if (pathname === "/" && url === "/") {
       return "text-site";
     }
-    return pathname.startsWith(url) && url !== '/' ? "text-site" : "hover:text-site";
+    return pathname.startsWith(url) && url !== "/"
+      ? "text-site"
+      : "hover:text-site";
   };
   return (
     <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
@@ -58,7 +60,7 @@ function NavMenu() {
           <div className="flex flex-col w-full text-base text-gray-600">
             {generals.email && (
               <Link
-                href="mailto:commerce@gmail.com"
+                href={`mailto:${generals.email}`}
                 className="flex items-center gap-2 hover:text-site transition-all duration-300 p-4 bg-gray-100 border-b"
               >
                 <IoMailOutline className="text-2xl" />
@@ -67,7 +69,7 @@ function NavMenu() {
             )}
             {generals.phone && (
               <Link
-                href="tel:08508508585@gmail.com"
+              href={`tel:${generals.phone}`}
                 className="flex items-center gap-2 hover:text-site transition-all duration-300 p-4 bg-gray-100"
               >
                 <IoCallOutline className="text-2xl" />

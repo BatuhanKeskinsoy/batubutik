@@ -86,14 +86,14 @@ function Header() {
               </div>
               <div className="w-1 h-full border-r border-gray-300" />
               <Link
-                href="mailto:commerce@gmail.com"
+                href={`mailto:${generals.email}`}
                 className="flex items-center gap-2 hover:text-site transition-all duration-300"
               >
                 <IoMailOutline className="text-xl" />
                 <span>{generals.email}</span>
               </Link>
               <Link
-                href="tel:08508508585@gmail.com"
+                href={`tel:${generals.phone}`}
                 className="flex items-center gap-2 hover:text-site transition-all duration-300"
               >
                 <IoCallOutline className="text-xl" />

@@ -23,7 +23,7 @@ function Basket() {
         );
 
         if (matchedProduct) {
-          return total + matchedProduct.amount * basketItem.quantity;
+          return total + matchedProduct.price * basketItem.quantity;
         }
         return total;
       }, 0);

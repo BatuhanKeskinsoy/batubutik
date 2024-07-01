@@ -10,7 +10,7 @@ export type basketProductTypes = {
   subCategory_slug: string;
   images: string[] | null;
   rating: number | null;
-  amount: number;
+  price: number;
   discount: number;
   stock: number;
   choise_required: boolean;

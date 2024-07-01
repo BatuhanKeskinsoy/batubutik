@@ -18,6 +18,7 @@ function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
   const [filteredProducts, setFilteredProducts] = useState<
     productTypes[] | null
   >(null);
+  const [price, setPrice] = useState({ minPrice: 0, maxPrice: 0 });
 
   const pathname = usePathname();
 
@@ -63,6 +64,20 @@ function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
     return () => clearTimeout(timeoutId);
   }, [pathname, mainCategoryParam, categoryParam]);
 
+  useEffect(() => {
+    if (filteredProducts && filteredProducts.length > 0) {
+      const minPrice = filteredProducts.reduce((min, product) => {
+        return product.price < min ? product.price : min;
+      }, Infinity);
+      const maxPrice = filteredProducts.reduce((max, product) => {
+        return product.price > max ? product.price : max;
+      }, -Infinity);
+      setPrice({ minPrice, maxPrice });
+    } else {
+      setPrice({ minPrice: 0, maxPrice: 0 });
+    }
+  }, [filteredProducts]);
+
   return (
     <div className="container mx-auto px-4 w-full max-lg:pt-6">
       <div className="flex lg:flex-row flex-col gap-6 w-full h-full">
@@ -71,6 +86,7 @@ function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
           categoryParam={categoryParam}
           search={search}
           setSearch={setSearch}
+          price={price}
         />
         <main className="w-full">
           {loadingProducts ? (

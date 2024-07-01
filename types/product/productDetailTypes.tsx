@@ -11,7 +11,7 @@ export type productDetailTypes = {
   images: string[] | null;
   rating: number | null;
   total_comment: number;
-  amount: number;
+  price: number;
   discount: number;
   stock: number;
   tags: string[] | null;

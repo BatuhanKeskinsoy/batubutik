@@ -67,7 +67,7 @@ function Basket() {
     return (
       basketProducts &&
       basketProducts.reduce((acc, product) => {
-        return acc + (product.amount || 0) * (product.quantity || 0);
+        return acc + (product.price || 0) * (product.quantity || 0);
       }, 0)
     );
   }, [basketProducts]);

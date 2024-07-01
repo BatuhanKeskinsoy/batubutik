@@ -143,12 +143,12 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
                   product.discount > 0 ? "text-green-500 text-base" : ""
                 }`}
               >
-                {getPrice(product.amount)}
+                {getPrice(product.price)}
               </span>
               {product.discount > 0 && (
                 <span className="line-through text-gray-500">
                   {getPrice(
-                    (product.discount * product.amount) / 100 + product.amount
+                    (product.discount * product.price) / 100 + product.price
                   )}{" "}
                 </span>
               )}
