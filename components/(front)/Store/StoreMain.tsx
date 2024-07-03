@@ -5,7 +5,6 @@ import { instantProducts } from "@/constants/(front)";
 import ProductItem from "@/components/(front)/Product/ProductItem";
 import { IoFileTrayFullOutline, IoFileTrayOutline } from "react-icons/io5";
 import { productTypes } from "@/types/product/productTypes";
-import { usePathname } from "next/navigation";
 
 interface IStoreMainProps {
   mainCategoryParam?: string;
@@ -15,20 +14,42 @@ interface IStoreMainProps {
 function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
   const [search, setSearch] = useState("");
   const [loadingProducts, setLoadingProducts] = useState(false);
-  const [filteredProducts, setFilteredProducts] = useState<
-    productTypes[] | null
-  >(null);
-  const [price, setPrice] = useState({ minPrice: 0, maxPrice: 0 });
+  const [filteredProducts, setFilteredProducts] = useState<productTypes[] | null>(null);
+  const [initialProducts, setInitialProducts] = useState<productTypes[]>([]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 0]);
+  const [initialPriceRange, setInitialPriceRange] = useState<[number, number]>([0, 0]);
 
-  const pathname = usePathname();
+
+  useEffect(() => {
+    setLoadingProducts(true);
+    const filtered = instantProducts.filter((product) => {
+      const matchesSearch =
+        product.title.toLowerCase().includes(search.toLowerCase()) ||
+        product.code.toLowerCase().includes(search.toLowerCase());
+      const matchesMainCategory = mainCategoryParam
+        ? product.mainCategory_slug === mainCategoryParam
+        : true;
+      const matchesCategory = categoryParam
+        ? product.category_slug === categoryParam
+        : true;
+      return matchesSearch && matchesMainCategory && matchesCategory;
+    });
+    setInitialProducts(filtered);
+    setLoadingProducts(false);
+    const priceValues = filtered.map((product) => product.price);
+    setPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
+    setInitialPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
+    setFilteredProducts(filtered);
+  }, [search, mainCategoryParam, categoryParam]);
 
   const filterProducts = (
     searchTerm: string,
     mainCategory?: string,
-    category?: string
+    category?: string,
+    priceRange?: [number, number]
   ) => {
     const searchLower = searchTerm.toLowerCase();
-    return instantProducts.filter((product) => {
+    const filtered = initialProducts.filter((product) => {
       const matchesSearch =
         product.title.toLowerCase().includes(searchLower) ||
         product.code.toLowerCase().includes(searchLower);
@@ -38,45 +59,13 @@ function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
       const matchesCategory = category
         ? product.category_slug === category
         : true;
-      return matchesSearch && matchesMainCategory && matchesCategory;
+      const matchesPriceRange = priceRange
+        ? product.price >= priceRange[0] && product.price <= priceRange[1]
+        : true;
+      return matchesSearch && matchesMainCategory && matchesCategory && matchesPriceRange;
     });
+    setFilteredProducts(filtered);
   };
-
-  useEffect(() => {
-    setLoadingProducts(true);
-    const timeoutId = setTimeout(() => {
-      setFilteredProducts(
-        filterProducts(search, mainCategoryParam, categoryParam)
-      );
-      setLoadingProducts(false);
-    }, 500);
-    return () => clearTimeout(timeoutId);
-  }, [search]);
-
-  useEffect(() => {
-    setLoadingProducts(true);
-    const timeoutId = setTimeout(() => {
-      setFilteredProducts(
-        filterProducts(search, mainCategoryParam, categoryParam)
-      );
-      setLoadingProducts(false);
-    }, 500);
-    return () => clearTimeout(timeoutId);
-  }, [pathname, mainCategoryParam, categoryParam]);
-
-  useEffect(() => {
-    if (filteredProducts && filteredProducts.length > 0) {
-      const minPrice = filteredProducts.reduce((min, product) => {
-        return product.price < min ? product.price : min;
-      }, Infinity);
-      const maxPrice = filteredProducts.reduce((max, product) => {
-        return product.price > max ? product.price : max;
-      }, -Infinity);
-      setPrice({ minPrice, maxPrice });
-    } else {
-      setPrice({ minPrice: 0, maxPrice: 0 });
-    }
-  }, [filteredProducts]);
 
   return (
     <div className="container mx-auto px-4 w-full max-lg:pt-6">
@@ -86,7 +75,10 @@ function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
           categoryParam={categoryParam}
           search={search}
           setSearch={setSearch}
-          price={price}
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
+          initialPriceRange={initialPriceRange}
+          filterProducts={filterProducts}
         />
         <main className="w-full">
           {loadingProducts ? (

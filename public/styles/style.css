@@ -47,3 +47,28 @@
 .swiper-button-prev:after {
   @apply text-white !text-4xl
 }
+
+
+input[type='range'] {
+  -webkit-appearance: none;
+  @apply bg-site/20 rounded-full;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 16px;
+  color: #13bba4;
+  margin-top: -4px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  @apply bg-site rounded-full h-5 w-5 cursor-pointer shadow-lg shadow-gray-400;
+}
+
+.css-188mx6n-MuiSlider-root{
+  @apply !text-site
+}
+
+.css-cp2j25-MuiSlider-thumb:hover, .css-cp2j25-MuiSlider-thumb.Mui-focusVisible {
+  @apply !shadow-custom-site
+}

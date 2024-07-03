@@ -92,6 +92,9 @@ const config: Config = {
           900: '#161b22',
         },
       },
+      boxShadow: {
+        'custom-site': '0px 0px 0px 8px rgba(250,45,147,0.16)',
+      },
       colors: {
         site: 'rgb(250 45 147)',
         customPrimary: {

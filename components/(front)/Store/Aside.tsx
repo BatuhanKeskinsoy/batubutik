@@ -1,18 +1,27 @@
 "use client";
 import { categories } from "@/constants/(front)";
 import Link from "next/link";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoChevronDown, IoChevronUp, IoSearchOutline } from "react-icons/io5";
-import { usePathname } from "next/navigation";
-import { useGlobalContext } from "@/app/Context/store";
 import CustomButton from "@/components/others/CustomButton";
+import Slider from "@mui/material/Slider";
+import { getPrice } from "@/components/functions/getPrice";
+import { useGlobalContext } from "@/app/Context/store";
 
 interface IStoreAsideProps {
   mainCategoryParam?: string;
   categoryParam?: string;
   search: string;
-  setSearch: Dispatch<SetStateAction<string>>;
-  price: { minPrice: number; maxPrice: number };
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  priceRange: [number, number];
+  setPriceRange: React.Dispatch<React.SetStateAction<[number, number]>>;
+  initialPriceRange: [number, number];
+  filterProducts: (
+    searchTerm: string,
+    mainCategory?: string,
+    category?: string,
+    priceRange?: [number, number]
+  ) => void;
 }
 
 function Aside({
@@ -20,15 +29,26 @@ function Aside({
   categoryParam,
   search,
   setSearch,
-  price,
+  priceRange,
+  setPriceRange,
+  initialPriceRange,
+  filterProducts,
 }: IStoreAsideProps) {
-  const pathname = usePathname();
   const { isMobile } = useGlobalContext();
   const [isFilterNav, setIsFilterNav] = useState(true);
 
-  useEffect(() => {
-    setSearch("");
-  }, [pathname]);
+  const handlePriceRangeChange = (
+    event: Event,
+    newValue: number | number[]
+  ) => {
+    setPriceRange(newValue as [number, number]);
+    filterProducts(
+      search,
+      mainCategoryParam,
+      categoryParam,
+      newValue as [number, number]
+    );
+  };
 
   useEffect(() => {
     setIsFilterNav(!isMobile);
@@ -117,17 +137,28 @@ function Aside({
               ))}
             </div>
             <hr />
-            {Number.isFinite(price.minPrice) &&
-              Number.isFinite(price.maxPrice) &&
-              price.minPrice !== 0 &&
-              price.maxPrice !== 0 && (
+            {Number.isFinite(priceRange[0]) &&
+              Number.isFinite(priceRange[1]) &&
+              priceRange[0] !== 0 &&
+              priceRange[1] !== 0 && (
                 <>
                   <span className="font-medium text-xl font-gemunu tracking-wide">
                     Ücret Aralığı
                   </span>
-                  <span>
-                    Range Yapılacak : {price.minPrice} - {price.maxPrice}
-                  </span>
+                  <div className="flex flex-col w-full">
+                    <div className="px-2">
+                      <Slider
+                        value={priceRange}
+                        onChange={handlePriceRangeChange}
+                        min={initialPriceRange[0]}
+                        max={initialPriceRange[1]}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between gap-4 font-medium">
+                      <span>{getPrice(priceRange[0])}</span>
+                      <span>{getPrice(priceRange[1])}</span>
+                    </div>
+                  </div>
                   <hr />
                 </>
               )}
