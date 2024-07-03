@@ -53,7 +53,7 @@ function Basket() {
           }
           return null;
         })
-        .filter(Boolean) as basketProductTypes[];
+        .filter(Boolean) as unknown as basketProductTypes[];
 
       const mergedProducts = mergeSameProducts(productsInBasket);
 

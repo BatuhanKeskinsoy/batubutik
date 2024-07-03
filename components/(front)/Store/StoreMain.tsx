@@ -7,11 +7,11 @@ import { IoFileTrayFullOutline, IoFileTrayOutline } from "react-icons/io5";
 import { productTypes } from "@/types/product/productTypes";
 
 interface IStoreMainProps {
-  mainCategoryParam?: string;
-  categoryParam?: string;
+  mainCategorySlug?: string;
+  categorySlug?: string;
 }
 
-function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
+function StoreMain({ mainCategorySlug, categorySlug }: IStoreMainProps) {
   const [search, setSearch] = useState("");
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<
@@ -30,11 +30,11 @@ function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
         const matchesSearch =
           product.title.toLowerCase().includes(search.toLowerCase()) ||
           product.code.toLowerCase().includes(search.toLowerCase());
-        const matchesMainCategory = mainCategoryParam
-          ? product.mainCategory_slug === mainCategoryParam
+        const matchesMainCategory = mainCategorySlug
+          ? product.mainCategory_slug === mainCategorySlug
           : true;
-        const matchesCategory = categoryParam
-          ? product.category_slug === categoryParam
+        const matchesCategory = categorySlug
+          ? product.category_slug === categorySlug
           : true;
         return matchesSearch && matchesMainCategory && matchesCategory;
       });
@@ -49,7 +49,7 @@ function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
       setLoadingProducts(false);
     }, 500);
     return () => clearTimeout(timeoutId);
-  }, [search, mainCategoryParam, categoryParam]);
+  }, [search, mainCategorySlug, categorySlug]);
 
   const filterProducts = (
     searchTerm: string,
@@ -90,8 +90,8 @@ function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
     <div className="container mx-auto px-4 w-full max-lg:pt-6">
       <div className="flex lg:flex-row flex-col gap-6 w-full h-full">
         <Aside
-          mainCategoryParam={mainCategoryParam}
-          categoryParam={categoryParam}
+          mainCategorySlug={mainCategorySlug}
+          categorySlug={categorySlug}
           search={search}
           setSearch={setSearch}
           priceRange={priceRange}

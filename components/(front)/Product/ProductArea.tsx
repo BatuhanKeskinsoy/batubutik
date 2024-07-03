@@ -159,8 +159,8 @@ function ProductArea({ product }: IProductAreaProps) {
                   src={image}
                   fill
                   sizes="(max-width: 768px) 100%, 25%"
-                  alt={product.title}
-                  title={product.title}
+                  alt={`${product.brand && product.brand} ${product.title}`}
+                  title={`${product.brand && product.brand} ${product.title}`}
                   className={`object-cover object-center transition-all duration-300 ${
                     currentProductImage !== image
                       ? "brightness-50 hover:brightness-100"

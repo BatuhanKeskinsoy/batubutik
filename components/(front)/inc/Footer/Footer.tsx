@@ -53,6 +53,7 @@ function Footer() {
                 <Link
                   href={"/"}
                   className="capitalize font-medium font-gemunu text-5xl text-site w-fit"
+                  title={generals.site_name}
                 >
                   {generals.site_name}
                 </Link>

@@ -77,6 +77,7 @@ function Header() {
                   <Link
                     key={key}
                     href={social.url}
+                    title={social.platform}
                     className="hover:text-site *:text-xl"
                     target="_blank"
                   >
@@ -121,6 +122,7 @@ function Header() {
               <div className="flex w-full h-full items-center justify-center lg:order-1 order-3">
                 <Link
                   href={"/"}
+                  title={generals.site_name}
                   className="capitalize font-medium font-gemunu text-4xl text-site"
                 >
                   {generals.site_name}

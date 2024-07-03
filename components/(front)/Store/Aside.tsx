@@ -9,8 +9,8 @@ import { getPrice } from "@/components/functions/getPrice";
 import { useGlobalContext } from "@/app/Context/store";
 
 interface IStoreAsideProps {
-  mainCategoryParam?: string;
-  categoryParam?: string;
+  mainCategorySlug?: string;
+  categorySlug?: string;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   priceRange: [number, number];
@@ -25,8 +25,8 @@ interface IStoreAsideProps {
 }
 
 function Aside({
-  mainCategoryParam,
-  categoryParam,
+  mainCategorySlug,
+  categorySlug,
   search,
   setSearch,
   priceRange,
@@ -44,8 +44,8 @@ function Aside({
     setPriceRange(newValue as [number, number]);
     filterProducts(
       search,
-      mainCategoryParam,
-      categoryParam,
+      mainCategorySlug,
+      categorySlug,
       newValue as [number, number]
     );
   };
@@ -103,7 +103,7 @@ function Aside({
                     href={`/magaza/${category.slug}`}
                     title={category.name}
                     className={`flex justify-between items-center rounded-sm font-medium gap-2 py-2 px-4 border border-gray-200 transition-all duration-300 ${
-                      mainCategoryParam === category.slug
+                      mainCategorySlug === category.slug
                         ? "bg-site text-white border-transparent"
                         : "bg-white hover:bg-site/10 hover:text-site hover:border-transparent"
                     }`}
@@ -112,7 +112,7 @@ function Aside({
                     <small>({category.product_count})</small>
                   </Link>
                   {category.sub_categories &&
-                    mainCategoryParam === category.slug && (
+                    mainCategorySlug === category.slug && (
                       <div className="flex flex-col">
                         {category.sub_categories.map((subCategory, key) => (
                           <Link
@@ -120,7 +120,7 @@ function Aside({
                             href={`/magaza/${category.slug}/${subCategory.slug}`}
                             title={subCategory.name}
                             className={`flex justify-between items-center gap-2 bg-white py-2 px-4 hover:text-site transition-all duration-300 ${
-                              categoryParam == subCategory.slug
+                              categorySlug == subCategory.slug
                                 ? "text-site"
                                 : "hover:text-site"
                             }`}
@@ -165,14 +165,19 @@ function Aside({
                 </>
               )}
             <span className="font-medium text-xl font-gemunu tracking-wide">
-              Boyut/Beden
+              Marka
             </span>
-            <span>Boyut/Beden</span>
+            <span>Marka</span>
             <hr />
             <span className="font-medium text-xl font-gemunu tracking-wide">
-              Renk
+              Beden
             </span>
-            <span>Renk</span>
+            <span>Beden</span>
+            <hr />
+            <span className="font-medium text-xl font-gemunu tracking-wide">
+              Boy
+            </span>
+            <span>Boy</span>
           </div>
         )}
       </div>

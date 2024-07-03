@@ -85,6 +85,7 @@ function NavMenu() {
             <Link
               key={key}
               href={social.url}
+              title={social.platform}
               className="text-gray-600 hover:text-site *:text-4xl"
               target="_blank"
             >

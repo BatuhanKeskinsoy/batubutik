@@ -92,15 +92,15 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
         {product.images && (
           <Link
             href={"/"}
-            title={product.title}
+            title={`${product.brand && product.brand} ${product.title}`}
             className="relative lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40 rounded-2xl shadow-lg shadow-gray-400 overflow-hidden transition-all duration-300 hover:scale-95"
           >
             <Image
               src={product.images[0]}
               fill
               sizes="(max-width: 768px) 100%, 25%"
-              alt={product.title}
-              title={product.title}
+              alt={`${product.brand && product.brand} ${product.title}`}
+              title={`${product.brand && product.brand} ${product.title}`}
               className="object-cover"
             />
           </Link>
@@ -110,12 +110,18 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
             <div className="flex flex-col w-full gap-1">
               <Link
                 href={"/magaza"}
-                title={product.title}
+                title={`${product.brand && product.brand} ${product.title}`}
                 className="font-medium line-clamp-1 transition-all duration-300 hover:text-site text-lg"
               >
+                <span className="font-extrabold">
+                  {product.brand && product.brand}
+                </span>{" "}
                 {product.title}
               </Link>
-              <span className="text-gray-500 text-xs">{product.mainCategory}{product.category && ` / ${product.category}`}</span>
+              <span className="text-gray-500 text-xs">
+                {product.mainCategory}
+                {product.category && ` / ${product.category}`}
+              </span>
               <div className="text-sm tracking-wide">
                 {product.stock > 0 ? (
                   <span className="text-green-500">Stokta Var</span>

@@ -12,6 +12,7 @@ function Categories() {
         {categories.map((category, key) => (
           <Link
             href={`/magaza/${category.slug}`}
+            title={category.name}
             key={key}
             className="border border-gray-200 bg-gray-100 hover:bg-site hover:border-transparent relative flex lg:items-end items-center justify-start w-full h-full overflow-hidden cursor-pointer lg:rounded-2xl lg:shadow-lg hover:lg:shadow-xl lg:shadow-gray-200 hover:lg:shadow-site/20 hover:lg:scale-105 transition-all duration-300 group"
           >

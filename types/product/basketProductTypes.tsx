@@ -2,6 +2,7 @@ export type basketProductTypes = {
   title: string;
   slug: string;
   code: string;
+  brand: string | null;
   mainCategory: string;
   mainCategory_slug: string;
   category: string;

@@ -49,7 +49,11 @@ const Breadcrumb = ({
 
   return (
     <div className="md:flex hidden items-center my-5 gap-3">
-      <Link href={"/"} className="text-sm text-gray-600 hover:text-site transition-all duration-300" title="Ana Sayfa">
+      <Link
+        href={"/"}
+        className="text-sm text-gray-600 hover:text-site transition-all duration-300"
+        title="Ana Sayfa"
+      >
         Anasayfa
       </Link>
       {renderLink(title, slug, !title2)}

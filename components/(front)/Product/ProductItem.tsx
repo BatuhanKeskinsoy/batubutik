@@ -161,6 +161,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
           href="/magaza/kategori/urun"
           className="flex flex-col gap-3 w-full group"
           onMouseEnter={() => setIsHovered(true)}
+          title={`${product.brand && product.brand} ${product.title}`}
           onMouseLeave={() => setIsHovered(false)}
         >
           <div className="relative flex flex-col justify-center items-center w-full rounded-xl shadow-lg">
@@ -201,8 +202,8 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                   src={productImage ? productImage : product.images[0]}
                   fill
                   sizes="(max-width: 768px) 100%, 25%"
-                  alt={product.title}
-                  title={product.title}
+                  alt={`${product.brand && product.brand} ${product.title}`}
+                  title={`${product.brand && product.brand} ${product.title}`}
                   className={`object-cover object-center transition-all duration-300`}
                 />
               )}
@@ -344,11 +345,14 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                 {product.mainCategory}
                 {product.category && ` / ${product.category}`}
               </span>
-              <span className="text-gray-500 text-xs">
-                #{product.code}
-              </span>
+              <span className="text-gray-500 text-xs">#{product.code}</span>
             </div>
-            <span className="font-medium">{product.title}</span>
+            <span className="font-medium">
+              <span className="font-extrabold">
+                {product.brand && product.brand}
+              </span>{" "}
+              {product.title}
+            </span>
             <div className="flex items-center text-sm gap-2 leading-6">
               <span
                 className={`font-medium ${
