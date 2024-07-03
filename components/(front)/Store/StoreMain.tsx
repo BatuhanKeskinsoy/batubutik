@@ -14,32 +14,41 @@ interface IStoreMainProps {
 function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
   const [search, setSearch] = useState("");
   const [loadingProducts, setLoadingProducts] = useState(false);
-  const [filteredProducts, setFilteredProducts] = useState<productTypes[] | null>(null);
+  const [filteredProducts, setFilteredProducts] = useState<
+    productTypes[] | null
+  >(null);
   const [initialProducts, setInitialProducts] = useState<productTypes[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0]);
-  const [initialPriceRange, setInitialPriceRange] = useState<[number, number]>([0, 0]);
-
+  const [initialPriceRange, setInitialPriceRange] = useState<[number, number]>([
+    0, 0,
+  ]);
 
   useEffect(() => {
     setLoadingProducts(true);
-    const filtered = instantProducts.filter((product) => {
-      const matchesSearch =
-        product.title.toLowerCase().includes(search.toLowerCase()) ||
-        product.code.toLowerCase().includes(search.toLowerCase());
-      const matchesMainCategory = mainCategoryParam
-        ? product.mainCategory_slug === mainCategoryParam
-        : true;
-      const matchesCategory = categoryParam
-        ? product.category_slug === categoryParam
-        : true;
-      return matchesSearch && matchesMainCategory && matchesCategory;
-    });
-    setInitialProducts(filtered);
-    setLoadingProducts(false);
-    const priceValues = filtered.map((product) => product.price);
-    setPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
-    setInitialPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
-    setFilteredProducts(filtered);
+    const timeoutId = setTimeout(() => {
+      const filtered = instantProducts.filter((product) => {
+        const matchesSearch =
+          product.title.toLowerCase().includes(search.toLowerCase()) ||
+          product.code.toLowerCase().includes(search.toLowerCase());
+        const matchesMainCategory = mainCategoryParam
+          ? product.mainCategory_slug === mainCategoryParam
+          : true;
+        const matchesCategory = categoryParam
+          ? product.category_slug === categoryParam
+          : true;
+        return matchesSearch && matchesMainCategory && matchesCategory;
+      });
+      setInitialProducts(filtered);
+      const priceValues = filtered.map((product) => product.price);
+      setPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
+      setInitialPriceRange([
+        Math.min(...priceValues),
+        Math.max(...priceValues),
+      ]);
+      setFilteredProducts(filtered);
+      setLoadingProducts(false);
+    }, 500);
+    return () => clearTimeout(timeoutId);
   }, [search, mainCategoryParam, categoryParam]);
 
   const filterProducts = (
@@ -48,23 +57,33 @@ function StoreMain({ mainCategoryParam, categoryParam }: IStoreMainProps) {
     category?: string,
     priceRange?: [number, number]
   ) => {
-    const searchLower = searchTerm.toLowerCase();
-    const filtered = initialProducts.filter((product) => {
-      const matchesSearch =
-        product.title.toLowerCase().includes(searchLower) ||
-        product.code.toLowerCase().includes(searchLower);
-      const matchesMainCategory = mainCategory
-        ? product.mainCategory_slug === mainCategory
-        : true;
-      const matchesCategory = category
-        ? product.category_slug === category
-        : true;
-      const matchesPriceRange = priceRange
-        ? product.price >= priceRange[0] && product.price <= priceRange[1]
-        : true;
-      return matchesSearch && matchesMainCategory && matchesCategory && matchesPriceRange;
-    });
-    setFilteredProducts(filtered);
+    setLoadingProducts(true);
+    const timeoutId = setTimeout(() => {
+      const searchLower = searchTerm.toLowerCase();
+      const filtered = initialProducts.filter((product) => {
+        const matchesSearch =
+          product.title.toLowerCase().includes(searchLower) ||
+          product.code.toLowerCase().includes(searchLower);
+        const matchesMainCategory = mainCategory
+          ? product.mainCategory_slug === mainCategory
+          : true;
+        const matchesCategory = category
+          ? product.category_slug === category
+          : true;
+        const matchesPriceRange = priceRange
+          ? product.price >= priceRange[0] && product.price <= priceRange[1]
+          : true;
+        return (
+          matchesSearch &&
+          matchesMainCategory &&
+          matchesCategory &&
+          matchesPriceRange
+        );
+      });
+      setFilteredProducts(filtered);
+      setLoadingProducts(false);
+    }, 500);
+    return () => clearTimeout(timeoutId);
   };
 
   return (
