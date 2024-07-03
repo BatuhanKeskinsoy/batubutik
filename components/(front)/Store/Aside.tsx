@@ -152,6 +152,8 @@ function Aside({
                         onChange={handlePriceRangeChange}
                         min={initialPriceRange[0]}
                         max={initialPriceRange[1]}
+                        step={10}
+                        marks
                       />
                     </div>
                     <div className="flex items-center justify-between gap-4 font-medium">
