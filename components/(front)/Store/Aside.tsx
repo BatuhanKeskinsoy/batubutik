@@ -28,12 +28,21 @@ interface IStoreAsideProps {
     category?: string,
     priceRange?: [number, number],
     sortOption?: string,
-    selectedBrands?: string[]
+    selectedBrands?: string[],
+    selectedAttributes?: { [key: string]: string[] }
   ) => void;
   brands: string[] | null;
   selectedBrands: string[];
   setSelectedBrands: Dispatch<SetStateAction<string[]>>;
   productAttributes: productAttributesTypes[] | null;
+  selectedAttributes: {
+    [key: string]: string[];
+  };
+  setSelectedAttributes: Dispatch<
+    SetStateAction<{
+      [key: string]: string[];
+    }>
+  >;
 }
 
 function Aside({
@@ -49,6 +58,8 @@ function Aside({
   selectedBrands,
   setSelectedBrands,
   productAttributes,
+  selectedAttributes,
+  setSelectedAttributes,
 }: IStoreAsideProps) {
   const { isMobile } = useGlobalContext();
   const [isFilterNav, setIsFilterNav] = useState(true);
@@ -78,6 +89,36 @@ function Aside({
     );
   };
 
+  const handleAttributeSelection = (
+    attributeTitle: string,
+    optionName: string
+  ) => {
+    const updatedAttributes = { ...selectedAttributes };
+    if (!updatedAttributes[attributeTitle]) {
+      updatedAttributes[attributeTitle] = [];
+    }
+    if (updatedAttributes[attributeTitle].includes(optionName)) {
+      updatedAttributes[attributeTitle] = updatedAttributes[
+        attributeTitle
+      ].filter((name) => name !== optionName);
+      if (updatedAttributes[attributeTitle].length === 0) {
+        delete updatedAttributes[attributeTitle];
+      }
+    } else {
+      updatedAttributes[attributeTitle].push(optionName);
+    }
+    setSelectedAttributes(updatedAttributes);
+    filterProducts(
+      search,
+      mainCategorySlug,
+      categorySlug,
+      priceRange,
+      undefined,
+      selectedBrands,
+      updatedAttributes
+    );
+  };
+
   const handlePriceRangeChange = (
     event: Event,
     newValue: number | number[]
@@ -89,7 +130,8 @@ function Aside({
       categorySlug,
       newValue as [number, number],
       undefined,
-      selectedBrands
+      selectedBrands,
+      selectedAttributes
     );
   };
 
@@ -270,28 +312,35 @@ function Aside({
               </>
             )}
             {productAttributes &&
-              productAttributes.map((attr, key) => (
-                <div key={key} className="flex flex-col gap-4">
+              productAttributes.map((attribute, index) => (
+                <div key={index} className="flex flex-col gap-4">
                   <span className="font-medium text-xl font-gemunu tracking-wide">
-                    {attr.attr_title}
+                    {attribute.attr_title}
                   </span>
                   <div className="flex flex-wrap gap-3">
-                    {attr.attr_options.map((option, key) => (
+                    {attribute.attr_options.map((option, index) => (
                       <div
-                        key={key}
+                        key={index}
                         className="flex items-center gap-2 cursor-pointer py-1.5 group"
-                        // onClick={() => handleBrandSelection(brand)}
+                        onClick={() =>
+                          handleAttributeSelection(
+                            attribute.attr_title,
+                            option.option_name
+                          )
+                        }
                       >
                         <CustomButton
                           leftIcon={<IoCheckmark className="text-sm" />}
                           textStyles="hidden"
                           btnType="button"
                           containerStyles={`flex items-center justify-center gap-2 w-4 h-4 border rounded-full transition-all duration-300 ${
-                            selectedBrands.includes(option.option_name)
+                            selectedAttributes[attribute.attr_title]?.includes(
+                              option.option_name
+                            )
                               ? "border-transparent bg-site text-white"
                               : "border-gray-300 lg:group-hover:border-site/50 text-transparent lg:group-hover:text-site"
                           }`}
-                          id={`brand-${key}`}
+                          id={`brand-${index}`}
                         />
                         <span className="-mb-0.5">{option.option_name}</span>
                       </div>

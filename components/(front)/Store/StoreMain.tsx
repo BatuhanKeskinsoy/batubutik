@@ -55,6 +55,9 @@ function StoreMain({
   const [productAttributes, setProductAttributes] = useState<
     productAttributesTypes[] | null
   >(null);
+  const [selectedAttributes, setSelectedAttributes] = useState<{
+    [key: string]: string[];
+  }>({});
 
   useEffect(() => {
     setLoadingProducts(true);
@@ -101,17 +104,14 @@ function StoreMain({
     return () => clearTimeout(timeoutId);
   }, [search, mainCategorySlug, categorySlug]);
 
-  useEffect(() => {
-    console.log(productAttributes);
-  }, [productAttributes]);
-
   const filterProducts = (
     searchTerm: string,
     mainCategory?: string,
     category?: string,
     priceRange?: [number, number],
     sortOption?: string,
-    selectedBrands?: string[]
+    selectedBrands?: string[],
+    selectedAttributes?: { [key: string]: string[] }
   ) => {
     setLoadingProducts(true);
     const timeoutId = setTimeout(() => {
@@ -132,12 +132,25 @@ function StoreMain({
         const matchesBrand = selectedBrands?.length
           ? selectedBrands.includes(product.brand as string)
           : true;
+        const matchesAttributes = selectedAttributes
+          ? Object.entries(selectedAttributes).every(
+              ([attrTitle, attrValues]) =>
+                product.attributes?.some(
+                  (attr) =>
+                    attr.attr_title === attrTitle &&
+                    attr.attr_options.some((option) =>
+                      attrValues.includes(option.option_name)
+                    )
+                )
+            )
+          : true;
         return (
           matchesSearch &&
           matchesMainCategory &&
           matchesCategory &&
           matchesPriceRange &&
-          matchesBrand
+          matchesBrand &&
+          matchesAttributes
         );
       });
 
@@ -211,7 +224,8 @@ function StoreMain({
       categorySlug,
       priceRange,
       sorting.sorting,
-      selectedBrands
+      selectedBrands,
+      selectedAttributes
     );
   }, [
     search,
@@ -220,6 +234,7 @@ function StoreMain({
     priceRange,
     sorting,
     selectedBrands,
+    selectedAttributes,
   ]);
 
   return (
@@ -238,6 +253,8 @@ function StoreMain({
           selectedBrands={selectedBrands}
           setSelectedBrands={setSelectedBrands}
           productAttributes={productAttributes}
+          selectedAttributes={selectedAttributes}
+          setSelectedAttributes={setSelectedAttributes}
         />
         <main className="flex flex-col w-full gap-6">
           <div className="flex lg:flex-row flex-col justify-between max-lg:text-center gap-4 items-center -mb-3.5">
