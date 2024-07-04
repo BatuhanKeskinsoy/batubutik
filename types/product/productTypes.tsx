@@ -1,3 +1,13 @@
+export type productAttributeOptionsTypes = {
+  option_name: string;
+  option_stock: number;
+};
+
+export type productAttributesTypes = {
+  attr_title: string;
+  attr_options: productAttributeOptionsTypes[];
+};
+
 export type productTypes = {
   id: number;
   title: string;
@@ -14,6 +24,7 @@ export type productTypes = {
   discount: number;
   stock: number;
   choise_required: boolean;
+  attributes: productAttributesTypes[] | null;
   status: boolean;
   featured_status: boolean;
   total_sold: number;

@@ -12,6 +12,7 @@ import CustomButton from "@/components/others/CustomButton";
 import Slider from "@mui/material/Slider";
 import { getPrice } from "@/components/functions/getPrice";
 import { useGlobalContext } from "@/app/Context/store";
+import { productAttributesTypes } from "@/types/product/productTypes";
 
 interface IStoreAsideProps {
   mainCategorySlug?: string;
@@ -32,6 +33,7 @@ interface IStoreAsideProps {
   brands: string[] | null;
   selectedBrands: string[];
   setSelectedBrands: Dispatch<SetStateAction<string[]>>;
+  productAttributes: productAttributesTypes[] | null;
 }
 
 function Aside({
@@ -46,6 +48,7 @@ function Aside({
   brands,
   selectedBrands,
   setSelectedBrands,
+  productAttributes,
 }: IStoreAsideProps) {
   const { isMobile } = useGlobalContext();
   const [isFilterNav, setIsFilterNav] = useState(true);
@@ -211,7 +214,7 @@ function Aside({
               priceRange[1] !== 0 && (
                 <>
                   <span className="font-medium text-xl font-gemunu tracking-wide">
-                    Ücret Aralığı
+                    Fiyat Aralığı
                   </span>
                   <div className="flex flex-col w-full">
                     <div className="px-2 ">
@@ -266,15 +269,37 @@ function Aside({
                 <hr />
               </>
             )}
-            <span className="font-medium text-xl font-gemunu tracking-wide">
-              Beden
-            </span>
-            <span>Beden</span>
-            <hr />
-            <span className="font-medium text-xl font-gemunu tracking-wide">
-              Boy
-            </span>
-            <span>Boy</span>
+            {productAttributes &&
+              productAttributes.map((attr, key) => (
+                <div key={key} className="flex flex-col gap-4">
+                  <span className="font-medium text-xl font-gemunu tracking-wide">
+                    {attr.attr_title}
+                  </span>
+                  <div className="flex flex-wrap gap-3">
+                    {attr.attr_options.map((option, key) => (
+                      <div
+                        key={key}
+                        className="flex items-center gap-2 cursor-pointer py-1.5 group"
+                        // onClick={() => handleBrandSelection(brand)}
+                      >
+                        <CustomButton
+                          leftIcon={<IoCheckmark className="text-sm" />}
+                          textStyles="hidden"
+                          btnType="button"
+                          containerStyles={`flex items-center justify-center gap-2 w-4 h-4 border rounded-full transition-all duration-300 ${
+                            selectedBrands.includes(option.option_name)
+                              ? "border-transparent bg-site text-white"
+                              : "border-gray-300 lg:group-hover:border-site/50 text-transparent lg:group-hover:text-site"
+                          }`}
+                          id={`brand-${key}`}
+                        />
+                        <span className="-mb-0.5">{option.option_name}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <hr />
+                </div>
+              ))}
           </div>
         )}
       </div>

@@ -190,78 +190,17 @@ function Footer() {
                   </span>
                   <hr className="my-2 border-gray-300" />
                   <ul className="flex flex-wrap gap-2">
-                    <li>
-                      <Link
-                        title="Dantel İç Giyim"
-                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
-                        href="/"
-                      >
-                        Dantel İç Giyim
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        title="Ekonomik İç Giyim"
-                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
-                        href="/"
-                      >
-                        Ekonomik İç Giyim
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        title="Fantezi giyim"
-                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
-                        href="/"
-                      >
-                        Fantezi giyim
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        title="Kadın iç giyim"
-                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
-                        href="/"
-                      >
-                        Kadın iç giyim
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        title="Kadın İç Çamaşır"
-                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
-                        href="/"
-                      >
-                        Kadın İç Çamaşır
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        title="Likra İç Giyim"
-                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
-                        href="/"
-                      >
-                        Likra İç Giyim
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        title="Lüks İç Giyim"
-                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
-                        href="/"
-                      >
-                        Lüks İç Giyim
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        title="Takım İç Giyim"
-                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
-                        href="/"
-                      >
-                        Takım İç Giyim
-                      </Link>
-                    </li>
+                    {generals.tags.slice(0, 10).map((tag, key) => (
+                      <li key={key}>
+                        <Link
+                          title={tag}
+                          className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
+                          href="/"
+                        >
+                          {tag}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

@@ -9,7 +9,10 @@ import {
   IoFileTrayFullOutline,
   IoFileTrayOutline,
 } from "react-icons/io5";
-import { productTypes } from "@/types/product/productTypes";
+import {
+  productAttributesTypes,
+  productTypes,
+} from "@/types/product/productTypes";
 import CustomButton from "@/components/others/CustomButton";
 
 interface IStoreMainProps {
@@ -35,7 +38,6 @@ function StoreMain({
   const [filteredProducts, setFilteredProducts] = useState<
     productTypes[] | null
   >(null);
-  const [brands, setBrands] = useState<string[] | null>(null);
   const [initialProducts, setInitialProducts] = useState<productTypes[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0]);
   const [initialPriceRange, setInitialPriceRange] = useState<[number, number]>([
@@ -46,7 +48,13 @@ function StoreMain({
     sorting: string;
   }>({ sortingName: "", sorting: "" });
   const [isSortingOpen, setIsSortingOpen] = useState(false);
+
+  const [brands, setBrands] = useState<string[] | null>(null);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+
+  const [productAttributes, setProductAttributes] = useState<
+    productAttributesTypes[] | null
+  >(null);
 
   useEffect(() => {
     setLoadingProducts(true);
@@ -63,6 +71,7 @@ function StoreMain({
           : true;
         return matchesSearch && matchesMainCategory && matchesCategory;
       });
+
       setInitialProducts(filtered);
       const priceValues = filtered.map((product) => product.price);
       setPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
@@ -79,10 +88,22 @@ function StoreMain({
       );
       setBrands(Array.from(brandSet));
 
+      const attributes = filtered
+        .map((product) => product.attributes)
+        .filter(
+          (attributes): attributes is productAttributesTypes[] => !!attributes
+        );
+      setProductAttributes(attributes.length > 0 ? attributes.flat() : null);
+
       setLoadingProducts(false);
     }, 500);
+
     return () => clearTimeout(timeoutId);
   }, [search, mainCategorySlug, categorySlug]);
+
+  useEffect(() => {
+    console.log(productAttributes);
+  }, [productAttributes]);
 
   const filterProducts = (
     searchTerm: string,
@@ -142,8 +163,44 @@ function StoreMain({
       });
 
       setFilteredProducts(sorted);
+
+      // Tüm ürünlerden benzersiz öznitelikleri topla
+      const mergedAttributes: { [key: string]: any[] } = {};
+
+      filtered.forEach((product) => {
+        if (product.attributes) {
+          product.attributes.forEach((attr) => {
+            const { attr_title, attr_options } = attr;
+            if (!mergedAttributes[attr_title]) {
+              mergedAttributes[attr_title] = [];
+            }
+            attr_options.forEach((option: any) => {
+              const existingOption = mergedAttributes[attr_title].find(
+                (opt) => opt.option_name === option.option_name
+              );
+              if (!existingOption) {
+                mergedAttributes[attr_title].push(option);
+              }
+            });
+          });
+        }
+      });
+
+      // Dizine dönüştür
+      const mergedAttributesArray = Object.keys(mergedAttributes).map(
+        (key) => ({
+          attr_title: key,
+          attr_options: mergedAttributes[key],
+        })
+      );
+
+      setProductAttributes(
+        mergedAttributesArray.length > 0 ? mergedAttributesArray : null
+      );
+
       setLoadingProducts(false);
     }, 500);
+
     return () => clearTimeout(timeoutId);
   };
 
@@ -156,7 +213,14 @@ function StoreMain({
       sorting.sorting,
       selectedBrands
     );
-  }, [search, mainCategorySlug, categorySlug, priceRange, sorting, selectedBrands]);
+  }, [
+    search,
+    mainCategorySlug,
+    categorySlug,
+    priceRange,
+    sorting,
+    selectedBrands,
+  ]);
 
   return (
     <div className="container mx-auto px-4 w-full max-lg:pt-6">
@@ -173,6 +237,7 @@ function StoreMain({
           brands={brands}
           selectedBrands={selectedBrands}
           setSelectedBrands={setSelectedBrands}
+          productAttributes={productAttributes}
         />
         <main className="flex flex-col w-full gap-6">
           <div className="flex lg:flex-row flex-col justify-between max-lg:text-center gap-4 items-center -mb-3.5">
