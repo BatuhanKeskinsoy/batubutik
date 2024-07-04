@@ -214,7 +214,7 @@ function Aside({
                     Ücret Aralığı
                   </span>
                   <div className="flex flex-col w-full">
-                    <div className="px-2">
+                    <div className="px-2 ">
                       <Slider
                         value={priceRange}
                         onChange={handlePriceRangeChange}
@@ -222,6 +222,7 @@ function Aside({
                         max={initialPriceRange[1]}
                         step={10}
                         marks
+                        className="customRangeSlider"
                       />
                     </div>
                     <div className="flex items-center justify-between gap-4 font-medium">
@@ -253,7 +254,7 @@ function Aside({
                           containerStyles={`flex items-center justify-center gap-2 w-5 h-5 border rounded-full transition-all duration-300 ${
                             selectedBrands.includes(brand)
                               ? "border-transparent bg-site text-white"
-                              : "border-gray-300 group-hover:border-site/50 text-transparent group-hover:text-site"
+                              : "border-gray-300 lg:group-hover:border-site/50 text-transparent lg:group-hover:text-site"
                           }`}
                           id={`brand-${index}`}
                         />
