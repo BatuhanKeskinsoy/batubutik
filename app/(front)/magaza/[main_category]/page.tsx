@@ -17,7 +17,7 @@ async function page({ params }: { params: { main_category: string } }) {
       <div className="container mx-auto px-4 lg:flex hidden">
         <Breadcrumb title="Mağaza" slug="/magaza" title2={breadcrumbTitle} />
       </div>
-      <StoreMain mainCategorySlug={mainCategorySlug} />
+      <StoreMain mainCategorySlug={mainCategorySlug} breadcrumbTitle={breadcrumbTitle} />
     </>
   );
 }

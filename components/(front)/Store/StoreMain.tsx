@@ -3,25 +3,50 @@ import React, { useEffect, useState } from "react";
 import Aside from "@/components/(front)/Store/Aside";
 import { instantProducts } from "@/constants/(front)";
 import ProductItem from "@/components/(front)/Product/ProductItem";
-import { IoFileTrayFullOutline, IoFileTrayOutline } from "react-icons/io5";
+import {
+  IoChevronDown,
+  IoChevronUp,
+  IoFileTrayFullOutline,
+  IoFileTrayOutline,
+} from "react-icons/io5";
 import { productTypes } from "@/types/product/productTypes";
+import CustomButton from "@/components/others/CustomButton";
 
 interface IStoreMainProps {
   mainCategorySlug?: string;
   categorySlug?: string;
+  breadcrumbTitle?: React.ReactNode;
 }
 
-function StoreMain({ mainCategorySlug, categorySlug }: IStoreMainProps) {
+const sortingOptions = [
+  { name: "Tarihe göre ( Son eklenen )", value: "date_desc" },
+  { name: "Tarihe göre ( İlk eklenen )", value: "date_asc" },
+  { name: "Fiyata göre ( Önce en yüksek )", value: "price_desc" },
+  { name: "Fiyata göre ( Önce en düşük )", value: "price_asc" },
+];
+
+function StoreMain({
+  mainCategorySlug,
+  categorySlug,
+  breadcrumbTitle,
+}: IStoreMainProps) {
   const [search, setSearch] = useState("");
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<
     productTypes[] | null
   >(null);
+  const [brands, setBrands] = useState<string[] | null>(null);
   const [initialProducts, setInitialProducts] = useState<productTypes[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0]);
   const [initialPriceRange, setInitialPriceRange] = useState<[number, number]>([
     0, 0,
   ]);
+  const [sorting, setSorting] = useState<{
+    sortingName: string;
+    sorting: string;
+  }>({ sortingName: "", sorting: "" });
+  const [isSortingOpen, setIsSortingOpen] = useState(false);
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
 
   useEffect(() => {
     setLoadingProducts(true);
@@ -46,6 +71,14 @@ function StoreMain({ mainCategorySlug, categorySlug }: IStoreMainProps) {
         Math.max(...priceValues),
       ]);
       setFilteredProducts(filtered);
+
+      const brandSet: Set<string> = new Set(
+        filtered
+          .map((product) => product.brand)
+          .filter((brand): brand is string => brand !== null)
+      );
+      setBrands(Array.from(brandSet));
+
       setLoadingProducts(false);
     }, 500);
     return () => clearTimeout(timeoutId);
@@ -55,7 +88,9 @@ function StoreMain({ mainCategorySlug, categorySlug }: IStoreMainProps) {
     searchTerm: string,
     mainCategory?: string,
     category?: string,
-    priceRange?: [number, number]
+    priceRange?: [number, number],
+    sortOption?: string,
+    selectedBrands?: string[]
   ) => {
     setLoadingProducts(true);
     const timeoutId = setTimeout(() => {
@@ -73,18 +108,55 @@ function StoreMain({ mainCategorySlug, categorySlug }: IStoreMainProps) {
         const matchesPriceRange = priceRange
           ? product.price >= priceRange[0] && product.price <= priceRange[1]
           : true;
+        const matchesBrand = selectedBrands?.length
+          ? selectedBrands.includes(product.brand as string)
+          : true;
         return (
           matchesSearch &&
           matchesMainCategory &&
           matchesCategory &&
-          matchesPriceRange
+          matchesPriceRange &&
+          matchesBrand
         );
       });
-      setFilteredProducts(filtered);
+
+      const sorted = [...filtered].sort((a, b) => {
+        switch (sortOption) {
+          case "price_asc":
+            return a.price - b.price;
+          case "price_desc":
+            return b.price - a.price;
+          case "date_asc":
+            return (
+              new Date(a.created_at).getTime() -
+              new Date(b.created_at).getTime()
+            );
+          case "date_desc":
+            return (
+              new Date(b.created_at).getTime() -
+              new Date(a.created_at).getTime()
+            );
+          default:
+            return 0;
+        }
+      });
+
+      setFilteredProducts(sorted);
       setLoadingProducts(false);
     }, 500);
     return () => clearTimeout(timeoutId);
   };
+
+  useEffect(() => {
+    filterProducts(
+      search,
+      mainCategorySlug,
+      categorySlug,
+      priceRange,
+      sorting.sorting,
+      selectedBrands
+    );
+  }, [search, mainCategorySlug, categorySlug, priceRange, sorting, selectedBrands]);
 
   return (
     <div className="container mx-auto px-4 w-full max-lg:pt-6">
@@ -98,8 +170,79 @@ function StoreMain({ mainCategorySlug, categorySlug }: IStoreMainProps) {
           setPriceRange={setPriceRange}
           initialPriceRange={initialPriceRange}
           filterProducts={filterProducts}
+          brands={brands}
+          selectedBrands={selectedBrands}
+          setSelectedBrands={setSelectedBrands}
         />
-        <main className="w-full">
+        <main className="flex flex-col w-full gap-6">
+          <div className="flex lg:flex-row flex-col justify-between max-lg:text-center gap-4 items-center -mb-3.5">
+            <div className="flex flex-col gap-2 *:leading-6 w-full">
+              <h1 className="flex items-center max-lg:justify-center font-semibold text-2xl text-site">
+                {breadcrumbTitle}
+              </h1>
+              <p className="text-sm opacity-80">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+            </div>
+            <div className="relative max-lg:w-full">
+              <CustomButton
+                title={
+                  sorting.sortingName !== ""
+                    ? sorting.sortingName
+                    : "Gelişmiş Sıralama"
+                }
+                rightIcon={
+                  isSortingOpen ? (
+                    <IoChevronUp size={20} />
+                  ) : (
+                    <IoChevronDown size={20} />
+                  )
+                }
+                containerStyles={`${
+                  isSortingOpen ? "rounded-t-xl" : "rounded-md"
+                } flex gap-2 py-3 px-4 bg-white items-center border border-gray-200 w-full justify-between text-gray-600 lg:text-sm min-w-[250px] transition-all duration-300 hover:bg-site/10 hover:text-site hover:border-transparent`}
+                btnType="button"
+                handleClick={() => setIsSortingOpen(!isSortingOpen)}
+              />
+              {isSortingOpen && (
+                <div className="absolute top-full bg-white shadow-md w-full rounded-b-xl overflow-hidden z-10 max-h-[400px] overflow-y-auto">
+                  <div className="flex flex-col w-full">
+                    {sorting.sortingName !== "" && (
+                      <CustomButton
+                        title={"Gelişmiş Sıralama"}
+                        containerStyles="cursor-pointer py-2 px-4 transition-all border-b last:border-b-0 w-full text-left lg:text-sm hover:text-site transition-all duration-300"
+                        handleClick={() => {
+                          setSorting({
+                            sortingName: "",
+                            sorting: "",
+                          });
+                          setIsSortingOpen(false);
+                        }}
+                        btnType="button"
+                      />
+                    )}
+                    {sortingOptions &&
+                      sortingOptions.map((sorting, key) => (
+                        <CustomButton
+                          title={sorting.name}
+                          key={key}
+                          containerStyles="cursor-pointer py-2 px-4 transition-all border-b last:border-b-0 w-full text-left lg:text-sm hover:text-site transition-all duration-300"
+                          handleClick={() => {
+                            setSorting({
+                              sortingName: sorting.name,
+                              sorting: sorting.value,
+                            });
+                            setIsSortingOpen(false);
+                          }}
+                          btnType="button"
+                        />
+                      ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+          <hr />
           {loadingProducts ? (
             <div className="flex flex-col gap-4 h-[500px] justify-center items-center text-gray-300">
               <IoFileTrayFullOutline className="lg:text-7xl text-6xl" />

@@ -10,7 +10,7 @@ function page() {
           title="Mağaza"
         />
       </div>
-      <StoreMain />
+      <StoreMain breadcrumbTitle="Mağaza" />
     </>
   );
 }

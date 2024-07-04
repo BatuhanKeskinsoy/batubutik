@@ -105,7 +105,7 @@ export const instantProducts = [
     title: "Black Bralet Dress",
     slug: "black-bralet-dress",
     code: "BBD-101",
-    brand: "Gammi",
+    brand: "Batubutik",
     mainCategory: "Kadın",
     mainCategory_slug: "kadin",
     category: "İç Giyim",
@@ -226,7 +226,7 @@ export const instantProducts = [
     status: true,
     featured_status: false,
     total_sold: 0,
-    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    created_at: new Date("2024-06-15T13:24:59.000000Z"),
     updated_at: null,
   },
 ];
