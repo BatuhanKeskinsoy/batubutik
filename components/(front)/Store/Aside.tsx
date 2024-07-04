@@ -303,7 +303,15 @@ function Aside({
                           }`}
                           id={`brand-${index}`}
                         />
-                        <span className="-mb-0.5">{brand}</span>
+                        <span
+                          className={`-mb-0.5 ${
+                            selectedBrands.includes(brand)
+                              ? "text-site"
+                              : "lg:group-hover:text-site"
+                          } transition-all duration-300`}
+                        >
+                          {brand}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -317,7 +325,7 @@ function Aside({
                   <span className="font-medium text-xl font-gemunu tracking-wide">
                     {attribute.attr_title}
                   </span>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-y-1 gap-x-4">
                     {attribute.attr_options.map((option, index) => (
                       <div
                         key={index}
@@ -342,7 +350,13 @@ function Aside({
                           }`}
                           id={`brand-${index}`}
                         />
-                        <span className="-mb-0.5">{option.option_name}</span>
+                        <span className={`-mb-0.5 ${
+                            selectedAttributes[attribute.attr_title]?.includes(option.option_name)
+                              ? "text-site"
+                              : "lg:group-hover:text-site"
+                          } transition-all duration-300`}>
+                          {option.option_name}
+                        </span>
                       </div>
                     ))}
                   </div>

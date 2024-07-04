@@ -106,13 +106,22 @@ export const instantProducts = [
     choise_required: false,
     attributes: [
       {
+        required: true,
         attr_title: "Beden",
         attr_options: [
           { option_name: "XS", option_stock: 50 },
           { option_name: "S", option_stock: 50 },
+          { option_name: "M", option_stock: 50 },
+          { option_name: "L", option_stock: 50 },
+          { option_name: "XL", option_stock: 50 },
+          { option_name: "XXL", option_stock: 0 },
+          { option_name: "3XL", option_stock: 50 },
+          { option_name: "4XL", option_stock: 50 },
+          { option_name: "5XL", option_stock: 50 },
         ],
       },
       {
+        required: true,
         attr_title: "Boy",
         attr_options: [
           { option_name: "150", option_stock: 50 },
@@ -188,7 +197,6 @@ export const instantProducts = [
           { option_name: "162", option_stock: 50 },
           { option_name: "163", option_stock: 50 },
           { option_name: "164", option_stock: 50 },
-          { option_name: "165", option_stock: 50 },
         ],
       },
     ],
