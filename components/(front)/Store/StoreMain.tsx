@@ -22,10 +22,10 @@ interface IStoreMainProps {
 }
 
 const sortingOptions = [
+  { name: "Fiyata göre ( Önce en düşük )", value: "price_asc" },
+  { name: "Fiyata göre ( Önce en yüksek )", value: "price_desc" },
   { name: "Tarihe göre ( Son eklenen )", value: "date_desc" },
   { name: "Tarihe göre ( İlk eklenen )", value: "date_asc" },
-  { name: "Fiyata göre ( Önce en yüksek )", value: "price_desc" },
-  { name: "Fiyata göre ( Önce en düşük )", value: "price_asc" },
 ];
 
 function StoreMain({

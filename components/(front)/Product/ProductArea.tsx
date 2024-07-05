@@ -22,9 +22,10 @@ import { basketItemTypes } from "@/types/product/basketItemTypes";
 
 interface IProductAreaProps {
   product: productDetailTypes | undefined;
+  isDetail?: boolean;
 }
 
-function ProductArea({ product }: IProductAreaProps) {
+function ProductArea({ product, isDetail }: IProductAreaProps) {
   const { setBasketItems, favoriteItems, setFavoriteItems } =
     useGlobalContext();
   const [loadingQuantity, setLoadingQuantity] = useState(false);
@@ -145,14 +146,14 @@ function ProductArea({ product }: IProductAreaProps) {
   };
 
   return (
-    <div className="flex lg:flex-row flex-col h-full w-full">
-      <div className="flex lg:flex-row flex-col h-full lg:min-h-[calc(100dvh-22%)] min-h-[calc(100vw+50%)]">
+    <div className="lg:grid lg:grid-cols-2 lg:gap-8 gap-4 max-lg:flex max-lg:flex-col h-full w-full">
+      <div className="flex lg:flex-row flex-col h-full">
         {product?.images && product.images?.length > 1 && (
-          <div className="flex lg:flex-col gap-1 p-1 max-h-full min-h-[164px] overflow-auto scrollbar-thick lg:order-1 order-2">
+          <div className={`flex lg:flex-col gap-1 max-h-full min-h-[164px] overflow-y-auto lg:overflow-x-hidden scrollbar-thick lg:order-1 order-2 ${isDetail ? "pr-1 max-lg:pt-1" : "p-1"}`}>
             {product.images?.map((image, key) => (
               <div
                 key={key}
-                className="relative min-w-[100.6px] min-h-[calc(25%-3px)] h-[calc(25%-3px)] max-lg:h-full cursor-pointer"
+                className="relative min-w-[100.6px] lg:min-h-[calc(21%-3px)] lg:h-[calc(21%-3px)] cursor-pointer"
                 onClick={() => handleChangeCurrentImage(image)}
               >
                 <Image
@@ -174,7 +175,7 @@ function ProductArea({ product }: IProductAreaProps) {
 
         {currentProductImage && (
           <div
-            className={`relative w-[500px] max-w-full h-full overflow-hidden cursor-crosshair lg:order-2 order-1 ${
+            className={`relative w-full max-w-full h-full min-h-[600px] overflow-hidden cursor-crosshair lg:order-2 order-1 ${
               product?.images && product.images?.length > 4 ? "lg:ml-1" : ""
             }`}
             onMouseMove={handleMouseMove}
@@ -207,20 +208,29 @@ function ProductArea({ product }: IProductAreaProps) {
           </div>
         )}
       </div>
-      <div className={`lg:px-6 px-4 py-6 w-full lg:overflow-y-auto`}>
+      <div
+        className={`${
+          !isDetail ? "lg:px-6 px-4 py-6" : ""
+        } w-full lg:overflow-y-auto`}
+      >
         <div className="flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-3 w-full">
             <div className="flex flex-col gap-2 w-full">
               <span className="textbase text-gray-600">
-                {product?.category}
+                {product?.mainCategory}
+                {product?.category && ` / ${product.category}`}
               </span>
-              <Link
-                href={"/"}
-                title={product?.title}
-                className="font-medium text-2xl transition-all duration-300 hover:text-site"
-              >
-                {product?.title}
-              </Link>
+              {isDetail ? (
+                <span className="font-medium text-2xl">{product?.title}</span>
+              ) : (
+                <Link
+                  href={"/"}
+                  title={product?.title}
+                  className="font-medium text-2xl transition-all duration-300 hover:text-site"
+                >
+                  {product?.title}
+                </Link>
+              )}
             </div>
             {product?.rating && (
               <>
@@ -353,7 +363,7 @@ function ProductArea({ product }: IProductAreaProps) {
             )}
           </div>
           <div className="flex lg:flex-row flex-col items-center w-full lg:gap-2 gap-4">
-            <div className="flex items-center w-full gap-2 h-[50px]">
+            <div className={`flex items-center w-full gap-2 h-[50px]`}>
               <div className="flex items-center justify-between gap-3 bg-gray-100 border border-gray-200 rounded-lg p-1 h-full">
                 <CustomButton
                   handleClick={
@@ -415,7 +425,7 @@ function ProductArea({ product }: IProductAreaProps) {
                   )
                 }
                 textStyles="-mb-0.5"
-                containerStyles={`flex items-center w-full gap-2 justify-center h-full px-2 ${
+                containerStyles={`flex items-center w-full gap-2 justify-center h-full lg:px-12 px-2 ${
                   product && product.stock > 0
                     ? loadingAddToBasket
                       ? "bg-green-500 text-white"

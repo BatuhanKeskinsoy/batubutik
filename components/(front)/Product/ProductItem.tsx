@@ -158,7 +158,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
       )}
       <div className="relative flex flex-col w-full">
         <Link
-          href="/magaza/kategori/urun"
+          href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
           className="flex flex-col gap-3 w-full group"
           onMouseEnter={() => setIsHovered(true)}
           title={`${product.brand && product.brand} ${product.title}`}

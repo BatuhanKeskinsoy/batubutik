@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { BiChevronRight } from "react-icons/bi";
 import { IoChevronForwardOutline } from "react-icons/io5";
 
 interface IBreadcrumbProps {
@@ -10,6 +9,8 @@ interface IBreadcrumbProps {
   slug2?: string;
   title3?: string;
   slug3?: string;
+  title4?: string;
+  slug4?: string;
 }
 
 const Breadcrumb = ({
@@ -19,6 +20,8 @@ const Breadcrumb = ({
   slug2,
   title3,
   slug3,
+  title4,
+  slug4,
 }: IBreadcrumbProps) => {
   const renderLink = (linkText: string, href?: string, isBold?: boolean) => (
     <>
@@ -58,7 +61,8 @@ const Breadcrumb = ({
       </Link>
       {renderLink(title, slug, !title2)}
       {title2 && renderLink(title2, slug2, !title3)}
-      {title3 && renderLink(title3, slug3, true)}
+      {title3 && renderLink(title3, slug3, !title4)}
+      {title4 && renderLink(title4, slug4, true)}
     </div>
   );
 };

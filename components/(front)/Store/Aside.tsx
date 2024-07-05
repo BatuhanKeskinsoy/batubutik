@@ -321,7 +321,7 @@ function Aside({
             )}
             {productAttributes &&
               productAttributes.map((attribute, index) => (
-                <div key={index} className="flex flex-col gap-4">
+                <div key={index} className="flex flex-col gap-4 group/border">
                   <span className="font-medium text-xl font-gemunu tracking-wide">
                     {attribute.attr_title}
                   </span>
@@ -350,17 +350,21 @@ function Aside({
                           }`}
                           id={`brand-${index}`}
                         />
-                        <span className={`-mb-0.5 ${
-                            selectedAttributes[attribute.attr_title]?.includes(option.option_name)
+                        <span
+                          className={`-mb-0.5 ${
+                            selectedAttributes[attribute.attr_title]?.includes(
+                              option.option_name
+                            )
                               ? "text-site"
                               : "lg:group-hover:text-site"
-                          } transition-all duration-300`}>
+                          } transition-all duration-300`}
+                        >
                           {option.option_name}
                         </span>
                       </div>
                     ))}
                   </div>
-                  <hr />
+                  <hr className="group-last/border:hidden" />
                 </div>
               ))}
           </div>
