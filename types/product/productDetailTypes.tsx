@@ -28,4 +28,11 @@ export type productDetailTypes = {
       }[]
     | null;
   choise_required: boolean;
+  status: boolean,
+  featured_status: boolean,
+  total_sold: number,
+  meta_title: string,
+  meta_description: string,
+  created_at: Date,
+  updated_at: Date | null,
 };

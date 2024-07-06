@@ -146,10 +146,14 @@ function ProductArea({ product, isDetail }: IProductAreaProps) {
   };
 
   return (
-    <div className="lg:grid lg:grid-cols-2 lg:gap-8 gap-4 max-lg:flex max-lg:flex-col h-full w-full">
+    <div className={`lg:grid lg:grid-cols-2 lg:gap-8 gap-4 max-lg:flex max-lg:flex-col h-full ${isDetail ? "lg:min-h-[780px]" : ""} w-full`}>
       <div className="flex lg:flex-row flex-col h-full">
         {product?.images && product.images?.length > 1 && (
-          <div className={`flex lg:flex-col gap-1 max-h-full min-h-[164px] overflow-y-auto lg:overflow-x-hidden scrollbar-thick lg:order-1 order-2 ${isDetail ? "pr-1 max-lg:pt-1" : "p-1"}`}>
+          <div
+            className={`flex lg:flex-col gap-1 max-h-full min-h-[164px] overflow-y-auto lg:overflow-x-hidden scrollbar-thick lg:order-1 order-2 ${
+              isDetail ? "pr-6 max-lg:pt-1" : "p-1"
+            }`}
+          >
             {product.images?.map((image, key) => (
               <div
                 key={key}
@@ -194,6 +198,7 @@ function ProductArea({ product, isDetail }: IProductAreaProps) {
                   left: isHovered ? `-${(mousePosition.x / 200) * 200}px` : 0,
                   transform: isHovered ? `scale(2)` : `scale(1)`,
                 }}
+                priority
               />
             </div>
 
@@ -251,10 +256,14 @@ function ProductArea({ product, isDetail }: IProductAreaProps) {
                       <p className={`-mb-1`} style={{ fontSize: size - 4 }}>
                         ({product.rating})
                       </p>
-                      <CustomButton
-                        title={`${product.total_comment} Değerlendirme`}
-                        containerStyles="flex -mb-1 font-medium transition-all duration-300 hover:text-site"
-                      />
+                      {isDetail ? (
+                        <CustomButton
+                          title={`${product.total_comment} Değerlendirme`}
+                          containerStyles="flex -mb-1 font-medium transition-all duration-300 hover:text-site"
+                        />
+                      ) : (
+                        <span className="flex -mb-1 font-medium">{`${product.total_comment} Değerlendirme`}</span>
+                      )}
                     </div>
                   );
                 })()}
@@ -284,29 +293,31 @@ function ProductArea({ product, isDetail }: IProductAreaProps) {
               )}
             </div>
           </div>
-          <div className="flex flex-col gap-4 w-full">
-            <span>Ürün Özellikleri :</span>
-            <div className="flex text-sm flex-col gap-2 text-gray-600">
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Numquam ipsa.
-              </p>
-              <ul className="list-disc pl-5">
-                <li>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                </li>
-                <li>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                </li>
-                <li>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                </li>
-                <li>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                </li>
-              </ul>
+          {!isDetail && (
+            <div className="flex flex-col gap-4 w-full">
+              <span>Ürün Özellikleri :</span>
+              <div className="flex text-sm flex-col gap-2 text-gray-600">
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Numquam ipsa.
+                </p>
+                <ul className="list-disc pl-5">
+                  <li>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  </li>
+                  <li>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  </li>
+                  <li>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  </li>
+                  <li>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
+          )}
           <div className="flex flex-col gap-6 w-full">
             {product?.product_group && (
               <div className="flex flex-col gap-2">

@@ -99,7 +99,7 @@ function Contact() {
               title="Mesajı Gönder"
               btnType="submit"
               rightIcon={<IoChevronForwardOutline className="text-2xl -mr-2" />}
-              containerStyles="flex items-center justify-center text-center gap-4 py-3 px-6 w-fit bg-white/20 border border-gray-200  max-lg:w-full rounded-lg font-gemunu tracking-widest hover:border-transparent hover:bg-site/20 hover:text-site transition-all duration-300"
+              containerStyles="flex items-center justify-center text-center gap-4 py-3 px-6 w-fit bg-white/20 border border-gray-200  max-lg:w-full rounded-lg font-gemunu tracking-widest hover:border-transparent hover:bg-site/10 hover:text-site transition-all duration-300"
               textStyles="font-medium text-xl"
             />
           </div>

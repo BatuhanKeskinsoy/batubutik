@@ -48,10 +48,10 @@ async function page({
       </div>
       <div className="container mx-auto px-4 flex lg:flex-row flex-col lg:gap-8 gap-4">
         <ProductDetail product={product} />
-        <ProductSidebar />
+        <ProductSidebar product={product} />
       </div>
       <hr className="lg:my-12 my-6" />
-      <section className="container mx-auto px-4">
+      <section className="relative container mx-auto px-4">
         <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
           <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
             Öne Çıkan Ürünler

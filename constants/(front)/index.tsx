@@ -507,6 +507,8 @@ export const instantProductDetail = {
   status: true,
   featured_status: false,
   total_sold: 0,
+  meta_title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
+  meta_description: "Amor bralet jartiyer iç çamaşır takımı çok uygun fiyatlarla sadece web sitemizde.",
   created_at: new Date("2024-06-14T13:24:59.000000Z"),
   updated_at: null,
 };
