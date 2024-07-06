@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import CustomButton from '@/components/others/CustomButton';
 import ProductArea from '@/components/(front)/Product/ProductArea';
 import { IoCloseOutline } from 'react-icons/io5';
+import { productDetailTypes } from '@/types/product/productDetailTypes';
 
 interface ModalProps {
-  productDetail: any;
+  productDetail: productDetailTypes | undefined;
   onClose: () => void;
 }
 
@@ -30,7 +31,7 @@ const ModalProductDetail: React.FC<ModalProps> = ({ productDetail, onClose }) =>
           handleClick={onClose}
         />
         <div className="w-full h-full lg:overflow-hidden overflow-y-auto">
-          <ProductArea product={productDetail} />
+          <ProductArea product={productDetail} onClose={onClose} />
         </div>
       </div>
     </div>,

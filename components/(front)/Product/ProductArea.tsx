@@ -23,9 +23,10 @@ import { basketItemTypes } from "@/types/product/basketItemTypes";
 interface IProductAreaProps {
   product: productDetailTypes | undefined;
   isDetail?: boolean;
+  onClose?: () => void;
 }
 
-function ProductArea({ product, isDetail }: IProductAreaProps) {
+function ProductArea({ product, isDetail, onClose }: IProductAreaProps) {
   const { setBasketItems, favoriteItems, setFavoriteItems } =
     useGlobalContext();
   const [loadingQuantity, setLoadingQuantity] = useState(false);
@@ -102,9 +103,12 @@ function ProductArea({ product, isDetail }: IProductAreaProps) {
         setLoadingAddToBasket(true);
         setTimeout(() => {
           addToBasket(item, setBasketItems);
-          setSelectedAttributes({}); // Reset selectedAttributes
+          setSelectedAttributes({});
           setProductQuantity(1);
           setLoadingAddToBasket(false);
+          if (!isDetail && onClose) {
+            onClose();
+          }
         }, 1000);
       }
     }
@@ -146,7 +150,11 @@ function ProductArea({ product, isDetail }: IProductAreaProps) {
   };
 
   return (
-    <div className={`lg:grid lg:grid-cols-2 lg:gap-8 gap-4 max-lg:flex max-lg:flex-col h-full ${isDetail ? "lg:min-h-[780px]" : ""} w-full`}>
+    <div
+      className={`lg:grid lg:grid-cols-2 lg:gap-8 gap-4 max-lg:flex max-lg:flex-col h-full ${
+        isDetail ? "lg:min-h-[780px]" : ""
+      } w-full`}
+    >
       <div className="flex lg:flex-row flex-col h-full">
         {product?.images && product.images?.length > 1 && (
           <div
