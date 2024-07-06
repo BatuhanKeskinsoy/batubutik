@@ -1,6 +1,7 @@
 export type productDetailTypes = {
   title: string;
   slug: string;
+  content: string;
   code: string;
   brand: string | null;
   mainCategory: string;

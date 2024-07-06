@@ -9,7 +9,7 @@ interface IProductSidebarProps {
 
 function ProductSidebar({product} : IProductSidebarProps) {
   return (
-    <aside className="max-w-full w-[440px]">
+    <aside className="max-w-full lg:min-w-[270px] max-lg:w-full">
       <div className="sticky top-24 h-fit flex flex-col gap-6 w-full">
         <div className="flex flex-col w-full gap-4">
           <span className="font-gemunu text-2xl">Paylaş</span>

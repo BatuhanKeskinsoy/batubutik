@@ -60,3 +60,11 @@
 .customRangeSlider span:hover, .Mui-focusVisible {
   @apply !shadow-custom-site
 }
+
+.dangeriousContent img {
+  @apply overflow-hidden my-6 max-w-full;
+}
+
+.dangeriousContent iframe {
+  @apply overflow-hidden my-6 max-w-full max-lg:max-h-[220px];
+}
