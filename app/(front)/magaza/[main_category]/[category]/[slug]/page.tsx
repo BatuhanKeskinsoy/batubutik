@@ -9,6 +9,9 @@ import {
 import ProductDetail from "@/components/(front)/Product/ProductDetail";
 import ProductSidebar from "@/components/(front)/Product/ProductSidebar";
 import FeaturedProducts from "@/components/(front)/Product/FilteredProducts/FeaturedProducts";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 async function page({
   params,

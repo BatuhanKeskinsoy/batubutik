@@ -1,16 +1,15 @@
 import React from "react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import FeaturedProducts from "@/components/(front)/Product/FilteredProducts/FeaturedProducts";
 import Banner from "@/components/(front)/Home/Banner";
 import Categories from "@/components/(front)/Home/Categories";
 import NewProducts from "@/components/(front)/Product/FilteredProducts/NewProducts";
 import BestSellingProducts from "@/components/(front)/Product/FilteredProducts/BestSellingProducts";
-import Subscribe from "@/components/(front)/inc/Subscribe";
 import Contact from "@/components/(front)/Contact/Contact";
 import { generals, instantProducts } from "@/constants/(front)";
 import About from "@/components/(front)/About/About";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 function Home() {
   return (
