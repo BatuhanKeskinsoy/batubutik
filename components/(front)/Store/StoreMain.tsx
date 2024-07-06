@@ -34,7 +34,6 @@ function StoreMain({
   breadcrumbTitle,
 }: IStoreMainProps) {
   const [search, setSearch] = useState("");
-  const [loadingProducts, setLoadingProducts] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<
     productTypes[] | null
   >(null);
@@ -60,48 +59,38 @@ function StoreMain({
   }>({});
 
   useEffect(() => {
-    setLoadingProducts(true);
-    const timeoutId = setTimeout(() => {
-      const filtered = instantProducts.filter((product) => {
-        const matchesSearch =
-          product.title.toLowerCase().includes(search.toLowerCase()) ||
-          product.code.toLowerCase().includes(search.toLowerCase());
-        const matchesMainCategory = mainCategorySlug
-          ? product.mainCategory_slug === mainCategorySlug
-          : true;
-        const matchesCategory = categorySlug
-          ? product.category_slug === categorySlug
-          : true;
-        return matchesSearch && matchesMainCategory && matchesCategory;
-      });
+    const filtered = instantProducts.filter((product) => {
+      const matchesSearch =
+        product.title.toLowerCase().includes(search.toLowerCase()) ||
+        product.code.toLowerCase().includes(search.toLowerCase());
+      const matchesMainCategory = mainCategorySlug
+        ? product.mainCategory_slug === mainCategorySlug
+        : true;
+      const matchesCategory = categorySlug
+        ? product.category_slug === categorySlug
+        : true;
+      return matchesSearch && matchesMainCategory && matchesCategory;
+    });
 
-      setInitialProducts(filtered);
-      const priceValues = filtered.map((product) => product.price);
-      setPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
-      setInitialPriceRange([
-        Math.min(...priceValues),
-        Math.max(...priceValues),
-      ]);
-      setFilteredProducts(filtered);
+    setInitialProducts(filtered);
+    const priceValues = filtered.map((product) => product.price);
+    setPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
+    setInitialPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
+    setFilteredProducts(filtered);
 
-      const brandSet: Set<string> = new Set(
-        filtered
-          .map((product) => product.brand)
-          .filter((brand): brand is string => brand !== null)
+    const brandSet: Set<string> = new Set(
+      filtered
+        .map((product) => product.brand)
+        .filter((brand): brand is string => brand !== null)
+    );
+    setBrands(Array.from(brandSet));
+
+    const attributes = filtered
+      .map((product) => product.attributes)
+      .filter(
+        (attributes): attributes is productAttributesTypes[] => !!attributes
       );
-      setBrands(Array.from(brandSet));
-
-      const attributes = filtered
-        .map((product) => product.attributes)
-        .filter(
-          (attributes): attributes is productAttributesTypes[] => !!attributes
-        );
-      setProductAttributes(attributes.length > 0 ? attributes.flat() : null);
-
-      setLoadingProducts(false);
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
+    setProductAttributes(attributes.length > 0 ? attributes.flat() : null);
   }, [search, mainCategorySlug, categorySlug]);
 
   const filterProducts = (
@@ -113,108 +102,96 @@ function StoreMain({
     selectedBrands?: string[],
     selectedAttributes?: { [key: string]: string[] }
   ) => {
-    setLoadingProducts(true);
-    const timeoutId = setTimeout(() => {
-      const searchLower = searchTerm.toLowerCase();
-      const filtered = initialProducts.filter((product) => {
-        const matchesSearch =
-          product.title.toLowerCase().includes(searchLower) ||
-          product.code.toLowerCase().includes(searchLower);
-        const matchesMainCategory = mainCategory
-          ? product.mainCategory_slug === mainCategory
-          : true;
-        const matchesCategory = category
-          ? product.category_slug === category
-          : true;
-        const matchesPriceRange = priceRange
-          ? product.price >= priceRange[0] && product.price <= priceRange[1]
-          : true;
-        const matchesBrand = selectedBrands?.length
-          ? selectedBrands.includes(product.brand as string)
-          : true;
-        const matchesAttributes = selectedAttributes
-          ? Object.entries(selectedAttributes).every(
-              ([attrTitle, attrValues]) =>
-                product.attributes?.some(
-                  (attr) =>
-                    attr.attr_title === attrTitle &&
-                    attr.attr_options.some((option) =>
-                      attrValues.includes(option.option_name)
-                    )
+    const searchLower = searchTerm.toLowerCase();
+    const filtered = initialProducts.filter((product) => {
+      const matchesSearch =
+        product.title.toLowerCase().includes(searchLower) ||
+        product.code.toLowerCase().includes(searchLower);
+      const matchesMainCategory = mainCategory
+        ? product.mainCategory_slug === mainCategory
+        : true;
+      const matchesCategory = category
+        ? product.category_slug === category
+        : true;
+      const matchesPriceRange = priceRange
+        ? product.price >= priceRange[0] && product.price <= priceRange[1]
+        : true;
+      const matchesBrand = selectedBrands?.length
+        ? selectedBrands.includes(product.brand as string)
+        : true;
+      const matchesAttributes = selectedAttributes
+        ? Object.entries(selectedAttributes).every(([attrTitle, attrValues]) =>
+            product.attributes?.some(
+              (attr) =>
+                attr.attr_title === attrTitle &&
+                attr.attr_options.some((option) =>
+                  attrValues.includes(option.option_name)
                 )
             )
-          : true;
-        return (
-          matchesSearch &&
-          matchesMainCategory &&
-          matchesCategory &&
-          matchesPriceRange &&
-          matchesBrand &&
-          matchesAttributes
-        );
-      });
+          )
+        : true;
+      return (
+        matchesSearch &&
+        matchesMainCategory &&
+        matchesCategory &&
+        matchesPriceRange &&
+        matchesBrand &&
+        matchesAttributes
+      );
+    });
 
-      const sorted = [...filtered].sort((a, b) => {
-        switch (sortOption) {
-          case "price_asc":
-            return a.price - b.price;
-          case "price_desc":
-            return b.price - a.price;
-          case "date_asc":
-            return (
-              new Date(a.created_at).getTime() -
-              new Date(b.created_at).getTime()
+    const sorted = [...filtered].sort((a, b) => {
+      switch (sortOption) {
+        case "price_asc":
+          return a.price - b.price;
+        case "price_desc":
+          return b.price - a.price;
+        case "date_asc":
+          return (
+            new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+          );
+        case "date_desc":
+          return (
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          );
+        default:
+          return 0;
+      }
+    });
+
+    setFilteredProducts(sorted);
+
+    // Tüm ürünlerden benzersiz öznitelikleri topla
+    const mergedAttributes: { [key: string]: any[] } = {};
+
+    filtered.forEach((product) => {
+      if (product.attributes) {
+        product.attributes.forEach((attr) => {
+          const { attr_title, attr_options } = attr;
+          if (!mergedAttributes[attr_title]) {
+            mergedAttributes[attr_title] = [];
+          }
+          attr_options.forEach((option: any) => {
+            const existingOption = mergedAttributes[attr_title].find(
+              (opt) => opt.option_name === option.option_name
             );
-          case "date_desc":
-            return (
-              new Date(b.created_at).getTime() -
-              new Date(a.created_at).getTime()
-            );
-          default:
-            return 0;
-        }
-      });
-
-      setFilteredProducts(sorted);
-
-      // Tüm ürünlerden benzersiz öznitelikleri topla
-      const mergedAttributes: { [key: string]: any[] } = {};
-
-      filtered.forEach((product) => {
-        if (product.attributes) {
-          product.attributes.forEach((attr) => {
-            const { attr_title, attr_options } = attr;
-            if (!mergedAttributes[attr_title]) {
-              mergedAttributes[attr_title] = [];
+            if (!existingOption) {
+              mergedAttributes[attr_title].push(option);
             }
-            attr_options.forEach((option: any) => {
-              const existingOption = mergedAttributes[attr_title].find(
-                (opt) => opt.option_name === option.option_name
-              );
-              if (!existingOption) {
-                mergedAttributes[attr_title].push(option);
-              }
-            });
           });
-        }
-      });
+        });
+      }
+    });
 
-      // Dizine dönüştür
-      const mergedAttributesArray = Object.keys(mergedAttributes).map(
-        (key) => ({
-          attr_title: key,
-          attr_options: mergedAttributes[key],
-        })
-      );
+    // Dizine dönüştür
+    const mergedAttributesArray = Object.keys(mergedAttributes).map((key) => ({
+      attr_title: key,
+      attr_options: mergedAttributes[key],
+    }));
 
-      setProductAttributes(
-        mergedAttributesArray.length > 0 ? mergedAttributesArray : null
-      );
-
-      setLoadingProducts(false);
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
+    setProductAttributes(
+      mergedAttributesArray.length > 0 ? mergedAttributesArray : null
+    );
   };
 
   useEffect(() => {
@@ -325,37 +302,28 @@ function StoreMain({
             </div>
           </div>
           <hr />
-          {loadingProducts ? (
-            <div className="flex flex-col gap-4 h-[500px] justify-center items-center text-gray-300">
-              <IoFileTrayFullOutline className="lg:text-7xl text-6xl" />
-              <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
-                Ürün aranıyor...
-              </span>
-            </div>
-          ) : (
-            <>
-              {filteredProducts && filteredProducts.length === 0 ? (
-                <div className="flex flex-col gap-4 h-[500px] justify-center items-center animate-pulse text-gray-600">
-                  <IoFileTrayOutline className="lg:text-7xl text-6xl" />
-                  <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
-                    Aradığınız Ürün Bulunamadı
-                  </span>
-                </div>
-              ) : (
-                <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-2 lg:gap-6 gap-3 w-full">
-                  {filteredProducts &&
-                    filteredProducts.map((product) => (
-                      <ProductItem
-                        key={product.id}
-                        product={product}
-                        height={395}
-                        mobileHeight={335}
-                      />
-                    ))}
-                </div>
-              )}
-            </>
-          )}
+          <>
+            {filteredProducts && filteredProducts.length === 0 ? (
+              <div className="flex flex-col gap-4 h-[500px] justify-center items-center animate-pulse text-gray-600">
+                <IoFileTrayOutline className="lg:text-7xl text-6xl" />
+                <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
+                  Aradığınız Ürün Bulunamadı
+                </span>
+              </div>
+            ) : (
+              <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-2 lg:gap-6 gap-3 w-full">
+                {filteredProducts &&
+                  filteredProducts.map((product) => (
+                    <ProductItem
+                      key={product.id}
+                      product={product}
+                      height={395}
+                      mobileHeight={335}
+                    />
+                  ))}
+              </div>
+            )}
+          </>
         </main>
       </div>
     </div>
