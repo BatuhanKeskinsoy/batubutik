@@ -264,7 +264,10 @@ function Aside({
                         values={priceRange}
                         onChange={(values) => handlePriceRangeChange(values)}
                         renderTrack={({ props, children }) => (
-                          <div {...props} className="bg-site h-1.5 w-full rounded-full !cursor-pointer">
+                          <div
+                            {...props}
+                            className="bg-site h-1.5 w-full rounded-full !cursor-pointer"
+                          >
                             {children}
                           </div>
                         )}
@@ -275,15 +278,6 @@ function Aside({
                           />
                         )}
                       />
-                      {/* <Slider
-                        value={priceRange}
-                        onChange={handlePriceRangeChange}
-                        min={initialPriceRange[0]}
-                        max={initialPriceRange[1]}
-                        step={10}
-                        marks
-                        className="customRangeSlider"
-                      /> */}
                     </div>
                     <div className="flex items-center justify-between gap-4 font-medium">
                       <span>{getPrice(priceRange[0])}</span>
