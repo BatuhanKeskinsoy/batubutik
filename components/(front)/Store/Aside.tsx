@@ -9,10 +9,10 @@ import {
   IoSearchOutline,
 } from "react-icons/io5";
 import CustomButton from "@/components/others/CustomButton";
-import Slider from "@mui/material/Slider";
 import { getPrice } from "@/components/functions/getPrice";
 import { useGlobalContext } from "@/app/Context/store";
 import { productAttributesTypes } from "@/types/product/productTypes";
+import { Range } from "react-range";
 
 interface IStoreAsideProps {
   mainCategorySlug?: string;
@@ -119,16 +119,13 @@ function Aside({
     );
   };
 
-  const handlePriceRangeChange = (
-    event: Event,
-    newValue: number | number[]
-  ) => {
-    setPriceRange(newValue as [number, number]);
+  const handlePriceRangeChange = (values: number[]) => {
+    setPriceRange([values[0], values[1]]);
     filterProducts(
       search,
       mainCategorySlug,
       categorySlug,
-      newValue as [number, number],
+      [values[0], values[1]],
       undefined,
       selectedBrands,
       selectedAttributes
@@ -258,9 +255,27 @@ function Aside({
                   <span className="font-medium text-xl font-gemunu tracking-wide">
                     Fiyat Aralığı
                   </span>
-                  <div className="flex flex-col w-full">
-                    <div className="px-2 ">
-                      <Slider
+                  <div className="flex flex-col gap-4 w-full">
+                    <div className="px-2">
+                      <Range
+                        step={10}
+                        min={initialPriceRange[0]}
+                        max={initialPriceRange[1]}
+                        values={priceRange}
+                        onChange={(values) => handlePriceRangeChange(values)}
+                        renderTrack={({ props, children }) => (
+                          <div {...props} className="bg-site h-1.5 w-full rounded-full !cursor-pointer">
+                            {children}
+                          </div>
+                        )}
+                        renderThumb={({ props }) => (
+                          <div
+                            {...props}
+                            className="w-6 h-6 bg-site border-2 border-white rounded-full outline-none lg:hover:shadow-custom-site transition-shadow duration-300"
+                          />
+                        )}
+                      />
+                      {/* <Slider
                         value={priceRange}
                         onChange={handlePriceRangeChange}
                         min={initialPriceRange[0]}
@@ -268,7 +283,7 @@ function Aside({
                         step={10}
                         marks
                         className="customRangeSlider"
-                      />
+                      /> */}
                     </div>
                     <div className="flex items-center justify-between gap-4 font-medium">
                       <span>{getPrice(priceRange[0])}</span>
