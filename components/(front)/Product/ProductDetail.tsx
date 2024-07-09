@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ProductArea from "@/components/(front)/Product/ProductArea";
 import { productDetailTypes } from "@/types/product/productDetailTypes";
 import CustomButton from "@/components/others/CustomButton";
@@ -12,10 +12,16 @@ interface IProductDetailProps {
 
 function ProductDetail({ product }: IProductDetailProps) {
   const [activeTab, setActiveTab] = useState("info");
+  const tabMenuRef = useRef<HTMLDivElement | null>(null);
   return (
     <main>
       <div className="flex flex-col w-full lg:gap-8 gap-4">
-        <ProductArea product={product} isDetail />
+        <ProductArea
+          product={product}
+          setActiveTab={setActiveTab}
+          tabMenuRef={tabMenuRef}
+          isDetail
+        />
         <div className="flex flex-col w-full gap-4">
           <div className="flex gap-2 overflow-x-auto lg:w-fit max-lg:pb-2">
             <CustomButton
@@ -49,7 +55,7 @@ function ProductDetail({ product }: IProductDetailProps) {
             )}
           </div>
           <hr />
-          <div className="">
+          <div ref={tabMenuRef}>
             {activeTab === "info" ? (
               <div
                 className="dangeriousContent lg:leading-8 leading-7"

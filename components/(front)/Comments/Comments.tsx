@@ -17,9 +17,8 @@ function Comments({ comments }: ICommentsProps) {
       {Array.from({ length: 3 }).map((_, index) => {
         const name = "Batuhan Keskinsoy";
         return (
-          <>
+          <React.Fragment key={index}>
             <li
-              key={index}
               className="flex max-lg:flex-col gap-4 lg:items-center"
             >
               <div className="flex gap-4 max-lg:items-center">
@@ -99,7 +98,7 @@ function Comments({ comments }: ICommentsProps) {
               )}
             </li>
             <hr />
-          </>
+          </React.Fragment>
         );
       })}
     </ul>

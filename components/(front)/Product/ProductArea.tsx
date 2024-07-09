@@ -1,5 +1,5 @@
 "use client";
-import { act, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Image from "next/image";
 import { getStar } from "@/components/functions/getStar";
 import { getPrice } from "@/components/functions/getPrice";
@@ -22,12 +22,20 @@ import { basketItemTypes } from "@/types/product/basketItemTypes";
 
 interface IProductAreaProps {
   product: productDetailTypes | undefined;
+  setActiveTab?: Dispatch<SetStateAction<string>>;
+  tabMenuRef?: React.RefObject<HTMLDivElement>;
   isDetail?: boolean;
   onClose?: () => void;
 }
 
-function ProductArea({ product, isDetail, onClose }: IProductAreaProps) {
-  const { setBasketItems, favoriteItems, setFavoriteItems } =
+function ProductArea({
+  product,
+  setActiveTab,
+  tabMenuRef,
+  isDetail,
+  onClose,
+}: IProductAreaProps) {
+  const { setBasketItems, favoriteItems, setFavoriteItems, isMobile } =
     useGlobalContext();
   const [loadingQuantity, setLoadingQuantity] = useState(false);
   const [loadingAddToBasket, setLoadingAddToBasket] = useState(false);
@@ -149,6 +157,18 @@ function ProductArea({ product, isDetail, onClose }: IProductAreaProps) {
     );
   };
 
+  const handleComments = () => {
+    if (setActiveTab) {
+      setActiveTab("comments");
+    }
+    if (tabMenuRef && tabMenuRef.current) {
+      window.scrollTo({
+        top: tabMenuRef.current.offsetTop - 185,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div
       className={`lg:grid lg:grid-cols-2 lg:gap-8 gap-4 max-lg:flex max-lg:flex-col h-full ${
@@ -268,6 +288,9 @@ function ProductArea({ product, isDetail, onClose }: IProductAreaProps) {
                         <CustomButton
                           title={`${product.total_comment} Değerlendirme`}
                           containerStyles="flex -mb-1 font-medium transition-all duration-300 hover:text-site"
+                          handleClick={
+                            setActiveTab ? handleComments : undefined
+                          }
                         />
                       ) : (
                         <span className="flex -mb-1 font-medium">{`${product.total_comment} Değerlendirme`}</span>
