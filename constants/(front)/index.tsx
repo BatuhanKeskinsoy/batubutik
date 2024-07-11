@@ -12,6 +12,7 @@ export const generals = {
   address: "Meclis Mahallesi Derviş Sk. Fuat Ozal Apt No 38/1 Sancaktepe",
   email: "batubutik@info.com",
   phone: "08505058515",
+  whatsapp_number: "05555058515",
   tags: [
     "Dantel İç Giyim",
     "Ekonomik İç Giyim",

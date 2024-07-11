@@ -18,7 +18,6 @@ function Basket({ isDetail }: IBasketProps) {
   const [initialSubTotal, setInitialSubTotal] = useState(0);
   const [discountAmount, setDiscountAmount] = useState<number>(0);
   const [discountApplied, setDiscountApplied] = useState<boolean>(false);
-  const [shippingPriceApplied, setShippingPriceApplied] = useState(false);
   const [basketProducts, setBasketProducts] = useState<
     basketProductTypes[] | null
   >(null);
@@ -84,7 +83,6 @@ function Basket({ isDetail }: IBasketProps) {
     let newSubTotal = subtotal;
     if (freeShipping !== null && newSubTotal < freeShipping) {
       newSubTotal += generals.shipping_price;
-      setShippingPriceApplied(true);
     }
     // Check if discount is applied
     if (discountApplied) {
@@ -94,7 +92,6 @@ function Basket({ isDetail }: IBasketProps) {
       // Check if free shipping threshold is applicable after discount
       if (freeShipping !== null && newSubTotal < freeShipping) {
         newSubTotal += generals.shipping_price;
-        setShippingPriceApplied(true);
       }
 
       // Update the subtotal
@@ -252,8 +249,6 @@ function Basket({ isDetail }: IBasketProps) {
             setDiscountAmount={setDiscountAmount}
             discountApplied={discountApplied}
             setDiscountApplied={setDiscountApplied}
-            shippingPriceApplied={shippingPriceApplied}
-            setShippingPriceApplied={setShippingPriceApplied}
             freeShipping={freeShipping}
           />
         )}
@@ -271,8 +266,6 @@ function Basket({ isDetail }: IBasketProps) {
             setDiscountAmount={setDiscountAmount}
             discountApplied={discountApplied}
             setDiscountApplied={setDiscountApplied}
-            shippingPriceApplied={shippingPriceApplied}
-            setShippingPriceApplied={setShippingPriceApplied}
             freeShipping={freeShipping}
           />
         </div>

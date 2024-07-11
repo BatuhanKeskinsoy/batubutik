@@ -171,26 +171,27 @@ function ProductArea({
 
   return (
     <div
-      className={`lg:grid lg:grid-cols-2 lg:gap-6 gap-4 max-lg:flex max-lg:flex-col h-full ${
-        isDetail ? "lg:min-h-[780px]" : ""
-      } w-full`}
+      className={`lg:grid lg:grid-cols-2 lg:gap-6 gap-0 max-lg:flex max-lg:flex-col h-full w-full ${
+        isDetail ? "lg:min-h-[780px] container mx-auto lg:px-4" : ""
+      }`}
     >
-      <div className="flex lg:flex-row flex-col h-full">
+      <div className="flex h-full">
         {product?.images && product.images?.length > 1 && (
           <div
-            className={`flex lg:flex-col gap-1 max-h-full min-h-[164px] overflow-y-auto lg:overflow-x-hidden scrollbar-thick lg:order-1 order-2 ${
-              isDetail ? "pr-6 max-lg:pt-1" : "p-1"
+            className={`flex flex-col gap-1 max-h-full min-h-[164px] overflow-y-auto overflow-x-hidden scrollbar-thick pr-6 ${
+              isDetail ? " max-lg:pt-1" : "p-1"
             }`}
           >
             {product.images?.map((image, key) => (
               <div
                 key={key}
-                className="relative min-w-[100.6px] lg:min-h-[calc(21%-3px)] lg:h-[calc(21%-3px)] cursor-pointer"
+                className="relative lg:min-w-[100px] min-w-[80px] lg:min-h-[calc(21%-3px)] lg:h-[calc(21%-3px)] min-h-[calc(25%-3px)] h-[calc(25%-3px)] cursor-pointer"
                 onClick={() => handleChangeCurrentImage(image)}
               >
                 <Image
                   src={image}
                   fill
+                  quality={100}
                   sizes="(max-width: 768px) 100%, 25%"
                   alt={`${product.brand && product.brand} ${product.title}`}
                   title={`${product.brand && product.brand} ${product.title}`}
@@ -207,7 +208,7 @@ function ProductArea({
 
         {currentProductImage && (
           <div
-            className={`relative w-full max-w-full h-full min-h-[600px] overflow-hidden cursor-crosshair lg:order-2 order-1 ${
+            className={`relative w-full max-w-full h-full min-h-[500px] overflow-hidden cursor-crosshair ${
               product?.images && product.images?.length > 4 ? "lg:ml-1" : ""
             }`}
             onMouseMove={handleMouseMove}
@@ -226,6 +227,7 @@ function ProductArea({
                   left: isHovered ? `-${(mousePosition.x / 200) * 200}px` : 0,
                   transform: isHovered ? `scale(2)` : `scale(1)`,
                 }}
+                quality={100}
                 priority
               />
             </div>
@@ -242,9 +244,9 @@ function ProductArea({
         )}
       </div>
       <div
-        className={`${
+        className={`w-full lg:overflow-y-auto container mx-auto px-4${
           !isDetail ? "lg:px-6 px-4 py-6" : ""
-        } w-full lg:overflow-y-auto`}
+        }`}
       >
         <div className="flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-3 w-full">
@@ -257,7 +259,7 @@ function ProductArea({
                 <span className="font-medium text-2xl">{product?.title}</span>
               ) : (
                 <Link
-                  href={"/"}
+                  href={`/magaza/${product?.mainCategory_slug}/${product?.category_slug}/${product?.slug}`}
                   title={product?.title}
                   className="font-medium text-2xl transition-all duration-300 hover:text-site"
                 >

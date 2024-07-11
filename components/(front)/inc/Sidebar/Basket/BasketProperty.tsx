@@ -8,6 +8,7 @@ import { getPrice } from "@/components/functions/getPrice";
 import { discountCodes, generals } from "@/constants/(front)";
 import { IoChevronForwardOutline, IoCloseOutline } from "react-icons/io5";
 import { useGlobalContext } from "@/app/Context/store";
+import { useRouter } from "next/navigation";
 
 interface IBasketPropertyProps {
   isDetail?: boolean;
@@ -20,8 +21,6 @@ interface IBasketPropertyProps {
   setDiscountAmount: Dispatch<SetStateAction<number>>;
   discountApplied: boolean;
   setDiscountApplied: Dispatch<SetStateAction<boolean>>;
-  shippingPriceApplied: boolean;
-  setShippingPriceApplied: Dispatch<SetStateAction<boolean>>;
   freeShipping: number | null;
 }
 
@@ -36,13 +35,13 @@ function BasketProperty({
   setDiscountAmount,
   discountApplied,
   setDiscountApplied,
-  shippingPriceApplied,
-  setShippingPriceApplied,
   freeShipping,
 }: IBasketPropertyProps) {
   const [loadingEmptyBasket, setLoadingEmptyBasket] = useState(false);
   const [discountCode, setDiscountCode] = useState<string | null>(null);
   const [discountPercentage, setDiscountPercentage] = useState<number>(0);
+
+  const router = useRouter();
 
   const { setSidebarStatus } = useGlobalContext();
 
@@ -50,10 +49,14 @@ function BasketProperty({
     if (!loadingEmptyBasket) {
       setLoadingEmptyBasket(true);
       setTimeout(() => {
+        if (isDetail) {
+          router.push("/");
+        }
         localStorage.removeItem("basketItems");
         setBasketProducts(null);
         setBasketItems(null);
         setLoadingEmptyBasket(false);
+        setSidebarStatus("");
       }, 1000);
     }
   };
@@ -73,8 +76,8 @@ function BasketProperty({
 
     if (appliedDiscount?.isPercentage) {
       setDiscountPercentage(appliedDiscount.discount);
-    }else {
-      setDiscountPercentage(0)
+    } else {
+      setDiscountPercentage(0);
     }
 
     if (appliedDiscount) {
@@ -89,23 +92,13 @@ function BasketProperty({
 
       if (freeShipping !== null && newSubTotal < freeShipping) {
         setSubTotal(newSubTotal + generals.shipping_price);
-        setShippingPriceApplied(true);
       } else {
         setSubTotal(newSubTotal);
-        setShippingPriceApplied(false);
       }
     } else {
       console.log("Geçersiz İndirim Kodu!");
     }
   };
-
-  useEffect(() => {
-    if (freeShipping && freeShipping > initialSubTotal) {
-      setShippingPriceApplied(true);
-    } else {
-      setShippingPriceApplied(false);
-    }
-  }, [subTotal, discountApplied]);
 
   // Add this useEffect to update discountAmount whenever subTotal changes
   useEffect(() => {

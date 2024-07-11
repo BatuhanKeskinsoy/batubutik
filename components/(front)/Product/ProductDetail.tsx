@@ -22,53 +22,57 @@ function ProductDetail({ product }: IProductDetailProps) {
           tabMenuRef={tabMenuRef}
           isDetail
         />
-        <div className="flex flex-col w-full gap-4">
-          <div className="flex gap-2 overflow-x-auto lg:w-fit max-lg:pb-2">
-            <CustomButton
-              title="Ürün Bilgileri"
-              containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
-                activeTab === "info"
-                  ? "border-transparent bg-site text-white"
-                  : "bg-white/20 hover:border-transparent hover:bg-site/10 hover:text-site border-gray-200"
-              }`}
-              handleClick={() => setActiveTab("info")}
-            />
-            <CustomButton
-              title="Ürün Değerlendirmeleri"
-              containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
-                activeTab === "comments"
-                  ? "border-transparent bg-site text-white"
-                  : "bg-white/20 hover:border-transparent hover:bg-site/10 hover:text-site border-gray-200"
-              }`}
-              handleClick={() => setActiveTab("comments")}
-            />
-            {generals.return_conditions && (
+        <div className="container mx-auto px-4 flex lg:flex-row flex-col lg:gap-8 gap-4">
+          <div className="flex flex-col w-full gap-4">
+            <div className="flex gap-2 overflow-x-auto lg:w-fit max-lg:pb-2">
               <CustomButton
-                title="İptal ve İade Koşulları"
+                title="Ürün Bilgileri"
                 containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
-                  activeTab === "return"
+                  activeTab === "info"
                     ? "border-transparent bg-site text-white"
                     : "bg-white/20 hover:border-transparent hover:bg-site/10 hover:text-site border-gray-200"
                 }`}
-                handleClick={() => setActiveTab("return")}
+                handleClick={() => setActiveTab("info")}
               />
-            )}
-          </div>
-          <hr />
-          <div ref={tabMenuRef}>
-            {activeTab === "info" ? (
-              <div
-                className="dangeriousContent lg:leading-8 leading-7"
-                dangerouslySetInnerHTML={{ __html: product.content }}
+              <CustomButton
+                title="Ürün Değerlendirmeleri"
+                containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
+                  activeTab === "comments"
+                    ? "border-transparent bg-site text-white"
+                    : "bg-white/20 hover:border-transparent hover:bg-site/10 hover:text-site border-gray-200"
+                }`}
+                handleClick={() => setActiveTab("comments")}
               />
-            ) : activeTab === "comments" ? (
-              <Comments />
-            ) : activeTab === "return" ? (
-              <div
-                className="dangeriousContent lg:leading-8 leading-7"
-                dangerouslySetInnerHTML={{ __html: generals.return_conditions }}
-              />
-            ) : null}
+              {generals.return_conditions && (
+                <CustomButton
+                  title="İptal ve İade Koşulları"
+                  containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
+                    activeTab === "return"
+                      ? "border-transparent bg-site text-white"
+                      : "bg-white/20 hover:border-transparent hover:bg-site/10 hover:text-site border-gray-200"
+                  }`}
+                  handleClick={() => setActiveTab("return")}
+                />
+              )}
+            </div>
+            <hr />
+            <div ref={tabMenuRef}>
+              {activeTab === "info" ? (
+                <div
+                  className="dangeriousContent lg:leading-8 leading-7"
+                  dangerouslySetInnerHTML={{ __html: product.content }}
+                />
+              ) : activeTab === "comments" ? (
+                <Comments />
+              ) : activeTab === "return" ? (
+                <div
+                  className="dangeriousContent lg:leading-8 leading-7"
+                  dangerouslySetInnerHTML={{
+                    __html: generals.return_conditions,
+                  }}
+                />
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

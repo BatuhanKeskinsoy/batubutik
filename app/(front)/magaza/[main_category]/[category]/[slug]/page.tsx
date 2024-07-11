@@ -49,10 +49,8 @@ async function page({
           title4={product.title}
         />
       </div>
-      <div className="container mx-auto px-4 flex lg:flex-row flex-col lg:gap-8 gap-4">
-        <ProductDetail product={product} />
-        <ProductSidebar product={product} />
-      </div>
+      <ProductDetail product={product} />
+      <ProductSidebar product={product} />
       <hr className="lg:my-12 my-6" />
       <section className="relative container mx-auto px-4">
         <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">

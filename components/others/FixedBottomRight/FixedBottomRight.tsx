@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { IoChevronUpOutline, IoLogoWhatsapp } from "react-icons/io5";
 import CustomButton from "@/components/others/CustomButton";
+import { generals } from "@/constants/(front)";
 
 const ScrollTopButton = () => {
   const [isTop, setIsTop] = useState(true);
@@ -39,9 +40,13 @@ const ScrollTopButton = () => {
 };
 
 const WhatsAppButton = () => {
+  if (!generals.whatsapp_number) {
+    return null;
+  }
+
   return (
     <Link
-      href={`https://api.whatsapp.com/send?phone=9${"05555555555"}&amp;text=Merhaba, site web sitenizden ulaşıyorum.`}
+      href={`https://api.whatsapp.com/send?phone=9${generals.whatsapp_number}&amp;text=Merhaba, site web sitenizden ulaşıyorum.`}
       title="WhatsApp"
       target="_blank"
       className=" bg-green-500/80 hover:bg-green-500 hover:translate-x-0"
