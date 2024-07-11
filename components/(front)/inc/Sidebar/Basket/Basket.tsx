@@ -15,12 +15,9 @@ interface IBasketProps {
 function Basket({ isDetail }: IBasketProps) {
   const { basketItems, setBasketItems } = useGlobalContext();
   const [subTotal, setSubTotal] = useState(0);
-  const [discountApplied, setDiscountApplied] = useState<{
-    status: boolean;
-    prevPrice: number;
-    discount: number;
-    isPercentage: boolean;
-  }>({ status: false, prevPrice: 0, discount: 0, isPercentage: false });
+  const [initialSubTotal, setInitialSubTotal] = useState(0);
+  const [discountAmount, setDiscountAmount] = useState<number>(0);
+  const [discountApplied, setDiscountApplied] = useState<boolean>(false);
   const [shippingPriceApplied, setShippingPriceApplied] = useState(false);
   const [basketProducts, setBasketProducts] = useState<
     basketProductTypes[] | null
@@ -81,6 +78,7 @@ function Basket({ isDetail }: IBasketProps) {
 
   useEffect(() => {
     const subtotal = calculateSubTotal();
+    setInitialSubTotal(subtotal);
 
     // If no discount applied, check if free shipping is applicable
     let newSubTotal = subtotal;
@@ -89,9 +87,9 @@ function Basket({ isDetail }: IBasketProps) {
       setShippingPriceApplied(true);
     }
     // Check if discount is applied
-    if (discountApplied.status) {
+    if (discountApplied) {
       // If discount is applied, use the discounted subtotal
-      let newSubTotal = subtotal - discountApplied.discount;
+      newSubTotal = subtotal - discountAmount;
 
       // Check if free shipping threshold is applicable after discount
       if (freeShipping !== null && newSubTotal < freeShipping) {
@@ -105,7 +103,7 @@ function Basket({ isDetail }: IBasketProps) {
       // Update the subtotal
       setSubTotal(newSubTotal);
     }
-  }, [calculateSubTotal, discountApplied]);
+  }, [calculateSubTotal, discountApplied, discountAmount]);
 
   const handleUpdateQuantity = useCallback(
     (
@@ -165,6 +163,7 @@ function Basket({ isDetail }: IBasketProps) {
 
         const subtotal = calculateSubTotal();
         setSubTotal(subtotal || 0);
+        setInitialSubTotal(subtotal || 0);
       }
     },
     [basketProducts, calculateSubTotal, setBasketItems]
@@ -215,9 +214,16 @@ function Basket({ isDetail }: IBasketProps) {
     <div className={isDetail ? "flex lg:flex-row flex-col gap-8" : ""}>
       <div
         className={`flex ${
-          !isDetail ? "h-[calc(100dvh-77px)]" : "lg:w-3/4"
-        } flex-col w-full justify-between`}
+          !isDetail ? "h-[calc(100dvh-77px)]" : "lg:w-3/4 gap-4"
+        } flex-col w-full justify-between `}
       >
+        {isDetail && (
+          <div className="w-full flex flex-col gap-4">
+            <h1 className="text-4xl font-gemunu font-semibold tracking-wider">
+              Sepet
+            </h1>
+          </div>
+        )}
         <div
           className={`flex flex-col w-full ${
             !isDetail ? "overflow-y-auto lg:px-8 px-4" : ""
@@ -238,13 +244,16 @@ function Basket({ isDetail }: IBasketProps) {
           <BasketProperty
             isDetail={isDetail}
             subTotal={subTotal}
-            basketProducts={basketProducts}
+            setSubTotal={setSubTotal}
+            initialSubTotal={initialSubTotal}
             setBasketProducts={setBasketProducts}
             setBasketItems={setBasketItems}
-            setSubTotal={setSubTotal}
+            discountAmount={discountAmount}
+            setDiscountAmount={setDiscountAmount}
             discountApplied={discountApplied}
             setDiscountApplied={setDiscountApplied}
             shippingPriceApplied={shippingPriceApplied}
+            setShippingPriceApplied={setShippingPriceApplied}
             freeShipping={freeShipping}
           />
         )}
@@ -254,13 +263,16 @@ function Basket({ isDetail }: IBasketProps) {
           <BasketProperty
             isDetail={isDetail}
             subTotal={subTotal}
-            basketProducts={basketProducts}
+            setSubTotal={setSubTotal}
+            initialSubTotal={initialSubTotal}
             setBasketProducts={setBasketProducts}
             setBasketItems={setBasketItems}
-            setSubTotal={setSubTotal}
+            discountAmount={discountAmount}
+            setDiscountAmount={setDiscountAmount}
             discountApplied={discountApplied}
             setDiscountApplied={setDiscountApplied}
             shippingPriceApplied={shippingPriceApplied}
+            setShippingPriceApplied={setShippingPriceApplied}
             freeShipping={freeShipping}
           />
         </div>

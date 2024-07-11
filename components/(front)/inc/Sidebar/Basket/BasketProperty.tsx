@@ -12,42 +12,37 @@ import { useGlobalContext } from "@/app/Context/store";
 interface IBasketPropertyProps {
   isDetail?: boolean;
   subTotal: number;
-  basketProducts: basketProductTypes[] | null;
+  setSubTotal: Dispatch<SetStateAction<number>>;
+  initialSubTotal: number;
   setBasketProducts: Dispatch<SetStateAction<basketProductTypes[] | null>>;
   setBasketItems: Dispatch<SetStateAction<basketItemTypes[] | null>>;
-  setSubTotal: Dispatch<SetStateAction<number>>;
-  discountApplied: {
-    status: boolean;
-    prevPrice: number;
-    discount: number;
-    isPercentage: boolean;
-  };
-  setDiscountApplied: Dispatch<
-    SetStateAction<{
-      status: boolean;
-      prevPrice: number;
-      discount: number;
-      isPercentage: boolean;
-    }>
-  >;
+  discountAmount: number;
+  setDiscountAmount: Dispatch<SetStateAction<number>>;
+  discountApplied: boolean;
+  setDiscountApplied: Dispatch<SetStateAction<boolean>>;
   shippingPriceApplied: boolean;
+  setShippingPriceApplied: Dispatch<SetStateAction<boolean>>;
   freeShipping: number | null;
 }
 
 function BasketProperty({
   isDetail,
   subTotal,
-  basketProducts,
+  setSubTotal,
+  initialSubTotal,
   setBasketProducts,
   setBasketItems,
-  setSubTotal,
+  discountAmount,
+  setDiscountAmount,
   discountApplied,
   setDiscountApplied,
   shippingPriceApplied,
+  setShippingPriceApplied,
   freeShipping,
 }: IBasketPropertyProps) {
   const [loadingEmptyBasket, setLoadingEmptyBasket] = useState(false);
   const [discountCode, setDiscountCode] = useState<string | null>(null);
+  const [discountPercentage, setDiscountPercentage] = useState<number>(0);
 
   const { setSidebarStatus } = useGlobalContext();
 
@@ -65,156 +60,163 @@ function BasketProperty({
 
   const calculateShippingProgress = () => {
     if (freeShipping !== null) {
-      const subtotalNonShipping = subTotal - generals.shipping_price;
-
-      const progress =
-        ((shippingPriceApplied ? subtotalNonShipping : subTotal) /
-          freeShipping) *
-        100;
+      const progress = (initialSubTotal / freeShipping) * 100;
       return progress >= 100 ? 100 : progress;
     }
     return 0;
   };
 
   const handleDiscountCode = () => {
-    const discount = discountCodes.find((code) => code.code === discountCode);
+    const appliedDiscount = discountCodes.find(
+      (code) => code.code === discountCode
+    );
 
-    if (discount) {
-      const discountAmount = discount.isPercentage
-        ? (subTotal * discount.discount) / 100
-        : discount.discount;
+    if (appliedDiscount?.isPercentage) {
+      setDiscountPercentage(appliedDiscount.discount);
+    }else {
+      setDiscountPercentage(0)
+    }
 
-      let newSubTotal = subTotal - discountAmount;
+    if (appliedDiscount) {
+      const discountAmount = appliedDiscount.isPercentage
+        ? (appliedDiscount.discount / 100) * initialSubTotal
+        : appliedDiscount.discount;
 
-      setDiscountApplied({
-        status: true,
-        prevPrice: subTotal,
-        discount: discount.discount,
-        isPercentage: discount.isPercentage,
-      });
+      const newSubTotal = initialSubTotal - discountAmount;
 
-      setSubTotal(newSubTotal);
+      setDiscountAmount(discountAmount);
+      setDiscountApplied(true);
+
+      if (freeShipping !== null && newSubTotal < freeShipping) {
+        setSubTotal(newSubTotal + generals.shipping_price);
+        setShippingPriceApplied(true);
+      } else {
+        setSubTotal(newSubTotal);
+        setShippingPriceApplied(false);
+      }
     } else {
       console.log("Geçersiz İndirim Kodu!");
     }
   };
 
   useEffect(() => {
-    if (discountApplied.status) {
-      const nonDiscountSubTotal = subTotal + discountApplied.discount;
-      setDiscountApplied((prev) => ({
-        ...prev,
-        prevPrice: nonDiscountSubTotal,
-      }));
+    if (freeShipping && freeShipping > initialSubTotal) {
+      setShippingPriceApplied(true);
+    } else {
+      setShippingPriceApplied(false);
     }
-  }, [subTotal, discountApplied.status]);
+  }, [subTotal, discountApplied]);
+
+  // Add this useEffect to update discountAmount whenever subTotal changes
+  useEffect(() => {
+    if (discountApplied) {
+      const appliedDiscount = discountCodes.find(
+        (code) => code.code === discountCode
+      );
+
+      if (appliedDiscount) {
+        const discountAmount = appliedDiscount.isPercentage
+          ? (appliedDiscount.discount / 100) * initialSubTotal
+          : appliedDiscount.discount;
+        setDiscountAmount(discountAmount);
+      }
+    }
+  }, [subTotal]);
 
   return (
     <div className="flex flex-col lg:gap-2 w-full sticky top-28">
-      <label
-        htmlFor="discount-code"
-        className={`flex justify-between items-center gap-4 px-4 py-3 ${
-          discountApplied.status ? "bg-green-500/10" : "bg-red-500/10"
-        }`}
-      >
-        <span
-          className={`font-medium min-w-max ${
-            discountApplied.status ? "text-green-500" : "text-red-500"
+      {isDetail && (
+        <label
+          htmlFor="discount-code"
+          className={`flex justify-between items-center gap-4 px-4 py-3 ${
+            discountApplied ? "bg-green-500/10" : "bg-red-500/10"
           }`}
         >
-          İndirim Kodu
-        </span>
-        <div className={`flex items-center gap-2 w-fit`}>
-          <input
-            type="text"
-            id="discount-code"
-            required
-            className={`border ${
-              discountApplied.status
-                ? "border-transparent bg-transparent cursor-default text-right text-green-500"
-                : "border-red-500/20 focus:border-red-500/50 bg-white"
-            }  py-2 px-4 outline-none w-full`}
-            placeholder="İndirim kodu giriniz"
-            value={discountCode ?? ""}
-            onChange={(e) => setDiscountCode(e.target.value)}
-            readOnly={discountApplied.status}
-          />
-          <CustomButton
-            leftIcon={<IoChevronForwardOutline className="text-2xl" />}
-            containerStyles={`h-full px-4 disabled:text-gray-400 disabled:border-gray-200 disabled:hover:bg-white disabled:cursor-not-allowed bg-white w-fit py-2 border border-red-500/20 hover:bg-red-500 text-red-500 hover:text-white transition-all duration-300 ${
-              discountApplied.status ? "hidden" : ""
+          <span
+            className={`font-medium min-w-max ${
+              discountApplied ? "text-green-500" : "text-red-500"
             }`}
-            handleClick={discountCode ? handleDiscountCode : undefined}
-            isDisabled={!discountCode || discountApplied.status}
-          />
-          {discountApplied.status && (
-            <CustomButton
-              leftIcon={
-                <IoCloseOutline className="text-2xl hover:text-red-500 transition-all duration-300" />
-              }
-              handleClick={() => {
-                setSubTotal(discountApplied.prevPrice);
-                setDiscountApplied({
-                  status: false,
-                  prevPrice: 0,
-                  discount: 0,
-                  isPercentage: false,
-                });
-              }}
+          >
+            İndirim Kodu
+          </span>
+          <div className={`flex items-center gap-2 w-fit`}>
+            <input
+              type="text"
+              id="discount-code"
+              required
+              className={`border ${
+                discountApplied
+                  ? "border-transparent bg-transparent cursor-default text-right text-green-500"
+                  : "border-red-500/20 focus:border-red-500/50 bg-white"
+              }  py-2 px-4 outline-none w-full`}
+              placeholder="İndirim kodu giriniz"
+              value={discountCode ?? ""}
+              onChange={(e) => setDiscountCode(e.target.value)}
+              readOnly={discountApplied}
             />
-          )}
-        </div>
-      </label>
-      <div className="flex flex-col gap-4 w-full bg-gray-100 px-4 py-4">
-        {discountApplied.status && (
+            <CustomButton
+              leftIcon={<IoChevronForwardOutline className="text-2xl" />}
+              containerStyles={`h-full px-4 disabled:text-gray-400 disabled:border-gray-200 disabled:hover:bg-white disabled:cursor-not-allowed bg-white w-fit py-2 border border-red-500/20 hover:bg-red-500 text-red-500 hover:text-white transition-all duration-300 ${
+                discountApplied ? "hidden" : ""
+              }`}
+              handleClick={discountCode ? handleDiscountCode : undefined}
+              isDisabled={!discountCode || discountApplied}
+            />
+            {discountApplied && (
+              <CustomButton
+                leftIcon={
+                  <IoCloseOutline className="text-2xl hover:text-red-500 transition-all duration-300" />
+                }
+                handleClick={() => {
+                  setSubTotal(initialSubTotal);
+                  setDiscountApplied(false);
+                }}
+              />
+            )}
+          </div>
+        </label>
+      )}
+      <div
+        className={`flex flex-col gap-3 w-full bg-gray-100 ${
+          !isDetail ? "lg:px-8 px-4" : "px-4"
+        } py-4`}
+      >
+        {discountApplied && (
           <>
             <div className="flex justify-between items-center font-medium">
               <span className="text-sm">İndirimsiz Fiyat :</span>
-              <span>
-                {freeShipping && subTotal < freeShipping
-                  ? getPrice(
-                      discountApplied.prevPrice - generals.shipping_price
-                    )
-                  : getPrice(discountApplied.prevPrice)}
-              </span>
+              <span>{getPrice(initialSubTotal)}</span>
             </div>
             <div className="flex justify-between items-center font-medium">
               <span className="text-sm">
-                {discountApplied.isPercentage && (
-                  <span className="text-green-600">
-                    %{discountApplied.discount}
-                  </span>
+                {discountPercentage !== 0 && (
+                  <span className="text-green-600">{`%${discountPercentage}`}</span>
                 )}{" "}
                 İndirim :
               </span>
               <span className="text-green-500">
-                -{" "}
-                {getPrice(
-                  discountApplied.isPercentage
-                    ? (subTotal * discountApplied.discount) / 100
-                    : discountApplied.discount
-                )}
+                - {getPrice(discountAmount)}
               </span>
             </div>
+            <hr />
           </>
         )}
-        {freeShipping &&
-          (shippingPriceApplied
-            ? subTotal - generals.shipping_price
-            : subTotal) < freeShipping && (
+        {freeShipping && initialSubTotal < freeShipping && (
+          <>
             <div className="flex justify-between items-center font-medium">
               <span className="text-sm">Kargo Ücreti :</span>
               <span className="text-red-500">
                 + {getPrice(generals.shipping_price)}
               </span>
             </div>
-          )}
-        <hr />
+            <hr />
+          </>
+        )}
         <div className="flex justify-between font-medium items-center text-green-500 text-lg">
           <span>Net Ücret :</span>
           <span>{getPrice(subTotal)}</span>
         </div>
-        <small>Fiyatlarımıza KDV dahildir.</small>
+        {isDetail && <small>Fiyatlarımıza KDV dahildir.</small>}
       </div>
       <div
         className={`flex flex-col w-full ${
@@ -225,13 +227,11 @@ function BasketProperty({
           <>
             {freeShipping > 0 ? (
               <div className="flex flex-col gap-2 w-full">
-                {(shippingPriceApplied
-                  ? subTotal - generals.shipping_price
-                  : subTotal) < freeShipping ? (
+                {calculateShippingProgress() !== 100 ? (
                   <span className="text-sm">
                     Ücretsiz kargodan yararlanmak için{" "}
                     <strong className="text-red-500">
-                      {getPrice(freeShipping - subTotal)}
+                      {getPrice(freeShipping - initialSubTotal)}
                     </strong>{" "}
                     değerinde ürün ekleyiniz.
                   </span>
@@ -245,20 +245,12 @@ function BasketProperty({
                 <div className="flex items-center gap-4">
                   <div
                     className={`relative w-full h-3 rounded-full overflow-hidden bg-gray-200  ${
-                      freeShipping >
-                      (shippingPriceApplied
-                        ? subTotal - generals.shipping_price
-                        : subTotal)
-                        ? "animate-pulse"
-                        : ""
+                      calculateShippingProgress() !== 100 ? "animate-pulse" : ""
                     }`}
                   >
                     <div
                       className={`absolute top-0 left-0 h-full ${
-                        freeShipping >
-                        (shippingPriceApplied
-                          ? subTotal - generals.shipping_price
-                          : subTotal)
+                        calculateShippingProgress() !== 100
                           ? "bg-site"
                           : "bg-green-500"
                       }  w-[0%] transition-all duration-300 bg-[length:15px_15px]`}
@@ -270,10 +262,7 @@ function BasketProperty({
                   </div>
                   <span
                     className={`text-xs font-semibold ${
-                      freeShipping >
-                      (shippingPriceApplied
-                        ? subTotal - generals.shipping_price
-                        : subTotal)
+                      calculateShippingProgress() !== 100
                         ? "text-site"
                         : "text-green-500"
                     }`}
