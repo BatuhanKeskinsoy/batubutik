@@ -3,6 +3,7 @@ import BasketProductItem from "@/components/(front)/Basket/BasketProductItem";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
 
 interface IBasketProductsProps {
+  isDetail?: boolean;
   products: basketProductTypes[] | null;
   handleUpdateQuantity: (
     productCode: string,
@@ -16,6 +17,7 @@ interface IBasketProductsProps {
 }
 
 function BasketProducts({
+  isDetail,
   products,
   handleUpdateQuantity,
   onRemoveItem,
@@ -26,6 +28,7 @@ function BasketProducts({
       {products.map((product, key) => (
         <div key={key} className="border-b pb-6 last:border-0">
           <BasketProductItem
+            isDetail={isDetail}
             product={product}
             onUpdateQuantity={(newQuantity) =>
               handleUpdateQuantity(

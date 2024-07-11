@@ -4,11 +4,12 @@ import Link from "next/link";
 import React from "react";
 import { generals } from "@/constants/(front)";
 import { IoCloseOutline } from "react-icons/io5";
-import Basket from "@/components/(front)/inc/Sidebar/Basket";
+import Basket from "@/components/(front)/inc/Sidebar/Basket/Basket";
 import Favorite from "@/components/(front)/inc/Sidebar/Favorite";
 import NavMenu from "@/components/(front)/inc/Sidebar/NavMenu";
 import Search from "@/components/(front)/inc/Sidebar/Search";
 import Auth from "@/components/(front)/inc/Sidebar/Auth";
+import Image from "next/image";
 
 function Sidebar() {
   const { sidebarStatus, setSidebarStatus } = useGlobalContext();
@@ -43,7 +44,17 @@ function Sidebar() {
                     title={generals.site_name}
                     className="capitalize font-medium font-gemunu text-4xl text-site"
                   >
-                    {generals.site_name}
+                    {generals.logo ? (
+                      <Image
+                        src={generals.logo}
+                        alt="Logo"
+                        title={generals.site_name}
+                        height={40}
+                        width={150}
+                      />
+                    ) : (
+                      <span>{generals.site_name}</span>
+                    )}
                   </Link>
                 </div>
               ) : null}

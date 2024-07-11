@@ -1,23 +1,30 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import BasketProducts from "@/components/(front)/Basket/BasketProducts";
-import { getPrice } from "@/components/functions/getPrice";
-import Link from "next/link";
-import CustomButton from "@/components/others/CustomButton";
 import { useGlobalContext } from "@/app/Context/store";
 import { instantProducts, generals } from "@/constants/(front)";
 import { IoFileTrayOutline } from "react-icons/io5";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
+import BasketProperty from "@/components/(front)/inc/Sidebar/Basket/BasketProperty";
 
-function Basket() {
+interface IBasketProps {
+  isDetail?: boolean;
+}
+
+function Basket({ isDetail }: IBasketProps) {
   const { basketItems, setBasketItems } = useGlobalContext();
-  const [loadingEmptyBasket, setLoadingEmptyBasket] = useState(false);
+  const [subTotal, setSubTotal] = useState(0);
+  const [discountApplied, setDiscountApplied] = useState<{
+    status: boolean;
+    prevPrice: number;
+    discount: number;
+    isPercentage: boolean;
+  }>({ status: false, prevPrice: 0, discount: 0, isPercentage: false });
+  const [shippingPriceApplied, setShippingPriceApplied] = useState(false);
   const [basketProducts, setBasketProducts] = useState<
     basketProductTypes[] | null
   >(null);
-  const [subTotal, setSubTotal] = useState(0);
-
   const freeShipping: number | null = generals.free_shipping;
 
   const mergeSameProducts = (products: basketProductTypes[]) => {
@@ -64,18 +71,41 @@ function Basket() {
   }, [basketItems]);
 
   const calculateSubTotal = useCallback(() => {
-    return (
-      basketProducts &&
-      basketProducts.reduce((acc, product) => {
-        return acc + (product.price || 0) * (product.quantity || 0);
-      }, 0)
-    );
+    if (!basketProducts || basketProducts.length === 0) {
+      return 0;
+    }
+    return basketProducts.reduce((acc, product) => {
+      return acc + (product.price || 0) * (product.quantity || 0);
+    }, 0);
   }, [basketProducts]);
 
   useEffect(() => {
     const subtotal = calculateSubTotal();
-    subtotal && setSubTotal(subtotal);
-  }, [calculateSubTotal]);
+
+    // If no discount applied, check if free shipping is applicable
+    let newSubTotal = subtotal;
+    if (freeShipping !== null && newSubTotal < freeShipping) {
+      newSubTotal += generals.shipping_price;
+      setShippingPriceApplied(true);
+    }
+    // Check if discount is applied
+    if (discountApplied.status) {
+      // If discount is applied, use the discounted subtotal
+      let newSubTotal = subtotal - discountApplied.discount;
+
+      // Check if free shipping threshold is applicable after discount
+      if (freeShipping !== null && newSubTotal < freeShipping) {
+        newSubTotal += generals.shipping_price;
+        setShippingPriceApplied(true);
+      }
+
+      // Update the subtotal
+      setSubTotal(newSubTotal);
+    } else {
+      // Update the subtotal
+      setSubTotal(newSubTotal);
+    }
+  }, [calculateSubTotal, discountApplied]);
 
   const handleUpdateQuantity = useCallback(
     (
@@ -161,35 +191,13 @@ function Basket() {
         setBasketItems(updatedBasketItems);
       }
     } else {
-      // If basketProducts is null, set prevBasketItems to null
       const prevBasketItems = null;
-      // Check if prevBasketItems is different from null
       if (prevBasketItems !== null) {
         localStorage.setItem("basketItems", JSON.stringify(null));
         setBasketItems(null);
       }
     }
   }, [basketProducts, setBasketItems]);
-
-  const handleEmptyBasket = () => {
-    if (!loadingEmptyBasket) {
-      setLoadingEmptyBasket(true);
-      setTimeout(() => {
-        localStorage.removeItem("basketItems");
-        setBasketProducts(null);
-        setBasketItems(null);
-        setLoadingEmptyBasket(false);
-      }, 1000);
-    }
-  };
-
-  const calculateShippingProgress = () => {
-    if (freeShipping !== null) {
-      const progress = (subTotal / freeShipping) * 100;
-      return progress >= 100 ? 100 : progress;
-    }
-    return 0;
-  };
 
   if (!basketProducts)
     return (
@@ -202,92 +210,61 @@ function Basket() {
         </div>
       </div>
     );
-  return (
-    <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
-      <div className="flex flex-col w-full overflow-y-auto h-full lg:px-8 px-4 py-4">
-        <BasketProducts
-          products={basketProducts}
-          handleUpdateQuantity={(productCode, newQuantity, attributes) =>
-            handleUpdateQuantity(productCode, newQuantity, attributes)
-          }
-          onRemoveItem={(productCode, attributes) =>
-            handleRemoveItem(productCode, attributes)
-          }
-        />
-      </div>
-      <div className="flex items-center justify-between w-full bg-gray-200 lg:px-8 px-4 py-4 font-semibold">
-        <span>Ara Toplam :</span>
-        <span>{getPrice(subTotal)}</span>
-      </div>
-      <div className="flex flex-col w-full lg:px-8 px-4 py-4 items-center text-center gap-4">
-        {freeShipping !== null && (
-          <>
-            {freeShipping > 0 ? (
-              <div className="flex flex-col gap-2 w-full">
-                {subTotal < freeShipping ? (
-                  <span className="text-sm">
-                    Ücretsiz kargodan yararlanmak için{" "}
-                    <strong className="text-red-500">
-                      {getPrice(freeShipping - subTotal)}
-                    </strong>{" "}
-                    değerinde ürün ekleyiniz.
-                  </span>
-                ) : (
-                  <span className="text-sm">
-                    Tebrikler! Bu Siparişinizde{" "}
-                    <strong className="text-green-500">KARGO ÜCRETSİZ</strong>
-                  </span>
-                )}
 
-                <div className="flex items-center gap-4">
-                  <div
-                    className={`relative w-full h-3 rounded-full overflow-hidden bg-gray-200  ${
-                      freeShipping > subTotal ? "animate-pulse" : ""
-                    }`}
-                  >
-                    <div
-                      className={`absolute top-0 left-0 h-full ${
-                        freeShipping > subTotal ? "bg-site" : "bg-green-500"
-                      }  w-[0%] transition-all duration-300 bg-[length:15px_15px]`}
-                      style={{
-                        width: `${calculateShippingProgress()}%`,
-                        backgroundImage: `linear-gradient(135deg,rgba(255,255,255,.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.2) 75%,transparent 75%,transparent)`,
-                      }}
-                    ></div>
-                  </div>
-                  <span
-                    className={`text-xs font-semibold ${
-                      freeShipping > subTotal ? "text-site" : "text-green-500"
-                    }`}
-                  >
-                    {`${calculateShippingProgress()}%`}
-                  </span>
-                </div>
-              </div>
-            ) : (
-              <span className="text-sm">
-                <strong className="text-green-500">KARGO ÜCRETSİZ</strong>
-              </span>
-            )}
-          </>
-        )}
-        <hr className="w-full" />
-        <div className="flex lg:flex-row flex-col items-center gap-2 w-full">
-          <Link
-            href={"/sepet"}
-            className="py-3 px-4 w-full bg-site/80 text-white rounded-md hover:bg-site transition-all duration-300"
-          >
-            Sepete Git
-          </Link>
-          <CustomButton
-            title={
-              !loadingEmptyBasket ? "Sepeti Boşalt" : "Sepet Boşaltılıyor.."
+  return (
+    <div className={isDetail ? "flex lg:flex-row flex-col gap-8" : ""}>
+      <div
+        className={`flex ${
+          !isDetail ? "h-[calc(100dvh-77px)]" : "lg:w-3/4"
+        } flex-col w-full justify-between`}
+      >
+        <div
+          className={`flex flex-col w-full ${
+            !isDetail ? "overflow-y-auto lg:px-8 px-4" : ""
+          } h-full py-4`}
+        >
+          <BasketProducts
+            isDetail={isDetail}
+            products={basketProducts}
+            handleUpdateQuantity={(productCode, newQuantity, attributes) =>
+              handleUpdateQuantity(productCode, newQuantity, attributes)
             }
-            containerStyles="py-3 px-4 w-full bg-gray-200 text-gray-600 rounded-md hover:bg-gray-700 hover:text-white transition-all duration-300"
-            handleClick={handleEmptyBasket}
+            onRemoveItem={(productCode, attributes) =>
+              handleRemoveItem(productCode, attributes)
+            }
           />
         </div>
+        {!isDetail && (
+          <BasketProperty
+            isDetail
+            subTotal={subTotal}
+            basketProducts={basketProducts}
+            setBasketProducts={setBasketProducts}
+            setBasketItems={setBasketItems}
+            setSubTotal={setSubTotal}
+            discountApplied={discountApplied}
+            setDiscountApplied={setDiscountApplied}
+            shippingPriceApplied={shippingPriceApplied}
+            freeShipping={freeShipping}
+          />
+        )}
       </div>
+      {isDetail && (
+        <div className="lg:w-1/4 w-full">
+          <BasketProperty
+            isDetail
+            subTotal={subTotal}
+            basketProducts={basketProducts}
+            setBasketProducts={setBasketProducts}
+            setBasketItems={setBasketItems}
+            setSubTotal={setSubTotal}
+            discountApplied={discountApplied}
+            setDiscountApplied={setDiscountApplied}
+            shippingPriceApplied={shippingPriceApplied}
+            freeShipping={freeShipping}
+          />
+        </div>
+      )}
     </div>
   );
 }

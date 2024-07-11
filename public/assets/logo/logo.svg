@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150" height="30" viewBox="0 0 150 30">
+  <defs>
+    <clipPath id="clip-logo">
+      <rect width="150" height="30"/>
+    </clipPath>
+  </defs>
+  <g id="logo" clip-path="url(#clip-logo)">
+    <text id="Batubutik" transform="translate(-1 29)" fill="#fa2d93" font-size="42" font-family="GemunuLibre-SemiBold, Gemunu Libre" font-weight="600"><tspan x="0" y="0">Batubutik</tspan></text>
+  </g>
+</svg>

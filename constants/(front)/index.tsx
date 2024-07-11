@@ -1,6 +1,8 @@
 export const generals = {
+  logo: "/assets/logo/logo.svg",
   site_name: "Batubutik",
   free_shipping: 1000,
+  shipping_price: 50,
   socials: [
     { platform: "Facebook", url: "/" },
     { platform: "Twitter", url: "/" },
@@ -25,14 +27,6 @@ export const generals = {
 };
 
 export const navLinks = [
-  {
-    title: "Anasayfa",
-    url: "/",
-  },
-  {
-    title: "Mağaza",
-    url: "/magaza",
-  },
   {
     title: "Blog",
     url: "/blog",
@@ -513,3 +507,21 @@ export const instantProductDetail = {
   created_at: new Date("2024-06-14T13:24:59.000000Z"),
   updated_at: null,
 };
+
+export const discountCodes = [
+  {
+    code: "CODE01",
+    isPercentage: true,
+    discount: 10,
+  },
+  {
+    code: "CODE02",
+    isPercentage: false,
+    discount: 200,
+  },
+  {
+    code: "CODE03",
+    isPercentage: true,
+    discount: 20,
+  },
+];

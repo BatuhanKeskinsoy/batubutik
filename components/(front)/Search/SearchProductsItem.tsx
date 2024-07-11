@@ -122,7 +122,7 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
               <Link
                 href={"/"}
                 title={`${product.brand && product.brand} ${product.title}`}
-                className="font-medium line-clamp-1 transition-all duration-300 hover:text-site text-lg"
+                className="font-medium line-clamp-1 transition-all duration-300 hover:text-site text-lg w-fit"
               >
                 <span className="font-extrabold">
                   {product.brand && product.brand}

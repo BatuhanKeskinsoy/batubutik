@@ -171,7 +171,7 @@ function ProductArea({
 
   return (
     <div
-      className={`lg:grid lg:grid-cols-2 lg:gap-8 gap-4 max-lg:flex max-lg:flex-col h-full ${
+      className={`lg:grid lg:grid-cols-2 lg:gap-6 gap-4 max-lg:flex max-lg:flex-col h-full ${
         isDetail ? "lg:min-h-[780px]" : ""
       } w-full`}
     >

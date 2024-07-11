@@ -10,6 +10,7 @@ import Subscribe from "@/components/(front)/inc/Subscribe";
 import Link from "next/link";
 import { generals, categories } from "@/constants/(front)";
 import { getSocialIcon } from "@/components/functions/getSocialIcon";
+import Image from "next/image";
 
 function Footer() {
   const router = useRouter();
@@ -55,7 +56,17 @@ function Footer() {
                   className="capitalize font-medium font-gemunu text-5xl text-site w-fit"
                   title={generals.site_name}
                 >
-                  {generals.site_name}
+                  {generals.logo ? (
+                    <Image
+                      src={generals.logo}
+                      alt="Logo"
+                      title={generals.site_name}
+                      height={40}
+                      width={150}
+                    />
+                  ) : (
+                    <span>{generals.site_name}</span>
+                  )}
                 </Link>
                 <p>
                   2005 yılından bu yana kadın iç giyim sektöründe hizmet

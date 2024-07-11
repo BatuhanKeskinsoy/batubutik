@@ -12,11 +12,12 @@ import Sidebar from "@/components/(front)/inc/Sidebar/Sidebar";
 import Loading from "@/components/others/Loading";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { generals, navLinks } from "@/constants/(front)";
+import { categories, generals, navLinks } from "@/constants/(front)";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { getPrice } from "@/components/functions/getPrice";
 import { getSocialIcon } from "@/components/functions/getSocialIcon";
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,10 +60,12 @@ function Header() {
   };
 
   const getLinkClasses = (url: string) => {
-    if (pathname === '/' && url === '/') {
+    if (pathname === "/" && url === "/") {
       return "text-site";
     }
-    return pathname.startsWith(url) && url !== '/' ? "text-site" : "hover:text-site";
+    return pathname.startsWith(url) && url !== "/"
+      ? "text-site"
+      : "hover:text-site";
   };
   return (
     <>
@@ -125,7 +128,17 @@ function Header() {
                   title={generals.site_name}
                   className="capitalize font-medium font-gemunu text-4xl text-site"
                 >
-                  {generals.site_name}
+                  {generals.logo ? (
+                    <Image
+                      src={generals.logo}
+                      alt="Logo"
+                      title={generals.site_name}
+                      height={40}
+                      width={150}
+                    />
+                  ) : (
+                    <span>{generals.site_name}</span>
+                  )}
                 </Link>
               </div>
               <div className="max-lg:hidden w-0.5 h-full border-r border-gray-200 order-2"></div>
@@ -137,7 +150,25 @@ function Header() {
                   }
                   handleClick={() => setSidebarStatus("MobileMenu")}
                 />
-                <nav className="flex items-center text-lg font-gemunu tracking-wide *:px-3 *:flex *:items-center *:h-full *:transition-all *:duration-300 max-lg:hidden">
+                <nav className="flex items-center text-lg font-gemunu tracking-wide *:px-3 *:flex *:items-center *:h-full *:transition-all *:duration-300 *:min-w-max max-lg:hidden">
+                  <CustomButton
+                    title={"Anasayfa"}
+                    containerStyles={getLinkClasses(`/`)}
+                    handleClick={() => handleNavLink(`/`)}
+                  />
+                  {categories &&
+                    categories.map((category, key) => (
+                      <CustomButton
+                        key={key}
+                        title={category.name}
+                        containerStyles={getLinkClasses(
+                          `/magaza/${category.slug}`
+                        )}
+                        handleClick={() =>
+                          handleNavLink(`/magaza/${category.slug}`)
+                        }
+                      />
+                    ))}
                   {navLinks.map((link, key) => (
                     <CustomButton
                       key={key}

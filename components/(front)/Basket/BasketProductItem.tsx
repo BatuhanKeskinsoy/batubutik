@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { IoAdd, IoBagRemoveOutline, IoRemove } from "react-icons/io5";
 
 interface IBasketProductItemProps {
+  isDetail?: boolean;
   product: basketProductTypes;
   onUpdateQuantity: (
     newQuantity: number,
@@ -20,6 +21,7 @@ interface IBasketProductItemProps {
 }
 
 function BasketProductItem({
+  isDetail,
   product,
   onUpdateQuantity,
   onRemoveItem,
@@ -66,9 +68,13 @@ function BasketProductItem({
     <div className="flex gap-4 items-center">
       {product.images && (
         <Link
-          href={"/"}
+          href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
           title={`${product.brand && product.brand} ${product.title}`}
-          className="relative lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40 rounded-2xl shadow-lg shadow-gray-400 overflow-hidden transition-all duration-300 hover:scale-95"
+          className={`relative  rounded-2xl shadow-lg shadow-gray-400 overflow-hidden transition-all duration-300 hover:scale-95 ${
+            !isDetail
+              ? "lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40"
+              : "lg:min-w-[150px] lg:w-[150px] lg:h-[234px] min-w-28 w-28 h-44"
+          }`}
         >
           <Image
             src={product.images[0]}
@@ -88,24 +94,32 @@ function BasketProductItem({
           )}
         </Link>
       )}
-      <div className="flex flex-col justify-around h-full items-start gap-2 w-full">
+      <div className={`flex flex-col justify-around h-full items-start  w-full ${!isDetail ? "gap-2" : "lg:gap-8 gap-4"}`}>
         <div className="flex flex-col gap-2 w-full h-full justify-around">
-          <div className="flex flex-col w-full gap-1">
+          <div className={`flex flex-col w-full ${!isDetail ? "gap-1" : "lg:gap-2 gap-1"}`}>
             <Link
-              href={"/"}
+              href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
               title={`${product.brand && product.brand} ${product.title}`}
-              className="font-medium line-clamp-1 transition-all duration-300 hover:text-site text-lg"
+              className={`font-medium line-clamp-1 transition-all duration-300 hover:text-site w-fit ${
+                !isDetail ? "text-lg" : "lg:text-2xl text-xl"
+              }`}
             >
               <span className="font-extrabold">
                 {product.brand && product.brand}
               </span>{" "}
               {product.title}
             </Link>
-            <span className="text-gray-500 text-xs">
+            <span
+              className={`text-gray-500 ${!isDetail ? "text-xs" : "text-base"}`}
+            >
               {product.mainCategory}
               {product.category && ` / ${product.category}`}
             </span>
-            <div className="flex text-xs flex-wrap gap-x-2 gap-y-1 line-clamp-2 max-w-full">
+            <div
+              className={`flex  flex-wrap gap-x-2 gap-y-1 line-clamp-2 max-w-full ${
+                !isDetail ? "text-xs" : "text-base"
+              }`}
+            >
               {product.attributes &&
                 product.attributes?.map((attr, key) => (
                   <div
@@ -120,11 +134,15 @@ function BasketProductItem({
                 ))}
             </div>
           </div>
-          <div className="flex items-center text-sm gap-2">
+          <div
+            className={`flex items-center  gap-2 ${
+              !isDetail ? "text-sm" : "lg:text-lg text-base"
+            }`}
+          >
             <span
               className={`font-medium ${
                 product.discount > 0 ? "text-green-500 text-base" : ""
-              }`}
+              } ${!isDetail ? "" : "lg:!text-2xl !text-xl"}`}
             >
               {getPrice(product.price)}
             </span>
@@ -145,7 +163,7 @@ function BasketProductItem({
                   ? decreaseQuantity
                   : handleRemoveItem
               }
-              containerStyles={`bg-white p-1 border border-gray-200 rounded-lg transition-all duration-300 hover:text-white hover:bg-site group`}
+              containerStyles="bg-white p-2 border border-gray-200 rounded-lg transition-all duration-300 hover:text-white hover:bg-site group"
               leftIcon={
                 !loadingQuantity ? (
                   productQuantity > 1 ? (
@@ -158,12 +176,12 @@ function BasketProductItem({
                 )
               }
             />
-            <span className="select-none">{productQuantity}</span>
+            <span className={`select-none ${!isDetail ? "text-base" : "lg:text-xl text-base"}`}>{productQuantity}</span>
             <CustomButton
               handleClick={
                 product.stock > productQuantity ? increaseQuantity : undefined
               }
-              containerStyles={`bg-white p-1 border border-gray-200 rounded-lg transition-all duration-300 group ${
+              containerStyles={`bg-white p-2 border border-gray-200 rounded-lg transition-all duration-300 group ${
                 product.stock > productQuantity
                   ? "hover:text-white hover:bg-site"
                   : "opacity-50 cursor-not-allowed"

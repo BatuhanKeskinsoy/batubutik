@@ -7,7 +7,17 @@ function Loading() {
     <div className="z-50 w-screen h-full fixed overflow-hidden left-0 top-0 bg-white">
       <div className="flex h-screen w-screen justify-center items-center">
         <span className="capitalize font-medium font-gemunu text-4xl text-site select-none animate-scaleMobile lg:animate-scaleDesktop">
-          {generals.site_name}
+          {generals.logo ? (
+            <Image
+              src={generals.logo}
+              alt="Logo"
+              title={generals.site_name}
+              height={40}
+              width={150}
+            />
+          ) : (
+            <span>{generals.site_name}</span>
+          )}
         </span>
         {/* <Image
           src={"/logo/logo.svg"}

@@ -1,10 +1,23 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoChevronUpOutline, IoLogoWhatsapp } from "react-icons/io5";
 import CustomButton from "@/components/others/CustomButton";
 
 const ScrollTopButton = () => {
+  const [isTop, setIsTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      setIsTop(scrollTop === 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleScrollTop = () => {
     window.scrollTo({
       top: 0,
@@ -14,7 +27,11 @@ const ScrollTopButton = () => {
   return (
     <CustomButton
       leftIcon={<IoChevronUpOutline className="text-4xl" />}
-      containerStyles="bg-site/80 hover:bg-site hover:translate-x-0"
+      containerStyles={`bg-site/80 hover:bg-site hover:translate-x-0 transition-all duration-300 ${
+        isTop
+          ? "pointer-events-none !translate-x-20"
+          : "pointer-events-auto translate-x-0"
+      }`}
       handleClick={handleScrollTop}
     />
   );

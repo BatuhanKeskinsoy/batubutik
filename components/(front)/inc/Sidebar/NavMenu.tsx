@@ -3,7 +3,7 @@ import { useGlobalContext } from "@/app/Context/store";
 import { getPrice } from "@/components/functions/getPrice";
 import { getSocialIcon } from "@/components/functions/getSocialIcon";
 import CustomButton from "@/components/others/CustomButton";
-import { generals, navLinks } from "@/constants/(front)";
+import { categories, generals, navLinks } from "@/constants/(front)";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
@@ -31,7 +31,21 @@ function NavMenu() {
   return (
     <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
       <div className="flex flex-col w-full">
-        <nav className="flex flex-col items-start text-lg font-gemunu tracking-wide *:px-4 *:py-2 *:flex *:items-center *:h-full *:transition-all *:duration-300 *:border-b last:*:border-b-0 *:w-full">
+        <nav className="flex flex-col items-start text-lg font-gemunu tracking-wide *:px-4 *:py-2 *:flex *:items-center *:h-full *:transition-all *:duration-300 *:border-b last:*:border-b-0 *:w-full *:min-w-max">
+          <CustomButton
+            title={"Anasayfa"}
+            containerStyles={getLinkClasses(`/`)}
+            handleClick={() => handleNavLink(`/`)}
+          />
+          {categories &&
+            categories.map((category, key) => (
+              <CustomButton
+                key={key}
+                title={category.name}
+                containerStyles={getLinkClasses(`/magaza/${category.slug}`)}
+                handleClick={() => handleNavLink(`/magaza/${category.slug}`)}
+              />
+            ))}
           {navLinks.map((link, key) => (
             <CustomButton
               key={key}
@@ -69,7 +83,7 @@ function NavMenu() {
             )}
             {generals.phone && (
               <Link
-              href={`tel:${generals.phone}`}
+                href={`tel:${generals.phone}`}
                 className="flex items-center gap-2 hover:text-site transition-all duration-300 p-4 bg-gray-100"
               >
                 <IoCallOutline className="text-2xl" />
