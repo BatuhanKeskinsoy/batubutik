@@ -236,7 +236,7 @@ function Basket({ isDetail }: IBasketProps) {
         </div>
         {!isDetail && (
           <BasketProperty
-            isDetail
+            isDetail={isDetail}
             subTotal={subTotal}
             basketProducts={basketProducts}
             setBasketProducts={setBasketProducts}
@@ -252,7 +252,7 @@ function Basket({ isDetail }: IBasketProps) {
       {isDetail && (
         <div className="lg:w-1/4 w-full">
           <BasketProperty
-            isDetail
+            isDetail={isDetail}
             subTotal={subTotal}
             basketProducts={basketProducts}
             setBasketProducts={setBasketProducts}

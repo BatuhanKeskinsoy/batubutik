@@ -5,12 +5,12 @@ import { IoChevronUpOutline, IoLogoWhatsapp } from "react-icons/io5";
 import CustomButton from "@/components/others/CustomButton";
 
 const ScrollTopButton = () => {
-  const [isTop, setIsTop] = useState(false);
+  const [isTop, setIsTop] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      setIsTop(scrollTop === 0);
+      setIsTop(scrollTop <= 300);
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -24,6 +24,7 @@ const ScrollTopButton = () => {
       behavior: "smooth",
     });
   };
+
   return (
     <CustomButton
       leftIcon={<IoChevronUpOutline className="text-4xl" />}

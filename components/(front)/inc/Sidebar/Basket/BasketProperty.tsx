@@ -7,6 +7,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getPrice } from "@/components/functions/getPrice";
 import { discountCodes, generals } from "@/constants/(front)";
 import { IoChevronForwardOutline, IoCloseOutline } from "react-icons/io5";
+import { useGlobalContext } from "@/app/Context/store";
 
 interface IBasketPropertyProps {
   isDetail?: boolean;
@@ -47,6 +48,8 @@ function BasketProperty({
 }: IBasketPropertyProps) {
   const [loadingEmptyBasket, setLoadingEmptyBasket] = useState(false);
   const [discountCode, setDiscountCode] = useState<string | null>(null);
+
+  const { setSidebarStatus } = useGlobalContext();
 
   const handleEmptyBasket = () => {
     if (!loadingEmptyBasket) {
@@ -95,6 +98,16 @@ function BasketProperty({
       console.log("Geçersiz İndirim Kodu!");
     }
   };
+
+  useEffect(() => {
+    if (discountApplied.status) {
+      const nonDiscountSubTotal = subTotal + discountApplied.discount;
+      setDiscountApplied((prev) => ({
+        ...prev,
+        prevPrice: nonDiscountSubTotal,
+      }));
+    }
+  }, [subTotal, discountApplied.status]);
 
   return (
     <div className="flex flex-col lg:gap-2 w-full sticky top-28">
@@ -158,14 +171,11 @@ function BasketProperty({
             <div className="flex justify-between items-center font-medium">
               <span className="text-sm">İndirimsiz Fiyat :</span>
               <span>
-                {getPrice(
-                  freeShipping &&
-                    (shippingPriceApplied
-                      ? subTotal - generals.shipping_price
-                      : subTotal) < freeShipping
-                    ? discountApplied.prevPrice - generals.shipping_price
-                    : discountApplied.prevPrice
-                )}
+                {freeShipping && subTotal < freeShipping
+                  ? getPrice(
+                      discountApplied.prevPrice - generals.shipping_price
+                    )
+                  : getPrice(discountApplied.prevPrice)}
               </span>
             </div>
             <div className="flex justify-between items-center font-medium">
@@ -194,7 +204,9 @@ function BasketProperty({
             : subTotal) < freeShipping && (
             <div className="flex justify-between items-center font-medium">
               <span className="text-sm">Kargo Ücreti :</span>
-              <span className="text-red-500">+ {getPrice(generals.shipping_price)}</span>
+              <span className="text-red-500">
+                + {getPrice(generals.shipping_price)}
+              </span>
             </div>
           )}
         <hr />
@@ -279,12 +291,22 @@ function BasketProperty({
         )}
         <hr className="w-full" />
         <div className="flex lg:flex-row flex-col items-center gap-2 w-full">
-          <Link
-            href={"/sepet"}
-            className="py-3 px-4 w-full bg-site/80 text-white rounded-md hover:bg-site transition-all duration-300"
-          >
-            Sepete Git
-          </Link>
+          {isDetail ? (
+            <Link
+              href={"/sepet"}
+              className="py-3 px-4 w-full bg-site/80 text-white rounded-md hover:bg-site transition-all duration-300"
+            >
+              Ödemeye Geç
+            </Link>
+          ) : (
+            <Link
+              href={"/sepet"}
+              className="py-3 px-4 w-full bg-site/80 text-white rounded-md hover:bg-site transition-all duration-300"
+              onClick={() => setSidebarStatus("")}
+            >
+              Sepete Git
+            </Link>
+          )}
           <CustomButton
             title={
               !loadingEmptyBasket ? "Sepeti Boşalt" : "Sepet Boşaltılıyor.."
