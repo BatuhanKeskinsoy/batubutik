@@ -3,8 +3,8 @@ import { GlobalContextProvider } from "@/app/Context/store";
 import MetaFavicon from "@/meta/Favicon";
 
 export const metadata: Metadata = {
-  title: "E-Commerce Template",
-  description: "E-Commerce Template",
+  title: "Batubutik",
+  description: "Batubutik",
 };
 
 export default function RootLayout({
