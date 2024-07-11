@@ -171,21 +171,21 @@ function ProductArea({
 
   return (
     <div
-      className={`lg:grid lg:grid-cols-2 lg:gap-6 gap-0 max-lg:flex max-lg:flex-col h-full w-full ${
-        isDetail ? "lg:min-h-[780px] container mx-auto lg:px-4" : ""
+      className={`flex max-lg:flex-col h-full w-full  ${
+        isDetail ? "container mx-auto lg:px-4 gap-4" : ""
       }`}
     >
-      <div className="flex h-full">
+      <div className="flex h-full lg:w-2/5">
         {product?.images && product.images?.length > 1 && (
           <div
-            className={`flex flex-col gap-1 max-h-full min-h-[164px] overflow-y-auto overflow-x-hidden scrollbar-thick pr-6 ${
+            className={`flex flex-col gap-1 max-h-full min-w-max pr-1 max-lg:pl-1 overflow-y-auto overflow-x-hidden scrollbar-thick ${
               isDetail ? " max-lg:pt-1" : "p-1"
             }`}
           >
             {product.images?.map((image, key) => (
               <div
                 key={key}
-                className="relative lg:min-w-[100px] min-w-[80px] lg:min-h-[calc(21%-3px)] lg:h-[calc(21%-3px)] min-h-[calc(25%-3px)] h-[calc(25%-3px)] cursor-pointer"
+                className="relative lg:min-w-[105px] min-w-[80px] lg:min-h-[calc(21%-3px)] lg:h-[calc(21%-3px)] min-h-[calc(25%-3px)] h-[calc(25%-3px)] cursor-pointer"
                 onClick={() => handleChangeCurrentImage(image)}
               >
                 <Image
@@ -208,7 +208,7 @@ function ProductArea({
 
         {currentProductImage && (
           <div
-            className={`relative w-full max-w-full h-full min-h-[500px] overflow-hidden cursor-crosshair ${
+            className={`relative w-full max-w-full h-full lg:min-h-[790px] min-h-[510px] overflow-hidden cursor-crosshair ${
               product?.images && product.images?.length > 4 ? "lg:ml-1" : ""
             }`}
             onMouseMove={handleMouseMove}
@@ -244,7 +244,7 @@ function ProductArea({
         )}
       </div>
       <div
-        className={`w-full lg:overflow-y-auto container mx-auto px-4${
+        className={`lg:w-3/5 w-full lg:overflow-y-auto container mx-auto px-4 ${
           !isDetail ? "lg:px-6 px-4 py-6" : ""
         }`}
       >
@@ -406,8 +406,8 @@ function ProductArea({
               </div>
             )}
           </div>
-          <div className="flex lg:flex-row flex-col items-center w-full lg:gap-2 gap-4">
-            <div className={`flex items-center w-full gap-2 h-[50px]`}>
+          <div className="flex lg:flex-row flex-col items-center max-lg:w-full lg:gap-2 gap-4">
+            <div className={`flex items-center max-lg:w-full gap-2 h-[50px]`}>
               <div className="flex items-center justify-between gap-3 bg-gray-100 border border-gray-200 rounded-lg p-1 h-full">
                 <CustomButton
                   handleClick={
@@ -469,7 +469,7 @@ function ProductArea({
                   )
                 }
                 textStyles="-mb-0.5"
-                containerStyles={`flex items-center w-full gap-2 justify-center h-full lg:px-12 px-2 ${
+                containerStyles={`flex items-center max-lg:w-full gap-2 justify-center h-full lg:px-20 px-2 ${
                   product && product.stock > 0
                     ? loadingAddToBasket
                       ? "bg-green-500 text-white"
