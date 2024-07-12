@@ -191,8 +191,8 @@ function ProductArea({
                 <Image
                   src={image}
                   fill
-                  quality={100}
-                  sizes="(max-width: 768px) 100%, 25%"
+                  quality={50}
+                  sizes="(max-width: 768px) 30%, 20%"
                   alt={`${product.brand && product.brand} ${product.title}`}
                   title={`${product.brand && product.brand} ${product.title}`}
                   className={`object-cover object-center transition-all duration-300 ${
