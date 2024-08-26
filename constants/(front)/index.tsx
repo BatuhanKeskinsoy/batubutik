@@ -534,5 +534,6 @@ export const users = [
     fullName: "Batuhan Keskinsoy",
     email: "batuhankeskinsoy55@gmail.com",
     password: "123456+",
+    role: "user",
   },
 ];

@@ -9,6 +9,7 @@ import { discountCodes, generals } from "@/constants/(front)";
 import { IoChevronForwardOutline, IoCloseOutline } from "react-icons/io5";
 import { useGlobalContext } from "@/app/Context/store";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface IBasketPropertyProps {
   isDetail?: boolean;
@@ -96,7 +97,7 @@ function BasketProperty({
         setSubTotal(newSubTotal);
       }
     } else {
-      console.log("Geçersiz İndirim Kodu!");
+      toast.error("Geçersiz İndirim Kodu!");
     }
   };
 

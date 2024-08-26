@@ -1,11 +1,18 @@
 "use client";
 import CustomButton from "@/components/others/CustomButton";
+import { users } from "@/constants/(front)";
+import { userAuthTypes } from "@/types/user/userAuthTypes";
+import { postLogin } from "@/utils/Auth/postLogin";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { IoCheckmark, IoLogoFacebook, IoLogoGoogle } from "react-icons/io5";
 import { toast } from "react-toastify";
 
-function Login() {
+interface ILoginProps {
+  setUser: Dispatch<SetStateAction<userAuthTypes | null>>;
+}
+
+function Login({ setUser }: ILoginProps) {
   const [loadingLogin, setLoadingLogin] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
@@ -16,16 +23,14 @@ function Login() {
 
   const handleLogin = (e: any) => {
     e.preventDefault();
+    setLoadingLogin(true);
 
-    if (!loadingLogin) {
-      setLoadingLogin(true);
-      setTimeout(() => {
-        setEmail("");
-        setPassword("");
-        toast.success(`Giriş Yapıldı. Sayın, ${email}`);
+    setTimeout(() => {
+      if (!loadingLogin) {
+        postLogin(email, password, rememberMe, setUser);
         setLoadingLogin(false);
-      }, 1000);
-    }
+      }
+    }, 1000);
   };
 
   return (
@@ -47,6 +52,7 @@ function Login() {
               placeholder="E-Posta Adresinizi giriniz"
               value={email}
               autoComplete="email"
+              inputMode="email"
               tabIndex={0}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -88,7 +94,10 @@ function Login() {
                 Beni Hatırla
               </label>
             </div>
-            <Link href={"/"} className="text-gray-500 text-sm tracking-wide min-w-max hover:text-site transition-all duration-300">
+            <Link
+              href={"/"}
+              className="text-gray-500 text-sm tracking-wide min-w-max hover:text-site transition-all duration-300"
+            >
               Şifremi Unuttum?
             </Link>
           </div>
@@ -100,14 +109,14 @@ function Login() {
           <div className="h-[1px] flex-1 bg-[#d2d6d8]"></div>
         </div>
         <div className="flex max-lg:flex-col gap-4 text-base text-gray-600">
-          <div className="flex lg:gap-2 gap-4 items-center justify-center border border-gray-200 rounded-md p-2 w-full cursor-pointer hover:bg-site/10 hover:border-site/10 hover:text-site transition-all duration-300">
+          <div className="flex lg:gap-3 gap-4 items-center justify-center border border-gray-200 rounded-md p-2 w-full cursor-pointer hover:bg-site/10 hover:border-site/10 hover:text-site transition-all duration-300">
             <IoLogoGoogle className="text-4xl" />
             <div className="flex flex-col items-start justify-center capitalize">
               <span className="font-medium text-sm">Google</span>
               <span className="font-light text-xs">İle giriş yap</span>
             </div>
           </div>
-          <div className="flex lg:gap-2 gap-4 items-center justify-center border border-gray-200 rounded-md p-2 w-full cursor-pointer hover:bg-site/10 hover:border-site/10 hover:text-site transition-all duration-300">
+          <div className="flex lg:gap-3 gap-4 items-center justify-center border border-gray-200 rounded-md p-2 w-full cursor-pointer hover:bg-site/10 hover:border-site/10 hover:text-site transition-all duration-300">
             <IoLogoFacebook className="text-4xl" />
             <div className="flex flex-col items-start justify-center capitalize">
               <span className="font-medium text-sm">Facebook</span>
@@ -120,12 +129,12 @@ function Login() {
           <CustomButton
             title={"Kayıt Ol"}
             btnType="submit"
-            containerStyles={`py-3 px-4 w-full rounded-md transition-all duration-300 bg-gray-200 hover:bg-gray-500 text-gray-600 hover:text-white`}
+            containerStyles={`py-3 px-4 w-full rounded-md transition-all duration-300 bg-gray-200 hover:bg-gray-500 text-gray-600 hover:text-white lg:order-1 order-2`}
           />
           <CustomButton
             title={!loadingLogin ? "Giriş Yap" : "Giriş Yapılıyor.."}
             btnType="submit"
-            containerStyles={`py-3 px-4 w-full rounded-md transition-all duration-300 ${
+            containerStyles={`py-3 px-4 w-full rounded-md transition-all duration-300 lg:order-2 order-1 ${
               !loadingLogin
                 ? "bg-site/80 hover:bg-site text-white"
                 : "bg-site text-white hover:bg-site"

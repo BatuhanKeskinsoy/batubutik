@@ -54,6 +54,29 @@ export const GlobalContextProvider = ({ children }: any) => {
   });
 
   useEffect(() => {
+    const userDataFromStorage =
+      (typeof window !== "undefined" && localStorage.getItem("user")) ||
+      (typeof window !== "undefined" && sessionStorage.getItem("user"));
+
+    const storedUser = userDataFromStorage
+      ? JSON.parse(userDataFromStorage)
+      : null;
+
+    setUser(() => {
+      if (storedUser) {
+        return {
+          uid: storedUser.uid,
+          fullName: storedUser.fullName,
+          email: storedUser.email,
+          role: storedUser.role,
+        };
+      } else {
+        return null;
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 1024);
     };

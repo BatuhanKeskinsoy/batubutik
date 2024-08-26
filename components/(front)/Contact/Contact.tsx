@@ -55,13 +55,13 @@ function Contact() {
                 onChange={(e) => setFullName(e.target.value)}
               />
             </label>
-            <label htmlFor="email" className="flex flex-col gap-4 w-full">
+            <label htmlFor="emailAddress" className="flex flex-col gap-4 w-full">
               <span className="text-gray-600 tracking-wide">
                 E-Posta Adresiniz
               </span>
               <input
                 type="email"
-                id="email"
+                id="emailAddress"
                 required
                 className="bg-white border border-gray-200 focus:border-site/50 rounded-lg py-3 px-6  outline-none text-lg lg:min-w-[350px] max-lg:w-full"
                 placeholder="E-Posta Adresinizi giriniz"
