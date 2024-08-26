@@ -12,9 +12,9 @@ interface ModalProps {
 
 const ModalProductDetail: React.FC<ModalProps> = ({ productDetail, onClose }) => {
   useEffect(() => {
-    document.body.classList.add('overflow-hidden');
+    document.body.classList.add('noScroll');
     return () => {
-      document.body.classList.remove('overflow-hidden');
+      document.body.classList.remove('noScroll');
     };
   }, []);
 

@@ -144,8 +144,8 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
 
   useEffect(() => {
     showProductArea
-      ? document.body.classList.add("overflow-hidden")
-      : document.body.classList.remove("overflow-hidden");
+      ? document.body.classList.add("noScroll")
+      : document.body.classList.remove("noScroll");
   }, [showProductArea]);
 
   return (

@@ -8,7 +8,7 @@ import Basket from "@/components/(front)/inc/Sidebar/Basket/Basket";
 import Favorite from "@/components/(front)/inc/Sidebar/Favorite";
 import NavMenu from "@/components/(front)/inc/Sidebar/NavMenu";
 import Search from "@/components/(front)/inc/Sidebar/Search";
-import Auth from "@/components/(front)/inc/Sidebar/Auth";
+import Auth from "@/components/(front)/inc/Sidebar/Auth/Auth";
 import Image from "next/image";
 
 function Sidebar() {

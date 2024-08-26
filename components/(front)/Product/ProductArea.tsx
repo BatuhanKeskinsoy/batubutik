@@ -175,7 +175,7 @@ function ProductArea({
         isDetail ? "container mx-auto lg:px-4 gap-4" : ""
       }`}
     >
-      <div className="flex h-full lg:w-2/5">
+      <div className={`flex h-full ${isDetail ? "lg:w-2/5" : "lg:w-1/2"}`}>
         {product?.images && product.images?.length > 1 && (
           <div
             className={`flex flex-col gap-1 max-h-full min-w-max pr-1 max-lg:pl-1 overflow-y-auto overflow-x-hidden scrollbar-thick ${
@@ -244,8 +244,8 @@ function ProductArea({
         )}
       </div>
       <div
-        className={`lg:w-3/5 w-full lg:overflow-y-auto container mx-auto px-4 ${
-          !isDetail ? "lg:px-6 px-4 py-6" : ""
+        className={` w-full lg:overflow-y-auto container mx-auto px-4 ${
+          !isDetail ? "lg:px-6 px-4 py-6 lg:w-1/2" : "lg:w-3/5"
         }`}
       >
         <div className="flex flex-col gap-6 w-full">

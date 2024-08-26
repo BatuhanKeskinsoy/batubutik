@@ -1,5 +1,6 @@
 "use client";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
+import { userAuthTypes } from "@/types/user/userAuthTypes";
 import React, {
   createContext,
   useContext,
@@ -10,6 +11,8 @@ import React, {
 } from "react";
 
 interface IContextProps {
+  user: userAuthTypes | null;
+  setUser: Dispatch<SetStateAction<userAuthTypes | null>>;
   isMobile: boolean;
   setIsMobile: Dispatch<SetStateAction<boolean>>;
   sidebarStatus: string;
@@ -21,6 +24,8 @@ interface IContextProps {
 }
 
 const GlobalContext = createContext<IContextProps>({
+  user: null,
+  setUser: (): void => {},
   isMobile: false,
   setIsMobile: (): boolean => false,
   sidebarStatus: "" /* Basket, MobileMenu, Favorite, Search, Auth */,
@@ -32,14 +37,19 @@ const GlobalContext = createContext<IContextProps>({
 });
 
 export const GlobalContextProvider = ({ children }: any) => {
+  const [user, setUser] = useState<userAuthTypes | null>(null);
   const [sidebarStatus, setSidebarStatus] = useState("");
   const [isMobile, setIsMobile] = useState(false);
-  const [basketItems, setBasketItems] = useState<basketItemTypes[] | null>(() => {
-    const localStorageBasket = typeof window !== "undefined" && localStorage.getItem("basketItems");
-    return localStorageBasket ? JSON.parse(localStorageBasket) : null;
-  });
+  const [basketItems, setBasketItems] = useState<basketItemTypes[] | null>(
+    () => {
+      const localStorageBasket =
+        typeof window !== "undefined" && localStorage.getItem("basketItems");
+      return localStorageBasket ? JSON.parse(localStorageBasket) : null;
+    }
+  );
   const [favoriteItems, setFavoriteItems] = useState<string[] | null>(() => {
-    const localStorageFavorite = typeof window !== "undefined" && localStorage.getItem("favoriteItems");
+    const localStorageFavorite =
+      typeof window !== "undefined" && localStorage.getItem("favoriteItems");
     return localStorageFavorite ? JSON.parse(localStorageFavorite) : null;
   });
 
@@ -62,9 +72,11 @@ export const GlobalContextProvider = ({ children }: any) => {
   }, []);
 
   return (
-    <body className={`${sidebarStatus !== "" ? "overflow-hidden" : ""}`}>
+    <body className={`${sidebarStatus !== "" ? "noScroll" : ""}`}>
       <GlobalContext.Provider
         value={{
+          user,
+          setUser,
           isMobile,
           setIsMobile,
           sidebarStatus,

@@ -28,6 +28,9 @@
   .scrollbar-thick::-webkit-scrollbar {
     @apply w-1.5;
   }
+  body.noScroll {
+    @apply overflow-hidden
+  }
 }
 
 .swiper-button-next,

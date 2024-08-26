@@ -526,3 +526,13 @@ export const discountCodes = [
     discount: 20,
   },
 ];
+
+
+export const users = [
+  {
+    uid: 1,
+    fullName: "Batuhan Keskinsoy",
+    email: "batuhankeskinsoy55@gmail.com",
+    password: "123456+",
+  },
+];
