@@ -87,7 +87,7 @@ function Login({ setUser }: ILoginProps) {
               />
               <label
                 htmlFor="rememberMe"
-                className={`transition-all duration-300 -mb-0.5 cursor-pointer text-gray-600 tracking-wide ${
+                className={`transition-all duration-300 -mb-0.5 cursor-pointer text-gray-600 tracking-wide select-none ${
                   rememberMe ? "text-site" : "lg:group-hover:text-site"
                 }`}
               >

@@ -31,7 +31,6 @@ export function postLogin(
         ? localStorage.setItem("user", userString)
         : sessionStorage.setItem("user", userString);
 
-      toast.success(`Giriş Yapıldı. Sayın, ${fullName}`);
     } else {
       toast.error("E-posta veya şifre hatalı");
     }
