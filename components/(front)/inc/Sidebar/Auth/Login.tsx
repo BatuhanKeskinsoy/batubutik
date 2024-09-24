@@ -2,7 +2,7 @@
 import CustomButton from "@/components/others/CustomButton";
 import { users } from "@/constants/(front)";
 import { userAuthTypes } from "@/types/user/userAuthTypes";
-import { postLogin } from "@/utils/Auth/postLogin";
+import { postLogin } from "@/lib/utils/Auth/postLogin";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { IoCheckmark, IoLogoFacebook, IoLogoGoogle } from "react-icons/io5";
@@ -128,7 +128,7 @@ function Login({ setUser }: ILoginProps) {
         <div className="flex lg:flex-row flex-col items-center gap-2 w-full">
           <CustomButton
             title={"Kayıt Ol"}
-            btnType="submit"
+            btnType="button"
             containerStyles={`py-3 px-4 w-full rounded-md transition-all duration-300 bg-gray-200 hover:bg-gray-500 text-gray-600 hover:text-white lg:order-1 order-2`}
           />
           <CustomButton

@@ -274,7 +274,7 @@ function Aside({
                         renderThumb={({ props }) => (
                           <div
                             {...props}
-                            className="w-6 h-6 bg-site border-2 border-white rounded-full outline-none lg:hover:shadow-custom-site transition-shadow duration-300"
+                            className="w-6 h-6 bg-site border-2 border-white rounded-full outline-none lg:hover:shadow-gray-200 transition-shadow duration-300"
                           />
                         )}
                       />

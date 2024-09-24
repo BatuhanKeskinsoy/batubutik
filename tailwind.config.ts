@@ -1,10 +1,12 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: ['class'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     fontFamily: {
@@ -14,6 +16,8 @@ const config: Config = {
     },
     extend: {
       container: {
+        center: true,
+        padding: '16px',
         screens: {
           xl: '1640px',
         },
@@ -57,7 +61,7 @@ const config: Config = {
         'botTransparent': "url('/theme/botTransparent.webp')",
       },
       backgroundColor: {
-        site: 'rgb(250 45 147)',
+        site: 'rgba(var(--site))',
         black: {
           100: '#999999',
           200: '#888888',
@@ -69,55 +73,19 @@ const config: Config = {
           800: '#222222',
           900: '#111111',
         },
-        customPrimary: {
-          100: '#0b2d67',
-          200: '#0b2b61',
-          300: '#0a2656',
-          400: '#081f46',
-          500: '#071a3b',
-          600: '#061632',
-          700: '#05142d',
-          800: '#030c1c',
-          900: '#010409',
-        },
-        customSecondary: {
-          100: '#53667c',
-          200: '#4b5c70',
-          300: '#425163',
-          400: '#394656',
-          500: '#303b48',
-          600: '#27303b',
-          700: '#1e252d',
-          800: '#1b2129',
-          900: '#161b22',
-        },
-      },
-      boxShadow: {
-        'custom-site': '0px 0px 0px 8px rgba(250,45,147,0.16)',
       },
       colors: {
-        site: 'rgb(250 45 147)',
-        customPrimary: {
-          100: '#0b2d67',
-          200: '#0b2b61',
-          300: '#0a2656',
-          400: '#081f46',
-          500: '#071a3b',
-          600: '#061632',
-          700: '#05142d',
-          800: '#030c1c',
-          900: '#010409',
-        },
-        customSecondary: {
-          100: '#53667c',
-          200: '#4b5c70',
-          300: '#425163',
-          400: '#394656',
-          500: '#303b48',
-          600: '#27303b',
-          700: '#1e252d',
-          800: '#1b2129',
-          900: '#161b22',
+        site: 'rgba(var(--site))',
+        black: {
+          100: '#999999',
+          200: '#888888',
+          300: '#777777',
+          400: '#666666',
+          500: '#555555',
+          600: '#444444',
+          700: '#333333',
+          800: '#222222',
+          900: '#111111',
         },
       },
     },

@@ -5,6 +5,12 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --site: 250, 45, 147;
+  }
+}
+
+@layer base {
   *::-webkit-scrollbar {
     @apply w-2 h-1;
   }
@@ -29,39 +35,34 @@
     @apply w-1.5;
   }
   body.noScroll {
-    @apply overflow-hidden
+    @apply overflow-hidden;
   }
-}
+  
 
 .swiper-button-next,
 .swiper-button-prev {
-  @apply !size-16 bg-site/50 hover:bg-site/70 select-none lg:-translate-y-16 -translate-y-20 px-8 !py-4 transition-all duration-300
+  @apply !size-16 bg-site/50 hover:bg-site/70 select-none lg:-translate-y-16 -translate-y-20 px-8 !py-4 transition-all duration-300;
 }
 
 .swiper-button-prev {
-  @apply !left-0 rounded-r-full pl-6
+  @apply !left-0 rounded-r-full pl-6;
 }
 
 .swiper-button-next {
-  @apply !right-0 rounded-l-full pr-6
+  @apply !right-0 rounded-l-full pr-6;
 }
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
-  @apply text-white !text-4xl
+  @apply text-white !text-4xl;
 }
 
-
-.customRangeSlider{
-  @apply !text-site
+.customRangeSlider {
+  @apply !text-site;
 }
 
-.customRangeSlider .css-188mx6n-MuiSlider-root{
-  @apply !text-site
-}
-
-.customRangeSlider span:hover, .Mui-focusVisible {
-  @apply !shadow-custom-site
+.customRangeSlider .css-188mx6n-MuiSlider-root {
+  @apply !text-site;
 }
 
 .dangeriousContent img {
@@ -70,4 +71,6 @@
 
 .dangeriousContent iframe {
   @apply overflow-hidden my-6 max-w-full max-lg:max-h-[220px];
+}
+
 }
