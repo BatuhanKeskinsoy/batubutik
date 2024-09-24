@@ -24,7 +24,7 @@ function NavMenu() {
     if (pathname === "/" && url === "/") {
       return "text-site";
     }
-    return pathname.startsWith(url) && url !== "/"
+    return pathname && pathname.startsWith(url) && url !== "/"
       ? "text-site"
       : "hover:text-site";
   };
