@@ -14,7 +14,7 @@ import Image from "next/image";
 
 function Footer() {
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
 
   return (
     <>
