@@ -19,14 +19,12 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
     e.preventDefault();
     setLoadingLogout(true);
 
-    setTimeout(() => {
-      if (!loadingLogout) {
-        localStorage.removeItem("user");
-        sessionStorage.removeItem("user");
-        setUser(null);
-        setLoadingLogout(false);
-      }
-    }, 1000);
+    if (!loadingLogout) {
+      localStorage.removeItem("user");
+      sessionStorage.removeItem("user");
+      setUser(null);
+      setLoadingLogout(false);
+    }
   };
   return (
     <div className="flex flex-col gap-4 w-full h-full">
@@ -52,23 +50,31 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
             <CustomButton
               title="Profilim"
               containerStyles="flex items-center gap-4 justify-between bg-gray-100 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
-              rightIcon={<IoChevronForwardOutline className="text-xl opacity-70" />}
+              rightIcon={
+                <IoChevronForwardOutline className="text-xl opacity-70" />
+              }
             />
             <CustomButton
               title="Siparişlerim"
               containerStyles="flex items-center gap-4 justify-between bg-gray-100 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
-              rightIcon={<IoChevronForwardOutline className="text-xl opacity-70" />}
+              rightIcon={
+                <IoChevronForwardOutline className="text-xl opacity-70" />
+              }
             />
             <CustomButton
               title="Favorilerim"
               containerStyles="flex items-center gap-4 justify-between bg-gray-100 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
-              rightIcon={<IoChevronForwardOutline className="text-xl opacity-70" />}
+              rightIcon={
+                <IoChevronForwardOutline className="text-xl opacity-70" />
+              }
               handleClick={() => setSidebarStatus("Favorite")}
             />
             <CustomButton
               title="Kargo Takibi"
               containerStyles="flex items-center gap-4 justify-between bg-gray-100 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
-              rightIcon={<IoChevronForwardOutline className="text-xl opacity-70" />}
+              rightIcon={
+                <IoChevronForwardOutline className="text-xl opacity-70" />
+              }
             />
             <hr className="my-2" />
             <CustomButton

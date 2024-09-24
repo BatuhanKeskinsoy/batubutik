@@ -528,7 +528,7 @@ export const discountCodes = [
 ];
 
 
-export const users = [
+/* export const users = [
   {
     uid: 1,
     fullName: "Batuhan Keskinsoy",
@@ -536,4 +536,4 @@ export const users = [
     password: "123456+",
     role: "user",
   },
-];
+]; */

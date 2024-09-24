@@ -1,6 +1,5 @@
 "use client";
 import CustomButton from "@/components/others/CustomButton";
-import { users } from "@/constants/(front)";
 import { userAuthTypes } from "@/types/user/userAuthTypes";
 import { postLogin } from "@/lib/utils/Auth/postLogin";
 import Link from "next/link";
@@ -14,23 +13,22 @@ interface ILoginProps {
 
 function Login({ setUser }: ILoginProps) {
   const [loadingLogin, setLoadingLogin] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
 
   /* FORM STATES */
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("batuhankeskinsoy55@gmail.com");
+  const [password, setPassword] = useState("123456+");
   /* FORM STATES END */
 
-  const handleLogin = (e: any) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoadingLogin(true);
 
-    setTimeout(() => {
-      if (!loadingLogin) {
-        postLogin(email, password, rememberMe, setUser);
-        setLoadingLogin(false);
-      }
-    }, 1000);
+    try {
+      await postLogin(email, password, rememberMe, setUser);
+    } finally {
+      setLoadingLogin(false);
+    }
   };
 
   return (

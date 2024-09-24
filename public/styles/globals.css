@@ -22,13 +22,11 @@
   *::-webkit-scrollbar-thumb {
     @apply bg-site;
   }
-}
-
-@layer components {
   body {
     @apply font-system text-gray-900;
   }
 }
+
 
 @layer utilities {
   .scrollbar-thick::-webkit-scrollbar {
@@ -37,7 +35,7 @@
   body.noScroll {
     @apply overflow-hidden;
   }
-  
+}
 
 .swiper-button-next,
 .swiper-button-prev {
@@ -71,6 +69,4 @@
 
 .dangeriousContent iframe {
   @apply overflow-hidden my-6 max-w-full max-lg:max-h-[220px];
-}
-
 }
