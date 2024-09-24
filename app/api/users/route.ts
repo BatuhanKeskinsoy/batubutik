@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
 type User = {
   uid: number;
@@ -8,11 +8,8 @@ type User = {
   role: string;
 };
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<User[]>
-) {
-  res.status(200).json([
+export async function GET() {
+  const users: User[] = [
     {
       uid: 1,
       fullName: "Batuhan Keskinsoy",
@@ -27,5 +24,7 @@ export default function handler(
       password: "123456",
       role: "user",
     },
-  ]);
+  ];
+
+  return NextResponse.json(users);
 }
