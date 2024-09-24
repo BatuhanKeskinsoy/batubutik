@@ -14,7 +14,7 @@ import Image from "next/image";
 
 function Footer() {
   const router = useRouter();
-  const pathname = usePathname() || "";
+  const pathname = usePathname();
 
   return (
     <>
@@ -30,7 +30,7 @@ function Footer() {
                   <IoStorefrontOutline className="text-xl max-lg:text-2xl" />
                 }
                 containerStyles={`p-2 border transition-all duration-300 rounded-full ${
-                  pathname.startsWith("/magaza")
+                  pathname && pathname.startsWith("/magaza")
                     ? "text-white border-transparent bg-site"
                     : "border-gray-200"
                 }`}
