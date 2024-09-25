@@ -1,7 +1,7 @@
 "use client";
 import CustomButton from "@/components/others/CustomButton";
 import { userAuthTypes } from "@/types/user/userAuthTypes";
-import { postLogin } from "@/lib/utils/Auth/postLogin";
+import { login } from "@/lib/utils/Auth/login";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { IoCheckmark, IoLogoFacebook, IoLogoGoogle } from "react-icons/io5";
@@ -25,7 +25,7 @@ function Login({ setUser }: ILoginProps) {
     setLoadingLogin(true);
 
     try {
-      await postLogin(email, password, rememberMe, setUser);
+      await login(email, password, rememberMe, setUser);
     } finally {
       setLoadingLogin(false);
     }

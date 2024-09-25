@@ -53,16 +53,17 @@ function Footer() {
               <div className="flex flex-col gap-4 lg:w-1/4 w-full">
                 <Link
                   href={"/"}
-                  className="capitalize font-medium font-gemunu text-5xl text-site w-fit"
+                  className="relative capitalize font-medium font-gemunu text-5xl text-site"
                   title={generals.site_name}
                 >
                   {generals.logo ? (
                     <Image
                       src={generals.logo}
-                      alt="Logo"
+                      alt={generals.site_name}
                       title={generals.site_name}
-                      height={40}
-                      width={150}
+                      width={0}
+                      height={0}
+                      className="h-10 w-auto"
                     />
                   ) : (
                     <span>{generals.site_name}</span>

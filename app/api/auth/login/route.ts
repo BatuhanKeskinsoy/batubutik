@@ -1,56 +1,59 @@
 import { getUser } from "@/lib/utils/User/getUser";
-import axios from "axios";
 import { NextResponse } from "next/server";
-
+import jwt from "jsonwebtoken";
 
 export async function POST(request: Request) {
   try {
     const { email, password } = await request.json();
 
-    // Kullanıcı verilerini çek
     let users;
     try {
-      users = await getUser(); // Burada kullanıcı verilerini çekiyoruz
+      users = await getUser();
     } catch (error) {
-      console.error("Failed to fetch users:", error);
+      console.error("Kullanıcıları alma işlemi başarısız oldu:", error);
       return NextResponse.json(
-        { message: "Failed to fetch users." },
+        { message: "Kullanıcıları alma işlemi başarısız oldu." },
         { status: 500 }
       );
     }
 
-    // Kullanıcıyı bulma
     const user = users.find(
       (user: { email: string; password: string }) =>
         user.email === email && user.password === password
     );
 
     if (user) {
-        return NextResponse.json({
+      const token = jwt.sign(
+        { uid: user.uid, email: user.email, role: user.role },
+        process.env.JWT_SECRET || "your_jwt_secret",
+        { expiresIn: "1h" }
+      );
+
+      return NextResponse.json({
         message: `Başarıyla Giriş Yaptınız`,
-        
+
         user: {
           uid: user.uid,
           fullName: user.fullName,
           email: user.email,
           role: user.role,
         },
+        token,
       });
     } else {
       return NextResponse.json(
-        { message: "Invalid email or password" },
+        { message: "E-Posta adresi veya şifre geçersiz!" },
         { status: 401 }
       );
     }
   } catch (error) {
-    console.error("Error in POST request:", error); // Hata bilgilerini konsola yazdır
+    console.error("POST işleminde bir hata oluştu :", error);
 
-    // Hata mesajını güvenli bir şekilde almak için tür koruması
     const errorMessage =
-      error instanceof Error ? error.message : "An unknown error occurred.";
+      error instanceof Error ? error.message : "Bilinmeyen bir hata oluştu.";
 
     return NextResponse.json(
-      { message: "An error occurred.", error: errorMessage },
+      { message: "Bir hata oluştu.", error: errorMessage },
       { status: 500 }
     );
   }

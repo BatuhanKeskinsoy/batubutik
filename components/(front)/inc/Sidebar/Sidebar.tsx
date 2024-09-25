@@ -47,10 +47,11 @@ function Sidebar() {
                     {generals.logo ? (
                       <Image
                         src={generals.logo}
-                        alt="Logo"
+                        alt={generals.site_name}
                         title={generals.site_name}
-                        height={40}
-                        width={150}
+                        width={0}
+                        height={0}
+                        className="h-[30px] w-auto"
                       />
                     ) : (
                       <span>{generals.site_name}</span>

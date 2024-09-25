@@ -271,12 +271,16 @@ function Aside({
                             {children}
                           </div>
                         )}
-                        renderThumb={({ props }) => (
-                          <div
-                            {...props}
-                            className="w-6 h-6 bg-site border-2 border-white rounded-full outline-none lg:hover:shadow-gray-200 transition-shadow duration-300"
-                          />
-                        )}
+                        renderThumb={({ props, index }) => {
+                          const { key, ...rest } = props;
+                          return (
+                            <div
+                              key={index}
+                              {...rest}
+                              className="w-6 h-6 bg-site border-4 border-white rounded-full outline-none lg:hover:shadow-gray-200 transition-shadow duration-300"
+                            />
+                          );
+                        }}
                       />
                     </div>
                     <div className="flex items-center justify-between gap-4 font-medium">
@@ -329,8 +333,8 @@ function Aside({
               </>
             )}
             {productAttributes &&
-              productAttributes.map((attribute, index) => (
-                <div key={index} className="flex flex-col gap-4 group/border">
+              productAttributes.map((attribute, key) => (
+                <div key={key} className="flex flex-col gap-4 group/border">
                   <span className="font-medium text-xl font-gemunu tracking-wide">
                     {attribute.attr_title}
                   </span>

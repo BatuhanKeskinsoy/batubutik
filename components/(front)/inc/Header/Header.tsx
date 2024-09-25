@@ -18,6 +18,7 @@ import { getPrice } from "@/components/functions/getPrice";
 import { getSocialIcon } from "@/components/functions/getSocialIcon";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
+import Theme from "@/components/others/Theme";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -71,7 +72,7 @@ function Header() {
     <>
       <ToastContainer />
       {loading && <Loading />}
-      <header className="relative w-full lg:h-[120px] h-20 z-20">
+      <header className="relative w-full lg:h-[120px] h-20 z-20 dark:bg-gray-600">
         <div className="h-10 w-full max-lg:hidden bg-gray-300/50">
           <div className="container px-4 mx-auto flex justify-between items-center h-full text-xs text-gray-600">
             <div className="flex items-center gap-4 h-full">
@@ -131,10 +132,11 @@ function Header() {
                   {generals.logo ? (
                     <Image
                       src={generals.logo}
-                      alt="Logo"
+                      alt={generals.site_name}
                       title={generals.site_name}
-                      height={40}
-                      width={150}
+                      width={0}
+                      height={0}
+                      className="h-[30px] w-auto"
                     />
                   ) : (
                     <span>{generals.site_name}</span>
@@ -186,6 +188,7 @@ function Header() {
                 <Search />
                 <Favorite />
               </div>
+              <Theme />
               <Basket />
             </div>
           </div>

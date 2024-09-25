@@ -46,8 +46,9 @@ function SliderFullWidth({ perView }: ISliderOneProps) {
     <Swiper
       spaceBetween={0}
       modules={[Autoplay]}
+      autoplay={{ delay: 5000 }}
+      loop={true}
       className="relative lg:bg-black-900/30 bg-black-900/50 !z-0"
-      
       breakpoints={breakpoints}
     >
       {sliderPictures.map((picture, key) => (

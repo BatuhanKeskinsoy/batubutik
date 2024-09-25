@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
 
-export function postLogin(
+export function login(
   email: string,
   password: string,
   rememberMe: boolean,
@@ -21,7 +21,7 @@ export function postLogin(
       if (res.status === 200) {
         toast(res.data.message);
 
-        const { uid, fullName, email, role } = res.data.user; // API yanıtından kullanıcı verilerini al
+        const { uid, fullName, email, role } = res.data.user;
         const userData: userAuthTypes = { uid, fullName, email, role };
         setUser(userData);
 
@@ -32,14 +32,15 @@ export function postLogin(
           sessionStorage.setItem("user", userString);
         }
 
-        const token = res.data.token; // Tokeni API yanıtından al
-        console.log(token);
-        
-        if (rememberMe) {
-          typeof window !== "undefined" && localStorage.setItem("token", token);
+        const token = res.data.token;
+        if (token) {
+          if (rememberMe) {
+            typeof window !== "undefined" && localStorage.setItem("token", token);
+          } else {
+            typeof window !== "undefined" && sessionStorage.setItem("token", token);
+          }
         } else {
-          typeof window !== "undefined" &&
-            sessionStorage.setItem("token", token);
+          console.error("Token not found in the response.");
         }
       }
     })
