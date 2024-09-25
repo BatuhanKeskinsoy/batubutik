@@ -76,7 +76,7 @@ function Basket() {
         containerStyles={`p-2 border transition-all duration-300 ${
           basketItemCount > 0
             ? "text-site border-site/30 max-lg:rounded-full lg:rounded-xl lg:rounded-tl-none lg:rounded-bl-none lg:border-l-0"
-            : " border-gray-200 rounded-full"
+            : "border-gray-200 dark:border-zinc-800 dark:text-gray-200 rounded-full"
         }`}
       />
       {basketItemCount > 0 && (

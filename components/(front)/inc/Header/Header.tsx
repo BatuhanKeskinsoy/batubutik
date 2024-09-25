@@ -66,15 +66,15 @@ function Header() {
     }
     return pathname && pathname.startsWith(url) && url !== "/"
       ? "text-site"
-      : "hover:text-site";
+      : "dark:text-gray-200 hover:text-site dark:hover:text-site";
   };
   return (
     <>
       <ToastContainer />
       {loading && <Loading />}
-      <header className="relative w-full lg:h-[120px] h-20 z-20 dark:bg-gray-600">
-        <div className="h-10 w-full max-lg:hidden bg-gray-300/50">
-          <div className="container px-4 mx-auto flex justify-between items-center h-full text-xs text-gray-600">
+      <header className="relative w-full lg:h-[120px] h-20 z-20">
+        <div className="h-10 w-full max-lg:hidden bg-gray-300/50 dark:bg-zinc-800">
+          <div className="container px-4 mx-auto flex justify-between items-center h-full text-xs text-gray-600 dark:text-gray-200">
             <div className="flex items-center gap-4 h-full">
               <div className="flex gap-2 items-center *:transition-all *:duration-300">
                 {generals.socials.map((social, key) => (
@@ -89,7 +89,7 @@ function Header() {
                   </Link>
                 ))}
               </div>
-              <div className="w-1 h-full border-r border-gray-300" />
+              <div className="w-1 h-full border-r border-gray-300 border:bg-gray-800" />
               <Link
                 href={`mailto:${generals.email}`}
                 className="flex items-center gap-2 hover:text-site transition-all duration-300"
@@ -119,7 +119,7 @@ function Header() {
         <div
           className={`h-20 shadow-lg shadow-black/10 w-full fixed transition-all duration-100 ${
             !isMobile && isScrolled ? "-translate-y-10" : ""
-          } bg-white`}
+          } bg-white dark:bg-zinc-900`}
         >
           <div className="container px-4 mx-auto flex justify-between items-center w-full h-full gap-6">
             <div className="flex gap-6 h-full items-center justify-between max-lg:w-full">
@@ -143,12 +143,12 @@ function Header() {
                   )}
                 </Link>
               </div>
-              <div className="max-lg:hidden w-0.5 h-full border-r border-gray-200 order-2"></div>
+              <div className="max-lg:hidden w-0.5 h-full border-r border-gray-200 dark:border-zinc-800 order-2"></div>
               <div className="flex lg:order-3 order-1 h-full">
                 <CustomButton
                   containerStyles="lg:hidden"
                   leftIcon={
-                    <IoMenuOutline className="text-4xl text-gray-800" />
+                    <IoMenuOutline className="text-4xl text-gray-800 dark:text-gray-200" />
                   }
                   handleClick={() => setSidebarStatus("MobileMenu")}
                 />

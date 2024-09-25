@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-const Theme: React.FC = () => {
+const Theme = () => {
   const [theme, setTheme] = useState<string>(
     typeof window !== "undefined" && localStorage.getItem("theme") === "light"
       ? "dark"
@@ -53,31 +53,41 @@ const Theme: React.FC = () => {
         }}
       />
       <div
-        className={`w-20 h-10 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center duration-300 relative`}
+        className={`w-20 h-10 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-full flex items-center duration-300 relative`}
       >
-        <div className="absolute top-1.5 left-[6px] bg-yellow-500 size-7 transition-all flex justify-center items-center rounded-full shadow-md">
+        <div
+          className={`absolute top-[5px] left-[6px] size-7 transition-transform duration-300 flex justify-center items-center ${
+            switchStatus ? "scale-100" : "scale-0"
+          }`}
+        >
           <Image
             src={"/theme/sun.svg"}
             alt="Açık Tema"
             width={0}
             height={0}
-            className="size-5"
+            className="size-6"
           />
         </div>
 
-        <div className="absolute top-1.5 right-[6px] bg-gray-400 size-7 transition-all flex justify-center items-center rounded-full shadow-md">
+        <div
+          className={`absolute top-[5px] right-[6px] size-7 transition-transform duration-300 flex justify-center items-center ${
+            !switchStatus ? "scale-100" : "scale-0"
+          }`}
+        >
           <Image
             src={"/theme/moon.svg"}
             alt="Koyu Tema"
             width={0}
             height={0}
-            className="size-5"
+            className="size-5 invert"
           />
         </div>
 
         <div
-          className={`size-7 bg-white rounded-full shadow-md z-10 transform transition-transform duration-300 ${
-            switchStatus ? "translate-x-[46px]" : "translate-x-1.5"
+          className={`size-6 rounded-full shadow-md z-10 transform transition-all duration-300 bg-site dark:bg-gray-200 ${
+            switchStatus
+              ? "translate-x-[46px] "
+              : "translate-x-[8px] "
           }`}
         ></div>
       </div>

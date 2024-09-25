@@ -15,12 +15,12 @@ function Auth() {
       {!user ? (
         <CustomButton
           leftIcon={<IoPersonOutline className="text-xl max-lg:text-2xl" />}
-          containerStyles={`p-2 border transition-all duration-300 border-gray-200 rounded-full`}
+          containerStyles={`p-2 border transition-all duration-300 border-gray-200 dark:border-zinc-800 dark:text-gray-200 rounded-full`}
         />
       ) : (
         <CustomButton
           title={getShortName(user.fullName)}
-          containerStyles={`py-1.5 px-2.5 transition-all duration-300 rounded-full bg-site/10 text-site  shadow-lg select-none font-gemunu text-lg max-lg:text-xl uppercase hover:bg-site hover:text-white`}
+          containerStyles={`py-1.5 px-2.5 transition-all duration-300 rounded-full bg-site/10 text-site shadow-lg select-none font-gemunu text-lg max-lg:text-xl uppercase hover:bg-site hover:text-white`}
         />
       )}
     </div>

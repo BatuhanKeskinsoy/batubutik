@@ -8,7 +8,7 @@ function Favorite() {
   const { setSidebarStatus, favoriteItems } = useGlobalContext();
   const [favoriteItemCount, setFavoriteItemCount] = useState<number>(0);
   const [FavoriteIcon, setFavoriteIcon] = useState(
-    <IoHeartOutline className="text-xl max-lg:text-2xl" />
+    <IoHeartOutline className="text-xl max-lg:text-2xl dark:text-gray-200" />
   );
   const [pingAnimation, setPingAnimation] = useState(false);
 
@@ -18,9 +18,9 @@ function Favorite() {
 
   useEffect(() => {
     if (favoriteItemCount > 0) {
-      setFavoriteIcon(<IoHeart className="text-xl max-lg:text-2xl" />);
+      setFavoriteIcon(<IoHeart className="text-xl max-lg:text-2xl dark:text-gray-200" />);
     } else {
-      setFavoriteIcon(<IoHeartOutline className="text-xl max-lg:text-2xl" />);
+      setFavoriteIcon(<IoHeartOutline className="text-xl max-lg:text-2xl dark:text-gray-200" />);
     }
   }, [favoriteItemCount]);
 
@@ -43,7 +43,7 @@ function Favorite() {
         containerStyles={`p-2 border transition-all duration-300 ${
           favoriteItemCount > 0
             ? "text-site border-site/30 rounded-full"
-            : " border-gray-200 rounded-full"
+            : " border-gray-200 dark:border-zinc-800 rounded-full"
         }`}
       />
       {favoriteItemCount > 0 && (
