@@ -9,7 +9,7 @@ function About() {
         <span className="font-gemunu lg:text-5xl text-3xl tracking-wider font-medium">
           Hakkımızda
         </span>
-        <div className="flex flex-col lg:gap-6 gap-4 w-full text-gray-600">
+        <div className="flex flex-col lg:gap-6 gap-4 w-full text-gray-600 dark:text-gray-400">
           <p>
             {generals.site_name} olarak 2005 yılından bu yana kadın iç giyim
             sektöründe hizmet vermekteyiz. Kurulduğumuz günden itibaren müşteri

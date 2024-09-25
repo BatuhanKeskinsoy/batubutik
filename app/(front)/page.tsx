@@ -34,7 +34,7 @@ function Home() {
         <FeaturedProducts products={instantProducts} />
       </section>
 
-      <section className="bg-gray-100 py-12">
+      <section className="bg-gray-100 dark:bg-zinc-800 py-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
             <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
@@ -61,7 +61,7 @@ function Home() {
         <BestSellingProducts products={instantProducts} />
       </section>
 
-      <section className="bg-gray-100 py-12">
+      <section className="bg-gray-100 dark:bg-zinc-800 py-12">
         <About />
       </section>
 

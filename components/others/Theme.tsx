@@ -15,15 +15,15 @@ const Theme = () => {
     if (storedTheme) {
       setTheme(storedTheme);
       if (storedTheme === "dark") {
-        document.body.classList.add("dark");
+        document.documentElement.classList.add("dark");
       }
     } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setTheme("dark");
-      document.body.classList.add("dark");
+      document.documentElement.classList.add("dark");
     }
 
     return () => {
-      document.body.classList.remove("dark");
+      document.documentElement.classList.remove("dark");
     };
   }, []);
 
@@ -31,10 +31,10 @@ const Theme = () => {
     setTheme((prevTheme) => {
       const newTheme = prevTheme === "dark" ? "light" : "dark";
       if (newTheme === "dark") {
-        document.body.classList.add("dark");
+        document.documentElement.classList.add("dark");
         localStorage.setItem("theme", "dark");
       } else {
-        document.body.classList.remove("dark");
+        document.documentElement.classList.remove("dark");
         localStorage.setItem("theme", "light");
       }
       return newTheme;

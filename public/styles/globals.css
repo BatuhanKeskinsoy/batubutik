@@ -16,14 +16,14 @@
   }
 
   *::-webkit-scrollbar-track {
-    @apply bg-gray-200;
+    @apply bg-gray-200 dark:bg-zinc-800;
   }
 
   *::-webkit-scrollbar-thumb {
     @apply bg-site;
   }
   body {
-    @apply font-system text-gray-900;
+    @apply font-system text-gray-900 dark:text-gray-200 bg-white dark:bg-zinc-900
   }
 }
 
