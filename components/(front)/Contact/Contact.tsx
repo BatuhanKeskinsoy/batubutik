@@ -36,34 +36,39 @@ function Contact() {
         <span className="font-gemunu text-3xl tracking-wider font-medium">
           Bize Ulaşın
         </span>
-        <hr />
+        <hr className="dark:border-zinc-800" />
         <form
           onSubmit={(e) => handleContact(e)}
           className="flex flex-col w-full gap-6"
         >
           <div className="flex lg:flex-row flex-col items-center gap-6 w-full">
             <label htmlFor="fullname" className="flex flex-col gap-4 w-full">
-              <span className="text-gray-600 tracking-wide">İsminiz</span>
+              <span className="text-gray-600 dark:text-gray-200 tracking-wide">
+                İsminiz
+              </span>
               <input
                 type="text"
                 id="fullname"
                 required
-                className="bg-white border border-gray-200 focus:border-site/50 rounded-lg py-3 px-6  outline-none text-lg lg:min-w-[350px] max-lg:w-full"
+                className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:border-site/50 dark:focus:border-site/50 rounded-lg py-3 px-6 outline-none text-lg lg:min-w-[350px] max-lg:w-full"
                 placeholder="İsminizi giriniz"
                 value={fullName}
                 autoComplete="name"
                 onChange={(e) => setFullName(e.target.value)}
               />
             </label>
-            <label htmlFor="emailAddress" className="flex flex-col gap-4 w-full">
-              <span className="text-gray-600 tracking-wide">
+            <label
+              htmlFor="emailAddress"
+              className="flex flex-col gap-4 w-full"
+            >
+              <span className="text-gray-600 dark:text-gray-200 tracking-wide">
                 E-Posta Adresiniz
               </span>
               <input
                 type="email"
                 id="emailAddress"
                 required
-                className="bg-white border border-gray-200 focus:border-site/50 rounded-lg py-3 px-6  outline-none text-lg lg:min-w-[350px] max-lg:w-full"
+                className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:border-site/50 dark:focus:border-site/50 rounded-lg py-3 px-6 outline-none text-lg lg:min-w-[350px] max-lg:w-full"
                 placeholder="E-Posta Adresinizi giriniz"
                 value={email}
                 autoComplete="email"
@@ -72,23 +77,23 @@ function Contact() {
             </label>
           </div>
           <label htmlFor="suspect" className="flex flex-col gap-4 w-full">
-            <span className="text-gray-600 tracking-wide">Konu</span>
+          <span className="text-gray-600 dark:text-gray-200 tracking-wide">Konu</span>
             <input
               type="text"
               required
-              className="bg-white border border-gray-200 focus:border-site/50 rounded-lg py-3 px-6  outline-none text-lg lg:min-w-[350px] max-lg:w-full"
+              className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:border-site/50 dark:focus:border-site/50 rounded-lg py-3 px-6 outline-none text-lg lg:min-w-[350px] max-lg:w-full"
               placeholder="Konu giriniz"
               value={suspect}
               onChange={(e) => setSuspect(e.target.value)}
             />
           </label>
           <label htmlFor="message" className="flex flex-col gap-4 w-full">
-            <span className="text-gray-600 tracking-wide">Mesajınız</span>
+          <span className="text-gray-600 dark:text-gray-200 tracking-wide">Mesajınız</span>
             <textarea
               cols={6}
               rows={6}
               required
-              className="bg-white border border-gray-200 focus:border-site/50 rounded-lg py-3 px-6  outline-none text-lg lg:min-w-[350px] max-lg:w-full"
+              className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:border-site/50 dark:focus:border-site/50 rounded-lg py-3 px-6 outline-none text-lg lg:min-w-[350px] max-lg:w-full"
               placeholder="Mesajınızı giriniz"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
@@ -99,7 +104,7 @@ function Contact() {
               title="Mesajı Gönder"
               btnType="submit"
               rightIcon={<IoChevronForwardOutline className="text-2xl -mr-2" />}
-              containerStyles="flex items-center justify-center text-center gap-4 py-3 px-6 w-fit bg-white/20 border border-gray-200  max-lg:w-full rounded-lg font-gemunu tracking-widest hover:border-transparent hover:bg-site/10 hover:text-site transition-all duration-300"
+              containerStyles="flex items-center justify-center text-center gap-4 py-3 px-6 w-fit bg-white/20 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 max-lg:w-full rounded-lg font-gemunu tracking-widest hover:border-transparent dark:hover:border-transparent hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300"
               textStyles="font-medium text-xl"
             />
           </div>
@@ -115,7 +120,7 @@ function Contact() {
             <Link
               key={key}
               href={social.url}
-              className="flex items-center gap-2 hover:text-site text-gray-600 text-3xl"
+              className="flex items-center gap-2 hover:text-site dark:hover:text-site text-gray-600 dark:text-gray-400 text-3xl"
               target="_blank"
             >
               {getSocialIcon(social.platform)}
@@ -127,20 +132,20 @@ function Contact() {
         <span className="font-gemunu text-3xl tracking-wider font-medium">
           İletişim
         </span>
-        <div className="flex items-center gap-3 text-gray-600 leading-6">
+        <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400 leading-6">
           <IoStorefrontOutline className="size-6 min-w-[24px]" />
           <p>{generals.address}</p>
         </div>
         <Link
           href={`tel:+9${formattedPhoneNumber}`}
-          className="flex items-center gap-3 text-gray-600 leading-6 hover:text-site transition-all duration-300 w-fit"
+          className="flex items-center gap-3 text-gray-600 dark:text-gray-400 leading-6 hover:text-site dark:hover:text-site transition-all duration-300 w-fit"
         >
           <IoCallOutline className="size-6 min-w-[24px]" />
           <p>{generals.phone}</p>
         </Link>
         <Link
           href={`mailto:${generals.email}`}
-          className="flex items-center gap-3 text-gray-600 leading-6 hover:text-site transition-all duration-300 w-fit"
+          className="flex items-center gap-3 text-gray-600 dark:text-gray-400 leading-6 hover:text-site dark:hover:text-site transition-all duration-300 w-fit"
         >
           <IoMailOutline className="size-6 min-w-[24px]" />
           <p>{generals.email}</p>

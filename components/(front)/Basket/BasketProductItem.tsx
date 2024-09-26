@@ -70,7 +70,7 @@ function BasketProductItem({
         <Link
           href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
           title={`${product.brand && product.brand} ${product.title}`}
-          className={`relative  rounded-2xl shadow-lg shadow-gray-400 overflow-hidden transition-all duration-300 hover:scale-95 ${
+          className={`relative  rounded-2xl shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 hover:scale-95 ${
             !isDetail
               ? "lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40"
               : "lg:min-w-[150px] lg:w-[150px] lg:h-[234px] min-w-28 w-28 h-44"
@@ -156,14 +156,14 @@ function BasketProductItem({
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center justify-between gap-3 bg-gray-100 border border-gray-200 rounded-lg p-1">
+          <div className="flex items-center justify-between gap-3 bg-gray-100 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg p-1">
             <CustomButton
               handleClick={
                 product.stock > 0 && productQuantity > 1
                   ? decreaseQuantity
                   : handleRemoveItem
               }
-              containerStyles="bg-white p-2 border border-gray-200 rounded-lg transition-all duration-300 hover:text-white hover:bg-site group"
+              containerStyles="bg-white dark:bg-zinc-800 p-2 border border-gray-200 dark:border-zinc-800 rounded-lg transition-all duration-300 group hover:text-white hover:bg-site dark:hover:bg-site"
               leftIcon={
                 !loadingQuantity ? (
                   productQuantity > 1 ? (
@@ -181,9 +181,9 @@ function BasketProductItem({
               handleClick={
                 product.stock > productQuantity ? increaseQuantity : undefined
               }
-              containerStyles={`bg-white p-2 border border-gray-200 rounded-lg transition-all duration-300 group ${
+              containerStyles={`bg-white dark:bg-zinc-800 p-2 border border-gray-200 dark:border-zinc-800 rounded-lg transition-all duration-300 group ${
                 product.stock > productQuantity
-                  ? "hover:text-white hover:bg-site"
+                  ? "hover:text-white hover:bg-site dark:hover:bg-site"
                   : "opacity-50 cursor-not-allowed"
               }`}
               leftIcon={

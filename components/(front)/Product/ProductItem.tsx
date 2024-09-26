@@ -131,7 +131,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
       favoriteItems?.includes(product.code) ? (
         <IoHeart className="text-xl text-red-500 group-hover/favorite:text-white" />
       ) : (
-        <IoHeartOutline className="text-xl text-gray-600 group-hover/favorite:text-white" />
+        <IoHeartOutline className="text-xl text-gray-600 dark:text-gray-200 group-hover/favorite:text-white" />
       )
     );
   }, [favoriteItems]);
@@ -226,7 +226,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                       onMouseEnter={() => handleMouseEnter(index)}
                       onMouseLeave={handleMouseLeave}
                     >
-                      <span className="flex w-full h-1 bg-gray-200 rounded-full shadow-md shadow-gray-200 group-hover/images:bg-site transition-all mx-1 group-first/images:ml-2 group-last/images:mr-2"></span>
+                      <span className="flex w-full h-1 bg-gray-200 rounded-full shadow-md shadow-gray-200 dark:shadow-gray-400 group-hover/images:bg-site transition-all mx-1 group-first/images:ml-2 group-last/images:mr-2"></span>
                     </div>
                   ))}
                 </div>
@@ -238,7 +238,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
               >
                 <div className={`flex flex-col h-fit gap-2`}>
                   <CustomButton
-                    containerStyles={`p-1.5 bg-white rounded-md shadow-lg hover:bg-site transition-all duration-300 group/favorite ${
+                    containerStyles={`p-1.5 bg-white dark:bg-zinc-900 rounded-md shadow-lg hover:bg-site dark:hover:bg-site transition-all duration-500 group/favorite ${
                       !isMobile && isHovered
                         ? "-translate-x-2 opacity-100 hover:scale-110"
                         : !isMobile
@@ -256,7 +256,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                     handleClick={handleAddToFavorite}
                   />
                   <CustomButton
-                    containerStyles={`p-1.5 bg-white rounded-md shadow-lg hover:bg-site hover:text-white transition-all duration-500 ${
+                    containerStyles={`p-1.5 bg-white dark:bg-zinc-900 rounded-md shadow-lg hover:bg-site dark:hover:bg-site transition-all duration-700 ${
                       !isMobile && isHovered
                         ? "-translate-x-2 opacity-100 hover:scale-110"
                         : !isMobile
@@ -291,7 +291,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                     }
                     containerStyles={`flex items-center gap-2 text-sm font-medium tracking-wide px-3 py-2 ${
                       product.choise_required || !loadingAddToBasket
-                        ? "bg-white hover:bg-site hover:text-white"
+                        ? "bg-white dark:bg-zinc-900 hover:bg-site dark:hover:bg-site hover:text-white"
                         : "bg-green-500 text-white !transition-none"
                     } rounded-md shadow-lg transition-all duration-300 ${
                       !isMobile && isHovered
@@ -341,11 +341,11 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
           )}
           <div className="flex flex-col w-full gap-1">
             <div className="flex justify-between items-center gap-2">
-              <span className="text-gray-500 text-xs">
+              <span className="text-gray-500 text-xs dark:text-gray-400">
                 {product.mainCategory}
                 {product.category && ` / ${product.category}`}
               </span>
-              <span className="text-gray-500 text-xs">#{product.code}</span>
+              <span className="text-gray-500 text-xs dark:text-gray-400">#{product.code}</span>
             </div>
             <span className="font-medium">
               <span className="font-extrabold">

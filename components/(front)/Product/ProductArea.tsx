@@ -138,7 +138,7 @@ function ProductArea({
       product && favoriteItems?.includes(product.code) ? (
         <IoHeart className="text-3xl text-red-500 group-hover/favorite:text-white" />
       ) : (
-        <IoHeartOutline className="text-3xl text-gray-600 group-hover/favorite:text-white" />
+        <IoHeartOutline className="text-3xl text-gray-600 dark:text-gray-200 group-hover/favorite:text-white" />
       )
     );
   }, [favoriteItems]);
@@ -235,7 +235,7 @@ function ProductArea({
             {product && product.stock < 1 && (
               <div className="absolute flex items-center justify-center w-full h-full overflow-hidden bg-black-900/70 animate-pulse">
                 <div className="absolute w-full h-full left-0 -z-10 bg-site/30"></div>
-                <span className="text-white font-gemunu lg:text-5xl text-2xl text-center font-medium tracking-wider -rotate-[35deg]">
+                <span className="text-white dark:text-zinc-800 font-gemunu lg:text-5xl text-2xl text-center font-medium tracking-wider -rotate-[35deg]">
                   Stokta Yok
                 </span>
               </div>
@@ -251,7 +251,7 @@ function ProductArea({
         <div className="flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-3 w-full">
             <div className="flex flex-col gap-2 w-full">
-              <span className="textbase text-gray-600">
+              <span className="textbase text-gray-600 dark:text-gray-500">
                 {product?.mainCategory}
                 {product?.category && ` / ${product.category}`}
               </span>
@@ -329,7 +329,7 @@ function ProductArea({
           {!isDetail && (
             <div className="flex flex-col gap-4 w-full">
               <span>Ürün Özellikleri :</span>
-              <div className="flex text-sm flex-col gap-2 text-gray-600">
+              <div className="flex text-sm flex-col gap-2 text-gray-600 dark:text-gray-500">
                 <p>
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Numquam ipsa.
@@ -371,7 +371,7 @@ function ProductArea({
               <div className="flex flex-col gap-4">
                 {product.attributes.map((attr, index) => (
                   <div key={index} className="flex flex-col gap-2">
-                    <div className="flex items-center flex-wrap gap-1 text-sm font-medium text-gray-600">
+                    <div className="flex items-center flex-wrap gap-1 text-sm font-medium text-gray-600 dark:text-gray-200">
                       {attr.attr_title}
                       {" : "}
                       {selectedAttributes[attr.attr_title] ? (
@@ -408,16 +408,16 @@ function ProductArea({
           </div>
           <div className="flex lg:flex-row flex-col items-center max-lg:w-full lg:gap-2 gap-4">
             <div className={`flex items-center max-lg:w-full gap-2 h-[50px]`}>
-              <div className="flex items-center justify-between gap-3 bg-gray-100 border border-gray-200 rounded-lg p-1 h-full">
+            <div className="flex items-center justify-between gap-3 bg-gray-100 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg p-1 h-full">
                 <CustomButton
                   handleClick={
                     product && product.stock > 0 && productQuantity > 1
                       ? decreaseQuantity
                       : undefined
                   }
-                  containerStyles={`bg-white h-full px-2 border border-gray-200 rounded-lg transition-all duration-300 group ${
+                  containerStyles={`bg-white dark:bg-zinc-800 h-full px-2 border border-gray-200 dark:border-zinc-800 rounded-lg transition-all duration-300 group ${
                     product && product.stock > 0 && productQuantity > 1
-                      ? "hover:text-white hover:bg-site"
+                      ? "hover:text-white hover:bg-site dark:hover:bg-site"
                       : "opacity-50 cursor-not-allowed"
                   }`}
                   leftIcon={
@@ -435,9 +435,9 @@ function ProductArea({
                       ? increaseQuantity
                       : undefined
                   }
-                  containerStyles={`bg-white h-full px-2 border border-gray-200 rounded-lg transition-all duration-300 group ${
+                  containerStyles={`bg-white dark:bg-zinc-800 h-full px-2 border border-gray-200 dark:border-zinc-800 rounded-lg transition-all duration-300 group ${
                     product && product.stock > productQuantity
-                      ? "hover:text-white hover:bg-site"
+                      ? "hover:text-white hover:bg-site dark:hover:bg-site"
                       : "opacity-50 cursor-not-allowed"
                   }`}
                   leftIcon={
@@ -491,7 +491,7 @@ function ProductArea({
                   : "Favorilere Ekle"
               }
               textStyles="lg:hidden"
-              containerStyles="flex items-center justify-center gap-2 max-lg:w-full px-4 bg-gray-100 border border-gray-200 text-gray-600 rounded-md h-[50px] transition-all duration-300 hover:bg-site hover:border-site hover:text-white h-[50px] group/favorite"
+              containerStyles="flex items-center justify-center gap-2 max-lg:w-full px-4 bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-gray-500 rounded-md h-[50px] transition-all duration-300 hover:bg-site dark:hover:bg-site hover:border-site dark:hover:border-site hover:text-white h-[50px] group/favorite"
               leftIcon={
                 !loadingAddToFavorite ? (
                   FavoriteIcon
@@ -529,8 +529,8 @@ function AttrOptions({
         !noStock
           ? isSelected
             ? "bg-site text-white"
-            : "border-gray-200 cursor-pointer hover:border-site/30 hover:bg-site/10"
-          : "bg-gray-200 border-transparent line-through opacity-50 cursor-not-allowed"
+            : "border-gray-200 dark:border-zinc-800 cursor-pointer hover:border-site/30 dark:hover:border-site/30 hover:bg-site/10"
+          : "bg-gray-200 dark:bg-zinc-800 border-transparent line-through opacity-50 cursor-not-allowed"
       } transition-all duration-300 text-sm`}
       handleClick={() => !noStock && onSelect(attrTitle, option_name)}
     />
@@ -549,8 +549,8 @@ function ProductGroupItem({
   const [activeGroupItem, setActiveGroupItem] = useState(true);
   return (
     <div
-      className={`p-2 bg-gray-200 overflow-hidden rounded-md cursor-pointer hover:bg-site/20 transition-all duration-300 group ${
-        activeGroupItem ? "first:bg-site/20 first:text-site" : ""
+      className={`p-2 bg-gray-200 dark:bg-zinc-800 overflow-hidden rounded-md cursor-pointer hover:bg-site/20 dark:hover:bg-site/20 transition-all duration-300 group ${
+        activeGroupItem ? "first:bg-site/20 dark:first:bg-site/20 first:text-site" : ""
       }`}
     >
       <div className="flex flex-col text-center gap-2 w-full">

@@ -12,7 +12,7 @@ function Search() {
     >
       <CustomButton
         leftIcon={<IoSearchOutline className="text-xl max-lg:text-2xl dark:text-gray-200" />}
-        containerStyles={`p-2 border transition-all duration-300 border-gray-200 dark:border-zinc-800 rounded-full`}
+        containerStyles={`p-2 border transition-all duration-300 border-gray-200 dark:border-zinc-700 rounded-full`}
       />
     </div>
   );

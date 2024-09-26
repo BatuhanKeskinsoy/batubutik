@@ -20,14 +20,14 @@ function Sidebar() {
         onClick={() => setSidebarStatus("")}
       ></div>
       <div
-        className={`bg-white fixed top-0 ${
+        className={`bg-white dark:bg-zinc-900 fixed top-0 ${
           sidebarStatus === "MobileMenu"
             ? "left-0 animate-sidebarLeftSmooth"
             : "right-0 animate-sidebarRightSmooth"
         } h-screen lg:w-[500px] w-[calc(100vw-15%)] shadow-lg shadow-gray-600 transition-all duration-300 z-20`}
       >
         <div className="flex flex-col w-full h-full">
-          <div className="flex justify-between items-center border-b lg:px-8 px-4 py-5">
+          <div className="flex justify-between items-center border-b dark:border-zinc-800 lg:px-8 px-4 py-5">
             <div className="font-gemunu tracking-wide text-2xl">
               {sidebarStatus === "Basket" ? (
                 "Sepetim"

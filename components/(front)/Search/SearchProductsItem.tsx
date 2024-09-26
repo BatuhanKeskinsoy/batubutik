@@ -104,7 +104,7 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
           <Link
             href={"/"}
             title={`${product.brand && product.brand} ${product.title}`}
-            className="relative lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40 rounded-2xl shadow-lg shadow-gray-400 overflow-hidden transition-all duration-300 hover:scale-95"
+            className="relative lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40 rounded-2xl shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 hover:scale-95"
           >
             <Image
               src={product.images[0]}

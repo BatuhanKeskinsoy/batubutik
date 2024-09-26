@@ -15,7 +15,7 @@ function Auth() {
       {!user ? (
         <CustomButton
           leftIcon={<IoPersonOutline className="text-xl max-lg:text-2xl" />}
-          containerStyles={`p-2 border transition-all duration-300 border-gray-200 dark:border-zinc-800 dark:text-gray-200 rounded-full`}
+          containerStyles={`p-2 border transition-all duration-300 border-gray-200 dark:border-zinc-700 dark:text-gray-200 rounded-full`}
         />
       ) : (
         <CustomButton

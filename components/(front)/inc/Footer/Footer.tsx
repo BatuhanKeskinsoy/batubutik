@@ -22,7 +22,7 @@ function Footer() {
         <Subscribe />
       </div>
       <footer className="relative w-full z-10 max-lg:pb-16">
-        <aside className="flex lg:hidden fixed bottom-0 h-16 bg-gray-100 w-full shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.3)]">
+        <aside className="flex lg:hidden fixed bottom-0 h-16 bg-gray-100 dark:bg-zinc-800 w-full shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.3)]">
           <div className="flex items-center justify-around gap-2 py-2.5 px-4 w-full h-full *:flex *:justify-center *:items-center">
             <div className="relative flex items-center rounded-full lg:hover:scale-110 transition-all duration-300 h-full cursor-pointer">
               <CustomButton
@@ -32,7 +32,7 @@ function Footer() {
                 containerStyles={`p-2 border transition-all duration-300 rounded-full ${
                   pathname && pathname.startsWith("/magaza")
                     ? "text-white border-transparent bg-site"
-                    : "border-gray-200"
+                    : "border-gray-200 dark:border-zinc-700"
                 }`}
                 handleClick={() => router.push("/magaza")}
               />
@@ -47,8 +47,8 @@ function Footer() {
             <Auth />
           </div>
         </aside>
-        <div className="flex flex-col pt-8 bg-gray-200">
-          <div className="container mx-auto p-4">
+        <div className="flex flex-col pt-8 bg-gray-200 dark:bg-zinc-900">
+          <div className="container mx-auto p-4 dark:text-gray-400">
             <div className="flex lg:flex-row flex-col gap-8 w-full">
               <div className="flex flex-col gap-4 lg:w-1/4 w-full">
                 <Link
@@ -80,7 +80,7 @@ function Footer() {
                     <Link
                       key={key}
                       href={social.url}
-                      className="text-gray-600 hover:text-site *:text-3xl"
+                      className="text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site *:text-3xl"
                       target="_blank"
                     >
                       {getSocialIcon(social.platform)}
@@ -90,10 +90,10 @@ function Footer() {
               </div>
               <div className="flex lg:flex-row flex-col gap-4 lg:w-3/4 w-full">
                 <div className="flex-1">
-                  <span className="font-gemunu text-2xl tracking-wide">
+                  <span className="font-gemunu text-2xl tracking-wide dark:text-gray-200">
                     Hızlı Linkler
                   </span>
-                  <hr className="my-2 border-gray-300" />
+                  <hr className="my-2 border-gray-300 dark:border-zinc-800" />
                   <ul>
                     <li>
                       <Link
@@ -134,10 +134,10 @@ function Footer() {
                   </ul>
                 </div>
                 <div className="flex-1">
-                  <span className="font-gemunu text-2xl tracking-wide">
+                  <span className="font-gemunu text-2xl tracking-wide dark:text-gray-200">
                     Kategoriler
                   </span>
-                  <hr className="my-2 border-gray-300" />
+                  <hr className="my-2 border-gray-300 dark:border-zinc-800" />
                   <ul>
                     {categories.slice(0, 4).map((category, key) => (
                       <li key={key}>
@@ -153,10 +153,10 @@ function Footer() {
                   </ul>
                 </div>
                 <div className="flex-1">
-                  <span className="font-gemunu text-2xl tracking-wide">
+                  <span className="font-gemunu text-2xl tracking-wide dark:text-gray-200">
                     Sözleşme ve Politikalar
                   </span>
-                  <hr className="my-2 border-gray-300" />
+                  <hr className="my-2 border-gray-300 dark:border-zinc-800" />
                   <ul>
                     <li>
                       <Link
@@ -197,10 +197,10 @@ function Footer() {
                   </ul>
                 </div>
                 <div className="flex-1">
-                  <span className="font-gemunu text-2xl tracking-wide">
+                  <span className="font-gemunu text-2xl tracking-wide dark:text-gray-200">
                     Popüler Etiketler
                   </span>
-                  <hr className="my-2 border-gray-300" />
+                  <hr className="my-2 border-gray-300 dark:border-zinc-800" />
                   <ul className="flex flex-wrap gap-2">
                     {generals.tags.slice(0, 10).map((tag, key) => (
                       <li key={key}>
@@ -218,9 +218,9 @@ function Footer() {
               </div>
             </div>
           </div>
-          <hr className="border-gray-300  w-full" />
+          <hr className="border-gray-300 dark:border-zinc-800 w-full" />
           <div className="container mx-auto px-4 ">
-            <div className="w-full flex justify-between py-4 text-gray-600 text-sm md:flex-row flex-col text-center">
+            <div className="w-full flex justify-between py-4 text-gray-600 dark:text-gray-400 text-sm md:flex-row flex-col text-center">
               <div className="md:my-0 my-1">
                 Copyright ©{" "}
                 <span className="text-site select-none font-semibold">

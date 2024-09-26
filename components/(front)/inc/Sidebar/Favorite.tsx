@@ -70,7 +70,7 @@ function Favorite() {
         <FavoriteProducts products={favoriteProducts} />
       </div>
       <div className="flex flex-col w-full lg:px-8 px-4 py-4 items-center text-center gap-4">
-        <hr className="w-full" />
+        <hr className="w-full dark:border-zinc-800" />
         <div className="flex lg:flex-row flex-col items-center gap-2 w-full">
 
           <CustomButton
@@ -79,7 +79,7 @@ function Favorite() {
                 ? "Favorileri Temizle"
                 : "Favoriler Temizleniyor.."
             }
-            containerStyles="py-3 px-4 w-full bg-gray-200 text-gray-600 rounded-md hover:bg-gray-700 hover:text-white transition-all duration-300"
+            containerStyles="py-3 px-4 w-full bg-gray-200 dark:bg-zinc-800 text-gray-600 dark:text-gray-400 rounded-md hover:bg-gray-700 dark:hover:bg-gray-200 hover:text-white dark:hover:text-gray-700 transition-all duration-300"
             handleClick={handleEmptyFavorite}
           />
         </div>

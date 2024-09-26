@@ -89,7 +89,7 @@ function Header() {
                   </Link>
                 ))}
               </div>
-              <div className="w-1 h-full border-r border-gray-300 border:bg-gray-800" />
+              <div className="w-1 h-full border-r border-gray-300 dark:border-zinc-700" />
               <Link
                 href={`mailto:${generals.email}`}
                 className="flex items-center gap-2 hover:text-site transition-all duration-300"
@@ -188,7 +188,7 @@ function Header() {
                 <Search />
                 <Favorite />
               </div>
-              <Theme />
+              {!isMobile && <Theme />}
               <Basket />
             </div>
           </div>

@@ -141,7 +141,7 @@ function BasketProperty({
               className={`border ${
                 discountApplied
                   ? "border-transparent bg-transparent cursor-default text-right text-green-500"
-                  : "border-red-500/20 focus:border-red-500/50 bg-white"
+                  : "border-red-500/20 focus:border-red-500/50 bg-white dark:bg-zinc-900"
               }  py-2 px-4 outline-none w-full`}
               placeholder="İndirim kodu giriniz"
               value={discountCode ?? ""}
@@ -150,7 +150,7 @@ function BasketProperty({
             />
             <CustomButton
               leftIcon={<IoChevronForwardOutline className="text-2xl" />}
-              containerStyles={`h-full px-4 disabled:text-gray-400 disabled:border-gray-200 disabled:hover:bg-white disabled:cursor-not-allowed bg-white w-fit py-2 border border-red-500/20 hover:bg-red-500 text-red-500 hover:text-white transition-all duration-300 ${
+              containerStyles={`h-full px-4 disabled:text-gray-400 disabled:border-gray-200 dark:disabled:border-gray-600 disabled:hover:bg-white dark:disabled:hover:bg-zinc-900 disabled:cursor-not-allowed bg-white dark:bg-zinc-900 w-fit py-2 border border-red-500/20 hover:bg-red-500 dark:hover:bg-red-500 text-red-500 hover:text-white transition-all duration-300 ${
                 discountApplied ? "hidden" : ""
               }`}
               handleClick={discountCode ? handleDiscountCode : undefined}
@@ -171,7 +171,7 @@ function BasketProperty({
         </label>
       )}
       <div
-        className={`flex flex-col gap-3 w-full bg-gray-100 ${
+        className={`flex flex-col gap-3 w-full bg-gray-100 dark:bg-zinc-800 ${
           !isDetail ? "lg:px-8 px-4" : "px-4"
         } py-4`}
       >
@@ -192,7 +192,7 @@ function BasketProperty({
                 - {getPrice(discountAmount)}
               </span>
             </div>
-            <hr />
+            <hr className="dark:border-zinc-700" />
           </>
         )}
         {freeShipping && initialSubTotal < freeShipping && (
@@ -203,7 +203,7 @@ function BasketProperty({
                 + {getPrice(generals.shipping_price)}
               </span>
             </div>
-            <hr />
+            <hr className="dark:border-zinc-700" />
           </>
         )}
         <div className="flex justify-between font-medium items-center text-green-500 text-lg">
@@ -272,7 +272,7 @@ function BasketProperty({
             )}
           </>
         )}
-        <hr className="w-full" />
+        <hr className="w-full dark:border-zinc-700" />
         <div className="flex lg:flex-row flex-col items-center gap-2 w-full">
           {isDetail ? (
             <Link
@@ -294,7 +294,7 @@ function BasketProperty({
             title={
               !loadingEmptyBasket ? "Sepeti Boşalt" : "Sepet Boşaltılıyor.."
             }
-            containerStyles="py-3 px-4 w-full bg-gray-200 text-gray-600 rounded-md hover:bg-gray-700 hover:text-white transition-all duration-300"
+            containerStyles="py-3 px-4 w-full bg-gray-200 dark:bg-zinc-800 text-gray-600 dark:text-gray-200 rounded-md hover:bg-gray-700 dark:hover:bg-gray-200 hover:text-white dark:hover:text-gray-800 transition-all duration-300"
             handleClick={handleEmptyBasket}
           />
         </div>

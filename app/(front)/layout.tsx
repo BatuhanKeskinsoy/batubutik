@@ -3,6 +3,7 @@ import Header from "@/components/(front)/inc/Header/Header";
 import FixedBottomRight from "@/components/others/FixedBottomRight/FixedBottomRight";
 import "@/public/styles/globals.css";
 import React from "react";
+import { ThemeProvider } from "@/app/Context/themeContext";
 
 export default function RootLayout({
   children,
@@ -10,11 +11,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <React.Fragment>
+    <ThemeProvider>
       <Header />
       {children}
       <FixedBottomRight />
       <Footer />
-    </React.Fragment>
+    </ThemeProvider>
   );
 }

@@ -93,7 +93,7 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
           <Link
             href={"/"}
             title={`${product.brand && product.brand} ${product.title}`}
-            className="relative lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40 rounded-2xl shadow-lg shadow-gray-400 overflow-hidden transition-all duration-300 hover:scale-95"
+            className="relative lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40 rounded-2xl shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 hover:scale-95"
           >
             <Image
               src={product.images[0]}
@@ -118,7 +118,7 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
                 </span>{" "}
                 {product.title}
               </Link>
-              <span className="text-gray-500 text-xs">
+              <span className="text-gray-500 dark:text-gray-400 text-xs">
                 {product.mainCategory}
                 {product.category && ` / ${product.category}`}
               </span>
@@ -171,7 +171,7 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
               containerStyles={`flex items-center w-full gap-2 justify-center py-2 px-2 ${
                 product.stock > 0
                   ? "bg-site/80 hover:bg-site text-white"
-                  : "bg-gray-200 text-gray-600 opacity-50 cursor-not-allowed"
+                  : "bg-gray-200 dark:bg-zinc-800 text-gray-600 dark:text-gray-400 opacity-50 cursor-not-allowed"
               } max-lg:text-sm rounded-md transition-all duration-300`}
               handleClick={product.stock > 0 ? handleAddToBasket : undefined}
             />
@@ -185,7 +185,7 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
                 )
               }
               textStyles="max-lg:hidden -mb-0.5"
-              containerStyles="flex items-center gap-2 justify-center py-2 px-4 bg-gray-200 text-gray-600 rounded-md hover:bg-gray-700 hover:text-white transition-all duration-300"
+              containerStyles="flex items-center gap-2 justify-center py-2 px-4 bg-gray-200 dark:bg-zinc-800 text-gray-600 dark:text-gray-400 rounded-md hover:bg-gray-700 dark:hover:bg-gray-200 hover:text-white dark:hover:text-gray-700 transition-all duration-300"
               handleClick={removeFavorite}
             />
           </div>

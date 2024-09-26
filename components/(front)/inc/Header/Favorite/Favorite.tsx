@@ -18,7 +18,7 @@ function Favorite() {
 
   useEffect(() => {
     if (favoriteItemCount > 0) {
-      setFavoriteIcon(<IoHeart className="text-xl max-lg:text-2xl dark:text-gray-200" />);
+      setFavoriteIcon(<IoHeart className="text-xl max-lg:text-2xl dark:text-site" />);
     } else {
       setFavoriteIcon(<IoHeartOutline className="text-xl max-lg:text-2xl dark:text-gray-200" />);
     }
@@ -43,7 +43,7 @@ function Favorite() {
         containerStyles={`p-2 border transition-all duration-300 ${
           favoriteItemCount > 0
             ? "text-site border-site/30 rounded-full"
-            : " border-gray-200 dark:border-zinc-800 rounded-full"
+            : " border-gray-200 dark:border-zinc-700 rounded-full"
         }`}
       />
       {favoriteItemCount > 0 && (

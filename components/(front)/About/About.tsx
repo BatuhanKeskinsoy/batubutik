@@ -5,7 +5,7 @@ import React from "react";
 function About() {
   return (
     <div className="container mx-auto px-4 flex lg:flex-row flex-col gap-8">
-      <div className="flex flex-col lg:gap-6 gap-4 lg:w-3/5 w-full text-xl tracking-wide">
+      <div className="flex flex-col lg:gap-6 gap-4 lg:w-3/5 w-full text-lg tracking-wide">
         <span className="font-gemunu lg:text-5xl text-3xl tracking-wider font-medium">
           Hakkımızda
         </span>
