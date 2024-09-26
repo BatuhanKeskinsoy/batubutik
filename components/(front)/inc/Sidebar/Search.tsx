@@ -34,8 +34,7 @@ function Search() {
   return (
     <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
       <div className="flex flex-col w-full h-full">
-        <div className="p-2">
-          <div className="flex gap-2 py-2 px-[14px] bg-gray-100 items-center w-full">
+          <div className="flex gap-2 py-2 lg:px-8 px-4 bg-gray-100 dark:bg-zinc-800 items-center w-full">
             <label className="relative w-full flex rounded-sm">
               <input
                 type="text"
@@ -44,7 +43,7 @@ function Search() {
                 onChange={(e) => setSearch(e.target.value)}
               />
               <span
-                className={`absolute top-1/2  font-[400] -translate-y-1/2 pointer-events-none cursor-text text-gray-600 opacity-50 transition-all 
+                className={`absolute top-1/2  font-[400] -translate-y-1/2 pointer-events-none cursor-text text-gray-600 dark:text-gray-200 opacity-50 transition-all 
           peer-focus:text-[10px] peer-focus:top-0.5 peer-focus:opacity-100 
           ${search ? "peer-valid:text-[10px] peer-valid:top-0.5" : ""} `}
               >
@@ -52,8 +51,7 @@ function Search() {
               </span>
             </label>
           </div>
-        </div>
-        <hr />
+        <hr className="dark:border-zinc-800" />
         {loadingSearch ? (
           <div className="flex flex-col gap-4 h-[calc(100dvh-136px)] justify-center items-center text-gray-300">
             <IoFileTrayFullOutline className="lg:text-7xl text-6xl" />

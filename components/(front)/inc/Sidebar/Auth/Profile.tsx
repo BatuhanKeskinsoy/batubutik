@@ -40,30 +40,30 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
               <span className="text-site font-medium tracking-wider font-gemunu text-xl">
                 {user.fullName}
               </span>
-              <small className="text-gray-600 tracking-wide">
+              <small className="text-gray-600 dark:text-gray-400 tracking-wide">
                 {user.email}
               </small>
             </div>
           </div>
-          <hr />
+          <hr className="dark:border-zinc-800" />
           <div className="flex flex-col w-full gap-2">
             <CustomButton
               title="Profilim"
-              containerStyles="flex items-center gap-4 justify-between bg-gray-100 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
+              containerStyles="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-leftflex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
               rightIcon={
                 <IoChevronForwardOutline className="text-xl opacity-70" />
               }
             />
             <CustomButton
               title="Siparişlerim"
-              containerStyles="flex items-center gap-4 justify-between bg-gray-100 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
+              containerStyles="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
               rightIcon={
                 <IoChevronForwardOutline className="text-xl opacity-70" />
               }
             />
             <CustomButton
               title="Favorilerim"
-              containerStyles="flex items-center gap-4 justify-between bg-gray-100 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
+              containerStyles="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
               rightIcon={
                 <IoChevronForwardOutline className="text-xl opacity-70" />
               }
@@ -71,18 +71,18 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
             />
             <CustomButton
               title="Kargo Takibi"
-              containerStyles="flex items-center gap-4 justify-between bg-gray-100 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
+              containerStyles="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
               rightIcon={
                 <IoChevronForwardOutline className="text-xl opacity-70" />
               }
             />
-            <hr className="my-2" />
+            <hr className="my-2 dark:border-zinc-800" />
             <CustomButton
               title={!loadingLogout ? "Çıkış Yap" : "Çıkış Yapılıyor.."}
               btnType="submit"
-              containerStyles={`flex items-center gap-4 justify-between bg-gray-100 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 transition-all duration-300 text-left ${
+              containerStyles={`flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 transition-all duration-300 text-left ${
                 !loadingLogout
-                  ? "hover:bg-site/10 hover:text-site"
+                  ? "hover:bg-site/10 dark:hover:bg-site/10 hover:text-site"
                   : "bg-site/10 text-site"
               }`}
               rightIcon={<IoLogOutOutline className="text-xl opacity-70" />}

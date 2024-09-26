@@ -33,7 +33,7 @@ const Breadcrumb = ({
           href={href}
           title={linkText}
           className={`text-sm transition-all duration-300 ${
-            isBold ? "text-site font-semibold" : "text-gray-600 hover:text-site"
+            isBold ? "text-site font-semibold" : "text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site"
           }`}
         >
           {linkText}
@@ -54,7 +54,7 @@ const Breadcrumb = ({
     <div className="md:flex hidden items-center my-5 gap-3">
       <Link
         href={"/"}
-        className="text-sm text-gray-600 dark:text-gray-400 hover:text-site transition-all duration-300"
+        className="text-sm text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
         title="Ana Sayfa"
       >
         Anasayfa

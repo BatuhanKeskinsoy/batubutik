@@ -141,20 +141,20 @@ function Aside({
       <div className="flex flex-col gap-3 w-full lg:text-sm text-gray-600">
         <label
           htmlFor="search"
-          className="flex items-center gap-2 w-full border border-gray-200"
+          className="flex items-center gap-2 w-full border border-gray-200 dark:border-zinc-800 focus-within:border-site/50 dark:focus-within:border-site/50 transition-all duration-300"
         >
           <input
             type="text"
             id="search"
             required
-            className="bg-white focus:border-site/50 py-3 pl-4 outline-none w-full transition-all duration-300"
+            className="bg-white dark:bg-zinc-900 py-3 pl-4 outline-none w-full transition-all duration-300 dark:text-gray-200"
             placeholder="Ürün adı veya ürün kodu giriniz"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <IoSearchOutline className="text-2xl mr-4" />
+          <IoSearchOutline className="text-2xl mr-4 dark:text-gray-400" />
         </label>
-        <hr className="mt-2" />
+        <hr className="mt-2 dark:border-zinc-800" />
         {isMobile && (
           <CustomButton
             title="Filtre"
@@ -165,17 +165,17 @@ function Aside({
                 <IoChevronDown className="text-2xl" />
               )
             }
-            containerStyles={`flex justify-between font-gemunu items-center border-b border-gray-200 w-full px-4 py-3 text-2xl ${
+            containerStyles={`flex justify-between font-gemunu items-center border-b border-gray-200 dark:border-zinc-800 w-full px-4 py-3 text-2xl ${
               isFilterNav
                 ? "bg-site/10 text-site border-b-0"
-                : " bg-white text-gray-600"
+                : " bg-white dark:bg-zinc-900 text-gray-600 dark:text-gray-200"
             }`}
             handleClick={() => setIsFilterNav(!isFilterNav)}
           />
         )}
         {isFilterNav && (
           <div className="flex flex-col py-2 gap-4">
-            <span className="font-medium text-xl font-gemunu tracking-wide">
+            <span className="font-medium text-xl font-gemunu tracking-wide dark:text-gray-200">
               Kategori
             </span>
             <div className="flex flex-col w-full gap-2">
@@ -184,10 +184,10 @@ function Aside({
                   <Link
                     href={`/magaza/${category.slug}`}
                     title={category.name}
-                    className={`flex justify-between items-center rounded-sm font-medium border border-gray-200 transition-all duration-300 group ${
+                    className={`flex justify-between items-center rounded-sm font-medium border border-gray-200 dark:border-zinc-800 transition-all duration-300 dark:text-gray-400 group ${
                       mainCategorySlug === category.slug
-                        ? "bg-site text-white border-transparent"
-                        : "bg-white hover:bg-site/10 hover:text-site hover:border-transparent"
+                        ? "bg-site text-white border-transparent dark:text-white"
+                        : "bg-white dark:bg-zinc-900 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site dark:hover:text-site hover:border-transparent dark:hover:border-transparent"
                     }`}
                   >
                     <div
@@ -210,8 +210,8 @@ function Aside({
                         }
                         containerStyles={`border-l ${
                           mainCategorySlug === category.slug
-                            ? "border-white/30 opacity-50"
-                            : "border-gray-200 group-hover:border-site/20"
+                            ? "border-white/30 dark:border-white/70 opacity-50"
+                            : "border-gray-200 dark:border-zinc-800 group-hover:border-site/20"
                         } h-full py-2 px-2.5`}
                         handleClick={(e) => {
                           e.preventDefault();
@@ -229,10 +229,10 @@ function Aside({
                             key={key}
                             href={`/magaza/${category.slug}/${subCategory.slug}`}
                             title={subCategory.name}
-                            className={`flex justify-between items-center gap-2 bg-white py-2 px-4 hover:text-site transition-all duration-300 ${
+                            className={`flex justify-between items-center gap-2 bg-white dark:bg-zinc-900 py-2 px-4 dark:text-gray-400 hover:text-site transition-all duration-300 ${
                               categorySlug == subCategory.slug
-                                ? "text-site"
-                                : "hover:text-site"
+                                ? "text-site dark:text-site"
+                                : "hover:text-site dark:hover:text-site"
                             }`}
                           >
                             <span className="line-clamp-1">
@@ -246,13 +246,13 @@ function Aside({
                 </div>
               ))}
             </div>
-            <hr />
+            <hr className="dark:border-zinc-800" />
             {Number.isFinite(priceRange[0]) &&
               Number.isFinite(priceRange[1]) &&
               priceRange[0] !== 0 &&
               priceRange[1] !== 0 && (
                 <>
-                  <span className="font-medium text-xl font-gemunu tracking-wide">
+                  <span className="font-medium text-xl font-gemunu tracking-wide dark:text-gray-200">
                     Fiyat Aralığı
                   </span>
                   <div className="flex flex-col gap-4 w-full">
@@ -277,24 +277,24 @@ function Aside({
                             <div
                               key={index}
                               {...rest}
-                              className="w-6 h-6 bg-site border-4 border-white rounded-full outline-none lg:hover:shadow-gray-200 transition-shadow duration-300"
+                              className="lg:size-8 size-10 bg-site border-4 border-white dark:border-zinc-900 rounded-full outline-none"
                             />
                           );
                         }}
                       />
                     </div>
-                    <div className="flex items-center justify-between gap-4 font-medium">
+                    <div className="flex items-center justify-between gap-4 font-medium dark:text-gray-400">
                       <span>{getPrice(priceRange[0])}</span>
                       <span>{getPrice(priceRange[1])}</span>
                     </div>
                   </div>
-                  <hr />
+                  <hr className="dark:border-zinc-800" />
                 </>
               )}
             {brands && brands.length > 1 && (
               <>
                 <div className="flex flex-col gap-3">
-                  <label className="font-medium text-xl font-gemunu tracking-wide">
+                  <label className="font-medium text-xl font-gemunu tracking-wide dark:text-gray-200">
                     Markalar
                   </label>
 
@@ -312,16 +312,16 @@ function Aside({
                           containerStyles={`flex items-center justify-center gap-2 w-5 h-5 border rounded-full transition-all duration-300 ${
                             selectedBrands.includes(brand)
                               ? "border-transparent bg-site text-white"
-                              : "border-gray-300 lg:group-hover:border-site/50 text-transparent lg:group-hover:text-site"
+                              : "border-gray-300 dark:border-gray-400 lg:group-hover:border-site/50 text-transparent lg:group-hover:text-site"
                           }`}
                           id={`brand-${index}`}
                         />
                         <span
                           className={`-mb-0.5 ${
                             selectedBrands.includes(brand)
-                              ? "text-site"
+                              ? "text-site dark:text-site"
                               : "lg:group-hover:text-site"
-                          } transition-all duration-300`}
+                          } transition-all duration-300 dark:text-gray-400`}
                         >
                           {brand}
                         </span>
@@ -329,13 +329,13 @@ function Aside({
                     ))}
                   </div>
                 </div>
-                <hr />
+                <hr className="dark:border-zinc-800" />
               </>
             )}
             {productAttributes &&
               productAttributes.map((attribute, key) => (
                 <div key={key} className="flex flex-col gap-4 group/border">
-                  <span className="font-medium text-xl font-gemunu tracking-wide">
+                  <span className="font-medium text-xl font-gemunu tracking-wide dark:text-gray-200">
                     {attribute.attr_title}
                   </span>
                   <div className="flex flex-wrap gap-y-1 gap-x-4">
@@ -359,7 +359,7 @@ function Aside({
                               option.option_name
                             )
                               ? "border-transparent bg-site text-white"
-                              : "border-gray-300 lg:group-hover:border-site/50 text-transparent lg:group-hover:text-site"
+                              : "border-gray-300 dark:border-gray-400 lg:group-hover:border-site/50 text-transparent lg:group-hover:text-site"
                           }`}
                           id={`brand-${index}`}
                         />
@@ -368,16 +368,16 @@ function Aside({
                             selectedAttributes[attribute.attr_title]?.includes(
                               option.option_name
                             )
-                              ? "text-site"
+                              ? "text-site dark:text-site"
                               : "lg:group-hover:text-site"
-                          } transition-all duration-300`}
+                          } transition-all duration-300 dark:text-gray-400`}
                         >
                           {option.option_name}
                         </span>
                       </div>
                     ))}
                   </div>
-                  <hr className="group-last/border:hidden" />
+                  <hr className="group-last/border:hidden dark:border-zinc-800" />
                 </div>
               ))}
           </div>

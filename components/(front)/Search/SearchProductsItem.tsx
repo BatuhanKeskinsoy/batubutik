@@ -37,7 +37,7 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
     useGlobalContext();
 
   const [FavoriteIcon, setFavoriteIcon] = useState(
-    <IoHeartOutline className="text-xl group-hover/favorite:text-white" />
+    <IoHeartOutline className="text-xl group-hover/favorite:text-white dark:text-gray-200" />
   );
 
   const handleAddToFavorite = (e: any) => {
@@ -86,7 +86,7 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
       product && favoriteItems?.includes(product.code) ? (
         <IoHeart className="text-xl text-red-500 group-hover/favorite:text-white" />
       ) : (
-        <IoHeartOutline className="text-xl text-gray-600 group-hover/favorite:text-white" />
+        <IoHeartOutline className="text-xl text-gray-600 dark:text-gray-200 group-hover/favorite:text-white" />
       )
     );
   }, [favoriteItems]);
@@ -129,7 +129,7 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
                 </span>{" "}
                 {product.title}
               </Link>
-              <span className="text-xs text-gray-600 font-medium">
+              <span className="text-xs text-gray-600 dark:text-gray-500 font-medium">
                 # {product.code}
               </span>
               <div className="text-sm tracking-wide">
@@ -181,7 +181,7 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
               containerStyles={`flex items-center w-full gap-2 justify-center py-2 px-2  ${
                 product.stock > 0
                   ? "bg-site/80 hover:bg-site text-white"
-                  : "bg-gray-200 text-gray-600 opacity-50 cursor-not-allowed"
+                  : "bg-gray-200 dark:bg-zinc-800 text-gray-600 dark:text-gray-400 opacity-50 cursor-not-allowed"
               } max-lg:text-sm rounded-md transition-all duration-300`}
               handleClick={product.stock > 0 ? handleAddToBasket : undefined}
             />
@@ -190,11 +190,11 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
                 !loadingAddToFavorite ? (
                   FavoriteIcon
                 ) : (
-                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-600  group-hover/favorite:border-white"></div>
+                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-600 group-hover/favorite:border-white"></div>
                 )
               }
               textStyles="hidden"
-              containerStyles="flex items-center gap-2 justify-center py-2 px-4 bg-gray-200 text-gray-600 rounded-md hover:bg-site hover:text-white transition-all duration-300 group/favorite"
+              containerStyles="flex items-center gap-2 justify-center py-2 px-4 bg-gray-200 dark:bg-zinc-800 text-gray-600 dark:text-gray-200 rounded-md hover:bg-site dark:hover:bg-site hover:text-white transition-all duration-300 group/favorite"
               handleClick={handleAddToFavorite}
             />
           </div>

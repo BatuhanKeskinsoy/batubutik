@@ -239,7 +239,7 @@ function StoreMain({
               <h1 className="flex items-center max-lg:justify-center font-semibold text-2xl text-site">
                 {breadcrumbTitle}
               </h1>
-              <p className="text-sm opacity-80">
+              <p className="text-sm opacity-80 dark:text-gray-400">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </p>
             </div>
@@ -259,17 +259,17 @@ function StoreMain({
                 }
                 containerStyles={`${
                   isSortingOpen ? "rounded-t-xl" : "rounded-md"
-                } flex gap-2 py-3 px-4 bg-white items-center border border-gray-200 w-full justify-between text-gray-600 lg:text-sm min-w-[250px] transition-all duration-300 hover:bg-site/10 hover:text-site hover:border-transparent`}
+                } flex gap-2 py-3 px-4 bg-white dark:bg-zinc-900 items-center border border-gray-200 dark:border-zinc-800 w-full justify-between text-gray-600 dark:text-gray-200 lg:text-sm min-w-[250px] transition-all duration-300 hover:bg-site/10 hover:text-site hover:border-transparent`}
                 btnType="button"
                 handleClick={() => setIsSortingOpen(!isSortingOpen)}
               />
               {isSortingOpen && (
-                <div className="absolute top-full bg-white shadow-md w-full rounded-b-xl overflow-hidden z-10 max-h-[400px] overflow-y-auto">
+                <div className="absolute top-full bg-white dark:bg-zinc-900 shadow-md w-full rounded-b-xl overflow-hidden z-10 max-h-[400px] overflow-y-auto">
                   <div className="flex flex-col w-full">
                     {sorting.sortingName !== "" && (
                       <CustomButton
                         title={"Gelişmiş Sıralama"}
-                        containerStyles="cursor-pointer py-2 px-4 transition-all border-b last:border-b-0 w-full text-left lg:text-sm hover:text-site transition-all duration-300"
+                        containerStyles="cursor-pointer py-2 px-4 transition-all border-b last:border-b-0 dark:border-zinc-800 w-full text-left lg:text-sm hover:text-site transition-all duration-300"
                         handleClick={() => {
                           setSorting({
                             sortingName: "",
@@ -285,7 +285,7 @@ function StoreMain({
                         <CustomButton
                           title={sorting.name}
                           key={key}
-                          containerStyles="cursor-pointer py-2 px-4 transition-all border-b last:border-b-0 w-full text-left lg:text-sm hover:text-site transition-all duration-300"
+                          containerStyles="cursor-pointer py-2 px-4 transition-all border-b last:border-b-0 dark:border-zinc-800 w-full text-left lg:text-sm hover:text-site transition-all duration-300"
                           handleClick={() => {
                             setSorting({
                               sortingName: sorting.name,
@@ -301,7 +301,7 @@ function StoreMain({
               )}
             </div>
           </div>
-          <hr />
+          <hr className="dark:border-zinc-800" />
           <>
             {filteredProducts && filteredProducts.length === 0 ? (
               <div className="flex flex-col gap-4 h-[500px] justify-center items-center animate-pulse text-gray-600">
