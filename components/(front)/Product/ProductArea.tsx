@@ -532,8 +532,8 @@ function ProductGroupItem({
   const [activeGroupItem, setActiveGroupItem] = useState(true);
   return (
     <div
-      className={`p-2 bg-gray-200 dark:bg-zinc-800 overflow-hidden rounded-md cursor-pointer hover:bg-site/20 dark:hover:bg-site/20 transition-all duration-300 group ${
-        activeGroupItem ? "first:bg-site/20 dark:first:bg-site/20 first:text-site" : ""
+      className={`p-2 bg-gray-200 dark:bg-zinc-800 overflow-hidden rounded-md cursor-pointer hover:bg-site/10 dark:hover:bg-site/10 transition-all duration-300 group ${
+        activeGroupItem ? "first:bg-site/30 dark:first:bg-site/30 first:hover:bg-site/30 dark:first:hover:bg-site/30 first:text-site" : ""
       }`}
     >
       <div className="flex flex-col text-center gap-2 w-full">
