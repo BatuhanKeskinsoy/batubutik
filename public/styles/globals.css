@@ -38,7 +38,7 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  @apply !size-16 bg-site/50 hover:bg-site/70 select-none lg:-translate-y-16 -translate-y-20 px-8 !py-4 transition-all duration-300;
+  @apply lg:!size-16 !size-12 bg-site/50 hover:bg-site/70 select-none lg:-translate-y-16 -translate-y-20 px-8 !py-4 transition-all duration-300;
 }
 
 .swiper-button-prev {
@@ -51,7 +51,7 @@
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
-  @apply text-white !text-4xl;
+  @apply text-white lg:!text-4xl !text-2xl;
 }
 
 .customRangeSlider {

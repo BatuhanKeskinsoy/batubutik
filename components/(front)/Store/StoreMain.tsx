@@ -318,7 +318,7 @@ function StoreMain({
                       key={product.id}
                       product={product}
                       height={395}
-                      mobileHeight={335}
+                      mobileHeight={290}
                     />
                   ))}
               </div>

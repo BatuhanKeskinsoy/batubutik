@@ -315,59 +315,63 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
               )}
             </div>
           </div>
-          {product.rating && (
-            <>
-              {(() => {
-                const size = 16;
-                return (
-                  <div className="flex gap-2 items-center">
-                    <div className="flex gap-1 items-center min-w-max">
-                      {Array.from({ length: 5 }).map((_, index) => (
-                        <div
-                          key={index}
-                          className={`relative min-w-[${size}px] w-[${size}px] h-[${size}px}`}
-                        >
-                          {getStar(index + 1, product.rating || 0, size)}
-                        </div>
-                      ))}
-                    </div>
-                    <p className={`-mb-1`} style={{ fontSize: size - 4 }}>
-                      ({product.rating})
-                    </p>
-                  </div>
-                );
-              })()}
-            </>
-          )}
           <div className="flex flex-col w-full gap-1">
             <div className="flex justify-between items-center gap-2">
               <span className="text-gray-500 text-xs dark:text-gray-400">
                 {product.mainCategory}
                 {product.category && ` / ${product.category}`}
               </span>
-              <span className="text-gray-500 text-xs dark:text-gray-400">#{product.code}</span>
+              <span className="text-gray-500 text-xs dark:text-gray-400">
+                #{product.code}
+              </span>
             </div>
-            <span className="font-medium">
+            <span className="font-medium line-clamp-1 group-hover:text-site transition-all duration-300 lg:text-lg text-sm">
               <span className="font-extrabold">
                 {product.brand && product.brand}
               </span>{" "}
               {product.title}
             </span>
-            <div className="flex items-center text-sm gap-2 leading-6">
-              <span
-                className={`font-medium ${
-                  product.discount > 0 ? "text-green-500 text-base" : ""
-                }`}
-              >
-                {getPrice(product.price)}
-              </span>
-              {product.discount > 0 && (
-                <span className="line-through text-gray-500">
-                  {getPrice(
-                    (product.discount * product.price) / 100 + product.price
-                  )}{" "}
-                </span>
+            <div className="flex max-lg:flex-col items-center justify-between gap-2 bg-gray-200 dark:bg-zinc-800 p-2 rounded-md">
+              {product.rating && (
+                <>
+                  {(() => {
+                    const size = !isMobile ? 18 : 16;
+                    return (
+                      <div className="flex gap-2 items-center">
+                        <div className="flex gap-0.5 items-center min-w-max">
+                          {Array.from({ length: 5 }).map((_, index) => (
+                            <div
+                              key={index}
+                              className={`relative min-w-[${size}px] w-[${size}px] h-[${size}px}`}
+                            >
+                              {getStar(index + 1, product.rating || 0, size)}
+                            </div>
+                          ))}
+                        </div>
+                        <p className={`-mb-1`} style={{ fontSize: size - 4 }}>
+                          ({product.rating})
+                        </p>
+                      </div>
+                    );
+                  })()}
+                </>
               )}
+              <div className="flex items-center gap-2 leading-6 -mb-1">
+                <span
+                  className={`font-medium lg:text-lg text-base ${
+                    product.discount > 0 ? "text-green-500" : ""
+                  }`}
+                >
+                  {getPrice(product.price)}
+                </span>
+                {product.discount > 0 && (
+                  <span className="line-through text-gray-500 text-sm">
+                    {getPrice(
+                      (product.discount * product.price) / 100 + product.price
+                    )}{" "}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         </Link>
