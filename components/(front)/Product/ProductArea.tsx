@@ -172,7 +172,7 @@ function ProductArea({
   return (
     <div
       className={`flex max-lg:flex-col h-full w-full  ${
-        isDetail ? "container mx-auto lg:px-4 gap-4" : ""
+        isDetail ? !isMobile ? "container gap-4" : "container px-0 gap-4" : ""
       }`}
     >
       <div className={`flex h-full ${isDetail ? "lg:w-2/5" : "lg:w-1/2"}`}>
