@@ -332,7 +332,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
               {product.title}
             </span>
             <p className="line-clamp-2 text-gray-600 dark:text-gray-400 lg:text-base text-sm">{product.short_content}</p>
-            <div className="flex max-lg:flex-col items-center justify-between gap-2 bg-gray-200 dark:bg-zinc-800 px-2 py-2.5 rounded-md mt-1">
+            <div className="flex max-lg:flex-col items-center justify-between gap-2 bg-gray-100 dark:bg-zinc-800 px-2 py-2.5 rounded-md mt-1">
               {product.rating && (
                 <>
                   {(() => {
