@@ -18,7 +18,7 @@ import {
 } from "react-icons/io5";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import toggleToFavorite from "@/lib/functions/toggleToFavorite";
-import ModalProductDetail from "@/lib/modals/ModalProductDetail";
+import ModalProductDetail from "@/components/modals/ModalProductDetail";
 
 interface IFavoriteProductItemProps {
   product: productTypes;

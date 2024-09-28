@@ -17,7 +17,7 @@ import {
   IoHeartDislikeOutline,
 } from "react-icons/io5";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
-import ModalProductDetail from "@/lib/modals/ModalProductDetail";
+import ModalProductDetail from "@/components/modals/ModalProductDetail";
 
 interface IFavoriteProductItemProps {
   product: productTypes;

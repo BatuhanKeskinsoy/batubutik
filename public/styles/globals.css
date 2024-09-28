@@ -23,10 +23,9 @@
     @apply bg-site;
   }
   body {
-    @apply font-system text-gray-900 dark:text-gray-200 bg-white dark:bg-zinc-900
+    @apply font-system text-gray-900 dark:text-gray-200 bg-white dark:bg-zinc-900;
   }
 }
-
 
 @layer utilities {
   .scrollbar-thick::-webkit-scrollbar {
@@ -64,7 +63,7 @@
 }
 
 .dangeriousContent {
-  @apply pt-4 pb-8 mb-8 border-b w-full dark:border-zinc-800
+  @apply pt-4 pb-8 mb-8 border-b w-full dark:border-zinc-800;
 }
 .dangeriousContent h1 {
   @apply text-3xl;
@@ -84,12 +83,11 @@
 .dangeriousContent h4,
 .dangeriousContent h5,
 .dangeriousContent h6 {
-  @apply mt-6 first:mt-0
+  @apply mt-6 first:mt-0;
 }
 
 .dangeriousContent p {
-  @apply text-gray-500 dark:text-gray-400 leading-7
-
+  @apply text-gray-500 dark:text-gray-400 leading-7;
 }
 
 .dangeriousContent img {

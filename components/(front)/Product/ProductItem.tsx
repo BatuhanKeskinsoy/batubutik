@@ -18,7 +18,7 @@ import {
 import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { instantProductDetail } from "@/constants/(front)";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
-import ModalProductDetail from "@/lib/modals/ModalProductDetail";
+import ModalProductDetail from "@/components/modals/ModalProductDetail";
 
 interface IProductItemProps {
   product: productTypes;
