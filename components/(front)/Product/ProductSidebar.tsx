@@ -11,7 +11,7 @@ function ProductSidebar({ product }: IProductSidebarProps) {
   return (
     <aside className="container mx-auto px-4 flex lg:flex-row flex-col lg:gap-8 gap-4">
       <div className="max-w-full lg:min-w-[270px] max-lg:w-full">
-        <div className="sticky top-24 h-fit flex flex-col gap-6 w-full">
+        <div className="sticky top-24 h-fit flex flex-col lg:gap-12 gap-6 w-full">
           <div className="flex flex-col w-full gap-4">
             <span className="font-gemunu text-2xl">Paylaş</span>
             <ProductShares
@@ -20,7 +20,6 @@ function ProductSidebar({ product }: IProductSidebarProps) {
               tags={product.tags}
             />
           </div>
-          <hr />
           <div className="flex flex-col w-full gap-4">
             <span className="font-gemunu text-2xl">Etiketler</span>
             <ul className="tags flex flex-wrap gap-3">
@@ -29,7 +28,7 @@ function ProductSidebar({ product }: IProductSidebarProps) {
                 <Link
                   href=""
                   title="İç Giyim"
-                  className="text-base text-gray-600 hover:text-site transition-all duration-300"
+                  className="text-base text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
                 >
                   Amor Bralet
                 </Link>
@@ -39,7 +38,7 @@ function ProductSidebar({ product }: IProductSidebarProps) {
                 <Link
                   href=""
                   title="İç Giyim"
-                  className="text-base text-gray-600 hover:text-site transition-all duration-300"
+                  className="text-base text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
                 >
                   İç Giyim
                 </Link>
@@ -49,7 +48,7 @@ function ProductSidebar({ product }: IProductSidebarProps) {
                 <Link
                   href=""
                   title="İç Giyim"
-                  className="text-base text-gray-600 hover:text-site transition-all duration-300"
+                  className="text-base text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
                 >
                   Jartiyer Takımı
                 </Link>
@@ -59,7 +58,7 @@ function ProductSidebar({ product }: IProductSidebarProps) {
                 <Link
                   href=""
                   title="İç Giyim"
-                  className="text-base text-gray-600 hover:text-site transition-all duration-300"
+                  className="text-base text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
                 >
                   İç Çamaşır
                 </Link>

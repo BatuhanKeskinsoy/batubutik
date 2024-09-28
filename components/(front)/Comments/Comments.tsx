@@ -55,7 +55,7 @@ function Comments({ comments }: ICommentsProps) {
                     })()}
                   </div>
                   {!isMobile && (
-                    <p className="text-gray-500">
+                    <p className="text-gray-500 dark:text-gray-400">
                       Güzel ürün ben aldım kullanıyorum. Güzel ürün ben aldım
                       kullanıyorum. Güzel ürün ben aldım kullanıyorum. Güzel
                       ürün ben aldım kullanıyorum. Güzel ürün ben aldım
@@ -67,7 +67,7 @@ function Comments({ comments }: ICommentsProps) {
                       <span className="text-site font-gemunu text-xl font-semibold tracking-wide">
                         {generals.site_name} Yanıtladı :
                       </span>
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 dark:text-gray-300">
                         Beğenmenize sevindik, iyi günler beğenmenize sevindik,
                         iyi günlerde kullanın. Beğenmenize sevindik, iyi
                         günlerde kullanın.{" "}
@@ -77,7 +77,7 @@ function Comments({ comments }: ICommentsProps) {
                 </div>
               </div>
               {isMobile && (
-                <p className="text-gray-500">
+                <p className="text-gray-500 dark:text-gray-400">
                   Güzel ürün ben aldım kullanıyorum. Güzel ürün ben aldım
                   kullanıyorum. Güzel ürün ben aldım kullanıyorum. Güzel ürün
                   ben aldım kullanıyorum. Güzel ürün ben aldım kullanıyorum.
@@ -89,7 +89,7 @@ function Comments({ comments }: ICommentsProps) {
                   <span className="text-site font-gemunu text-xl font-semibold tracking-wide">
                     {generals.site_name} Yanıtladı :
                   </span>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-300">
                     Beğenmenize sevindik, iyi günler beğenmenize sevindik, iyi
                     günlerde kullanın. Beğenmenize sevindik, iyi günlerde
                     kullanın.{" "}

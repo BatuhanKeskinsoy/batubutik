@@ -27,7 +27,7 @@ function Home() {
           <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
             Öne Çıkan Ürünler
           </h3>
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-gray-400">
             {generals.site_name} koleksiyonu içerisinde öne çıkan ürünler
           </p>
         </div>
@@ -40,7 +40,7 @@ function Home() {
             <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
               Yeni Ürünler
             </h3>
-            <p className="text-gray-500">
+            <p className="text-gray-500 dark:text-gray-400">
               {generals.site_name} koleksiyonuna eklenen en yeni ürünler
             </p>
           </div>
@@ -53,7 +53,7 @@ function Home() {
           <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
             En Çok Satılan Ürünler
           </h3>
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-gray-400">
             {generals.site_name} koleksiyonu içerisinde en çok talep edilen ve
             en çok satılan ürünler
           </p>

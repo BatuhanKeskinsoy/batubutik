@@ -51,13 +51,13 @@ async function page({
       </div>
       <ProductDetail product={product} />
       <ProductSidebar product={product} />
-      <hr className="lg:my-12 my-6" />
+      <hr className="lg:my-12 my-6 dark:border-zinc-800" />
       <section className="relative container mx-auto px-4">
         <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
           <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
             Öne Çıkan Ürünler
           </h3>
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-gray-400">
             {generals.site_name} koleksiyonu içerisinde öne çıkan ürünler
           </p>
         </div>

@@ -30,7 +30,7 @@ function ProductDetail({ product }: IProductDetailProps) {
                 containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
                   activeTab === "info"
                     ? "border-transparent bg-site text-white"
-                    : "bg-white/20 hover:border-transparent hover:bg-site/10 hover:text-site border-gray-200"
+                    : "bg-white/20 dark:bg-zinc-900 hover:border-transparent dark:hover:border-transparent hover:bg-site/10 dark:hover:bg-site/10 hover:text-site dark:hover:text-site border-gray-200 dark:border-zinc-800"
                 }`}
                 handleClick={() => setActiveTab("info")}
               />
@@ -39,7 +39,7 @@ function ProductDetail({ product }: IProductDetailProps) {
                 containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
                   activeTab === "comments"
                     ? "border-transparent bg-site text-white"
-                    : "bg-white/20 hover:border-transparent hover:bg-site/10 hover:text-site border-gray-200"
+                    : "bg-white/20 dark:bg-zinc-900 hover:border-transparent dark:hover:border-transparent hover:bg-site/10 dark:hover:bg-site/10 hover:text-site dark:hover:text-site border-gray-200 dark:border-zinc-800"
                 }`}
                 handleClick={() => setActiveTab("comments")}
               />
@@ -49,13 +49,13 @@ function ProductDetail({ product }: IProductDetailProps) {
                   containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
                     activeTab === "return"
                       ? "border-transparent bg-site text-white"
-                      : "bg-white/20 hover:border-transparent hover:bg-site/10 hover:text-site border-gray-200"
-                  }`}
+                      : "bg-white/20 dark:bg-zinc-900 hover:border-transparent dark:hover:border-transparent hover:bg-site/10 dark:hover:bg-site/10 hover:text-site dark:hover:text-site border-gray-200 dark:border-zinc-800"
+                }`}
                   handleClick={() => setActiveTab("return")}
                 />
               )}
             </div>
-            <hr />
+            <hr className="dark:border-zinc-800" />
             <div ref={tabMenuRef}>
               {activeTab === "info" ? (
                 <div

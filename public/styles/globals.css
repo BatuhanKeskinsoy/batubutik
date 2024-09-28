@@ -63,6 +63,35 @@
   @apply !text-site;
 }
 
+.dangeriousContent {
+  @apply pt-4 pb-8 mb-8 border-b w-full dark:border-zinc-800
+}
+.dangeriousContent h1 {
+  @apply text-3xl;
+}
+.dangeriousContent h2 {
+  @apply text-2xl;
+}
+.dangeriousContent h3 {
+  @apply text-xl;
+}
+.dangeriousContent h4 {
+  @apply text-lg;
+}
+.dangeriousContent h1,
+.dangeriousContent h2,
+.dangeriousContent h3,
+.dangeriousContent h4,
+.dangeriousContent h5,
+.dangeriousContent h6 {
+  @apply mt-6 first:mt-0
+}
+
+.dangeriousContent p {
+  @apply text-gray-500 dark:text-gray-400 leading-7
+
+}
+
 .dangeriousContent img {
   @apply overflow-hidden my-6 max-w-full;
 }

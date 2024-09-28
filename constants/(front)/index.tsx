@@ -23,8 +23,7 @@ export const generals = {
     "Lüks İç Giyim",
     "Takım İç Giyim",
   ],
-  return_conditions:
-    'İptal ve İade Koşulları Henüz Belirtilmemiş!',
+  return_conditions: "İptal ve İade Koşulları Henüz Belirtilmemiş!",
 };
 
 export const navLinks = [
@@ -426,7 +425,24 @@ export const instantProductDetail = {
   title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
   slug: "amor-bralet-jartiyer-ic-camasir-takimi",
   content:
-    'Ürün bilgisi henüz yok!',
+    `<h1>Başlık H1</h1>` +
+    `</br>` +
+    `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+    `<h2>Başlık H2</h2>` +
+    `</br>` +
+    `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+    `<h2>Başlık H2</h2>` +
+    `</br>` +
+    `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+    `<h3>Başlık H3</h3>` +
+    `</br>` +
+    `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+    `<h3>Başlık H3</h3>` +
+    `</br>` +
+    `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+    `<h4>Başlık H4</h4>` +
+    `</br>` +
+    `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
   code: "ABJ-100",
   brand: "Gammi",
   mainCategory: "Kadın",
@@ -526,7 +542,6 @@ export const discountCodes = [
     discount: 20,
   },
 ];
-
 
 /* export const users = [
   {
