@@ -325,13 +325,14 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                 #{product.code}
               </span>
             </div>
-            <span className="font-medium line-clamp-1 group-hover:text-site transition-all duration-300 lg:text-lg text-sm">
+            <span className="font-medium line-clamp-1 group-hover:text-site transition-all duration-300 lg:text-lg text-base">
               <span className="font-extrabold">
                 {product.brand && product.brand}
               </span>{" "}
               {product.title}
             </span>
-            <div className="flex max-lg:flex-col items-center justify-between gap-2 bg-gray-200 dark:bg-zinc-800 p-2 rounded-md">
+            <p className="line-clamp-2 text-gray-600 dark:text-gray-400 lg:text-base text-sm">{product.short_content}</p>
+            <div className="flex max-lg:flex-col items-center justify-between gap-2 bg-gray-200 dark:bg-zinc-800 px-2 py-2.5 rounded-md mt-1">
               {product.rating && (
                 <>
                   {(() => {

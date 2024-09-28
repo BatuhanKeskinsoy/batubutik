@@ -326,28 +326,11 @@ function ProductArea({
               )}
             </div>
           </div>
-          {!isDetail && (
+          {product?.short_content && (
             <div className="flex flex-col gap-4 w-full">
-              <span>Ürün Özellikleri :</span>
-              <div className="flex text-sm flex-col gap-2 text-gray-600 dark:text-gray-500">
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Numquam ipsa.
-                </p>
-                <ul className="list-disc pl-5">
-                  <li>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  </li>
-                  <li>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  </li>
-                  <li>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  </li>
-                  <li>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  </li>
-                </ul>
+              <span>Ürün Hakkında :</span>
+              <div className="flex lg:text-base text-sm flex-col gap-2 text-gray-600 dark:text-gray-400">
+                {product?.short_content}
               </div>
             </div>
           )}

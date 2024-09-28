@@ -81,6 +81,7 @@ export const instantProducts = [
   {
     id: 1,
     title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "amor-bralet-jartiyer-ic-camasir-takimi",
     code: "ABJ-100",
     brand: "Gammi",
@@ -148,6 +149,7 @@ export const instantProducts = [
   {
     id: 2,
     title: "Black Bralet Dress",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "black-bralet-dress",
     code: "BBD-101",
     brand: "Batubutik",
@@ -205,6 +207,7 @@ export const instantProducts = [
   {
     id: 3,
     title: "Burgundy Bralet Dress",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "burgundy-bralet-dress",
     code: "BBD-102",
     brand: "Gammi",
@@ -263,6 +266,7 @@ export const instantProducts = [
   {
     id: 4,
     title: "Blue Bralet Dress",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "blue-bralet-dress",
     code: "BBD-103",
     brand: "Gammi",
@@ -319,6 +323,7 @@ export const instantProducts = [
   {
     id: 5,
     title: "Burgundy Bralet Dress 2",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "burgundy-bralet-dress-2",
     code: "BBD-104",
     brand: "Gammi",
@@ -373,6 +378,7 @@ export const instantProducts = [
   {
     id: 6,
     title: "Tek Fotoğraflı Ürün",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "tek-fotograf-urun",
     code: "TFU-100",
     brand: null,
@@ -423,6 +429,7 @@ export const instantProducts = [
 
 export const instantProductDetail = {
   title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
+  short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
   slug: "amor-bralet-jartiyer-ic-camasir-takimi",
   content:
     `<h1>Başlık H1</h1>` +

@@ -1,5 +1,6 @@
 export type basketProductTypes = {
   title: string;
+  short_content: string;
   slug: string;
   code: string;
   brand: string | null;
