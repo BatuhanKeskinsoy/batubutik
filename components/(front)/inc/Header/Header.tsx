@@ -14,11 +14,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { categories, generals, navLinks } from "@/constants/(front)";
 import { LiaShippingFastSolid } from "react-icons/lia";
-import { getPrice } from "@/components/functions/getPrice";
-import { getSocialIcon } from "@/components/functions/getSocialIcon";
+import { getPrice } from "@/lib/functions/getPrice";
+import { getSocialIcon } from "@/lib/functions/getSocialIcon";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Theme from "@/components/others/Theme";
+import { useTheme } from "@/app/Context/themeContext";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,6 +27,7 @@ function Header() {
   const { sidebarStatus, setSidebarStatus, isMobile } = useGlobalContext();
   const router = useRouter();
   const pathname = usePathname();
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,9 +70,10 @@ function Header() {
       ? "text-site"
       : "dark:text-gray-200 hover:text-site dark:hover:text-site";
   };
+  
   return (
     <>
-      <ToastContainer />
+      <ToastContainer theme={theme} />
       {loading && <Loading />}
       <header className="relative w-full lg:h-[120px] h-20 z-20">
         <div className="h-10 w-full max-lg:hidden bg-gray-300/50 dark:bg-zinc-800">

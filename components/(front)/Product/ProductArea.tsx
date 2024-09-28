@@ -1,8 +1,8 @@
 "use client";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Image from "next/image";
-import { getStar } from "@/components/functions/getStar";
-import { getPrice } from "@/components/functions/getPrice";
+import { getStar } from "@/lib/functions/getStar";
+import { getPrice } from "@/lib/functions/getPrice";
 import Link from "next/link";
 import CustomButton from "@/components/others/CustomButton";
 import { productDetailTypes } from "@/types/product/productDetailTypes";
@@ -15,9 +15,9 @@ import {
   IoHeartOutline,
   IoRemove,
 } from "react-icons/io5";
-import addToBasket from "@/components/functions/addToBasket";
+import addToBasket from "@/lib/functions/addToBasket";
 import { useGlobalContext } from "@/app/Context/store";
-import toggleToFavorite from "@/components/functions/toggleToFavorite";
+import toggleToFavorite from "@/lib/functions/toggleToFavorite";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 
 interface IProductAreaProps {

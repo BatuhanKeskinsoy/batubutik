@@ -1,7 +1,7 @@
 "use client";
 import { useGlobalContext } from "@/app/Context/store";
-import addToBasket from "@/components/functions/addToBasket";
-import { getPrice } from "@/components/functions/getPrice";
+import addToBasket from "@/lib/functions/addToBasket";
+import { getPrice } from "@/lib/functions/getPrice";
 import CustomButton from "@/components/others/CustomButton";
 import { instantProductDetail } from "@/constants/(front)";
 import { productTypes } from "@/types/product/productTypes";
@@ -13,14 +13,12 @@ import {
   IoBagAddOutline,
   IoBagCheck,
   IoBanOutline,
-  IoCloseOutline,
   IoHeart,
   IoHeartOutline,
 } from "react-icons/io5";
-import ProductArea from "@/components/(front)/Product/ProductArea";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
-import toggleToFavorite from "@/components/functions/toggleToFavorite";
-import ModalProductDetail from "@/components/modals/ModalProductDetail";
+import toggleToFavorite from "@/lib/functions/toggleToFavorite";
+import ModalProductDetail from "@/lib/modals/ModalProductDetail";
 
 interface IFavoriteProductItemProps {
   product: productTypes;

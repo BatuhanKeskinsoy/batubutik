@@ -4,7 +4,7 @@ import CustomButton from "@/components/others/CustomButton";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { getPrice } from "@/components/functions/getPrice";
+import { getPrice } from "@/lib/functions/getPrice";
 import { discountCodes, generals } from "@/constants/(front)";
 import { IoChevronForwardOutline, IoCloseOutline } from "react-icons/io5";
 import { useGlobalContext } from "@/app/Context/store";

@@ -1,6 +1,6 @@
 "use client";
 import { useGlobalContext } from "@/app/Context/store";
-import { getPrice } from "@/components/functions/getPrice";
+import { getPrice } from "@/lib/functions/getPrice";
 import CustomButton from "@/components/others/CustomButton";
 import { instantProducts } from "@/constants/(front)";
 import React, { useEffect, useState } from "react";

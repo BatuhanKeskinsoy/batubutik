@@ -9,7 +9,7 @@ import {
   IoSearchOutline,
 } from "react-icons/io5";
 import CustomButton from "@/components/others/CustomButton";
-import { getPrice } from "@/components/functions/getPrice";
+import { getPrice } from "@/lib/functions/getPrice";
 import { useGlobalContext } from "@/app/Context/store";
 import { productAttributesTypes } from "@/types/product/productTypes";
 import { Range } from "react-range";

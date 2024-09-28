@@ -1,5 +1,5 @@
 "use client";
-import { getPrice } from "@/components/functions/getPrice";
+import { getPrice } from "@/lib/functions/getPrice";
 import CustomButton from "@/components/others/CustomButton";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
 import Image from "next/image";

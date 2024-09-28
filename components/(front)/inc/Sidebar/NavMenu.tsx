@@ -1,7 +1,7 @@
 "use client";
 import { useGlobalContext } from "@/app/Context/store";
-import { getPrice } from "@/components/functions/getPrice";
-import { getSocialIcon } from "@/components/functions/getSocialIcon";
+import { getPrice } from "@/lib/functions/getPrice";
+import { getSocialIcon } from "@/lib/functions/getSocialIcon";
 import CustomButton from "@/components/others/CustomButton";
 import Theme from "@/components/others/Theme";
 import { categories, generals, navLinks } from "@/constants/(front)";

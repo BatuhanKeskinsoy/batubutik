@@ -1,8 +1,8 @@
 "use client";
 import { useGlobalContext } from "@/app/Context/store";
-import { getShortName } from "@/components/functions/getShortName";
-import { getStar } from "@/components/functions/getStar";
-import { getStarredName } from "@/components/functions/getStarredName";
+import { getShortName } from "@/lib/functions/getShortName";
+import { getStar } from "@/lib/functions/getStar";
+import { getStarredName } from "@/lib/functions/getStarredName";
 import { generals } from "@/constants/(front)";
 import React from "react";
 

@@ -1,6 +1,6 @@
 "use client";
 import { useGlobalContext } from "@/app/Context/store";
-import { getShortName } from "@/components/functions/getShortName";
+import { getShortName } from "@/lib/functions/getShortName";
 import CustomButton from "@/components/others/CustomButton";
 import React, { useEffect, useState } from "react";
 import { IoPersonOutline } from "react-icons/io5";

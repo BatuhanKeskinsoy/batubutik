@@ -2,6 +2,7 @@ import { userAuthTypes } from "@/types/user/userAuthTypes";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
+import baseURL from "@/lib/functions/getBaseUrl";
 
 export function login(
   email: string,
@@ -9,10 +10,8 @@ export function login(
   rememberMe: boolean,
   setUser: Dispatch<SetStateAction<userAuthTypes | null>>
 ) {
-  const url = process.env.NEXT_PUBLIC_API_BASEURL || "";
-
   axios
-    .post(`${url}/auth/login`, {
+    .post(`${baseURL}/auth/login`, {
       email,
       password,
       remember: rememberMe,
@@ -35,9 +34,11 @@ export function login(
         const token = res.data.token;
         if (token) {
           if (rememberMe) {
-            typeof window !== "undefined" && localStorage.setItem("token", token);
+            typeof window !== "undefined" &&
+              localStorage.setItem("token", token);
           } else {
-            typeof window !== "undefined" && sessionStorage.setItem("token", token);
+            typeof window !== "undefined" &&
+              sessionStorage.setItem("token", token);
           }
         } else {
           console.error("Token not found in the response.");

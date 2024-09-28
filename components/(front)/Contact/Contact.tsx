@@ -1,5 +1,5 @@
 "use client";
-import { getSocialIcon } from "@/components/functions/getSocialIcon";
+import { getSocialIcon } from "@/lib/functions/getSocialIcon";
 import CustomButton from "@/components/others/CustomButton";
 import { generals } from "@/constants/(front)";
 import Link from "next/link";

@@ -1,9 +1,9 @@
 "use client";
 import { useGlobalContext } from "@/app/Context/store";
-import addToBasket from "@/components/functions/addToBasket";
-import toggleToFavorite from "@/components/functions/toggleToFavorite";
-import { getPrice } from "@/components/functions/getPrice";
-import { getStar } from "@/components/functions/getStar";
+import addToBasket from "@/lib/functions/addToBasket";
+import toggleToFavorite from "@/lib/functions/toggleToFavorite";
+import { getPrice } from "@/lib/functions/getPrice";
+import { getStar } from "@/lib/functions/getStar";
 import CustomButton from "@/components/others/CustomButton";
 import { productTypes } from "@/types/product/productTypes";
 import Image from "next/image";
@@ -18,7 +18,7 @@ import {
 import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { instantProductDetail } from "@/constants/(front)";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
-import ModalProductDetail from "@/components/modals/ModalProductDetail";
+import ModalProductDetail from "@/lib/modals/ModalProductDetail";
 
 interface IProductItemProps {
   product: productTypes;

@@ -9,7 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Subscribe from "@/components/(front)/inc/Subscribe";
 import Link from "next/link";
 import { generals, categories } from "@/constants/(front)";
-import { getSocialIcon } from "@/components/functions/getSocialIcon";
+import { getSocialIcon } from "@/lib/functions/getSocialIcon";
 import Image from "next/image";
 
 function Footer() {
