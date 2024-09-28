@@ -280,7 +280,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
 
               {product.stock > 0 && (
                 <div
-                  className={`flex justify-center absolute w-full bottom-3`}
+                  className={`flex justify-center absolute w-full bottom-4`}
                   onMouseEnter={() => setIsHovered(true)}
                 >
                   <CustomButton
@@ -289,22 +289,22 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                         ? "Sepete Ekle"
                         : "Ekleniyor.."
                     }
-                    containerStyles={`flex items-center gap-2 text-sm font-medium tracking-wide px-3 py-2 ${
+                    containerStyles={`flex items-center justify-center gap-2 lg:text-base text-sm font-medium tracking-wide lg:px-6 px-3 lg:py-4 py-2 rounded-lg ${
                       product.choise_required || !loadingAddToBasket
-                        ? "bg-white dark:bg-zinc-900 hover:bg-site dark:hover:bg-site hover:text-white"
+                        ? "bg-white/70 dark:bg-zinc-900/70 hover:bg-site/70 dark:hover:bg-site/70 hover:text-white"
                         : "bg-green-500 text-white !transition-none"
-                    } rounded-md shadow-lg transition-all duration-300 ${
+                    } shadow-lg transition-all duration-300 ${
                       !isMobile && isHovered
-                        ? "lg:-translate-y-4 -translate-y-2 opacity-100"
+                        ? "lg:-translate-y-4 -translate-y-0 opacity-100"
                         : !isMobile
                         ? "translate-y-full opacity-0"
-                        : "lg:-translate-y-4 -translate-y-2 opacity-100"
+                        : "lg:-translate-y-4 -translate-y-0 opacity-100"
                     }
             `}
                     textStyles="-mb-0.5"
                     leftIcon={
                       product.choise_required || !loadingAddToBasket ? (
-                        <IoBagAddOutline className="text-xl" />
+                        <IoBagAddOutline className="lg:text-2xl text-xl" />
                       ) : (
                         <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
                       )
