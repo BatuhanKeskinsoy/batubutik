@@ -17,8 +17,10 @@ export type productTypes = {
   brand: string | null;
   mainCategory: string;
   mainCategory_slug: string;
-  category: string;
-  category_slug: string;
+  category: string | null;
+  category_slug: string | null;
+  subCategory: string | null;
+  subCategory_slug: string | null;
   images: string[] | null;
   rating: number | null;
   price: number;

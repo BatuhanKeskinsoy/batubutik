@@ -92,6 +92,8 @@ export const instantProducts = [
     mainCategory_slug: "kadin",
     category: "İç Giyim",
     category_slug: "ic-giyim",
+    subCategory: null,
+    subCategory_slug: null,
     images: [
       "/assets/products/product5.webp",
       "/assets/products/product2.webp",
@@ -160,6 +162,8 @@ export const instantProducts = [
     mainCategory_slug: "kadin",
     category: "İç Giyim",
     category_slug: "ic-giyim",
+    subCategory: null,
+    subCategory_slug: null,
     images: [
       "/assets/products/product6.webp",
       "/assets/products/product7.webp",
@@ -218,6 +222,8 @@ export const instantProducts = [
     mainCategory_slug: "kadin",
     category: "İç Giyim",
     category_slug: "ic-giyim",
+    subCategory: null,
+    subCategory_slug: null,
     images: [
       "/assets/products/product11.webp",
       "/assets/products/product12.webp",
@@ -277,6 +283,8 @@ export const instantProducts = [
     mainCategory_slug: "kadin",
     category: "İç Giyim",
     category_slug: "ic-giyim",
+    subCategory: null,
+    subCategory_slug: null,
     images: [
       "/assets/products/product14.webp",
       "/assets/products/product15.webp",
@@ -334,6 +342,8 @@ export const instantProducts = [
     mainCategory_slug: "kadin",
     category: "İç Giyim",
     category_slug: "ic-giyim",
+    subCategory: null,
+    subCategory_slug: null,
     images: [
       "/assets/products/product17.webp",
       "/assets/products/product11.webp",
@@ -389,6 +399,8 @@ export const instantProducts = [
     mainCategory_slug: "kadin",
     category: "İç Giyim",
     category_slug: "ic-giyim",
+    subCategory: null,
+    subCategory_slug: null,
     images: ["/assets/products/product15.webp"],
     rating: 2.4,
     price: 410,
@@ -489,6 +501,7 @@ export const instantProductDetail = {
           code: "ABJ-100",
           mainCategory_slug: "kadin",
           category_slug: "ic-giyim",
+          subCategory_slug: null,
           images: [
             "/assets/products/product5.webp",
             "/assets/products/product2.webp",
@@ -506,6 +519,7 @@ export const instantProductDetail = {
           code: "BBD-103",
           mainCategory_slug: "kadin",
           category_slug: "ic-giyim",
+          subCategory_slug: null,
           images: [
             "/assets/products/product14.webp",
             "/assets/products/product15.webp",
@@ -521,6 +535,7 @@ export const instantProductDetail = {
           code: "BBD-102",
           mainCategory_slug: "kadin",
           category_slug: "ic-giyim",
+          subCategory_slug: null,
           images: [
             "/assets/products/product11.webp",
             "/assets/products/product12.webp",

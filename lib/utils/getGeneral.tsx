@@ -1,9 +1,9 @@
 import axios from "axios";
 import { baseURL } from "@/constants/(front)";
 
-export async function getUser() {
+export async function getGeneral() {
   try {
-    const response = await axios.get(`${baseURL}/user/index`);
+    const response = await axios.get(`${baseURL}/general`);
     return response.data;
   } catch (error) {
     console.error("Error fetching users:", error);
