@@ -2,7 +2,7 @@ import { userAuthTypes } from "@/types/user/userAuthTypes";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
-import baseURL from "@/lib/functions/getBaseUrl";
+import { baseURL } from "@/constants/(front)";
 
 export function login(
   email: string,

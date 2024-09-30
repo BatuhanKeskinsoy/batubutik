@@ -1,3 +1,16 @@
+export type productGroupProductsTypes = {
+  choise_name: string;
+  product: {
+    code: string;
+    title: string;
+    slug: string;
+    mainCategory_slug: string;
+    category_slug: string | null;
+    subCategory_slug: string | null;
+    images: string[] | null;
+  };
+};
+
 export type productDetailTypes = {
   title: string;
   short_content: string;
@@ -20,7 +33,7 @@ export type productDetailTypes = {
   tags: string[] | null;
   product_group: {
     group_name: string;
-    products: { choise_name: string; code: string }[];
+    products: productGroupProductsTypes[];
   } | null;
   attributes:
     | {
@@ -30,11 +43,11 @@ export type productDetailTypes = {
       }[]
     | null;
   choise_required: boolean;
-  status: boolean,
-  featured_status: boolean,
-  total_sold: number,
-  meta_title: string,
-  meta_description: string,
-  created_at: Date,
-  updated_at: Date | null,
+  status: boolean;
+  featured_status: boolean;
+  total_sold: number;
+  meta_title: string;
+  meta_description: string;
+  created_at: Date;
+  updated_at: Date | null;
 };

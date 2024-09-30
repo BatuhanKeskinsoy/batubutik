@@ -1,5 +1,5 @@
 import axios from "axios";
-import baseURL from "@/lib/functions/getBaseUrl";
+import { baseURL } from "@/constants/(front)";
 
 export async function getUser() {
   try {

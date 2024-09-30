@@ -5,7 +5,10 @@ import { getStar } from "@/lib/functions/getStar";
 import { getPrice } from "@/lib/functions/getPrice";
 import Link from "next/link";
 import CustomButton from "@/components/others/CustomButton";
-import { productDetailTypes } from "@/types/product/productDetailTypes";
+import {
+  productDetailTypes,
+  productGroupProductsTypes,
+} from "@/types/product/productDetailTypes";
 import {
   IoAdd,
   IoBagAddOutline,
@@ -19,6 +22,7 @@ import addToBasket from "@/lib/functions/addToBasket";
 import { useGlobalContext } from "@/app/Context/store";
 import toggleToFavorite from "@/lib/functions/toggleToFavorite";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
+import { siteURL } from "@/constants/(front)";
 
 interface IProductAreaProps {
   product: productDetailTypes | undefined;
@@ -172,7 +176,7 @@ function ProductArea({
   return (
     <div
       className={`flex max-lg:flex-col h-full w-full  ${
-        isDetail ? !isMobile ? "container gap-4" : "container px-0 gap-4" : ""
+        isDetail ? (!isMobile ? "container gap-4" : "container px-0 gap-4") : ""
       }`}
     >
       <div className={`flex h-full ${isDetail ? "lg:w-2/5" : "lg:w-1/2"}`}>
@@ -338,15 +342,45 @@ function ProductArea({
             {product?.product_group && (
               <div className="flex flex-col gap-2">
                 <span>{product.product_group.group_name} :</span>
-                <div className="flex flex-wrap gap-2 items-center">
-                  {product.product_group.products.map((item, key) => (
-                    <ProductGroupItem
-                      key={key}
-                      item={item}
-                      product={product}
-                      index={key}
-                    />
-                  ))}
+                <div className="flex lg:flex-wrap gap-2 items-center overflow-x-auto max-w-full pb-2">
+                  {product.product_group.products.map((item, key) => {
+                    const categorySlug = item.product.category_slug
+                      ? `/${item.product.category_slug}`
+                      : "";
+                    const subCategorySlug = item.product.subCategory_slug
+                      ? `/${item.product.subCategory_slug}`
+                      : "";
+
+                    const redirect = `${siteURL}/magaza/${item.product.mainCategory_slug}${categorySlug}${subCategorySlug}/${item.product.slug}`;
+
+                    return (
+                      <Link
+                        href={redirect}
+                        key={key}
+                        className={`p-2 bg-gray-200 min-w-24 dark:bg-zinc-800 overflow-hidden rounded-md cursor-pointer hover:bg-site/10 dark:hover:bg-site/10 transition-all duration-300 group first:bg-site/30 dark:first:bg-site/30 first:hover:bg-site/30 dark:first:hover:bg-site/30 first:text-site`}
+                        title={item.product.title}
+                      >
+                        <div className="flex flex-col text-center gap-2 w-full">
+                          {item.product.images && (
+                            <div className="relative w-full h-28 overflow-hidden rounded-md">
+                              <Image
+                                src={item.product.images[0]}
+                                alt={item.product.title}
+                                title={item.product.title}
+                                fill
+                                quality={100}
+                                sizes="80px"
+                                className="object-cover"
+                              />
+                            </div>
+                          )}
+                          <span className="text-xs group-hover:text-site font-medium transition-all duration-300 line-clamp-1 tracking-wide">
+                            {item.choise_name}
+                          </span>
+                        </div>
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -391,7 +425,7 @@ function ProductArea({
           </div>
           <div className="flex lg:flex-row flex-col items-center max-lg:w-full lg:gap-2 gap-4">
             <div className={`flex items-center max-lg:w-full gap-2 h-[50px]`}>
-            <div className="flex items-center justify-between gap-3 bg-gray-100 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg p-1 h-full">
+              <div className="flex items-center justify-between gap-3 bg-gray-100 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg p-1 h-full">
                 <CustomButton
                   handleClick={
                     product && product.stock > 0 && productQuantity > 1
@@ -517,43 +551,6 @@ function AttrOptions({
       } transition-all duration-300 text-sm`}
       handleClick={() => !noStock && onSelect(attrTitle, option_name)}
     />
-  );
-}
-
-function ProductGroupItem({
-  item,
-  product,
-  index,
-}: {
-  item: { choise_name: string; code: string };
-  product: productDetailTypes;
-  index: number;
-}) {
-  const [activeGroupItem, setActiveGroupItem] = useState(true);
-  return (
-    <div
-      className={`p-2 bg-gray-200 dark:bg-zinc-800 overflow-hidden rounded-md cursor-pointer hover:bg-site/10 dark:hover:bg-site/10 transition-all duration-300 group ${
-        activeGroupItem ? "first:bg-site/30 dark:first:bg-site/30 first:hover:bg-site/30 dark:first:hover:bg-site/30 first:text-site" : ""
-      }`}
-    >
-      <div className="flex flex-col text-center gap-2 w-full">
-        {product.images && (
-          <div className="relative w-20 h-28 overflow-hidden rounded-md">
-            <Image
-              src={product.images[index]}
-              alt="Grup Ürünü"
-              fill
-              sizes="64px"
-              title="Grup Ürünü"
-              className="object-cover"
-            />
-          </div>
-        )}
-        <span className="text-xs group-hover:text-site transition-all duration-300 line-clamp-1">
-          {item.choise_name}
-        </span>
-      </div>
-    </div>
   );
 }
 

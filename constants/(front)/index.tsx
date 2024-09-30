@@ -1,3 +1,6 @@
+export const baseURL = process.env.NEXT_PUBLIC_API_BASEURL;
+export const siteURL = process.env.NEXT_PUBLIC_SITE_URL;
+
 export const generals = {
   logo: "/assets/logo/logo.svg",
   site_name: "Batubutik",
@@ -216,10 +219,10 @@ export const instantProducts = [
     category: "İç Giyim",
     category_slug: "ic-giyim",
     images: [
-      "/assets/products/product10.webp",
       "/assets/products/product11.webp",
       "/assets/products/product12.webp",
-      "/assets/products/product13.webp",
+      "/assets/products/product16.webp",
+      "/assets/products/product17.webp",
     ],
     rating: 4.1,
     price: 370,
@@ -332,10 +335,10 @@ export const instantProducts = [
     category: "İç Giyim",
     category_slug: "ic-giyim",
     images: [
+      "/assets/products/product17.webp",
       "/assets/products/product11.webp",
       "/assets/products/product12.webp",
       "/assets/products/product16.webp",
-      "/assets/products/product17.webp",
     ],
     rating: 2.4,
     price: 410,
@@ -478,8 +481,54 @@ export const instantProductDetail = {
   product_group: {
     group_name: "Renk",
     products: [
-      { choise_name: "Kırmızı", code: "BBD-103" },
-      { choise_name: "Bordo", code: "BBD-102" },
+      {
+        choise_name: "Kırmızı",
+        product: {
+          title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
+          slug: "amor-bralet-jartiyer-ic-camasir-takimi",
+          code: "ABJ-100",
+          mainCategory_slug: "kadin",
+          category_slug: "ic-giyim",
+          images: [
+            "/assets/products/product5.webp",
+            "/assets/products/product2.webp",
+            "/assets/products/product3.webp",
+            "/assets/products/product4.webp",
+            "/assets/products/product.webp",
+          ],
+        },
+      },
+      {
+        choise_name: "Mavi",
+        product: {
+          title: "Blue Bralet Dress",
+          slug: "blue-bralet-dress",
+          code: "BBD-103",
+          mainCategory_slug: "kadin",
+          category_slug: "ic-giyim",
+          images: [
+            "/assets/products/product14.webp",
+            "/assets/products/product15.webp",
+            "/assets/products/product16.webp",
+          ],
+        },
+      },
+      {
+        choise_name: "Bordo",
+        product: {
+          title: "Burgundy Bralet Dress",
+          slug: "burgundy-bralet-dress",
+          code: "BBD-102",
+          mainCategory_slug: "kadin",
+          category_slug: "ic-giyim",
+          images: [
+            "/assets/products/product11.webp",
+            "/assets/products/product12.webp",
+            "/assets/products/product16.webp",
+            "/assets/products/product17.webp",
+          ],
+        },
+      },
     ],
   },
   attributes: [
@@ -549,13 +598,3 @@ export const discountCodes = [
     discount: 20,
   },
 ];
-
-/* export const users = [
-  {
-    uid: 1,
-    fullName: "Batuhan Keskinsoy",
-    email: "batuhankeskinsoy55@gmail.com",
-    password: "123456+",
-    role: "user",
-  },
-]; */
