@@ -1,20 +1,29 @@
-import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import CustomButton from '@/components/others/CustomButton';
-import ProductArea from '@/components/(front)/Product/ProductArea';
-import { IoCloseOutline } from 'react-icons/io5';
-import { productDetailTypes } from '@/types/product/productDetailTypes';
+"use client";
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+import CustomButton from "@/components/others/CustomButton";
+import ProductArea from "@/components/(front)/Product/ProductArea";
+import { IoCloseOutline } from "react-icons/io5";
+import { productDetailTypes } from "@/types/product/productDetailTypes";
 
 interface ModalProps {
   productDetail: productDetailTypes | undefined;
   onClose: () => void;
 }
 
-const ModalProductDetail: React.FC<ModalProps> = ({ productDetail, onClose }) => {
+const ModalProductDetail: React.FC<ModalProps> = ({
+  productDetail,
+  onClose,
+}) => {
+  const [loadingProduct, setLoadingProduct] = useState(true);
   useEffect(() => {
-    document.body.classList.add('noScroll');
+    setTimeout(() => {
+      setLoadingProduct(false);
+    }, 3000);
+
+    document.body.classList.add("noScroll");
     return () => {
-      document.body.classList.remove('noScroll');
+      document.body.classList.remove("noScroll");
     };
   }, []);
 
@@ -30,6 +39,12 @@ const ModalProductDetail: React.FC<ModalProps> = ({ productDetail, onClose }) =>
           leftIcon={<IoCloseOutline className="text-4xl" />}
           handleClick={onClose}
         />
+
+        {loadingProduct && (
+          <div className="absolute w-full h-full backdrop-blur-lg z-10 bg-black-900/50 flex items-center justify-center">
+            <div className="animate-spin rounded-full m-0.5 lg:size-32 size-16 border-t-4 border-b-4 border-gray-500 dark:border-gray-200 group-hover:border-white"></div>
+          </div>
+        )}
         <div className="w-full h-full lg:overflow-hidden overflow-y-auto">
           <ProductArea product={productDetail} onClose={onClose} />
         </div>
