@@ -827,13 +827,11 @@ export async function GET(
   request: Request,
   { params }: { params: { slug: string } }
 ) {
-  const { slug } = params;
+  const product = products.find((p) => p.slug === params.slug);
 
-  const product = products.find((p) => p.slug === slug);
-
-  if (product) {
-    return NextResponse.json(product);
-  } else {
-    return NextResponse.json({ message: "Ürün bulunamadı" }, { status: 404 });
+  if (!product) {
+    return NextResponse.json({ error: "Ürün bulunamadı" }, { status: 404 });
   }
+
+  return NextResponse.json(product);
 }
