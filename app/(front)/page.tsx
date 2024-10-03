@@ -12,13 +12,10 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { getProducts } from "@/lib/utils/Product/getProducts";
 
+export const dynamic = 'force-dynamic'
+
 async function page() {
-  let products = [];
-  try {
-    products = await getProducts();
-  } catch (error) {
-    console.error("Ürünler alınırken bir hata oluştu:", error);
-  }
+  const products = await getProducts();
   return (
     <main className="flex flex-col w-full gap-12">
       <section>
