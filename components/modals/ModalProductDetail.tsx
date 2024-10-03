@@ -15,12 +15,7 @@ const ModalProductDetail: React.FC<ModalProps> = ({
   productDetail,
   onClose,
 }) => {
-  const [loadingProduct, setLoadingProduct] = useState(true);
   useEffect(() => {
-    setTimeout(() => {
-      setLoadingProduct(false);
-    }, 3000);
-
     document.body.classList.add("noScroll");
     return () => {
       document.body.classList.remove("noScroll");
@@ -40,11 +35,6 @@ const ModalProductDetail: React.FC<ModalProps> = ({
           handleClick={onClose}
         />
 
-        {loadingProduct && (
-          <div className="absolute w-full h-full backdrop-blur-lg z-10 bg-black-900/50 flex items-center justify-center">
-            <div className="animate-spin rounded-full m-0.5 lg:size-32 size-16 border-t-4 border-b-4 border-gray-500 dark:border-gray-200 group-hover:border-white"></div>
-          </div>
-        )}
         <div className="w-full h-full lg:overflow-hidden overflow-y-auto">
           <ProductArea product={productDetail} onClose={onClose} />
         </div>

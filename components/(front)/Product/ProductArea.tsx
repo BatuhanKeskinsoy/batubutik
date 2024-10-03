@@ -41,6 +41,7 @@ function ProductArea({
   const [loadingQuantity, setLoadingQuantity] = useState(false);
   const [loadingAddToBasket, setLoadingAddToBasket] = useState(false);
   const [loadingAddToFavorite, setLoadingAddToFavorite] = useState(false);
+  const [loadingProduct, setLoadingProduct] = useState(true);
 
   const [FavoriteIcon, setFavoriteIcon] = useState(
     <IoHeartOutline className="text-3xl" />
@@ -48,6 +49,11 @@ function ProductArea({
   const [currentProductImage, setCurrentProductImage] = useState<string | null>(
     null
   );
+  useEffect(() => {
+    setTimeout(() => {
+      setLoadingProduct(false);
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     if (product && product.images && product.images.length > 0) {
@@ -139,7 +145,7 @@ function ProductArea({
       setTimeout(() => {
         toggleToFavorite(product.code, favoriteItems, setFavoriteItems);
         setLoadingAddToFavorite(false);
-      }, 1000);
+      }, 1500);
     }
   };
 
@@ -185,7 +191,14 @@ function ProductArea({
         isDetail ? (!isMobile ? "container gap-4" : "container px-0 gap-4") : ""
       }`}
     >
-      <div className={`flex h-full ${isDetail ? "lg:w-2/5" : "lg:w-1/2"}`}>
+      <div
+        className={`relative flex h-full ${isDetail ? "lg:w-2/5" : "lg:w-1/2"}`}
+      >
+        {loadingProduct && (
+          <div className="absolute w-full h-full backdrop-blur-sm z-10 bg-site/10 flex items-center justify-center">
+            <div className="animate-spin rounded-full m-0.5 lg:size-32 size-16 border-t-4 border-b-4 border-gray-200 group-hover:border-white"></div>
+          </div>
+        )}
         {product?.images && product.images?.length > 1 && (
           <div
             className={`flex flex-col gap-1 max-h-full min-w-max pr-1 max-lg:pl-1 overflow-y-auto overflow-x-hidden scrollbar-thick ${
