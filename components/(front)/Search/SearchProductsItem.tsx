@@ -101,15 +101,15 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
         {product.images && (
           <Link
             href={"/"}
-            title={`${product.brand && product.brand} ${product.title}`}
+            title={`${product.brand || ""} ${product.title}`}
             className="relative lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40 rounded-2xl shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 hover:scale-95"
           >
             <Image
               src={product.images[0]}
               fill
               sizes="(max-width: 768px) 100%, 25%"
-              alt={`${product.brand && product.brand} ${product.title}`}
-              title={`${product.brand && product.brand} ${product.title}`}
+              alt={`${product.brand || ""} ${product.title}`}
+              title={`${product.brand || ""} ${product.title}`}
               className="object-cover"
             />
           </Link>
@@ -119,11 +119,11 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
             <div className="flex flex-col w-full gap-1">
               <Link
                 href={"/"}
-                title={`${product.brand && product.brand} ${product.title}`}
-                className="font-medium line-clamp-1 transition-all duration-300 hover:text-site text-lg w-fit"
+                title={`${product.brand || ""} ${product.title}`}
+                className="font-medium line-clamp-1 transition-all duration-300 hover:text-site text-base w-fit"
               >
-                <span className="font-extrabold">
-                  {product.brand && product.brand}
+                <span className="font-bold tracking-wide">
+                  {product.brand || ""}
                 </span>{" "}
                 {product.title}
               </Link>

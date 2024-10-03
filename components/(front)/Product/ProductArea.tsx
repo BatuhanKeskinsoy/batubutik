@@ -197,8 +197,8 @@ function ProductArea({
                   fill
                   quality={50}
                   sizes="(max-width: 768px) 30%, 20%"
-                  alt={`${product.brand && product.brand} ${product.title}`}
-                  title={`${product.brand && product.brand} ${product.title}`}
+                  alt={`${product.brand || ""} ${product.title}`}
+                  title={`${product.brand || ""} ${product.title}`}
                   className={`object-cover object-center transition-all duration-300 ${
                     currentProductImage !== image
                       ? "brightness-50 hover:brightness-100"
