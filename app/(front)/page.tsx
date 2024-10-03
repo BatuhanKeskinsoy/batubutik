@@ -12,8 +12,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { getProducts } from "@/lib/utils/Product/getProducts";
 
-async function Home() {
-  const products = await getProducts();
+async function page() {
+  let products = [];
+  try {
+    products = await getProducts();
+  } catch (error) {
+    console.error("Ürünler alınırken bir hata oluştu:", error);
+  }
   return (
     <main className="flex flex-col w-full gap-12">
       <section>
@@ -73,4 +78,4 @@ async function Home() {
   );
 }
 
-export default Home;
+export default page;

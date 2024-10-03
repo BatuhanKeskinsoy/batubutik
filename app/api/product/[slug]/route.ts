@@ -823,7 +823,10 @@ const products = [
   },
 ];
 
-export async function GET({ params }: { params: { slug: string } }) {
+export async function GET(
+  request: Request,
+  { params }: { params: { slug: string } }
+) {
   const product = products.find((product) => product.slug === params.slug);
 
   if (!product) {
