@@ -1,0 +1,839 @@
+import { NextResponse } from "next/server";
+
+const products = [
+  {
+    title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    slug: "amor-bralet-jartiyer-ic-camasir-takimi",
+    content:
+      `<h1>Başlık H1</h1>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h4>Başlık H4</h4>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
+    code: "ABJ-100",
+    brand: "Gammi",
+    mainCategory: "Kadın",
+    mainCategory_slug: "kadin",
+    category: "İç Giyim",
+    category_slug: "ic-giyim",
+    subCategory: "Takım",
+    subCategory_slug: "takim",
+    images: [
+      "/assets/products/product5.webp",
+      "/assets/products/product2.webp",
+      "/assets/products/product3.webp",
+      "/assets/products/product4.webp",
+      "/assets/products/product.webp",
+    ],
+    rating: 4.9,
+    total_comment: 864,
+    price: 460,
+    discount: 10,
+    stock: 50,
+    tags: [
+      "Amor Bralet Jartiyer",
+      "Kırmızı İç Çamaşır Takımı",
+      "Kırmızı Bralet Jartiyer",
+    ],
+    product_group: {
+      group_name: "Renk",
+      products: [
+        {
+          choise_name: "Kırmızı",
+          product: {
+            title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
+            slug: "amor-bralet-jartiyer-ic-camasir-takimi",
+            code: "ABJ-100",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product5.webp",
+              "/assets/products/product2.webp",
+              "/assets/products/product3.webp",
+              "/assets/products/product4.webp",
+              "/assets/products/product.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Siyah",
+          product: {
+            title: "Black Bralet Dress",
+            slug: "black-bralet-dress",
+            code: "BBD-101",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product6.webp",
+              "/assets/products/product7.webp",
+              "/assets/products/product8.webp",
+              "/assets/products/product9.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Mavi",
+          product: {
+            title: "Blue Bralet Dress",
+            slug: "blue-bralet-dress",
+            code: "BBD-103",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product14.webp",
+              "/assets/products/product15.webp",
+              "/assets/products/product16.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Bordo",
+          product: {
+            title: "Burgundy Bralet Dress",
+            slug: "burgundy-bralet-dress",
+            code: "BBD-102",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product11.webp",
+              "/assets/products/product12.webp",
+              "/assets/products/product16.webp",
+              "/assets/products/product17.webp",
+            ],
+          },
+        },
+      ],
+    },
+    attributes: [
+      {
+        required: true,
+        attr_title: "Beden",
+        attr_options: [
+          { option_name: "XS", option_stock: 50 },
+          { option_name: "S", option_stock: 50 },
+          { option_name: "M", option_stock: 50 },
+          { option_name: "L", option_stock: 50 },
+          { option_name: "XL", option_stock: 50 },
+          { option_name: "XXL", option_stock: 0 },
+          { option_name: "3XL", option_stock: 50 },
+          { option_name: "4XL", option_stock: 50 },
+          { option_name: "5XL", option_stock: 50 },
+        ],
+      },
+      {
+        required: true,
+        attr_title: "Boy",
+        attr_options: [
+          { option_name: "150", option_stock: 50 },
+          { option_name: "151", option_stock: 0 },
+          { option_name: "152", option_stock: 50 },
+          { option_name: "153", option_stock: 50 },
+          { option_name: "154", option_stock: 50 },
+          { option_name: "155", option_stock: 50 },
+          { option_name: "156", option_stock: 50 },
+          { option_name: "157", option_stock: 50 },
+          { option_name: "158", option_stock: 50 },
+          { option_name: "159", option_stock: 50 },
+          { option_name: "160", option_stock: 50 },
+          { option_name: "161", option_stock: 50 },
+          { option_name: "162", option_stock: 50 },
+          { option_name: "163", option_stock: 50 },
+          { option_name: "164", option_stock: 50 },
+          { option_name: "165", option_stock: 50 },
+        ],
+      },
+    ],
+    choise_required: true,
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    meta_title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
+    meta_description:
+      "Amor bralet jartiyer iç çamaşır takımı çok uygun fiyatlarla sadece web sitemizde.",
+    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    updated_at: null,
+  },
+  {
+    id: 2,
+    title: "Black Bralet Dress",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    slug: "black-bralet-dress",
+    content:
+      `<h1>Başlık H1</h1>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h4>Başlık H4</h4>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
+    code: "BBD-101",
+    brand: "Batubutik",
+    mainCategory: "Kadın",
+    mainCategory_slug: "kadin",
+    category: "İç Giyim",
+    category_slug: "ic-giyim",
+    subCategory: null,
+    subCategory_slug: null,
+    images: [
+      "/assets/products/product6.webp",
+      "/assets/products/product7.webp",
+      "/assets/products/product8.webp",
+      "/assets/products/product9.webp",
+    ],
+    rating: 4.4,
+    total_comment: 864,
+    price: 320,
+    discount: 30,
+    stock: 50,
+    tags: [
+      "Amor Bralet Jartiyer",
+      "Kırmızı İç Çamaşır Takımı",
+      "Kırmızı Bralet Jartiyer",
+    ],
+    product_group: {
+      group_name: "Renk",
+      products: [
+        {
+          choise_name: "Siyah",
+          product: {
+            title: "Black Bralet Dress",
+            slug: "black-bralet-dress",
+            code: "BBD-101",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product6.webp",
+              "/assets/products/product7.webp",
+              "/assets/products/product8.webp",
+              "/assets/products/product9.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Kırmızı",
+          product: {
+            title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
+            slug: "amor-bralet-jartiyer-ic-camasir-takimi",
+            code: "ABJ-100",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product5.webp",
+              "/assets/products/product2.webp",
+              "/assets/products/product3.webp",
+              "/assets/products/product4.webp",
+              "/assets/products/product.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Mavi",
+          product: {
+            title: "Blue Bralet Dress",
+            slug: "blue-bralet-dress",
+            code: "BBD-103",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product14.webp",
+              "/assets/products/product15.webp",
+              "/assets/products/product16.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Bordo",
+          product: {
+            title: "Burgundy Bralet Dress",
+            slug: "burgundy-bralet-dress",
+            code: "BBD-102",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product11.webp",
+              "/assets/products/product12.webp",
+              "/assets/products/product16.webp",
+              "/assets/products/product17.webp",
+            ],
+          },
+        },
+      ],
+    },
+    choise_required: false,
+    attributes: [
+      {
+        attr_title: "Beden",
+        attr_options: [
+          { option_name: "XS", option_stock: 50 },
+          { option_name: "S", option_stock: 50 },
+          { option_name: "M", option_stock: 50 },
+        ],
+      },
+      {
+        attr_title: "Boy",
+        attr_options: [
+          { option_name: "150", option_stock: 50 },
+          { option_name: "151", option_stock: 0 },
+          { option_name: "152", option_stock: 50 },
+          { option_name: "153", option_stock: 50 },
+          { option_name: "154", option_stock: 50 },
+          { option_name: "155", option_stock: 50 },
+          { option_name: "156", option_stock: 50 },
+          { option_name: "157", option_stock: 50 },
+          { option_name: "158", option_stock: 50 },
+          { option_name: "159", option_stock: 50 },
+          { option_name: "160", option_stock: 50 },
+          { option_name: "161", option_stock: 50 },
+          { option_name: "162", option_stock: 50 },
+          { option_name: "163", option_stock: 50 },
+          { option_name: "164", option_stock: 50 },
+        ],
+      },
+    ],
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    meta_title: "Black Bralet Dress",
+    meta_description:
+      "Black Bralet Dress çok uygun fiyatlarla sadece web sitemizde.",
+    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    updated_at: null,
+  },
+  {
+    id: 3,
+    title: "Burgundy Bralet Dress",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    slug: "burgundy-bralet-dress",
+    content:
+      `<h1>Başlık H1</h1>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h4>Başlık H4</h4>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
+    code: "BBD-102",
+    brand: "Gammi",
+    mainCategory: "Kadın",
+    mainCategory_slug: "kadin",
+    category: "İç Giyim",
+    category_slug: "ic-giyim",
+    subCategory: null,
+    subCategory_slug: null,
+    images: [
+      "/assets/products/product11.webp",
+      "/assets/products/product12.webp",
+      "/assets/products/product16.webp",
+      "/assets/products/product17.webp",
+    ],
+    rating: 4.1,
+    total_comment: 864,
+    price: 370,
+    discount: 0,
+    stock: 50,
+    tags: [
+      "Amor Bralet Jartiyer",
+      "Kırmızı İç Çamaşır Takımı",
+      "Kırmızı Bralet Jartiyer",
+    ],
+    product_group: {
+      group_name: "Renk",
+      products: [
+        {
+          choise_name: "Bordo",
+          product: {
+            title: "Burgundy Bralet Dress",
+            slug: "burgundy-bralet-dress",
+            code: "BBD-102",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product11.webp",
+              "/assets/products/product12.webp",
+              "/assets/products/product16.webp",
+              "/assets/products/product17.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Siyah",
+          product: {
+            title: "Black Bralet Dress",
+            slug: "black-bralet-dress",
+            code: "BBD-101",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product6.webp",
+              "/assets/products/product7.webp",
+              "/assets/products/product8.webp",
+              "/assets/products/product9.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Kırmızı",
+          product: {
+            title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
+            slug: "amor-bralet-jartiyer-ic-camasir-takimi",
+            code: "ABJ-100",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product5.webp",
+              "/assets/products/product2.webp",
+              "/assets/products/product3.webp",
+              "/assets/products/product4.webp",
+              "/assets/products/product.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Mavi",
+          product: {
+            title: "Blue Bralet Dress",
+            slug: "blue-bralet-dress",
+            code: "BBD-103",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product14.webp",
+              "/assets/products/product15.webp",
+              "/assets/products/product16.webp",
+            ],
+          },
+        },
+      ],
+    },
+    choise_required: true,
+    attributes: [
+      {
+        attr_title: "Beden",
+        attr_options: [
+          { option_name: "XS", option_stock: 50 },
+          { option_name: "S", option_stock: 50 },
+          { option_name: "M", option_stock: 50 },
+        ],
+      },
+      {
+        attr_title: "Boy",
+        attr_options: [
+          { option_name: "150", option_stock: 50 },
+          { option_name: "151", option_stock: 0 },
+          { option_name: "152", option_stock: 50 },
+          { option_name: "153", option_stock: 50 },
+          { option_name: "154", option_stock: 50 },
+          { option_name: "155", option_stock: 50 },
+          { option_name: "156", option_stock: 50 },
+          { option_name: "157", option_stock: 50 },
+          { option_name: "158", option_stock: 50 },
+          { option_name: "159", option_stock: 50 },
+          { option_name: "160", option_stock: 50 },
+          { option_name: "161", option_stock: 50 },
+          { option_name: "162", option_stock: 50 },
+          { option_name: "163", option_stock: 50 },
+          { option_name: "164", option_stock: 50 },
+          { option_name: "165", option_stock: 50 },
+        ],
+      },
+    ],
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    meta_title: "Burgundy Bralet Dress",
+    meta_description:
+      "Burgundy Bralet Dress çok uygun fiyatlarla sadece web sitemizde.",
+    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    updated_at: null,
+  },
+  {
+    id: 4,
+    title: "Blue Bralet Dress",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    slug: "blue-bralet-dress",
+    content:
+      `<h1>Başlık H1</h1>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h4>Başlık H4</h4>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
+    code: "BBD-103",
+    brand: "Gammi",
+    mainCategory: "Kadın",
+    mainCategory_slug: "kadin",
+    category: "İç Giyim",
+    category_slug: "ic-giyim",
+    subCategory: null,
+    subCategory_slug: null,
+    images: [
+      "/assets/products/product14.webp",
+      "/assets/products/product15.webp",
+      "/assets/products/product16.webp",
+    ],
+    rating: 3.8,
+    total_comment: 864,
+    price: 410,
+    discount: 15,
+    stock: 50,
+    tags: [
+      "Amor Bralet Jartiyer",
+      "Kırmızı İç Çamaşır Takımı",
+      "Kırmızı Bralet Jartiyer",
+    ],
+    product_group: {
+      group_name: "Renk",
+      products: [
+        {
+          choise_name: "Mavi",
+          product: {
+            title: "Blue Bralet Dress",
+            slug: "blue-bralet-dress",
+            code: "BBD-103",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product14.webp",
+              "/assets/products/product15.webp",
+              "/assets/products/product16.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Bordo",
+          product: {
+            title: "Burgundy Bralet Dress",
+            slug: "burgundy-bralet-dress",
+            code: "BBD-102",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product11.webp",
+              "/assets/products/product12.webp",
+              "/assets/products/product16.webp",
+              "/assets/products/product17.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Siyah",
+          product: {
+            title: "Black Bralet Dress",
+            slug: "black-bralet-dress",
+            code: "BBD-101",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product6.webp",
+              "/assets/products/product7.webp",
+              "/assets/products/product8.webp",
+              "/assets/products/product9.webp",
+            ],
+          },
+        },
+        {
+          choise_name: "Kırmızı",
+          product: {
+            title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
+            slug: "amor-bralet-jartiyer-ic-camasir-takimi",
+            code: "ABJ-100",
+            mainCategory_slug: "kadin",
+            category_slug: "ic-giyim",
+            subCategory_slug: null,
+            images: [
+              "/assets/products/product5.webp",
+              "/assets/products/product2.webp",
+              "/assets/products/product3.webp",
+              "/assets/products/product4.webp",
+              "/assets/products/product.webp",
+            ],
+          },
+        },
+      ],
+    },
+    choise_required: true,
+    attributes: [
+      {
+        attr_title: "Beden",
+        attr_options: [
+          { option_name: "XS", option_stock: 50 },
+          { option_name: "S", option_stock: 50 },
+        ],
+      },
+      {
+        attr_title: "Boy",
+        attr_options: [
+          { option_name: "150", option_stock: 50 },
+          { option_name: "151", option_stock: 0 },
+          { option_name: "152", option_stock: 50 },
+          { option_name: "153", option_stock: 50 },
+          { option_name: "154", option_stock: 50 },
+          { option_name: "155", option_stock: 50 },
+          { option_name: "156", option_stock: 50 },
+          { option_name: "157", option_stock: 50 },
+          { option_name: "158", option_stock: 50 },
+          { option_name: "159", option_stock: 50 },
+          { option_name: "160", option_stock: 50 },
+          { option_name: "161", option_stock: 50 },
+          { option_name: "162", option_stock: 50 },
+          { option_name: "163", option_stock: 50 },
+          { option_name: "164", option_stock: 50 },
+          { option_name: "165", option_stock: 50 },
+        ],
+      },
+    ],
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    meta_title: "Blue Bralet Dress",
+    meta_description:
+      "Blue Bralet Dress çok uygun fiyatlarla sadece web sitemizde.",
+    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    updated_at: null,
+  },
+  {
+    id: 5,
+    title: "Burgundy Bralet Dress 2",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    slug: "burgundy-bralet-dress-2",
+    content:
+      `<h1>Başlık H1</h1>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h4>Başlık H4</h4>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
+    code: "BBD-104",
+    brand: "Gammi",
+    mainCategory: "Kadın",
+    mainCategory_slug: "kadin",
+    category: "İç Giyim",
+    category_slug: "ic-giyim",
+    subCategory: null,
+    subCategory_slug: null,
+    images: [
+      "/assets/products/product17.webp",
+      "/assets/products/product11.webp",
+      "/assets/products/product12.webp",
+      "/assets/products/product16.webp",
+    ],
+    rating: 2.4,
+    total_comment: 864,
+    price: 410,
+    discount: 0,
+    stock: 0,
+    tags: [
+      "Amor Bralet Jartiyer",
+      "Kırmızı İç Çamaşır Takımı",
+      "Kırmızı Bralet Jartiyer",
+    ],
+    product_group: null,
+    choise_required: true,
+    attributes: [
+      {
+        attr_title: "Beden",
+        attr_options: [{ option_name: "5XL", option_stock: 50 }],
+      },
+      {
+        attr_title: "Boy",
+        attr_options: [
+          { option_name: "150", option_stock: 50 },
+          { option_name: "151", option_stock: 0 },
+          { option_name: "152", option_stock: 50 },
+          { option_name: "153", option_stock: 50 },
+          { option_name: "154", option_stock: 50 },
+          { option_name: "155", option_stock: 50 },
+          { option_name: "156", option_stock: 50 },
+          { option_name: "157", option_stock: 50 },
+          { option_name: "158", option_stock: 50 },
+          { option_name: "159", option_stock: 50 },
+          { option_name: "160", option_stock: 50 },
+          { option_name: "161", option_stock: 50 },
+          { option_name: "162", option_stock: 50 },
+          { option_name: "163", option_stock: 50 },
+          { option_name: "164", option_stock: 50 },
+          { option_name: "165", option_stock: 50 },
+        ],
+      },
+    ],
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    meta_title: "Burgundy Bralet Dress 2",
+    meta_description:
+      "Burgundy Bralet Dress 2 çok uygun fiyatlarla sadece web sitemizde.",
+    created_at: new Date("2024-06-14T13:24:59.000000Z"),
+    updated_at: null,
+  },
+  {
+    id: 6,
+    title: "Tek Fotoğraflı Ürün",
+    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    slug: "tek-fotograf-urun",
+    content:
+      `<h1>Başlık H1</h1>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h2>Başlık H2</h2>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h3>Başlık H3</h3>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
+      `<h4>Başlık H4</h4>` +
+      `</br>` +
+      `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
+    code: "TFU-100",
+    brand: null,
+    mainCategory: "Kadın",
+    mainCategory_slug: "kadin",
+    category: "İç Giyim",
+    category_slug: "ic-giyim",
+    subCategory: null,
+    subCategory_slug: null,
+    images: ["/assets/products/product15.webp"],
+    rating: 2.4,
+    total_comment: 864,
+    price: 410,
+    discount: 0,
+    stock: 10,
+    tags: [
+      "Amor Bralet Jartiyer",
+      "Kırmızı İç Çamaşır Takımı",
+      "Kırmızı Bralet Jartiyer",
+    ],
+    product_group: null,
+    choise_required: true,
+    attributes: [
+      {
+        attr_title: "Beden",
+        attr_options: [{ option_name: "5XL", option_stock: 50 }],
+      },
+      {
+        attr_title: "Boy",
+        attr_options: [
+          { option_name: "150", option_stock: 50 },
+          { option_name: "151", option_stock: 0 },
+          { option_name: "152", option_stock: 50 },
+          { option_name: "153", option_stock: 50 },
+          { option_name: "154", option_stock: 50 },
+          { option_name: "155", option_stock: 50 },
+          { option_name: "156", option_stock: 50 },
+          { option_name: "157", option_stock: 50 },
+          { option_name: "158", option_stock: 50 },
+          { option_name: "159", option_stock: 50 },
+          { option_name: "160", option_stock: 50 },
+          { option_name: "161", option_stock: 50 },
+          { option_name: "162", option_stock: 50 },
+          { option_name: "163", option_stock: 50 },
+          { option_name: "164", option_stock: 50 },
+          { option_name: "165", option_stock: 50 },
+        ],
+      },
+    ],
+    status: true,
+    featured_status: false,
+    total_sold: 0,
+    meta_title: "Tek Fotoğraflı Ürün",
+    meta_description:
+      "Tek Fotoğraflı Ürün çok uygun fiyatlarla sadece web sitemizde.",
+    created_at: new Date("2024-06-15T13:24:59.000000Z"),
+    updated_at: null,
+  },
+];
+
+export async function GET(
+  request: Request,
+  { params }: { params: { slug: string } }
+) {
+  const { slug } = params;
+
+  const product = products.find((p) => p.slug === slug);
+
+  if (product) {
+    return NextResponse.json(product);
+  } else {
+    return NextResponse.json({ message: "Ürün bulunamadı" }, { status: 404 });
+  }
+}

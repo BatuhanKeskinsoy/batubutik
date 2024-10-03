@@ -5,10 +5,7 @@ import { getStar } from "@/lib/functions/getStar";
 import { getPrice } from "@/lib/functions/getPrice";
 import Link from "next/link";
 import CustomButton from "@/components/others/CustomButton";
-import {
-  productDetailTypes,
-  productGroupProductsTypes,
-} from "@/types/product/productDetailTypes";
+import { productDetailTypes } from "@/types/product/productDetailTypes";
 import {
   IoAdd,
   IoBagAddOutline,
@@ -49,8 +46,17 @@ function ProductArea({
     <IoHeartOutline className="text-3xl" />
   );
   const [currentProductImage, setCurrentProductImage] = useState<string | null>(
-    product && product.images ? product.images[0] : null
+    null
   );
+
+  useEffect(() => {
+    if (product && product.images && product.images.length > 0) {
+      setCurrentProductImage(product.images[0]);
+    } else {
+      setCurrentProductImage(null);
+    }
+  }, [product]);
+
   const [productQuantity, setProductQuantity] = useState(1);
   const [selectedAttributes, setSelectedAttributes] = useState<{
     [key: string]: string;

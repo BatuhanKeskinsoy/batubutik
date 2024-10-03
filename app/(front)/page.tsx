@@ -5,13 +5,15 @@ import Categories from "@/components/(front)/Home/Categories";
 import NewProducts from "@/components/(front)/Product/FilteredProducts/NewProducts";
 import BestSellingProducts from "@/components/(front)/Product/FilteredProducts/BestSellingProducts";
 import Contact from "@/components/(front)/Contact/Contact";
-import { generals, instantProducts } from "@/constants/(front)";
+import { generals } from "@/constants/(front)";
 import About from "@/components/(front)/About/About";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { getProducts } from "@/lib/utils/Product/getProducts";
 
-function Home() {
+async function Home() {
+  const products = await getProducts();
   return (
     <main className="flex flex-col w-full gap-12">
       <section>
@@ -31,7 +33,7 @@ function Home() {
             {generals.site_name} koleksiyonu içerisinde öne çıkan ürünler
           </p>
         </div>
-        <FeaturedProducts products={instantProducts} />
+        <FeaturedProducts products={products} />
       </section>
 
       <section className="bg-gray-100 dark:bg-zinc-800 py-12">
@@ -44,7 +46,7 @@ function Home() {
               {generals.site_name} koleksiyonuna eklenen en yeni ürünler
             </p>
           </div>
-          <NewProducts products={instantProducts} />
+          <NewProducts products={products} />
         </div>
       </section>
 
@@ -58,13 +60,12 @@ function Home() {
             en çok satılan ürünler
           </p>
         </div>
-        <BestSellingProducts products={instantProducts} />
+        <BestSellingProducts products={products} />
       </section>
 
       <section className="bg-gray-100 dark:bg-zinc-800 py-12">
         <About />
       </section>
-
       <section>
         <Contact />
       </section>

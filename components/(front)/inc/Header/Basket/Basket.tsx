@@ -2,9 +2,10 @@
 import { useGlobalContext } from "@/app/Context/store";
 import { getPrice } from "@/lib/functions/getPrice";
 import CustomButton from "@/components/others/CustomButton";
-import { instantProducts } from "@/constants/(front)";
 import React, { useEffect, useState } from "react";
 import { IoBagHandleOutline, IoBagHandle } from "react-icons/io5";
+import { productTypes } from "@/types/product/productTypes";
+import { getProducts } from "@/lib/utils/Product/getProducts";
 
 function Basket() {
   const { setSidebarStatus, basketItems } = useGlobalContext();
@@ -14,11 +15,25 @@ function Basket() {
   );
   const [basketTotalPrice, setBasketTotalPrice] = useState(0);
   const [pingAnimation, setPingAnimation] = useState(false);
+  const [products, setProducts] = useState<productTypes[]>([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const fetchedProducts = await getProducts();
+        setProducts(fetchedProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    }
+
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     if (basketItems && basketItems.length > 0) {
       const totalPrice = basketItems.reduce((total, basketItem) => {
-        const matchedProduct = instantProducts.find(
+        const matchedProduct = products.find(
           (product) => product.code === basketItem.product_code
         );
 
@@ -38,7 +53,7 @@ function Basket() {
       setBasketTotalPrice(0);
       setBasketItemCount(0);
     }
-  }, [basketItems]);
+  }, [basketItems, products]);
 
   useEffect(() => {
     if (basketItemCount > 0) {

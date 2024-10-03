@@ -6,7 +6,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { productDetailTypes } from '@/types/product/productDetailTypes';
 
 interface ModalProps {
-  productDetail: productDetailTypes | undefined;
+  productDetail: productDetailTypes;
   onClose: () => void;
 }
 

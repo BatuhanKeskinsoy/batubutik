@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import SearchProducts from "@/components/(front)/Search/SearchProducts";
 import { productTypes } from "@/types/product/productTypes";
 import { IoFileTrayFullOutline, IoFileTrayOutline } from "react-icons/io5";
-import { instantProducts } from "@/constants/(front)";
+import { getProducts } from "@/lib/utils/Product/getProducts";
 
 function Search() {
   const [search, setSearch] = useState("");
@@ -11,13 +11,27 @@ function Search() {
   const [searchProducts, setSearchProducts] = useState<productTypes[] | null>(
     null
   );
+  const [products, setProducts] = useState<productTypes[]>([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const fetchedProducts = await getProducts();
+        setProducts(fetchedProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    }
+
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     if (search && search.length >= 3) {
       setLoadingSearch(true);
       setTimeout(() => {
         const searchLower = search.toLowerCase();
-        const productsInSearch = instantProducts.filter(
+        const productsInSearch = products.filter(
           (product) =>
             product.title.toLowerCase().includes(searchLower) ||
             product.code.toLowerCase().includes(searchLower)
@@ -25,32 +39,32 @@ function Search() {
 
         setSearchProducts(productsInSearch);
         setLoadingSearch(false);
-      }, 1000);
+      }, 500);
     } else {
       setSearchProducts(null);
     }
-  }, [search]);
+  }, [search, products]);
 
   return (
     <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
       <div className="flex flex-col w-full h-full">
-          <div className="flex gap-2 py-2 lg:px-8 px-4 bg-gray-100 dark:bg-zinc-800 items-center w-full">
-            <label className="relative w-full flex rounded-sm">
-              <input
-                type="text"
-                className="w-full outline-none is-dirty pt-[10px] peer bg-transparent"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <span
-                className={`absolute top-1/2  font-[400] -translate-y-1/2 pointer-events-none cursor-text text-gray-600 dark:text-gray-200 opacity-50 transition-all 
+        <div className="flex gap-2 py-2 lg:px-8 px-4 bg-gray-100 dark:bg-zinc-800 items-center w-full">
+          <label className="relative w-full flex rounded-sm">
+            <input
+              type="text"
+              className="w-full outline-none is-dirty pt-[10px] peer bg-transparent"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <span
+              className={`absolute top-1/2  font-[400] -translate-y-1/2 pointer-events-none cursor-text text-gray-600 dark:text-gray-200 opacity-50 transition-all 
           peer-focus:text-[10px] peer-focus:top-0.5 peer-focus:opacity-100 
           ${search ? "peer-valid:text-[10px] peer-valid:top-0.5" : ""} `}
-              >
-                Ürün Adı/Kodu Yazınız
-              </span>
-            </label>
-          </div>
+            >
+              Ürün Adı/Kodu Yazınız
+            </span>
+          </label>
+        </div>
         <hr className="dark:border-zinc-800" />
         {loadingSearch ? (
           <div className="flex flex-col gap-4 h-[calc(100dvh-136px)] justify-center items-center text-gray-300">

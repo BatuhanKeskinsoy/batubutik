@@ -16,9 +16,9 @@ import {
   IoHeartOutline,
 } from "react-icons/io5";
 import { productDetailTypes } from "@/types/product/productDetailTypes";
-import { instantProductDetail } from "@/constants/(front)";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import ModalProductDetail from "@/components/modals/ModalProductDetail";
+import { getProductShow } from "@/lib/utils/Product/getProductShow";
 
 interface IProductItemProps {
   product: productTypes;
@@ -136,10 +136,15 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
     );
   }, [favoriteItems]);
 
-  const handleShowProductArea = (e: any) => {
+  const handleShowProductArea = async (e: any) => {
     e.preventDefault();
     setShowProductArea(true);
-    setProductDetail(instantProductDetail);
+    try {
+      const fetchedProductDetail = await getProductShow(product.slug);
+      setProductDetail(fetchedProductDetail);
+    } catch (error) {
+      console.error("Failed to fetch product details", error);
+    }
   };
 
   useEffect(() => {
@@ -328,7 +333,9 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
             <span className="font-medium line-clamp-1 group-hover:text-site transition-all duration-300 text-base">
               {product.brand && (
                 <>
-                  <span className="font-bold tracking-wide">{product.brand}</span>{" "}
+                  <span className="font-bold tracking-wide">
+                    {product.brand}
+                  </span>{" "}
                 </>
               )}
               {product.title}

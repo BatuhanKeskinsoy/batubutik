@@ -2,11 +2,13 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import BasketProducts from "@/components/(front)/Basket/BasketProducts";
 import { useGlobalContext } from "@/app/Context/store";
-import { instantProducts, generals } from "@/constants/(front)";
+import { generals } from "@/constants/(front)";
 import { IoFileTrayOutline } from "react-icons/io5";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import BasketProperty from "@/components/(front)/inc/Sidebar/Basket/BasketProperty";
+import { getProducts } from "@/lib/utils/Product/getProducts";
+import { productTypes } from "@/types/product/productTypes";
 
 interface IBasketProps {
   isDetail?: boolean;
@@ -41,29 +43,38 @@ function Basket({ isDetail }: IBasketProps) {
   };
 
   useEffect(() => {
-    if (basketItems && basketItems.length > 0) {
-      const productsInBasket = basketItems
-        .map((item) => {
-          const product = instantProducts.find(
-            (p) => p.code === item.product_code
-          );
-          if (product) {
-            return {
-              ...product,
-              quantity: item.quantity,
-              attributes: item.attributes,
-            };
-          }
-          return null;
-        })
-        .filter(Boolean) as unknown as basketProductTypes[];
+    const fetchProducts = async () => {
+      if (basketItems && basketItems.length > 0) {
+        try {
+          const productsList = await getProducts();
+          const productsInBasket = basketItems
+            .map((item) => {
+              const product = productsList.find(
+                (p: productTypes) => p.code === item.product_code
+              );
+              if (product) {
+                return {
+                  ...product,
+                  quantity: item.quantity,
+                  attributes: item.attributes,
+                };
+              }
+              return null;
+            })
+            .filter(Boolean) as unknown as basketProductTypes[];
 
-      const mergedProducts = mergeSameProducts(productsInBasket);
+          const mergedProducts = mergeSameProducts(productsInBasket);
 
-      setBasketProducts(mergedProducts);
-    } else {
-      setBasketProducts(null);
-    }
+          setBasketProducts(mergedProducts);
+        } catch (error) {
+          console.error("Failed to fetch products", error);
+        }
+      } else {
+        setBasketProducts(null);
+      }
+    };
+
+    fetchProducts();
   }, [basketItems]);
 
   const calculateSubTotal = useCallback(() => {
@@ -79,25 +90,19 @@ function Basket({ isDetail }: IBasketProps) {
     const subtotal = calculateSubTotal();
     setInitialSubTotal(subtotal);
 
-    // If no discount applied, check if free shipping is applicable
     let newSubTotal = subtotal;
     if (freeShipping !== null && newSubTotal < freeShipping) {
       newSubTotal += generals.shipping_price;
     }
-    // Check if discount is applied
     if (discountApplied) {
-      // If discount is applied, use the discounted subtotal
       newSubTotal = subtotal - discountAmount;
 
-      // Check if free shipping threshold is applicable after discount
       if (freeShipping !== null && newSubTotal < freeShipping) {
         newSubTotal += generals.shipping_price;
       }
 
-      // Update the subtotal
       setSubTotal(newSubTotal);
     } else {
-      // Update the subtotal
       setSubTotal(newSubTotal);
     }
   }, [calculateSubTotal, discountApplied, discountAmount]);

@@ -2,18 +2,31 @@
 import React, { useEffect, useState } from "react";
 import CustomButton from "@/components/others/CustomButton";
 import { useGlobalContext } from "@/app/Context/store";
-import { instantProducts } from "@/constants/(front)";
 import { IoFileTrayOutline } from "react-icons/io5";
 import FavoriteProducts from "@/components/(front)/Favorite/FavoriteProducts";
 import { productTypes } from "@/types/product/productTypes";
+import { getProducts } from "@/lib/utils/Product/getProducts";
 
 function Favorite() {
-  const { favoriteItems, setFavoriteItems } =
-    useGlobalContext();
+  const { favoriteItems, setFavoriteItems } = useGlobalContext();
   const [loadingEmptyFavorite, setLoadingEmptyFavorite] = useState(false);
   const [favoriteProducts, setFavoriteProducts] = useState<
     productTypes[] | null
   >(null);
+  const [products, setProducts] = useState<productTypes[]>([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const fetchedProducts = await getProducts();
+        setProducts(fetchedProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    }
+
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     if (favoriteItems && favoriteItems.length > 0) {
@@ -24,7 +37,7 @@ function Favorite() {
 
       const productsInFavorite = Object.keys(groupedProducts)
         .map((code) => {
-          const product = instantProducts.find((p) => p.code === code);
+          const product = products.find((p) => p.code === code);
           if (product) {
             return {
               ...product,
@@ -38,8 +51,7 @@ function Favorite() {
     } else {
       setFavoriteProducts(null);
     }
-  }, [favoriteItems]);
-
+  }, [favoriteItems, products]);
 
   const handleEmptyFavorite = () => {
     if (!loadingEmptyFavorite) {
@@ -72,7 +84,6 @@ function Favorite() {
       <div className="flex flex-col w-full lg:px-8 px-4 py-4 items-center text-center gap-4">
         <hr className="w-full dark:border-zinc-800" />
         <div className="flex lg:flex-row flex-col items-center gap-2 w-full">
-
           <CustomButton
             title={
               !loadingEmptyFavorite

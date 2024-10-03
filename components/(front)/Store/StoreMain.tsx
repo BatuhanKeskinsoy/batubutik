@@ -1,19 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Aside from "@/components/(front)/Store/Aside";
-import { instantProducts } from "@/constants/(front)";
 import ProductItem from "@/components/(front)/Product/ProductItem";
-import {
-  IoChevronDown,
-  IoChevronUp,
-  IoFileTrayFullOutline,
-  IoFileTrayOutline,
-} from "react-icons/io5";
+import { IoChevronDown, IoChevronUp, IoFileTrayOutline } from "react-icons/io5";
 import {
   productAttributesTypes,
   productTypes,
 } from "@/types/product/productTypes";
 import CustomButton from "@/components/others/CustomButton";
+import { getProducts } from "@/lib/utils/Product/getProducts";
 
 interface IStoreMainProps {
   mainCategorySlug?: string;
@@ -59,38 +54,50 @@ function StoreMain({
   }>({});
 
   useEffect(() => {
-    const filtered = instantProducts.filter((product) => {
-      const matchesSearch =
-        product.title.toLowerCase().includes(search.toLowerCase()) ||
-        product.code.toLowerCase().includes(search.toLowerCase());
-      const matchesMainCategory = mainCategorySlug
-        ? product.mainCategory_slug === mainCategorySlug
-        : true;
-      const matchesCategory = categorySlug
-        ? product.category_slug === categorySlug
-        : true;
-      return matchesSearch && matchesMainCategory && matchesCategory;
-    });
+    const fetchProducts = async () => {
+      try {
+        const products = await getProducts();
+        const filtered = products.filter((product: productTypes) => {
+          const matchesSearch =
+            product.title.toLowerCase().includes(search.toLowerCase()) ||
+            product.code.toLowerCase().includes(search.toLowerCase());
+          const matchesMainCategory = mainCategorySlug
+            ? product.mainCategory_slug === mainCategorySlug
+            : true;
+          const matchesCategory = categorySlug
+            ? product.category_slug === categorySlug
+            : true;
+          return matchesSearch && matchesMainCategory && matchesCategory;
+        });
 
-    setInitialProducts(filtered);
-    const priceValues = filtered.map((product) => product.price);
-    setPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
-    setInitialPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
-    setFilteredProducts(filtered);
+        setInitialProducts(filtered);
+        const priceValues = filtered.map(
+          (product: productTypes) => product.price
+        );
+        setPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
+        setInitialPriceRange([
+          Math.min(...priceValues),
+          Math.max(...priceValues),
+        ]);
+        setFilteredProducts(filtered);
 
-    const brandSet: Set<string> = new Set(
-      filtered
-        .map((product) => product.brand)
-        .filter((brand): brand is string => brand !== null)
-    );
-    setBrands(Array.from(brandSet));
+        const brandSet: Set<string> = new Set(
+          filtered
+            .map((product: productTypes) => product.brand)
+            .filter((brand: string) => brand !== null)
+        );
+        setBrands(Array.from(brandSet));
 
-    const attributes = filtered
-      .map((product) => product.attributes)
-      .filter(
-        (attributes): attributes is productAttributesTypes[] => !!attributes
-      );
-    setProductAttributes(attributes.length > 0 ? attributes.flat() : null);
+        const attributes = filtered
+          .map((product: productTypes) => product.attributes)
+          .filter((attributes: productAttributesTypes[]) => !!attributes);
+        setProductAttributes(attributes.length > 0 ? attributes.flat() : null);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
+    };
+
+    fetchProducts();
   }, [search, mainCategorySlug, categorySlug]);
 
   const filterProducts = (

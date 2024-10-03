@@ -1,17 +1,16 @@
 import React from "react";
 import Breadcrumb from "@/components/others/Breadcrumb";
-import {
-  categories,
-  generals,
-  instantProductDetail,
-  instantProducts,
-} from "@/constants/(front)";
+import { categories, generals } from "@/constants/(front)";
 import ProductDetail from "@/components/(front)/Product/ProductDetail";
 import ProductSidebar from "@/components/(front)/Product/ProductSidebar";
 import FeaturedProducts from "@/components/(front)/Product/FilteredProducts/FeaturedProducts";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { productTypes } from "@/types/product/productTypes";
+import { getProducts } from "@/lib/utils/Product/getProducts";
+import { productDetailTypes } from "@/types/product/productDetailTypes";
+import { getProductShow } from "@/lib/utils/Product/getProductShow";
 
 async function page({
   params,
@@ -21,6 +20,9 @@ async function page({
   const mainCategorySlug = params.main_category;
   const categorySlug = params.category;
   const productSlug = params.slug;
+
+  const products: productTypes[] = await getProducts();
+  const product: productDetailTypes = await getProductShow(productSlug);
 
   const mainCategory = categories.find(
     (category) => category.slug === mainCategorySlug
@@ -33,8 +35,6 @@ async function page({
   const breadcrumbTitle = subCategory
     ? subCategory.name
     : "Kategori Bulunamadı";
-
-  const product = instantProductDetail;
 
   return (
     <>
@@ -61,7 +61,7 @@ async function page({
             {generals.site_name} koleksiyonu içerisinde öne çıkan ürünler
           </p>
         </div>
-        <FeaturedProducts products={instantProducts} />
+        <FeaturedProducts products={products} />
       </section>
     </>
   );
