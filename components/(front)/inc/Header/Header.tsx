@@ -29,7 +29,7 @@ interface IHeaderProps {
 }
 function Header({ generals, products }: IHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { sidebarStatus, setSidebarStatus, isMobile } = useGlobalContext();
   const router = useRouter();
   const pathname = usePathname();
@@ -56,7 +56,7 @@ function Header({ generals, products }: IHeaderProps) {
   useEffect(() => {
     const loadingTimeout = setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 200);
 
     return () => {
       clearTimeout(loadingTimeout);
