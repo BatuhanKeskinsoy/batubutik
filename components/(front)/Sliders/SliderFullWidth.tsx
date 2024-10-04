@@ -15,7 +15,7 @@ const sliderPictures = [
 
 interface ISliderOneProps {
   perView: number;
-  generals: generalsTypes
+  generals: generalsTypes;
 }
 
 function createBreakpoints(perView: number) {
@@ -39,7 +39,6 @@ function createBreakpoints(perView: number) {
 }
 
 function SliderFullWidth({ perView, generals }: ISliderOneProps) {
-
   const breakpoints = createBreakpoints(perView);
 
   return (
@@ -63,9 +62,9 @@ function SliderFullWidth({ perView, generals }: ISliderOneProps) {
                   <span className="font-gemunu tracking-widest font-semibold lg:text-4xl text-xl text-white/80">
                     2024 {generals?.site_name} Koleksiyonu
                   </span>
-                  <h1 className="font-semibold lg:text-7xl text-5xl text-white font-gemunu tracking-wide">
+                  <span className="font-semibold lg:text-7xl text-5xl text-white font-gemunu tracking-wide">
                     Zarafetin Özgürlüğü
-                  </h1>
+                  </span>
                   <p className="lg:text-2xl text-base tracking-wide font-light text-white/70">
                     Ayrıcalıklı {generals?.site_name} koleksiyonunu keşfedin!
                   </p>
@@ -87,10 +86,11 @@ function SliderFullWidth({ perView, generals }: ISliderOneProps) {
             src={picture}
             alt="banner"
             fill
-            sizes="(max-width: 768px) 100vw, 100vw"
+            sizes="100vw"
             className="object-cover"
-            priority
-            quality={100}
+            quality={90}
+            priority={key === 0}
+            loading={key === 0 ? "eager" : "lazy"}
           />
         </SwiperSlide>
       ))}

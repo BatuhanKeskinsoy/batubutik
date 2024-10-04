@@ -31,9 +31,10 @@ async function page() {
 
       <section className="container mx-auto px-4">
         <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
-          <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
-            Öne Çıkan Ürünler
-          </h3>
+          <h1 className="text-4xl font-gemunu font-semibold tracking-wider">
+            <span className="text-site">{generals.site_name}</span> Öne Çıkan
+            Ürünler
+          </h1>
           <p className="text-gray-500 dark:text-gray-400">
             {generals.site_name} koleksiyonu içerisinde öne çıkan ürünler
           </p>
@@ -44,9 +45,10 @@ async function page() {
       <section className="bg-gray-100 dark:bg-zinc-800 py-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
-            <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
-              Yeni Ürünler
-            </h3>
+            <h2 className="text-4xl font-gemunu font-semibold tracking-wider">
+              <span className="text-site">{generals.site_name}</span> Yeni
+              Ürünler
+            </h2>
             <p className="text-gray-500 dark:text-gray-400">
               {generals.site_name} koleksiyonuna eklenen en yeni ürünler
             </p>
@@ -57,9 +59,10 @@ async function page() {
 
       <section className="container mx-auto px-4">
         <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
-          <h3 className="text-4xl font-gemunu font-semibold tracking-wider">
-            En Çok Satılan Ürünler
-          </h3>
+          <h2 className="text-4xl font-gemunu font-semibold tracking-wider">
+            <span className="text-site">{generals.site_name}</span> En Çok
+            Satılan Ürünler
+          </h2>
           <p className="text-gray-500 dark:text-gray-400">
             {generals.site_name} koleksiyonu içerisinde en çok talep edilen ve
             en çok satılan ürünler

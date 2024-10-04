@@ -157,6 +157,7 @@ function Header({ generals, products }: IHeaderProps) {
               <div className="max-lg:hidden w-0.5 h-full border-r border-gray-200 dark:border-zinc-800 order-2"></div>
               <div className="flex lg:order-3 order-1 h-full">
                 <CustomButton
+                  btnType="button"
                   containerStyles="lg:hidden"
                   leftIcon={
                     <IoMenuOutline className="text-4xl text-gray-800 dark:text-gray-200" />
@@ -165,6 +166,7 @@ function Header({ generals, products }: IHeaderProps) {
                 />
                 <nav className="flex items-center text-lg font-gemunu tracking-wide *:px-3 *:flex *:items-center *:h-full *:transition-all *:duration-300 *:min-w-max max-lg:hidden">
                   <CustomButton
+                    btnType="button"
                     title={"Anasayfa"}
                     containerStyles={getLinkClasses(`/`)}
                     handleClick={() => handleNavLink(`/`)}
@@ -184,6 +186,7 @@ function Header({ generals, products }: IHeaderProps) {
                     ))}
                   {navLinks.map((link, key) => (
                     <CustomButton
+                      btnType="button"
                       key={key}
                       title={link.title}
                       containerStyles={getLinkClasses(link.url)}

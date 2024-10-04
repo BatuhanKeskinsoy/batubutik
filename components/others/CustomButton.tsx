@@ -20,13 +20,14 @@ const CustomButton = ({
 }: CustomButtonProps) => {
   return (
     <button
-      id={id}
+      id={id || title}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       type={btnType}
       disabled={isDisabled}
       onClick={handleClick}
       className={`${containerStyles}`}
+      aria-label={title}
       title={title}
     >
       {leftIcon &&
