@@ -29,7 +29,7 @@ interface IHeaderProps {
 }
 function Header({ generals, products }: IHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { sidebarStatus, setSidebarStatus, isMobile } = useGlobalContext();
   const router = useRouter();
   const pathname = usePathname();
