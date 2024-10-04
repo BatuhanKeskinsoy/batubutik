@@ -73,9 +73,9 @@ function Header({ generals, products }: IHeaderProps) {
         <div className="h-10 w-full max-lg:hidden bg-gray-300/50 dark:bg-zinc-800">
           <div className="container px-4 mx-auto flex justify-between items-center h-full text-xs text-gray-600 dark:text-gray-200">
             <div className="flex items-center gap-4 h-full">
-              {generals?.socials && (
+              {generals.socials && (
                 <div className="flex gap-2 items-center *:transition-all *:duration-300">
-                  {generals?.socials.map((social, key) => (
+                  {generals.socials.map((social, key) => (
                     <Link
                       key={key}
                       href={social.url}
@@ -90,24 +90,24 @@ function Header({ generals, products }: IHeaderProps) {
               )}
               <div className="w-1 h-full border-r border-gray-300 dark:border-zinc-700" />
               <Link
-                href={`mailto:${generals?.email}`}
+                href={`mailto:${generals.email}`}
                 className="flex items-center gap-2 hover:text-site transition-all duration-300"
               >
                 <IoMailOutline className="text-xl" />
-                <span>{generals?.email}</span>
+                <span>{generals.email}</span>
               </Link>
               <Link
-                href={`tel:${generals?.phone}`}
+                href={`tel:${generals.phone}`}
                 className="flex items-center gap-2 hover:text-site transition-all duration-300"
               >
                 <IoCallOutline className="text-xl" />
-                <span>{generals?.phone}</span>
+                <span>{generals.phone}</span>
               </Link>
             </div>
             <div className="flex items-center gap-2">
               <LiaShippingFastSolid className="text-xl" />
-              {generals?.free_shipping && generals?.free_shipping > 0 && (
-                <span>{getPrice(generals?.free_shipping)} ve üzerine</span>
+              {generals.free_shipping && generals.free_shipping > 0 && (
+                <span>{getPrice(generals.free_shipping)} ve üzerine</span>
               )}
               <strong className="text-site tracking-wide uppercase">
                 KARGO ÜCRETSİZ
@@ -125,10 +125,10 @@ function Header({ generals, products }: IHeaderProps) {
               <div className="flex w-full h-full items-center justify-center lg:order-1 order-3">
                 <Link
                   href={"/"}
-                  title={generals?.site_name}
+                  title={generals.site_name}
                   className="capitalize font-medium font-gemunu text-4xl text-site"
                 >
-                  {generals?.logo ? (
+                  {generals.logo ? (
                     <Image
                       src={generals.logo}
                       alt={generals.site_name}
@@ -138,7 +138,7 @@ function Header({ generals, products }: IHeaderProps) {
                       className="h-[30px] w-auto"
                     />
                   ) : (
-                    <span>{generals?.site_name}</span>
+                    <span>{generals.site_name}</span>
                   )}
                 </Link>
               </div>

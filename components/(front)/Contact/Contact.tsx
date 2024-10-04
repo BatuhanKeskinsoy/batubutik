@@ -27,7 +27,7 @@ function Contact({ generals }: IContactProps) {
   const [message, setMessage] = useState("");
   /* FORM END */
 
-  const formattedPhoneNumber = generals?.phone.replace(/[\s()]/g, "");
+  const formattedPhoneNumber = generals.phone.replace(/[\s()]/g, "");
 
   const handleContact = (e: any) => {
     e.preventDefault();
@@ -128,7 +128,7 @@ function Contact({ generals }: IContactProps) {
         <span className="font-gemunu text-3xl tracking-wider font-medium">
           Sosyal Medya
         </span>
-        {generals?.socials && (
+        {generals.socials && (
           <div className="flex flex-wrap gap-4 items-center *:transition-all *:duration-300">
             {generals.socials.map((social, key) => (
               <Link
@@ -149,21 +149,21 @@ function Contact({ generals }: IContactProps) {
         </span>
         <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400 leading-6">
           <IoStorefrontOutline className="size-6 min-w-[24px]" />
-          <p>{generals?.address}</p>
+          <p>{generals.address}</p>
         </div>
         <Link
           href={`tel:+9${formattedPhoneNumber}`}
           className="flex items-center gap-3 text-gray-600 dark:text-gray-400 leading-6 hover:text-site dark:hover:text-site transition-all duration-300 w-fit"
         >
           <IoCallOutline className="size-6 min-w-[24px]" />
-          <p>{generals?.phone}</p>
+          <p>{generals.phone}</p>
         </Link>
         <Link
-          href={`mailto:${generals?.email}`}
+          href={`mailto:${generals.email}`}
           className="flex items-center gap-3 text-gray-600 dark:text-gray-400 leading-6 hover:text-site dark:hover:text-site transition-all duration-300 w-fit"
         >
           <IoMailOutline className="size-6 min-w-[24px]" />
-          <p>{generals?.email}</p>
+          <p>{generals.email}</p>
         </Link>
         <hr />
         <div className="h-[300px] w-full">

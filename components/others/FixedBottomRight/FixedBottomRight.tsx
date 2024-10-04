@@ -40,7 +40,7 @@ const ScrollTopButton = () => {
 };
 
 const WhatsAppButton = ({ generals }: IFixedBottomRightProps) => {
-  if (!generals?.whatsapp_number) {
+  if (!generals.whatsapp_number) {
     return null;
   }
 

@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { generalsTypes } from "@/types/generalTypes";
 
 interface IBasketPropertyProps {
-  generals: generalsTypes | null;
+  generals: generalsTypes;
   isDetail?: boolean;
   subTotal: number;
   setSubTotal: Dispatch<SetStateAction<number>>;

@@ -7,7 +7,7 @@ import React from "react";
 
 interface ICommentsProps {
   comments?: any[];
-  generals: generalsTypes | null;
+  generals: generalsTypes;
 }
 
 function Comments({ comments, generals }: ICommentsProps) {
@@ -64,7 +64,7 @@ function Comments({ comments, generals }: ICommentsProps) {
                   {!isMobile && (
                     <div className="flex flex-col w-full gap-2 px-4 py-3 border-l-4 border-site/70 bg-site/10">
                       <span className="text-site font-gemunu text-xl font-semibold tracking-wide">
-                        {generals?.site_name} Yanıtladı :
+                        {generals.site_name} Yanıtladı :
                       </span>
                       <p className="text-gray-600 dark:text-gray-300">
                         Beğenmenize sevindik, iyi günler beğenmenize sevindik,
@@ -86,7 +86,7 @@ function Comments({ comments, generals }: ICommentsProps) {
               {isMobile && (
                 <div className="flex flex-col w-full gap-2 px-4 py-3 border-l-4 border-site/70 bg-site/10">
                   <span className="text-site font-gemunu text-xl font-semibold tracking-wide">
-                    {generals?.site_name} Yanıtladı :
+                    {generals.site_name} Yanıtladı :
                   </span>
                   <p className="text-gray-600 dark:text-gray-300">
                     Beğenmenize sevindik, iyi günler beğenmenize sevindik, iyi

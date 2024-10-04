@@ -59,9 +59,9 @@ function Footer({ generals }: IFooterProps) {
                 <Link
                   href={"/"}
                   className="relative capitalize font-medium font-gemunu text-5xl text-site"
-                  title={generals?.site_name}
+                  title={generals.site_name}
                 >
-                  {generals?.logo ? (
+                  {generals.logo ? (
                     <Image
                       src={generals.logo}
                       alt={generals.site_name}
@@ -71,7 +71,7 @@ function Footer({ generals }: IFooterProps) {
                       className="h-10 w-auto"
                     />
                   ) : (
-                    <span>{generals?.site_name}</span>
+                    <span>{generals.site_name}</span>
                   )}
                 </Link>
                 <p>
@@ -80,12 +80,13 @@ function Footer({ generals }: IFooterProps) {
                   en yeni trendleri ve en rahat tasarımları müşterilerimizle
                   buluşturuyoruz.
                 </p>
-                {generals?.socials && (
+                {generals.socials && (
                   <div className="flex justify-start gap-4 flex-wrap items-center *:transition-all *:duration-300">
                     {generals.socials.map((social, key) => (
                       <Link
                         key={key}
                         href={social.url}
+                        aria-label={social.platform}
                         className="text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site *:text-3xl"
                         target="_blank"
                       >
@@ -209,7 +210,7 @@ function Footer({ generals }: IFooterProps) {
                   </span>
                   <hr className="my-2 border-gray-300 dark:border-zinc-800" />
                   <ul className="flex flex-wrap gap-2">
-                    {generals?.tags.slice(0, 10).map((tag, key) => (
+                    {generals.tags.slice(0, 10).map((tag, key) => (
                       <li key={key}>
                         <Link
                           title={tag}

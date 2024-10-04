@@ -60,13 +60,13 @@ function SliderFullWidth({ perView, generals }: ISliderOneProps) {
               <div className="flex flex-col w-full lg:h-full justify-center max-lg:gap-12 gap-28 py-12">
                 <div className="max-lg:text-center flex flex-col max-lg:items-center max-lg:justify-betweenw-full max-lg:h-full max-lg:gap-4 gap-12">
                   <span className="font-gemunu tracking-widest font-semibold lg:text-4xl text-xl text-white/80">
-                    2024 {generals?.site_name} Koleksiyonu
+                    2024 {generals.site_name} Koleksiyonu
                   </span>
                   <span className="font-semibold lg:text-7xl text-5xl text-white font-gemunu tracking-wide">
                     Zarafetin Özgürlüğü
                   </span>
                   <p className="lg:text-2xl text-base tracking-wide font-light text-white/70">
-                    Ayrıcalıklı {generals?.site_name} koleksiyonunu keşfedin!
+                    Ayrıcalıklı {generals.site_name} koleksiyonunu keşfedin!
                   </p>
                 </div>
                 <CustomButton

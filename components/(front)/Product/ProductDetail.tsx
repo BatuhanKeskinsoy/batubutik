@@ -45,7 +45,7 @@ function ProductDetail({ product, generals }: IProductDetailProps) {
                 }`}
                 handleClick={() => setActiveTab("comments")}
               />
-              {generals?.return_conditions && (
+              {generals.return_conditions && (
                 <CustomButton
                   title="İptal ve İade Koşulları"
                   containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${

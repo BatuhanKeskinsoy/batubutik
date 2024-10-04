@@ -81,7 +81,7 @@ function NavMenu({ generals }: INavMenuProps) {
             <Theme />
           </div>
         )}
-        {(generals?.email || generals?.phone) && (
+        {(generals.email || generals.phone) && (
           <div className="flex flex-col w-full text-base text-gray-600 dark:text-gray-200">
             {generals.email && (
               <Link
@@ -110,6 +110,7 @@ function NavMenu({ generals }: INavMenuProps) {
                 key={key}
                 href={social.url}
                 title={social.platform}
+                aria-label={social.platform}
                 className="text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site *:text-4xl"
                 target="_blank"
               >
