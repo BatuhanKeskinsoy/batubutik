@@ -27,7 +27,7 @@ const CustomButton = ({
       disabled={isDisabled}
       onClick={handleClick}
       className={`${containerStyles}`}
-      aria-label={title}
+      aria-label={title || "button"}
       title={title}
     >
       {leftIcon &&
