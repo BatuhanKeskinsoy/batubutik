@@ -1,7 +1,6 @@
 "use client";
 import { getSocialIcon } from "@/lib/functions/getSocialIcon";
 import CustomButton from "@/components/others/CustomButton";
-import { generals } from "@/constants/(front)";
 import Link from "next/link";
 import React, { useState } from "react";
 import {
@@ -11,14 +10,19 @@ import {
   IoStorefrontOutline,
 } from "react-icons/io5";
 import { toast } from "react-toastify";
+import { generalsTypes } from "@/types/generalTypes";
 
-function Contact() {
+interface IContactProps {
+  generals: generalsTypes;
+}
+
+function Contact({ generals }: IContactProps) {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [suspect, setSuspect] = useState("");
   const [message, setMessage] = useState("");
 
-  const formattedPhoneNumber = generals.phone.replace(/[\s()]/g, "");
+  const formattedPhoneNumber = generals?.phone.replace(/[\s()]/g, "");
 
   const handleContact = (e: any) => {
     e.preventDefault();
@@ -77,7 +81,9 @@ function Contact() {
             </label>
           </div>
           <label htmlFor="suspect" className="flex flex-col gap-4 w-full">
-          <span className="text-gray-600 dark:text-gray-200 tracking-wide">Konu</span>
+            <span className="text-gray-600 dark:text-gray-200 tracking-wide">
+              Konu
+            </span>
             <input
               type="text"
               required
@@ -88,7 +94,9 @@ function Contact() {
             />
           </label>
           <label htmlFor="message" className="flex flex-col gap-4 w-full">
-          <span className="text-gray-600 dark:text-gray-200 tracking-wide">Mesajınız</span>
+            <span className="text-gray-600 dark:text-gray-200 tracking-wide">
+              Mesajınız
+            </span>
             <textarea
               cols={6}
               rows={6}
@@ -115,40 +123,42 @@ function Contact() {
         <span className="font-gemunu text-3xl tracking-wider font-medium">
           Sosyal Medya
         </span>
-        <div className="flex flex-wrap gap-4 items-center *:transition-all *:duration-300">
-          {generals.socials.map((social, key) => (
-            <Link
-              key={key}
-              href={social.url}
-              className="flex items-center gap-2 hover:text-site dark:hover:text-site text-gray-600 dark:text-gray-400 text-3xl"
-              target="_blank"
-            >
-              {getSocialIcon(social.platform)}
-              <span className="text-base">{social.platform}</span>
-            </Link>
-          ))}
-        </div>
+        {generals?.socials && (
+          <div className="flex flex-wrap gap-4 items-center *:transition-all *:duration-300">
+            {generals.socials.map((social, key) => (
+              <Link
+                key={key}
+                href={social.url}
+                className="flex items-center gap-2 hover:text-site dark:hover:text-site text-gray-600 dark:text-gray-400 text-3xl"
+                target="_blank"
+              >
+                {getSocialIcon(social.platform)}
+                <span className="text-base">{social.platform}</span>
+              </Link>
+            ))}
+          </div>
+        )}
         <hr />
         <span className="font-gemunu text-3xl tracking-wider font-medium">
           İletişim
         </span>
         <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400 leading-6">
           <IoStorefrontOutline className="size-6 min-w-[24px]" />
-          <p>{generals.address}</p>
+          <p>{generals?.address}</p>
         </div>
         <Link
           href={`tel:+9${formattedPhoneNumber}`}
           className="flex items-center gap-3 text-gray-600 dark:text-gray-400 leading-6 hover:text-site dark:hover:text-site transition-all duration-300 w-fit"
         >
           <IoCallOutline className="size-6 min-w-[24px]" />
-          <p>{generals.phone}</p>
+          <p>{generals?.phone}</p>
         </Link>
         <Link
-          href={`mailto:${generals.email}`}
+          href={`mailto:${generals?.email}`}
           className="flex items-center gap-3 text-gray-600 dark:text-gray-400 leading-6 hover:text-site dark:hover:text-site transition-all duration-300 w-fit"
         >
           <IoMailOutline className="size-6 min-w-[24px]" />
-          <p>{generals.email}</p>
+          <p>{generals?.email}</p>
         </Link>
         <hr />
         <iframe

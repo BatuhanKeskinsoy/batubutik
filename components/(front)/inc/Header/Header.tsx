@@ -12,7 +12,7 @@ import Sidebar from "@/components/(front)/inc/Sidebar/Sidebar";
 import Loading from "@/components/others/Loading";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { categories, generals, navLinks } from "@/constants/(front)";
+import { categories, navLinks } from "@/constants/(front)";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { getPrice } from "@/lib/functions/getPrice";
 import { getSocialIcon } from "@/lib/functions/getSocialIcon";
@@ -20,8 +20,14 @@ import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Theme from "@/components/others/Theme";
 import { useTheme } from "@/app/Context/themeContext";
+import { generalsTypes } from "@/types/generalTypes";
+import { productTypes } from "@/types/product/productTypes";
 
-function Header() {
+interface IHeaderProps {
+  generals: generalsTypes;
+  products: productTypes[];
+}
+function Header({ generals, products }: IHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [loading, setLoading] = useState(true);
   const { sidebarStatus, setSidebarStatus, isMobile } = useGlobalContext();
@@ -70,48 +76,50 @@ function Header() {
       ? "text-site"
       : "dark:text-gray-200 hover:text-site dark:hover:text-site";
   };
-  
+
   return (
     <>
       <ToastContainer theme={theme} />
-      {loading && <Loading />}
+      {loading && <Loading generals={generals} />}
       <header className="relative w-full lg:h-[120px] h-20 z-20">
         <div className="h-10 w-full max-lg:hidden bg-gray-300/50 dark:bg-zinc-800">
           <div className="container px-4 mx-auto flex justify-between items-center h-full text-xs text-gray-600 dark:text-gray-200">
             <div className="flex items-center gap-4 h-full">
-              <div className="flex gap-2 items-center *:transition-all *:duration-300">
-                {generals.socials.map((social, key) => (
-                  <Link
-                    key={key}
-                    href={social.url}
-                    title={social.platform}
-                    className="hover:text-site *:text-xl"
-                    target="_blank"
-                  >
-                    {getSocialIcon(social.platform)}
-                  </Link>
-                ))}
-              </div>
+              {generals?.socials && (
+                <div className="flex gap-2 items-center *:transition-all *:duration-300">
+                  {generals?.socials.map((social, key) => (
+                    <Link
+                      key={key}
+                      href={social.url}
+                      title={social.platform}
+                      className="hover:text-site *:text-xl"
+                      target="_blank"
+                    >
+                      {getSocialIcon(social.platform)}
+                    </Link>
+                  ))}
+                </div>
+              )}
               <div className="w-1 h-full border-r border-gray-300 dark:border-zinc-700" />
               <Link
-                href={`mailto:${generals.email}`}
+                href={`mailto:${generals?.email}`}
                 className="flex items-center gap-2 hover:text-site transition-all duration-300"
               >
                 <IoMailOutline className="text-xl" />
-                <span>{generals.email}</span>
+                <span>{generals?.email}</span>
               </Link>
               <Link
-                href={`tel:${generals.phone}`}
+                href={`tel:${generals?.phone}`}
                 className="flex items-center gap-2 hover:text-site transition-all duration-300"
               >
                 <IoCallOutline className="text-xl" />
-                <span>{generals.phone}</span>
+                <span>{generals?.phone}</span>
               </Link>
             </div>
             <div className="flex items-center gap-2">
               <LiaShippingFastSolid className="text-xl" />
-              {generals.free_shipping > 0 && (
-                <span>{getPrice(generals.free_shipping)} ve üzerine</span>
+              {generals?.free_shipping && generals?.free_shipping > 0 && (
+                <span>{getPrice(generals?.free_shipping)} ve üzerine</span>
               )}
               <strong className="text-site tracking-wide uppercase">
                 KARGO ÜCRETSİZ
@@ -129,10 +137,10 @@ function Header() {
               <div className="flex w-full h-full items-center justify-center lg:order-1 order-3">
                 <Link
                   href={"/"}
-                  title={generals.site_name}
+                  title={generals?.site_name}
                   className="capitalize font-medium font-gemunu text-4xl text-site"
                 >
-                  {generals.logo ? (
+                  {generals?.logo ? (
                     <Image
                       src={generals.logo}
                       alt={generals.site_name}
@@ -142,7 +150,7 @@ function Header() {
                       className="h-[30px] w-auto"
                     />
                   ) : (
-                    <span>{generals.site_name}</span>
+                    <span>{generals?.site_name}</span>
                   )}
                 </Link>
               </div>
@@ -192,11 +200,11 @@ function Header() {
                 <Favorite />
               </div>
               {!isMobile && <Theme />}
-              <Basket />
+              <Basket products={products} />
             </div>
           </div>
         </div>
-        {sidebarStatus && <Sidebar />}
+        {sidebarStatus && <Sidebar generals={generals} />}
       </header>
     </>
   );

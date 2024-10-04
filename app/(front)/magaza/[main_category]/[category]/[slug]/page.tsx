@@ -1,6 +1,6 @@
 import React from "react";
 import Breadcrumb from "@/components/others/Breadcrumb";
-import { categories, generals } from "@/constants/(front)";
+import { categories } from "@/constants/(front)";
 import ProductDetail from "@/components/(front)/Product/ProductDetail";
 import ProductSidebar from "@/components/(front)/Product/ProductSidebar";
 import FeaturedProducts from "@/components/(front)/Product/FilteredProducts/FeaturedProducts";
@@ -11,6 +11,8 @@ import { productTypes } from "@/types/product/productTypes";
 import { getProducts } from "@/lib/utils/Product/getProducts";
 import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { getProductShow } from "@/lib/utils/Product/getProductShow";
+import { generalsTypes } from "@/types/generalTypes";
+import { getGenerals } from "@/lib/utils/getGenerals";
 
 async function page({
   params,
@@ -23,6 +25,7 @@ async function page({
 
   const products: productTypes[] = await getProducts();
   const product: productDetailTypes = await getProductShow(productSlug);
+  const generals: generalsTypes = await getGenerals();
 
   const mainCategory = categories.find(
     (category) => category.slug === mainCategorySlug
@@ -49,7 +52,7 @@ async function page({
           title4={product.title}
         />
       </div>
-      <ProductDetail product={product} />
+      <ProductDetail product={product} generals={generals} />
       <ProductSidebar product={product} />
       <hr className="lg:my-12 my-6 dark:border-zinc-800" />
       <section className="relative container mx-auto px-4">

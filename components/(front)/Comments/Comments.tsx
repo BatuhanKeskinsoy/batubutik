@@ -1,26 +1,25 @@
-"use client";
 import { useGlobalContext } from "@/app/Context/store";
 import { getShortName } from "@/lib/functions/getShortName";
 import { getStar } from "@/lib/functions/getStar";
 import { getStarredName } from "@/lib/functions/getStarredName";
-import { generals } from "@/constants/(front)";
+import { generalsTypes } from "@/types/generalTypes";
 import React from "react";
 
 interface ICommentsProps {
   comments?: any[];
+  generals: generalsTypes | null;
 }
 
-function Comments({ comments }: ICommentsProps) {
+function Comments({ comments, generals }: ICommentsProps) {
   const { isMobile } = useGlobalContext();
+
   return (
     <ul className="flex flex-col w-full gap-6">
       {Array.from({ length: 3 }).map((_, index) => {
         const name = "Batuhan Keskinsoy";
         return (
           <React.Fragment key={index}>
-            <li
-              className="flex max-lg:flex-col gap-4 lg:items-center"
-            >
+            <li className="flex max-lg:flex-col gap-4 lg:items-center">
               <div className="flex gap-4 max-lg:items-center">
                 {name && (
                   <div className="flex items-center justify-center lg:min-w-20 lg:w-20 lg:h-20 min-w-16 w-16 h-16 bg-site/10 text-site rounded-full select-none font-gemunu text-3xl uppercase font-light">
@@ -65,7 +64,7 @@ function Comments({ comments }: ICommentsProps) {
                   {!isMobile && (
                     <div className="flex flex-col w-full gap-2 px-4 py-3 border-l-4 border-site/70 bg-site/10">
                       <span className="text-site font-gemunu text-xl font-semibold tracking-wide">
-                        {generals.site_name} Yanıtladı :
+                        {generals?.site_name} Yanıtladı :
                       </span>
                       <p className="text-gray-600 dark:text-gray-300">
                         Beğenmenize sevindik, iyi günler beğenmenize sevindik,
@@ -87,7 +86,7 @@ function Comments({ comments }: ICommentsProps) {
               {isMobile && (
                 <div className="flex flex-col w-full gap-2 px-4 py-3 border-l-4 border-site/70 bg-site/10">
                   <span className="text-site font-gemunu text-xl font-semibold tracking-wide">
-                    {generals.site_name} Yanıtladı :
+                    {generals?.site_name} Yanıtladı :
                   </span>
                   <p className="text-gray-600 dark:text-gray-300">
                     Beğenmenize sevindik, iyi günler beğenmenize sevindik, iyi

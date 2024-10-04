@@ -1,7 +1,7 @@
 import axios from "axios";
 import { baseURL } from "@/constants/(front)";
 
-export async function getGeneral() {
+export async function getGenerals() {
   try {
     const response = await axios.get(`${baseURL}/general`);
     return response.data;

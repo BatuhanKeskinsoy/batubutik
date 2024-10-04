@@ -5,21 +5,24 @@ import Categories from "@/components/(front)/Home/Categories";
 import NewProducts from "@/components/(front)/Product/FilteredProducts/NewProducts";
 import BestSellingProducts from "@/components/(front)/Product/FilteredProducts/BestSellingProducts";
 import Contact from "@/components/(front)/Contact/Contact";
-import { generals } from "@/constants/(front)";
 import About from "@/components/(front)/About/About";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { getProducts } from "@/lib/utils/Product/getProducts";
+import { getGenerals } from "@/lib/utils/getGenerals";
+import { generalsTypes } from "@/types/generalTypes";
+import { productTypes } from "@/types/product/productTypes";
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 async function page() {
-  const products = await getProducts();
+  const products: productTypes[] = await getProducts();
+  const generals: generalsTypes = await getGenerals();
   return (
     <main className="flex flex-col w-full gap-12">
       <section>
-        <Banner />
+        <Banner generals={generals} />
       </section>
 
       <section className="container mx-auto px-4 lg:-mt-28">
@@ -66,10 +69,10 @@ async function page() {
       </section>
 
       <section className="bg-gray-100 dark:bg-zinc-800 py-12">
-        <About />
+        <About generals={generals} />
       </section>
       <section>
-        <Contact />
+        <Contact generals={generals} />
       </section>
     </main>
   );

@@ -5,9 +5,12 @@ import CustomButton from "@/components/others/CustomButton";
 import React, { useEffect, useState } from "react";
 import { IoBagHandleOutline, IoBagHandle } from "react-icons/io5";
 import { productTypes } from "@/types/product/productTypes";
-import { getProducts } from "@/lib/utils/Product/getProducts";
 
-function Basket() {
+interface IBasketProps {
+  products: productTypes[];
+}
+
+function Basket({ products }: IBasketProps) {
   const { setSidebarStatus, basketItems } = useGlobalContext();
   const [basketItemCount, setBasketItemCount] = useState<number>(0);
   const [BasketIcon, setBasketIcon] = useState(
@@ -15,20 +18,6 @@ function Basket() {
   );
   const [basketTotalPrice, setBasketTotalPrice] = useState(0);
   const [pingAnimation, setPingAnimation] = useState(false);
-  const [products, setProducts] = useState<productTypes[]>([]);
-
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const fetchedProducts = await getProducts();
-        setProducts(fetchedProducts);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    }
-
-    fetchProducts();
-  }, []);
 
   useEffect(() => {
     if (basketItems && basketItems.length > 0) {

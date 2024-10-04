@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { IoChevronUpOutline, IoLogoWhatsapp } from "react-icons/io5";
 import CustomButton from "@/components/others/CustomButton";
-import { generals } from "@/constants/(front)";
+import { generalsTypes } from "@/types/generalTypes";
 
 const ScrollTopButton = () => {
   const [isTop, setIsTop] = useState(true);
@@ -39,8 +39,8 @@ const ScrollTopButton = () => {
   );
 };
 
-const WhatsAppButton = () => {
-  if (!generals.whatsapp_number) {
+const WhatsAppButton = ({ generals }: IFixedBottomRightProps) => {
+  if (!generals?.whatsapp_number) {
     return null;
   }
 
@@ -56,14 +56,18 @@ const WhatsAppButton = () => {
   );
 };
 
-function FixedBottomRight() {
+interface IFixedBottomRightProps {
+  generals: generalsTypes;
+}
+
+function FixedBottomRight({ generals }: IFixedBottomRightProps) {
   return (
     <div
       className="flex flex-col fixed lg:bottom-12 bottom-20 right-0 gap-4 *:text-white *:translate-x-2 *:py-2 *:px-5 *:rounded-full *:rounded-r-none *:transition-all *:duration-300"
       style={{ zIndex: 11 }}
     >
       <ScrollTopButton />
-      <WhatsAppButton />
+      <WhatsAppButton generals={generals} />
     </div>
   );
 }

@@ -4,14 +4,18 @@ import { getPrice } from "@/lib/functions/getPrice";
 import { getSocialIcon } from "@/lib/functions/getSocialIcon";
 import CustomButton from "@/components/others/CustomButton";
 import Theme from "@/components/others/Theme";
-import { categories, generals, navLinks } from "@/constants/(front)";
+import { categories, navLinks } from "@/constants/(front)";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { IoCallOutline, IoMailOutline } from "react-icons/io5";
 import { LiaShippingFastSolid } from "react-icons/lia";
+import { generalsTypes } from "@/types/generalTypes";
 
-function NavMenu() {
+interface INavMenuProps {
+  generals: generalsTypes;
+}
+function NavMenu({ generals }: INavMenuProps) {
   const { setSidebarStatus, isMobile } = useGlobalContext();
   const router = useRouter();
   const pathname = usePathname();
@@ -57,7 +61,7 @@ function NavMenu() {
           ))}
         </nav>
         <div className="flex flex-col items-center gap-1 bg-site/10 text-site p-3">
-          {generals.free_shipping > 0 && (
+          {generals && generals.free_shipping > 0 && (
             <span className="text-base tracking-wide">
               {getPrice(generals.free_shipping)} ve üzerine
             </span>
@@ -77,7 +81,7 @@ function NavMenu() {
             <Theme />
           </div>
         )}
-        {(generals.email || generals.phone) && (
+        {(generals?.email || generals?.phone) && (
           <div className="flex flex-col w-full text-base text-gray-600 dark:text-gray-200">
             {generals.email && (
               <Link
@@ -99,19 +103,21 @@ function NavMenu() {
             )}
           </div>
         )}
-        <div className="flex justify-evenly p-4 gap-2 flex-wrap items-center *:transition-all *:duration-300">
-          {generals.socials.map((social, key) => (
-            <Link
-              key={key}
-              href={social.url}
-              title={social.platform}
-              className="text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site *:text-4xl"
-              target="_blank"
-            >
-              {getSocialIcon(social.platform)}
-            </Link>
-          ))}
-        </div>
+        {generals && (
+          <div className="flex justify-evenly p-4 gap-2 flex-wrap items-center *:transition-all *:duration-300">
+            {generals.socials?.map((social, key) => (
+              <Link
+                key={key}
+                href={social.url}
+                title={social.platform}
+                className="text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site *:text-4xl"
+                target="_blank"
+              >
+                {getSocialIcon(social.platform)}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

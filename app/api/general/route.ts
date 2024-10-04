@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const general = {
     logo: "/assets/logo/logo.svg",
-    site_name: "aaaa",
+    site_name: "Batubutik",
     free_shipping: 1000,
     shipping_price: 50,
     socials: [

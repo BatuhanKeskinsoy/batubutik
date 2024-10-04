@@ -3,16 +3,18 @@ import React, { useState, useRef } from "react";
 import ProductArea from "@/components/(front)/Product/ProductArea";
 import { productDetailTypes } from "@/types/product/productDetailTypes";
 import CustomButton from "@/components/others/CustomButton";
-import { generals } from "@/constants/(front)";
 import Comments from "@/components/(front)/Comments/Comments";
+import { generalsTypes } from "@/types/generalTypes";
 
 interface IProductDetailProps {
   product: productDetailTypes;
+  generals: generalsTypes;
 }
 
-function ProductDetail({ product }: IProductDetailProps) {
+function ProductDetail({ product, generals }: IProductDetailProps) {
   const [activeTab, setActiveTab] = useState("info");
   const tabMenuRef = useRef<HTMLDivElement | null>(null);
+
   return (
     <main>
       <div className="flex flex-col w-full lg:gap-8 gap-4">
@@ -43,14 +45,14 @@ function ProductDetail({ product }: IProductDetailProps) {
                 }`}
                 handleClick={() => setActiveTab("comments")}
               />
-              {generals.return_conditions && (
+              {generals?.return_conditions && (
                 <CustomButton
                   title="İptal ve İade Koşulları"
                   containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
                     activeTab === "return"
                       ? "border-transparent bg-site text-white"
                       : "bg-white/20 dark:bg-zinc-900 hover:border-transparent dark:hover:border-transparent hover:bg-site/10 dark:hover:bg-site/10 hover:text-site dark:hover:text-site border-gray-200 dark:border-zinc-800"
-                }`}
+                  }`}
                   handleClick={() => setActiveTab("return")}
                 />
               )}
@@ -63,14 +65,18 @@ function ProductDetail({ product }: IProductDetailProps) {
                   dangerouslySetInnerHTML={{ __html: product.content }}
                 />
               ) : activeTab === "comments" ? (
-                <Comments />
+                <Comments generals={generals} />
               ) : activeTab === "return" ? (
-                <div
-                  className="dangeriousContent lg:leading-8 leading-7"
-                  dangerouslySetInnerHTML={{
-                    __html: generals.return_conditions,
-                  }}
-                />
+                <>
+                  {generals && (
+                    <div
+                      className="dangeriousContent lg:leading-8 leading-7"
+                      dangerouslySetInnerHTML={{
+                        __html: generals.return_conditions,
+                      }}
+                    />
+                  )}
+                </>
               ) : null}
             </div>
           </div>

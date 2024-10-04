@@ -1,10 +1,13 @@
 import About from '@/components/(front)/About/About'
+import { getGenerals } from '@/lib/utils/getGenerals';
+import { generalsTypes } from '@/types/generalTypes';
 import React from 'react'
 
-function page() {
+async function page() {
+  const generals: generalsTypes = await getGenerals();
   return (
     <section className='lg:mt-12 mt-4'>
-        <About />
+        <About generals={generals} />
     </section>
   )
 }

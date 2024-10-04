@@ -1,9 +1,11 @@
+export type socialTypes = { platform: string; url: string };
+
 export type generalsTypes = {
   logo: string;
   site_name: string;
   free_shipping: number;
   shipping_price: number;
-  socials: { platform: string; url: string }[];
+  socials: socialTypes[] | null;
   address: string;
   email: string;
   phone: string;

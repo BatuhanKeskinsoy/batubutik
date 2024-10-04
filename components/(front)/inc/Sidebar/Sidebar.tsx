@@ -2,7 +2,6 @@ import { useGlobalContext } from "@/app/Context/store";
 import CustomButton from "@/components/others/CustomButton";
 import Link from "next/link";
 import React from "react";
-import { generals } from "@/constants/(front)";
 import { IoCloseOutline } from "react-icons/io5";
 import Basket from "@/components/(front)/inc/Sidebar/Basket/Basket";
 import Favorite from "@/components/(front)/inc/Sidebar/Favorite";
@@ -10,8 +9,13 @@ import NavMenu from "@/components/(front)/inc/Sidebar/NavMenu";
 import Search from "@/components/(front)/inc/Sidebar/Search";
 import Auth from "@/components/(front)/inc/Sidebar/Auth/Auth";
 import Image from "next/image";
+import { generalsTypes } from "@/types/generalTypes";
 
-function Sidebar() {
+interface ISidebarProps {
+  generals: generalsTypes;
+}
+
+function Sidebar({ generals }: ISidebarProps) {
   const { sidebarStatus, setSidebarStatus } = useGlobalContext();
   return (
     <div className="fixed w-screen h-screen z-20">
@@ -68,7 +72,7 @@ function Sidebar() {
             />
           </div>
           {sidebarStatus === "Basket" ? (
-            <Basket />
+            <Basket generals={generals} />
           ) : sidebarStatus === "Favorite" ? (
             <Favorite />
           ) : sidebarStatus === "Search" ? (
@@ -76,7 +80,7 @@ function Sidebar() {
           ) : sidebarStatus === "Auth" ? (
             <Auth />
           ) : sidebarStatus === "MobileMenu" ? (
-            <NavMenu />
+            <NavMenu generals={generals} />
           ) : null}
         </div>
       </div>

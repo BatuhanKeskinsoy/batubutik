@@ -5,13 +5,15 @@ import { basketItemTypes } from "@/types/product/basketItemTypes";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getPrice } from "@/lib/functions/getPrice";
-import { discountCodes, generals } from "@/constants/(front)";
+import { discountCodes } from "@/constants/(front)";
 import { IoChevronForwardOutline, IoCloseOutline } from "react-icons/io5";
 import { useGlobalContext } from "@/app/Context/store";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { generalsTypes } from "@/types/generalTypes";
 
 interface IBasketPropertyProps {
+  generals: generalsTypes | null;
   isDetail?: boolean;
   subTotal: number;
   setSubTotal: Dispatch<SetStateAction<number>>;
@@ -26,6 +28,7 @@ interface IBasketPropertyProps {
 }
 
 function BasketProperty({
+  generals,
   isDetail,
   subTotal,
   setSubTotal,
@@ -91,7 +94,7 @@ function BasketProperty({
       setDiscountAmount(discountAmount);
       setDiscountApplied(true);
 
-      if (freeShipping !== null && newSubTotal < freeShipping) {
+      if (freeShipping !== null && newSubTotal < freeShipping && generals) {
         setSubTotal(newSubTotal + generals.shipping_price);
       } else {
         setSubTotal(newSubTotal);
@@ -200,7 +203,7 @@ function BasketProperty({
             <div className="flex justify-between items-center font-medium">
               <span className="text-sm">Kargo Ücreti :</span>
               <span className="text-red-500">
-                + {getPrice(generals.shipping_price)}
+                + {getPrice(generals ? generals.shipping_price : 0)}
               </span>
             </div>
             <hr className="dark:border-zinc-700" />

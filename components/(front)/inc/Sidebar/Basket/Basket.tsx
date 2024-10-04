@@ -1,20 +1,21 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import BasketProducts from "@/components/(front)/Basket/BasketProducts";
 import { useGlobalContext } from "@/app/Context/store";
-import { generals } from "@/constants/(front)";
 import { IoFileTrayOutline } from "react-icons/io5";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import BasketProperty from "@/components/(front)/inc/Sidebar/Basket/BasketProperty";
 import { getProducts } from "@/lib/utils/Product/getProducts";
 import { productTypes } from "@/types/product/productTypes";
+import { generalsTypes } from "@/types/generalTypes";
 
 interface IBasketProps {
   isDetail?: boolean;
+  generals: generalsTypes;
 }
 
-function Basket({ isDetail }: IBasketProps) {
+function Basket({ isDetail, generals }: IBasketProps) {
   const { basketItems, setBasketItems } = useGlobalContext();
   const [subTotal, setSubTotal] = useState(0);
   const [initialSubTotal, setInitialSubTotal] = useState(0);
@@ -23,7 +24,7 @@ function Basket({ isDetail }: IBasketProps) {
   const [basketProducts, setBasketProducts] = useState<
     basketProductTypes[] | null
   >(null);
-  const freeShipping: number | null = generals.free_shipping;
+  const freeShipping: number | null = generals ? generals.free_shipping : 0;
 
   const mergeSameProducts = (products: basketProductTypes[]) => {
     const mergedProducts: Record<string, basketProductTypes> = {};
@@ -91,19 +92,21 @@ function Basket({ isDetail }: IBasketProps) {
     setInitialSubTotal(subtotal);
 
     let newSubTotal = subtotal;
-    if (freeShipping !== null && newSubTotal < freeShipping) {
-      newSubTotal += generals.shipping_price;
-    }
-    if (discountApplied) {
-      newSubTotal = subtotal - discountAmount;
-
+    if (generals) {
       if (freeShipping !== null && newSubTotal < freeShipping) {
         newSubTotal += generals.shipping_price;
       }
+      if (discountApplied) {
+        newSubTotal = subtotal - discountAmount;
 
-      setSubTotal(newSubTotal);
-    } else {
-      setSubTotal(newSubTotal);
+        if (freeShipping !== null && newSubTotal < freeShipping) {
+          newSubTotal += generals.shipping_price;
+        }
+
+        setSubTotal(newSubTotal);
+      } else {
+        setSubTotal(newSubTotal);
+      }
     }
   }, [calculateSubTotal, discountApplied, discountAmount]);
 
@@ -244,6 +247,7 @@ function Basket({ isDetail }: IBasketProps) {
         </div>
         {!isDetail && (
           <BasketProperty
+            generals={generals}
             isDetail={isDetail}
             subTotal={subTotal}
             setSubTotal={setSubTotal}
@@ -261,6 +265,7 @@ function Basket({ isDetail }: IBasketProps) {
       {isDetail && (
         <div className="lg:w-1/4 w-full">
           <BasketProperty
+            generals={generals}
             isDetail={isDetail}
             subTotal={subTotal}
             setSubTotal={setSubTotal}

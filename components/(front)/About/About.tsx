@@ -1,8 +1,12 @@
-import { generals } from "@/constants/(front)";
+import { generalsTypes } from "@/types/generalTypes";
 import Image from "next/image";
 import React from "react";
 
-function About() {
+interface IAboutProps {
+  generals: generalsTypes;
+}
+
+function About({ generals }: IAboutProps) {
   return (
     <div className="container mx-auto px-4 flex lg:flex-row flex-col gap-8">
       <div className="flex flex-col lg:gap-6 gap-4 lg:w-3/5 w-full text-lg tracking-wide">
