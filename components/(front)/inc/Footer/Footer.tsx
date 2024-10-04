@@ -1,6 +1,6 @@
 "use client";
 import CustomButton from "@/components/others/CustomButton";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Auth from "@/components/(front)/inc/Header/Auth/Auth";
 import Favorite from "@/components/(front)/inc/Header/Favorite/Favorite";
 import Search from "@/components/(front)/inc/Header/Search/Search";
