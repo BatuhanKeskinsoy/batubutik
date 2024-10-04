@@ -191,7 +191,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                     src={product.images ? product.images[0] : ""}
                     alt="add to cart product"
                     fill
-                    sizes="300px"
+                    sizes="(max-width: 768px) 50%, 20%"
                     className="object-cover"
                   />
                 </div>
