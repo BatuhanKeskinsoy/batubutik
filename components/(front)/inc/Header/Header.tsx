@@ -19,9 +19,9 @@ import { getSocialIcon } from "@/lib/functions/getSocialIcon";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Theme from "@/components/others/Theme";
-import { useTheme } from "@/app/Context/themeContext";
 import { generalsTypes } from "@/types/generalTypes";
 import { productTypes } from "@/types/product/productTypes";
+import { useTheme } from "next-themes";
 
 interface IHeaderProps {
   generals: generalsTypes;
@@ -29,11 +29,10 @@ interface IHeaderProps {
 }
 function Header({ generals, products }: IHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [loading, setLoading] = useState(true);
   const { sidebarStatus, setSidebarStatus, isMobile } = useGlobalContext();
   const router = useRouter();
   const pathname = usePathname();
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,16 +52,6 @@ function Header({ generals, products }: IHeaderProps) {
     };
   }, [isScrolled]);
 
-  useEffect(() => {
-    const loadingTimeout = setTimeout(() => {
-      setLoading(false);
-    }, 200);
-
-    return () => {
-      clearTimeout(loadingTimeout);
-    };
-  }, []);
-
   const handleNavLink = (link: string) => {
     setSidebarStatus("");
     router.push(link);
@@ -79,8 +68,7 @@ function Header({ generals, products }: IHeaderProps) {
 
   return (
     <>
-      <ToastContainer theme={theme} />
-      {loading && <Loading generals={generals} />}
+      <ToastContainer theme={resolvedTheme} />
       <header className="relative w-full lg:h-[120px] h-20 z-20">
         <div className="h-10 w-full max-lg:hidden bg-gray-300/50 dark:bg-zinc-800">
           <div className="container px-4 mx-auto flex justify-between items-center h-full text-xs text-gray-600 dark:text-gray-200">

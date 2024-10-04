@@ -3,7 +3,6 @@ import Header from "@/components/(front)/inc/Header/Header";
 import FixedBottomRight from "@/components/others/FixedBottomRight/FixedBottomRight";
 import "@/public/styles/globals.css";
 import React from "react";
-import { ThemeProvider } from "@/app/Context/themeContext";
 import { generalsTypes } from "@/types/generalTypes";
 import { getGenerals } from "@/lib/utils/getGenerals";
 import { productTypes } from "@/types/product/productTypes";
@@ -17,11 +16,11 @@ export default async function RootLayout({
   const generals: generalsTypes = await getGenerals();
   const products: productTypes[] = await getProducts();
   return (
-    <ThemeProvider>
+    <>
       <Header generals={generals} products={products} />
       {children}
       <FixedBottomRight generals={generals} />
       <Footer generals={generals} />
-    </ThemeProvider>
+    </>
   );
 }
