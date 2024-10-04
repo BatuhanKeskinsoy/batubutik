@@ -89,10 +89,10 @@ function SliderFullWidth({ perView, generals }: ISliderOneProps) {
             sizes="100vw"
             className="object-cover"
             quality={90}
-            // priority={key === 0}
-            decoding="async"
+            priority={key === 0}
+            decoding={key === 0 ? "async" : "auto"}
             fetchPriority={key === 0 ? "high" : "low"}
-            loading={"lazy"}
+            loading={key !== 0 ? "lazy" : "eager"}
           />
         </SwiperSlide>
       ))}
