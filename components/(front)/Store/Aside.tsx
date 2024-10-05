@@ -2,8 +2,10 @@
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import {
+  IoCaretForwardOutline,
   IoCheckmark,
   IoChevronDown,
+  IoChevronForwardOutline,
   IoChevronUp,
   IoSearchOutline,
 } from "react-icons/io5";
@@ -71,9 +73,19 @@ function Aside({
   const [openCategories, setOpenCategories] = useState<{
     [key: string]: boolean;
   }>({});
+  const [openSubCategories, setOpenSubCategories] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   const toggleCategory = (slug: string) => {
     setOpenCategories((prevState) => ({
+      ...prevState,
+      [slug]: !prevState[slug],
+    }));
+  };
+
+  const toggleSubCategory = (slug: string) => {
+    setOpenSubCategories((prevState) => ({
       ...prevState,
       [slug]: !prevState[slug],
     }));
@@ -162,7 +174,6 @@ function Aside({
           />
           <IoSearchOutline className="text-2xl mr-4 dark:text-gray-400" />
         </label>
-        <hr className="mt-2 dark:border-zinc-800" />
         {isMobile && (
           <CustomButton
             title="Filtre"
@@ -173,7 +184,7 @@ function Aside({
                 <IoChevronDown className="text-2xl" />
               )
             }
-            containerStyles={`flex justify-between font-gemunu items-center border-b border-gray-200 dark:border-zinc-800 w-full px-4 py-3 text-2xl ${
+            containerStyles={`flex justify-between font-gemunu items-center border border-gray-200 dark:border-zinc-800 w-full px-4 py-3 text-2xl ${
               isFilterNav
                 ? "bg-site/10 text-site border-b-0"
                 : " bg-white dark:bg-zinc-900 text-gray-600 dark:text-gray-200"
@@ -187,79 +198,146 @@ function Aside({
               Kategori
             </span>
             <div className="flex flex-col w-full gap-2">
-              {categories.map((mainCategory: mainCategoryTypes, key: number) => (
-                <div key={key} className="flex flex-col w-full">
-                  <Link
-                    href={`/magaza/${mainCategory.slug}`}
-                    title={mainCategory.name}
-                    className={`flex justify-between items-center rounded-sm font-medium border border-gray-200 dark:border-zinc-800 transition-all duration-300 dark:text-gray-400 group ${
-                      mainCategorySlug === mainCategory.slug
-                        ? "bg-site text-white border-transparent dark:text-white"
-                        : "bg-white dark:bg-zinc-900 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site dark:hover:text-site hover:border-transparent dark:hover:border-transparent"
-                    }`}
-                  >
-                    <div
-                      className={`flex justify-between w-full ${
-                        mainCategory.categories ? "pl-4 pr-2" : "px-4"
-                      } py-2 gap-2`}
+              {categories.map(
+                (mainCategory: mainCategoryTypes, key: number) => (
+                  <div key={key} className="flex flex-col w-full gap-1">
+                    <Link
+                      href={`/magaza/${mainCategory.slug}`}
+                      title={mainCategory.name}
+                      className={`flex justify-between items-center rounded-sm font-medium border border-gray-200 dark:border-zinc-800 transition-all duration-300 dark:text-gray-400 group ${
+                        mainCategorySlug === mainCategory.slug
+                          ? "bg-site text-white border-transparent dark:text-white"
+                          : "bg-white dark:bg-zinc-900 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site dark:hover:text-site hover:border-transparent dark:hover:border-transparent"
+                      }`}
                     >
-                      <span className="line-clamp-1">{mainCategory.name}</span>
-                      <small>({mainCategory.product_count})</small>
-                    </div>
-                    {mainCategory.categories && (
-                      <CustomButton
-                        leftIcon={
-                          openCategories[mainCategory.slug] ||
-                          mainCategorySlug === mainCategory.slug ? (
-                            <IoChevronUp size={16} />
-                          ) : (
-                            <IoChevronDown size={16} />
-                          )
-                        }
-                        containerStyles={`border-l ${
-                          mainCategorySlug === mainCategory.slug
-                            ? "border-white/30 dark:border-white/70 opacity-50"
-                            : "border-gray-200 dark:border-zinc-800 group-hover:border-site/20"
-                        } h-full py-2 px-2.5`}
-                        handleClick={(e) => {
-                          e.preventDefault();
-                          toggleCategory(mainCategory.slug);
-                        }}
-                      />
-                    )}
-                  </Link>
-                  {mainCategory.categories &&
-                    (openCategories[mainCategory.slug] ||
-                      mainCategorySlug === mainCategory.slug) && (
-                      <div className="flex flex-col">
-                        {mainCategory.categories.map((category, key) => (
-                          <Link
-                            key={key}
-                            href={`/magaza/${mainCategory.slug}/${category.slug}`}
-                            title={category.name}
-                            className={`flex justify-between items-center gap-2 bg-white dark:bg-zinc-900 py-2 px-4 dark:text-gray-400 hover:text-site transition-all duration-300 ${
-                              categorySlug == category.slug
-                                ? "text-site dark:text-site"
-                                : "hover:text-site dark:hover:text-site"
-                            }`}
-                          >
-                            <span className="line-clamp-1">
-                              {category.name}
-                            </span>
-                            <small>({category.product_count})</small>
-                          </Link>
-                        ))}
+                      <div
+                        className={`flex justify-between w-full ${
+                          mainCategory.categories ? "pl-4 pr-2" : "px-4"
+                        } py-2.5 gap-2`}
+                      >
+                        <span className="line-clamp-1">
+                          {mainCategory.name}
+                        </span>
+                        <small className="text-xs leading-5">({mainCategory.product_count})</small>
                       </div>
-                    )}
-                </div>
-              ))}
+                      {mainCategory.categories && (
+                        <CustomButton
+                          leftIcon={
+                            openCategories[mainCategory.slug] ||
+                            mainCategorySlug === mainCategory.slug ? (
+                              <IoChevronUp size={16} />
+                            ) : (
+                              <IoChevronDown size={16} />
+                            )
+                          }
+                          containerStyles={`border-l ${
+                            mainCategorySlug === mainCategory.slug
+                              ? "border-white/30 dark:border-white/70 opacity-50"
+                              : "border-gray-200 dark:border-zinc-800 group-hover:border-site/20"
+                          } h-full p-2.5`}
+                          handleClick={(e) => {
+                            e.preventDefault();
+                            toggleCategory(mainCategory.slug);
+                          }}
+                        />
+                      )}
+                    </Link>
+                    {mainCategory.categories &&
+                      (openCategories[mainCategory.slug] ||
+                        mainCategorySlug === mainCategory.slug) && (
+                        <div className="flex flex-col gap-1">
+                          {mainCategory.categories.map((category, key) => (
+                            <div key={key} className="flex flex-col">
+                              <Link
+                                href={`/magaza/${mainCategory.slug}/${category.slug}`}
+                                title={category.name}
+                                className={`flex justify-between w-full items-center dark:text-gray-400 hover:text-site transition-all duration-300 ${
+                                  categorySlug == category.slug &&
+                                  mainCategorySlug == mainCategory.slug
+                                    ? "text-site dark:text-site bg-site/10"
+                                    : "hover:text-site dark:hover:text-site bg-gray-100 dark:bg-zinc-800/50"
+                                }`}
+                              >
+                                <div className="flex justify-between w-full pl-4 pr-2 py-2 gap-2">
+                                  <span className="line-clamp-1">
+                                    {category.name}
+                                  </span>
+                                  <small className="text-xs leading-5">({category.product_count})</small>
+                                </div>
+                                {category.sub_categories && (
+                                  <CustomButton
+                                    leftIcon={
+                                      openSubCategories[category.slug] ||
+                                      categorySlug === category.slug ? (
+                                        <IoChevronUp size={16} />
+                                      ) : (
+                                        <IoChevronDown size={16} />
+                                      )
+                                    }
+                                    containerStyles={`border-l ${
+                                      categorySlug === category.slug
+                                        ? "border-white dark:border-zinc-900 opacity-50"
+                                        : "border-gray-200 dark:border-zinc-800 group-hover:border-site/20"
+                                    } h-full p-2.5`}
+                                    handleClick={(e) => {
+                                      e.preventDefault();
+                                      toggleSubCategory(category.slug);
+                                    }}
+                                  />
+                                )}
+                              </Link>
+                              {category.sub_categories &&
+                                (openSubCategories[category.slug] ||
+                                  (categorySlug === category.slug &&
+                                    mainCategorySlug ===
+                                      mainCategory.slug)) && (
+                                  <div className="flex flex-col mt-1">
+                                    {category.sub_categories.map(
+                                      (subCategory, key) => (
+                                        <div className="flex w-full">
+                                          <Link
+                                            key={key}
+                                            href={`/magaza/${mainCategory.slug}/${category.slug}/${subCategory.slug}`}
+                                            title={subCategory.name}
+                                            className={`flex justify-between w-full items-center gap-2 lg:py-1.5 py-2 px-3 dark:text-gray-400 hover:text-site transition-all duration-300 ${
+                                              mainCategorySlug ==
+                                                mainCategory.slug &&
+                                              subCategorySlug ==
+                                                subCategory.slug &&
+                                              categorySlug === category.slug
+                                                ? "text-site dark:text-site"
+                                                : "hover:text-site dark:hover:text-site"
+                                            }`}
+                                          >
+                                            <div className="flex items-center gap-2">
+                                              <IoCaretForwardOutline className="text-lg" />
+                                              <span className="line-clamp-1 -mb-0.5">
+                                                {subCategory.name}
+                                              </span>
+                                            </div>
+                                            <small className="text-xs leading-5">
+                                              ({subCategory.product_count})
+                                            </small>
+                                          </Link>
+                                        </div>
+                                      )
+                                    )}
+                                  </div>
+                                )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                  </div>
+                )
+              )}
             </div>
-            <hr className="dark:border-zinc-800" />
             {Number.isFinite(priceRange[0]) &&
               Number.isFinite(priceRange[1]) &&
               priceRange[0] !== 0 &&
               priceRange[1] !== 0 && (
                 <>
+                  <hr className="dark:border-zinc-800" />
                   <span className="font-medium text-xl font-gemunu tracking-wide dark:text-gray-200">
                     Fiyat Aralığı
                   </span>

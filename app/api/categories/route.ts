@@ -30,7 +30,10 @@ export async function GET() {
           name: "Üst Giyim",
           slug: "ust-giyim",
           product_count: 0,
-          sub_categories: [{ name: "Takım", slug: "takim", product_count: 0 }],
+          sub_categories: [
+            { name: "Takım", slug: "takim", product_count: 0 },
+            { name: "Parça", slug: "parca", product_count: 0 },
+          ],
         },
         {
           name: "Alt Giyim",
@@ -42,7 +45,10 @@ export async function GET() {
           name: "İç Giyim",
           slug: "ic-giyim",
           product_count: 6,
-          sub_categories: [{ name: "Takım", slug: "takim", product_count: 6 }],
+          sub_categories: [
+            { name: "Takım", slug: "takim", product_count: 6 },
+            { name: "Parça", slug: "parca", product_count: 0 },
+          ],
         },
       ],
     },

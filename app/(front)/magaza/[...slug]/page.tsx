@@ -9,7 +9,6 @@ import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { getGenerals } from "@/lib/utils/getGenerals";
 import React from "react";
 
-
 async function page({ params }: { params: { slug?: string[] } }) {
   const categories: mainCategoryTypes[] = await getCategories();
   const categorySlugs = params.slug || [];
@@ -32,11 +31,7 @@ async function page({ params }: { params: { slug?: string[] } }) {
     ? category?.sub_categories?.find((sub) => sub.slug === subCategorySlug)
     : null;
 
-  const breadcrumbTitle =
-    subCategory?.name ||
-    category?.name ||
-    mainCategory?.name ||
-    "Kategori Bulunamadı";
+  const pageTitle = `${mainCategory?.name || ""} ${category?.name || ""} ${subCategory?.name || ""}`;
 
   const generals = await getGenerals();
 
@@ -69,35 +64,37 @@ async function page({ params }: { params: { slug?: string[] } }) {
         <hr className="lg:my-12 my-6 dark:border-zinc-800" />
       </>
     );
-  }
-
-  return (
-    <>
-      <div className="container mx-auto px-4 lg:flex hidden">
-        <Breadcrumb
-          title="Mağaza"
-          slug="/magaza"
-          title2={mainCategory?.name || "Kategori Bulunamadı"}
-          slug2={`/magaza/${mainCategorySlug}`}
-          title3={category?.name || ""}
-          slug3={category ? `/magaza/${mainCategorySlug}/${categorySlug}` : ""}
-          title4={subCategory?.name || ""}
-          slug4={
-            subCategory
-              ? `/magaza/${mainCategorySlug}/${categorySlug}/${subCategorySlug}`
-              : ""
-          }
+  } else {
+    return (
+      <>
+        <div className="container mx-auto px-4 lg:flex hidden">
+          <Breadcrumb
+            title="Mağaza"
+            slug="/magaza"
+            title2={mainCategory?.name || "Kategori Bulunamadı"}
+            slug2={`/magaza/${mainCategorySlug}`}
+            title3={category?.name || ""}
+            slug3={
+              category ? `/magaza/${mainCategorySlug}/${categorySlug}` : ""
+            }
+            title4={subCategory?.name || ""}
+            slug4={
+              subCategory
+                ? `/magaza/${mainCategorySlug}/${categorySlug}/${subCategorySlug}`
+                : ""
+            }
+          />
+        </div>
+        <StoreMain
+          mainCategorySlug={mainCategorySlug}
+          categorySlug={categorySlug}
+          subCategorySlug={subCategorySlug}
+          pageTitle={pageTitle}
+          categories={categories}
         />
-      </div>
-      <StoreMain
-        mainCategorySlug={mainCategorySlug}
-        categorySlug={categorySlug}
-        subCategorySlug={subCategorySlug}
-        breadcrumbTitle={breadcrumbTitle}
-        categories={categories}
-      />
-    </>
-  );
+      </>
+    );
+  }
 }
 
 export default page;
