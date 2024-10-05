@@ -10,6 +10,8 @@ import { getProducts } from "@/lib/utils/Product/getProducts";
 import { mainCategoryTypes } from "@/types/categoryTypes";
 import { getCategories } from "@/lib/utils/getCategories";
 
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({
   children,
 }: Readonly<{

@@ -1,4 +1,3 @@
-// /app/magaza/[...slug].tsx
 import ProductDetail from "@/components/(front)/Product/ProductDetail";
 import ProductSidebar from "@/components/(front)/Product/ProductSidebar";
 import StoreMain from "@/components/(front)/Store/StoreMain";
@@ -10,7 +9,8 @@ import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { getGenerals } from "@/lib/utils/getGenerals";
 import React from "react";
 
-async function CategorySlug({ params }: { params: { slug?: string[] } }) {
+
+async function page({ params }: { params: { slug?: string[] } }) {
   const categories: mainCategoryTypes[] = await getCategories();
   const categorySlugs = params.slug || [];
 
@@ -100,4 +100,4 @@ async function CategorySlug({ params }: { params: { slug?: string[] } }) {
   );
 }
 
-export default CategorySlug;
+export default page;

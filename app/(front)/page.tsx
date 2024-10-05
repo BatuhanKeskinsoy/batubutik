@@ -16,8 +16,6 @@ import { productTypes } from "@/types/product/productTypes";
 import { mainCategoryTypes } from "@/types/categoryTypes";
 import { getCategories } from "@/lib/utils/getCategories";
 
-export const dynamic = "force-dynamic";
-
 async function page() {
   const products: productTypes[] = await getProducts();
   const generals: generalsTypes = await getGenerals();
