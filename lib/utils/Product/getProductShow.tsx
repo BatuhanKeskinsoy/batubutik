@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { baseURL } from "@/constants/(front)";
 
 export async function getProductShow(slug: string) {
@@ -6,7 +6,14 @@ export async function getProductShow(slug: string) {
     const response = await axios.get(`${baseURL}/product/${slug}`);
     return response.data;
   } catch (error) {
-    console.error("Error fetching product detail:", error);
-    throw error;
+    const axiosError = error as AxiosError;
+
+    // Hata durumunda null döndür
+    if (axiosError.response && axiosError.response.status === 404) {
+      console.error("Product not found, returning null:", axiosError);
+    } else {
+      console.error("Error fetching product detail:", axiosError);
+    }
+    return null; // Hata alırsa null döndür
   }
 }

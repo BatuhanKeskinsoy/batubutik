@@ -11,6 +11,8 @@ interface IBreadcrumbProps {
   slug3?: string;
   title4?: string;
   slug4?: string;
+  title5?: string;
+  slug5?: string;
 }
 
 const Breadcrumb = ({
@@ -22,6 +24,8 @@ const Breadcrumb = ({
   slug3,
   title4,
   slug4,
+  title5,
+  slug5,
 }: IBreadcrumbProps) => {
   const renderLink = (linkText: string, href?: string, isBold?: boolean) => (
     <>
@@ -33,7 +37,9 @@ const Breadcrumb = ({
           href={href}
           title={linkText}
           className={`text-sm transition-all duration-300 ${
-            isBold ? "text-site font-semibold" : "text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site"
+            isBold
+              ? "text-site font-semibold"
+              : "text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site"
           }`}
         >
           {linkText}
@@ -62,7 +68,8 @@ const Breadcrumb = ({
       {renderLink(title, slug, !title2)}
       {title2 && renderLink(title2, slug2, !title3)}
       {title3 && renderLink(title3, slug3, !title4)}
-      {title4 && renderLink(title4, slug4, true)}
+      {title4 && renderLink(title4, slug4, !title5)}
+      {title5 && renderLink(title5, slug5, true)}
     </div>
   );
 };
