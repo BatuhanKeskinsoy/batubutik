@@ -73,9 +73,9 @@ function Register({
     <div className="flex flex-col gap-4 w-full h-full">
       <form
         onSubmit={(e) => (registerControl ? handleRegister(e) : undefined)}
-        className="flex flex-col w-full gap-6 justify-between lg:h-full h-max overflow-y-auto pr-2"
+        className="flex flex-col w-full h-full lg:gap-6 gap-3 justify-between"
       >
-        <div className="flex flex-col lg:gap-8 gap-4 w-full h-full">
+        <div className="flex flex-col lg:gap-8 gap-4 w-full lg:h-full h-max overflow-y-auto pr-2">
           <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
             <label htmlFor="firstname" className="flex flex-col gap-4 w-full">
               <span className="text-gray-600 dark:text-gray-200 tracking-wide">
@@ -264,7 +264,7 @@ function Register({
 
         <div className="flex w-full items-center justify-center gap-4">
           <div className="h-[1px] flex-1 bg-[#d2d6d8] dark:bg-zinc-800"></div>
-          <p className="font-[500] dark:text-gray-400">Ya da</p>
+          <p className="font-normal lg:text-base text-sm dark:text-gray-400">Ya da</p>
           <div className="h-[1px] flex-1 bg-[#d2d6d8] dark:bg-zinc-800"></div>
         </div>
         <div className="flex gap-4 text-base text-gray-600 dark:text-gray-400">

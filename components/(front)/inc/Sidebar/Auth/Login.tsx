@@ -38,7 +38,7 @@ function Login({ setUser, authLoading, setAuthLoading, setAuth }: ILoginProps) {
     <div className="flex flex-col gap-4 w-full h-full">
       <form
         onSubmit={(e) => (loginControl ? handleLogin(e) : undefined)}
-        className="flex flex-col w-full gap-6 h-full justify-between"
+        className="flex flex-col w-full lg:gap-6 gap-3 h-full justify-between"
       >
         <div className="flex flex-col gap-4 w-full h-full">
           <label htmlFor="email" className="flex flex-col gap-4 w-full">
