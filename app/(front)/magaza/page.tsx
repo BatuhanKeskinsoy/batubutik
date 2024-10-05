@@ -11,7 +11,7 @@ async function page() {
       <div className="container mx-auto px-4 lg:flex hidden">
         <Breadcrumb title="Mağaza" />
       </div>
-      <StoreMain breadcrumbTitle="Mağaza" categories={categories} />
+      <StoreMain pageTitle="Mağaza" categories={categories} />
     </>
   );
 }
