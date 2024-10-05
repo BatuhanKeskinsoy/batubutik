@@ -19,6 +19,7 @@ import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import ModalProductDetail from "@/components/modals/ModalProductDetail";
 import { getProductShow } from "@/lib/utils/Product/getProductShow";
+import { siteURL } from "@/constants/(front)";
 
 interface IProductItemProps {
   product: productTypes;
@@ -153,6 +154,12 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
       : document.body.classList.remove("noScroll");
   }, [showProductArea]);
 
+  const categorySlug = product.category_slug ? `/${product.category_slug}` : "";
+  const subCategorySlug = product.subCategory_slug
+    ? `/${product.subCategory_slug}`
+    : "";
+  const redirect = `${siteURL}/magaza/${product.mainCategory_slug}${categorySlug}${subCategorySlug}/${product.slug}`;
+
   return (
     <>
       {showProductArea && (
@@ -163,7 +170,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
       )}
       <div className="relative flex flex-col w-full">
         <Link
-          href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
+          href={redirect}
           className="flex flex-col gap-3 w-full group"
           onMouseEnter={() => setIsHovered(true)}
           title={`${product.brand || ""} ${product.title}`}
@@ -333,7 +340,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
             <span className="font-medium line-clamp-1 group-hover:text-site transition-all duration-300 text-base">
               {product.brand && (
                 <>
-                  <span className="font-bold tracking-wide">
+                  <span className="font-bold tracking-wide text-site">
                     {product.brand}
                   </span>{" "}
                 </>

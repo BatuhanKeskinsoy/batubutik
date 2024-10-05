@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const general = {
+  const generals = {
     logo: "/assets/logo/logo.svg",
     site_name: "Batubutik",
     free_shipping: 1000,
@@ -29,5 +29,5 @@ export async function GET() {
     return_conditions: "İptal ve İade Koşulları Henüz Belirtilmemiş!",
   };
 
-  return NextResponse.json(general);
+  return NextResponse.json(generals);
 }

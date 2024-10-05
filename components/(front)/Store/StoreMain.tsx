@@ -9,11 +9,14 @@ import {
 } from "@/types/product/productTypes";
 import CustomButton from "@/components/others/CustomButton";
 import { getProducts } from "@/lib/utils/Product/getProducts";
+import { mainCategoryTypes } from "@/types/categoryTypes";
 
 interface IStoreMainProps {
   mainCategorySlug?: string;
   categorySlug?: string;
+  subCategorySlug?: string;
   breadcrumbTitle?: React.ReactNode;
+  categories: mainCategoryTypes[];
 }
 
 const sortingOptions = [
@@ -26,7 +29,9 @@ const sortingOptions = [
 function StoreMain({
   mainCategorySlug,
   categorySlug,
+  subCategorySlug,
   breadcrumbTitle,
+  categories,
 }: IStoreMainProps) {
   const [search, setSearch] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<
@@ -67,7 +72,10 @@ function StoreMain({
           const matchesCategory = categorySlug
             ? product.category_slug === categorySlug
             : true;
-          return matchesSearch && matchesMainCategory && matchesCategory;
+          const matchesSubCategory = subCategorySlug
+            ? product.subCategory_slug === subCategorySlug
+            : true;
+          return matchesSearch && matchesMainCategory && matchesCategory && matchesSubCategory;
         });
 
         setInitialProducts(filtered);
@@ -98,12 +106,13 @@ function StoreMain({
     };
 
     fetchProducts();
-  }, [search, mainCategorySlug, categorySlug]);
+  }, [search, mainCategorySlug, categorySlug, subCategorySlug]);
 
   const filterProducts = (
     searchTerm: string,
     mainCategory?: string,
     category?: string,
+    subCategory?: string,
     priceRange?: [number, number],
     sortOption?: string,
     selectedBrands?: string[],
@@ -118,6 +127,9 @@ function StoreMain({
         ? product.mainCategory_slug === mainCategory
         : true;
       const matchesCategory = category
+        ? product.category_slug === category
+        : true;
+      const matchesSubCategory = subCategory
         ? product.category_slug === category
         : true;
       const matchesPriceRange = priceRange
@@ -141,6 +153,7 @@ function StoreMain({
         matchesSearch &&
         matchesMainCategory &&
         matchesCategory &&
+        matchesSubCategory &&
         matchesPriceRange &&
         matchesBrand &&
         matchesAttributes
@@ -206,6 +219,7 @@ function StoreMain({
       search,
       mainCategorySlug,
       categorySlug,
+      subCategorySlug,
       priceRange,
       sorting.sorting,
       selectedBrands,
@@ -215,6 +229,7 @@ function StoreMain({
     search,
     mainCategorySlug,
     categorySlug,
+    subCategorySlug,
     priceRange,
     sorting,
     selectedBrands,
@@ -227,6 +242,7 @@ function StoreMain({
         <Aside
           mainCategorySlug={mainCategorySlug}
           categorySlug={categorySlug}
+          subCategorySlug={subCategorySlug}
           search={search}
           setSearch={setSearch}
           priceRange={priceRange}
@@ -239,6 +255,7 @@ function StoreMain({
           productAttributes={productAttributes}
           selectedAttributes={selectedAttributes}
           setSelectedAttributes={setSelectedAttributes}
+          categories={categories}
         />
         <main className="flex flex-col w-full gap-6">
           <div className="flex lg:flex-row flex-col justify-between max-lg:text-center gap-4 items-center -mb-3.5">

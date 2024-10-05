@@ -1,12 +1,14 @@
 import StoreMain from "@/components/(front)/Store/StoreMain";
 import Breadcrumb from "@/components/others/Breadcrumb";
-import { categories } from "@/constants/(front)";
+import { getCategories } from "@/lib/utils/getCategories";
+import { mainCategoryTypes } from "@/types/categoryTypes";
 import React from "react";
 
 async function page({ params }: { params: { main_category: string } }) {
+  const categories: mainCategoryTypes[] = await getCategories();
   const mainCategorySlug = params.main_category;
   const mainCategory = categories.find(
-    (category) => category.slug === mainCategorySlug
+    (mainCategory) => mainCategory.slug === mainCategorySlug
   );
 
   const breadcrumbTitle = mainCategory
@@ -17,7 +19,11 @@ async function page({ params }: { params: { main_category: string } }) {
       <div className="container mx-auto px-4 lg:flex hidden">
         <Breadcrumb title="Mağaza" slug="/magaza" title2={breadcrumbTitle} />
       </div>
-      <StoreMain mainCategorySlug={mainCategorySlug} breadcrumbTitle={breadcrumbTitle} />
+      <StoreMain
+        mainCategorySlug={mainCategorySlug}
+        breadcrumbTitle={breadcrumbTitle}
+        categories={categories}
+      />
     </>
   );
 }

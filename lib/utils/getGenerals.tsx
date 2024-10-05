@@ -3,7 +3,7 @@ import { baseURL } from "@/constants/(front)";
 
 export async function getGenerals() {
   try {
-    const response = await axios.get(`${baseURL}/general`);
+    const response = await axios.get(`${baseURL}/generals`);
     return response.data;
   } catch (error) {
     console.error("Error fetching users:", error);

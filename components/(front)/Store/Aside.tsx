@@ -1,5 +1,4 @@
 "use client";
-import { categories } from "@/constants/(front)";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import {
@@ -13,10 +12,12 @@ import { getPrice } from "@/lib/functions/getPrice";
 import { useGlobalContext } from "@/app/Context/store";
 import { productAttributesTypes } from "@/types/product/productTypes";
 import { Range } from "react-range";
+import { mainCategoryTypes } from "@/types/categoryTypes";
 
 interface IStoreAsideProps {
   mainCategorySlug?: string;
   categorySlug?: string;
+  subCategorySlug?: string;
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
   priceRange: [number, number];
@@ -26,6 +27,7 @@ interface IStoreAsideProps {
     searchTerm: string,
     mainCategory?: string,
     category?: string,
+    subCategory?: string,
     priceRange?: [number, number],
     sortOption?: string,
     selectedBrands?: string[],
@@ -43,11 +45,13 @@ interface IStoreAsideProps {
       [key: string]: string[];
     }>
   >;
+  categories: mainCategoryTypes[];
 }
 
 function Aside({
   mainCategorySlug,
   categorySlug,
+  subCategorySlug,
   search,
   setSearch,
   priceRange,
@@ -60,6 +64,7 @@ function Aside({
   productAttributes,
   selectedAttributes,
   setSelectedAttributes,
+  categories,
 }: IStoreAsideProps) {
   const { isMobile } = useGlobalContext();
   const [isFilterNav, setIsFilterNav] = useState(true);
@@ -83,6 +88,7 @@ function Aside({
       search,
       mainCategorySlug,
       categorySlug,
+      subCategorySlug,
       priceRange,
       undefined,
       updatedBrands
@@ -112,6 +118,7 @@ function Aside({
       search,
       mainCategorySlug,
       categorySlug,
+      subCategorySlug,
       priceRange,
       undefined,
       selectedBrands,
@@ -125,6 +132,7 @@ function Aside({
       search,
       mainCategorySlug,
       categorySlug,
+      subCategorySlug,
       [values[0], values[1]],
       undefined,
       selectedBrands,
@@ -179,66 +187,66 @@ function Aside({
               Kategori
             </span>
             <div className="flex flex-col w-full gap-2">
-              {categories.map((category, key) => (
+              {categories.map((mainCategory: mainCategoryTypes, key: number) => (
                 <div key={key} className="flex flex-col w-full">
                   <Link
-                    href={`/magaza/${category.slug}`}
-                    title={category.name}
+                    href={`/magaza/${mainCategory.slug}`}
+                    title={mainCategory.name}
                     className={`flex justify-between items-center rounded-sm font-medium border border-gray-200 dark:border-zinc-800 transition-all duration-300 dark:text-gray-400 group ${
-                      mainCategorySlug === category.slug
+                      mainCategorySlug === mainCategory.slug
                         ? "bg-site text-white border-transparent dark:text-white"
                         : "bg-white dark:bg-zinc-900 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site dark:hover:text-site hover:border-transparent dark:hover:border-transparent"
                     }`}
                   >
                     <div
                       className={`flex justify-between w-full ${
-                        category.sub_categories ? "pl-4 pr-2" : "px-4"
+                        mainCategory.categories ? "pl-4 pr-2" : "px-4"
                       } py-2 gap-2`}
                     >
-                      <span className="line-clamp-1">{category.name}</span>
-                      <small>({category.product_count})</small>
+                      <span className="line-clamp-1">{mainCategory.name}</span>
+                      <small>({mainCategory.product_count})</small>
                     </div>
-                    {category.sub_categories && (
+                    {mainCategory.categories && (
                       <CustomButton
                         leftIcon={
-                          openCategories[category.slug] ||
-                          mainCategorySlug === category.slug ? (
+                          openCategories[mainCategory.slug] ||
+                          mainCategorySlug === mainCategory.slug ? (
                             <IoChevronUp size={16} />
                           ) : (
                             <IoChevronDown size={16} />
                           )
                         }
                         containerStyles={`border-l ${
-                          mainCategorySlug === category.slug
+                          mainCategorySlug === mainCategory.slug
                             ? "border-white/30 dark:border-white/70 opacity-50"
                             : "border-gray-200 dark:border-zinc-800 group-hover:border-site/20"
                         } h-full py-2 px-2.5`}
                         handleClick={(e) => {
                           e.preventDefault();
-                          toggleCategory(category.slug);
+                          toggleCategory(mainCategory.slug);
                         }}
                       />
                     )}
                   </Link>
-                  {category.sub_categories &&
-                    (openCategories[category.slug] ||
-                      mainCategorySlug === category.slug) && (
+                  {mainCategory.categories &&
+                    (openCategories[mainCategory.slug] ||
+                      mainCategorySlug === mainCategory.slug) && (
                       <div className="flex flex-col">
-                        {category.sub_categories.map((subCategory, key) => (
+                        {mainCategory.categories.map((category, key) => (
                           <Link
                             key={key}
-                            href={`/magaza/${category.slug}/${subCategory.slug}`}
-                            title={subCategory.name}
+                            href={`/magaza/${mainCategory.slug}/${category.slug}`}
+                            title={category.name}
                             className={`flex justify-between items-center gap-2 bg-white dark:bg-zinc-900 py-2 px-4 dark:text-gray-400 hover:text-site transition-all duration-300 ${
-                              categorySlug == subCategory.slug
+                              categorySlug == category.slug
                                 ? "text-site dark:text-site"
                                 : "hover:text-site dark:hover:text-site"
                             }`}
                           >
                             <span className="line-clamp-1">
-                              {subCategory.name}
+                              {category.name}
                             </span>
-                            <small>({subCategory.product_count})</small>
+                            <small>({category.product_count})</small>
                           </Link>
                         ))}
                       </div>

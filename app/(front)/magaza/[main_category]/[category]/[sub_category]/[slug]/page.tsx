@@ -1,6 +1,5 @@
 import React from "react";
 import Breadcrumb from "@/components/others/Breadcrumb";
-import { categories } from "@/constants/(front)";
 import ProductDetail from "@/components/(front)/Product/ProductDetail";
 import ProductSidebar from "@/components/(front)/Product/ProductSidebar";
 import FeaturedProducts from "@/components/(front)/Product/FilteredProducts/FeaturedProducts";
@@ -13,6 +12,8 @@ import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { getProductShow } from "@/lib/utils/Product/getProductShow";
 import { generalsTypes } from "@/types/generalTypes";
 import { getGenerals } from "@/lib/utils/getGenerals";
+import { mainCategoryTypes } from "@/types/categoryTypes";
+import { getCategories } from "@/lib/utils/getCategories";
 
 async function page({
   params,
@@ -26,17 +27,18 @@ async function page({
   const products: productTypes[] = await getProducts();
   const product: productDetailTypes = await getProductShow(productSlug);
   const generals: generalsTypes = await getGenerals();
+  const categories : mainCategoryTypes[] = await getCategories();
 
   const mainCategory = categories.find(
     (category) => category.slug === mainCategorySlug
   );
 
-  const subCategory = mainCategory?.sub_categories?.find(
+  const category = mainCategory?.categories?.find(
     (sub) => sub.slug === categorySlug
   );
 
-  const breadcrumbTitle = subCategory
-    ? subCategory.name
+  const breadcrumbTitle = category
+    ? category.name
     : "Kategori Bulunamadı";
 
   return (

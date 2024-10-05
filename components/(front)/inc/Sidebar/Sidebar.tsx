@@ -10,12 +10,14 @@ import Search from "@/components/(front)/inc/Sidebar/Search";
 import Auth from "@/components/(front)/inc/Sidebar/Auth/Auth";
 import Image from "next/image";
 import { generalsTypes } from "@/types/generalTypes";
+import { mainCategoryTypes } from "@/types/categoryTypes";
 
 interface ISidebarProps {
   generals: generalsTypes;
+  categories: mainCategoryTypes[];
 }
 
-function Sidebar({ generals }: ISidebarProps) {
+function Sidebar({ generals, categories }: ISidebarProps) {
   const { sidebarStatus, setSidebarStatus } = useGlobalContext();
   return (
     <div className="fixed w-screen h-screen z-20">
@@ -80,7 +82,7 @@ function Sidebar({ generals }: ISidebarProps) {
           ) : sidebarStatus === "Auth" ? (
             <Auth />
           ) : sidebarStatus === "MobileMenu" ? (
-            <NavMenu generals={generals} />
+            <NavMenu generals={generals} categories={categories} />
           ) : null}
         </div>
       </div>

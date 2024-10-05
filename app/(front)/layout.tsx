@@ -7,6 +7,8 @@ import { generalsTypes } from "@/types/generalTypes";
 import { getGenerals } from "@/lib/utils/getGenerals";
 import { productTypes } from "@/types/product/productTypes";
 import { getProducts } from "@/lib/utils/Product/getProducts";
+import { mainCategoryTypes } from "@/types/categoryTypes";
+import { getCategories } from "@/lib/utils/getCategories";
 
 export default async function RootLayout({
   children,
@@ -14,13 +16,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const generals: generalsTypes = await getGenerals();
+  const categories: mainCategoryTypes[] = await getCategories();
   const products: productTypes[] = await getProducts();
   return (
     <>
-      <Header generals={generals} products={products} />
+      <Header generals={generals} products={products} categories={categories} />
       {children}
       <FixedBottomRight generals={generals} />
-      <Footer generals={generals} />
+      <Footer generals={generals} categories={categories} />
     </>
   );
 }

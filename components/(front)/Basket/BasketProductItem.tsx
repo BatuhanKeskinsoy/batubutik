@@ -104,7 +104,7 @@ function BasketProductItem({
                 !isDetail ? "text-base" : "lg:text-2xl text-xl"
               }`}
             >
-              <span className="font-bold tracking-wide">
+              <span className="font-bold tracking-wide text-site">
                 {product.brand || ""}
               </span>{" "}
               {product.title}

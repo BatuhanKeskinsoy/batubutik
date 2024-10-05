@@ -279,13 +279,21 @@ function ProductArea({
                 {product?.category && ` / ${product.category}`}
               </span>
               {isDetail ? (
-                <span className="font-medium text-2xl">{product?.title}</span>
+                <span className="font-medium text-2xl">
+                  <span className="font-bold tracking-wide text-site">
+                    {product?.brand || ""}
+                  </span>{" "}
+                  {product?.title}
+                </span>
               ) : (
                 <Link
                   href={`/magaza/${product?.mainCategory_slug}/${product?.category_slug}/${product?.slug}`}
                   title={product?.title}
                   className="font-medium text-2xl transition-all duration-300 hover:text-site"
                 >
+                  <span className="font-bold tracking-wide text-site">
+                    {product?.brand || ""}
+                  </span>{" "}
                   {product?.title}
                 </Link>
               )}

@@ -9,10 +9,9 @@ import Favorite from "@/components/(front)/inc/Header/Favorite/Favorite";
 import Search from "@/components/(front)/inc/Header/Search/Search";
 import Auth from "@/components/(front)/inc/Header/Auth/Auth";
 import Sidebar from "@/components/(front)/inc/Sidebar/Sidebar";
-import Loading from "@/components/others/Loading";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { categories, navLinks } from "@/constants/(front)";
+import { navLinks } from "@/constants/(front)";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { getPrice } from "@/lib/functions/getPrice";
 import { getSocialIcon } from "@/lib/functions/getSocialIcon";
@@ -22,12 +21,14 @@ import Theme from "@/components/others/Theme";
 import { generalsTypes } from "@/types/generalTypes";
 import { productTypes } from "@/types/product/productTypes";
 import { useTheme } from "next-themes";
+import { mainCategoryTypes } from "@/types/categoryTypes";
 
 interface IHeaderProps {
   generals: generalsTypes;
   products: productTypes[];
+  categories: mainCategoryTypes[];
 }
-function Header({ generals, products }: IHeaderProps) {
+function Header({ generals, products, categories }: IHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const { sidebarStatus, setSidebarStatus, isMobile } = useGlobalContext();
   const router = useRouter();
@@ -195,7 +196,7 @@ function Header({ generals, products }: IHeaderProps) {
             </div>
           </div>
         </div>
-        {sidebarStatus && <Sidebar generals={generals} />}
+        {sidebarStatus && <Sidebar generals={generals} categories={categories} />}
       </header>
     </>
   );

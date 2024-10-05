@@ -127,7 +127,7 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
                 title={`${product.brand || ""} ${product.title}`}
                 className="font-medium line-clamp-1 transition-all duration-300 hover:text-site text-base w-fit"
               >
-                <span className="font-bold tracking-wide">
+                <span className="font-bold tracking-wide text-site">
                   {product.brand || ""}
                 </span>{" "}
                 {product.title}

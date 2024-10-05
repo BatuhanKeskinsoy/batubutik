@@ -8,16 +8,17 @@ import { IoHomeOutline, IoStorefrontOutline } from "react-icons/io5";
 import { usePathname, useRouter } from "next/navigation";
 import Subscribe from "@/components/(front)/inc/Subscribe";
 import Link from "next/link";
-import { categories } from "@/constants/(front)";
 import { getSocialIcon } from "@/lib/functions/getSocialIcon";
 import Image from "next/image";
 import { generalsTypes } from "@/types/generalTypes";
+import { mainCategoryTypes } from "@/types/categoryTypes";
 
 interface IFooterProps {
   generals: generalsTypes;
+  categories: mainCategoryTypes[];
 }
 
-function Footer({ generals }: IFooterProps) {
+function Footer({ generals, categories }: IFooterProps) {
   const router = useRouter();
   const pathname = usePathname();
 

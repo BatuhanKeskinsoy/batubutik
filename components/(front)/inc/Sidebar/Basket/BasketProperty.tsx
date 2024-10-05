@@ -5,12 +5,13 @@ import { basketItemTypes } from "@/types/product/basketItemTypes";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getPrice } from "@/lib/functions/getPrice";
-import { discountCodes } from "@/constants/(front)";
 import { IoChevronForwardOutline, IoCloseOutline } from "react-icons/io5";
 import { useGlobalContext } from "@/app/Context/store";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { generalsTypes } from "@/types/generalTypes";
+import { getDiscounts } from "@/lib/utils/getDiscounts";
+import { discountTypes } from "@/types/discountTypes";
 
 interface IBasketPropertyProps {
   generals: generalsTypes;
@@ -42,8 +43,22 @@ function BasketProperty({
   freeShipping,
 }: IBasketPropertyProps) {
   const [loadingEmptyBasket, setLoadingEmptyBasket] = useState(false);
+  const [discountCodes, setDiscountCodes] = useState<discountTypes[]>([]);
   const [discountCode, setDiscountCode] = useState<string | null>(null);
   const [discountPercentage, setDiscountPercentage] = useState<number>(0);
+
+  useEffect(() => {
+    async function fetchDiscountCodes() {
+      try {
+        const codes: discountTypes[] = await getDiscounts();
+        setDiscountCodes(codes);
+      } catch (error) {
+        console.error("Error fetching discount codes:", error);
+      }
+    }
+
+    fetchDiscountCodes();
+  }, []);
 
   const router = useRouter();
 

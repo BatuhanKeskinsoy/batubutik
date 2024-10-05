@@ -1,10 +1,13 @@
 "use client";
 import React from "react";
-import { categories } from "@/constants/(front)";
 import { FaTags } from "react-icons/fa";
 import Link from "next/link";
+import { mainCategoryTypes } from "@/types/categoryTypes";
 
-function Categories() {
+interface ICategoriesProps {
+  categories: mainCategoryTypes[];
+}
+function Categories({ categories }: ICategoriesProps) {
   if (categories.length > 1) {
     return (
       <div className="flex lg:flex-row flex-col gap-4 lg:gap-8 items-center justify-center w-full h-full text-white">

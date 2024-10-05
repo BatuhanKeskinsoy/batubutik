@@ -13,12 +13,15 @@ import { getProducts } from "@/lib/utils/Product/getProducts";
 import { getGenerals } from "@/lib/utils/getGenerals";
 import { generalsTypes } from "@/types/generalTypes";
 import { productTypes } from "@/types/product/productTypes";
+import { mainCategoryTypes } from "@/types/categoryTypes";
+import { getCategories } from "@/lib/utils/getCategories";
 
 export const dynamic = "force-dynamic";
 
 async function page() {
   const products: productTypes[] = await getProducts();
   const generals: generalsTypes = await getGenerals();
+  const categories: mainCategoryTypes[] = await getCategories();
   return (
     <main className="flex flex-col w-full gap-12">
       <section>
@@ -26,7 +29,7 @@ async function page() {
       </section>
 
       <section className="container mx-auto px-4 lg:-mt-28">
-        <Categories />
+        <Categories categories={categories} />
       </section>
 
       <section className="container mx-auto px-4">

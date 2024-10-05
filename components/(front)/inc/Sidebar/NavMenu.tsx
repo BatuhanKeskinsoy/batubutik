@@ -4,18 +4,20 @@ import { getPrice } from "@/lib/functions/getPrice";
 import { getSocialIcon } from "@/lib/functions/getSocialIcon";
 import CustomButton from "@/components/others/CustomButton";
 import Theme from "@/components/others/Theme";
-import { categories, navLinks } from "@/constants/(front)";
+import { navLinks } from "@/constants/(front)";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { IoCallOutline, IoMailOutline } from "react-icons/io5";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { generalsTypes } from "@/types/generalTypes";
+import { mainCategoryTypes } from "@/types/categoryTypes";
 
 interface INavMenuProps {
   generals: generalsTypes;
+  categories: mainCategoryTypes[];
 }
-function NavMenu({ generals }: INavMenuProps) {
+function NavMenu({ generals, categories }: INavMenuProps) {
   const { setSidebarStatus, isMobile } = useGlobalContext();
   const router = useRouter();
   const pathname = usePathname();
