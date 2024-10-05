@@ -294,9 +294,8 @@ function Aside({
                                   <div className="flex flex-col mt-1">
                                     {category.sub_categories.map(
                                       (subCategory, key) => (
-                                        <div className="flex w-full">
+                                        <div key={key} className="flex w-full">
                                           <Link
-                                            key={key}
                                             href={`/magaza/${mainCategory.slug}/${category.slug}/${subCategory.slug}`}
                                             title={subCategory.name}
                                             className={`flex justify-between w-full items-center gap-2 lg:py-1.5 py-2 px-3 dark:text-gray-400 hover:text-site transition-all duration-300 ${
