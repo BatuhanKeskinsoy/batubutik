@@ -213,7 +213,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                 <Image
                   src={productImage ? productImage : product.images[0]}
                   fill
-                  sizes="(max-width: 768px) 100%, 25%"
+                  sizes="(max-width: 768px) 50vw, 25vw"
                   alt={`${product.brand || ""} ${product.title}`}
                   title={`${product.brand || ""} ${product.title}`}
                   className={`object-cover object-center transition-all duration-300`}
@@ -350,7 +350,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
             <p className="line-clamp-2 text-gray-600 dark:text-gray-400 text-sm">
               {product.short_content}
             </p>
-            <div className="flex max-lg:flex-col items-center justify-between gap-2 bg-gray-100 dark:bg-zinc-800 px-2 py-2.5 rounded-md mt-1">
+            <div className="flex max-2xl:flex-col items-center justify-between gap-2 bg-gray-100 dark:bg-zinc-800 px-2 py-2.5 rounded-md mt-1">
               {product.rating && (
                 <>
                   {(() => {

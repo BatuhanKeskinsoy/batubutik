@@ -267,7 +267,7 @@ function ProductArea({
         )}
       </div>
       <div
-        className={` w-full lg:overflow-y-auto container mx-auto px-4 ${
+        className={`w-full lg:overflow-y-auto container mx-auto px-4 ${
           !isDetail ? "lg:px-6 px-4 py-6 lg:w-1/2" : "lg:w-3/5"
         }`}
       >
