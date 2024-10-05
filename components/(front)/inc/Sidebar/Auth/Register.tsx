@@ -73,9 +73,9 @@ function Register({
     <div className="flex flex-col gap-4 w-full h-full">
       <form
         onSubmit={(e) => (registerControl ? handleRegister(e) : undefined)}
-        className="flex flex-col w-full gap-6 h-full justify-between"
+        className="flex flex-col w-full gap-6 justify-between lg:h-full h-max overflow-y-auto pr-2"
       >
-        <div className="flex flex-col lg:gap-8 gap-4 w-full lg:h-full h-max overflow-y-auto pr-4">
+        <div className="flex flex-col lg:gap-8 gap-4 w-full h-full">
           <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
             <label htmlFor="firstname" className="flex flex-col gap-4 w-full">
               <span className="text-gray-600 dark:text-gray-200 tracking-wide">
