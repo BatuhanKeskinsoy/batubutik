@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import SearchProducts from "@/components/(front)/Search/SearchProducts";
 import { productTypes } from "@/types/product/productTypes";
 import { IoFileTrayFullOutline, IoFileTrayOutline } from "react-icons/io5";
-import { getProducts } from "@/lib/utils/Product/getProducts";
+import { useProducts } from "@/hooks/useProduct";
 
 function Search() {
   const [search, setSearch] = useState("");
@@ -11,33 +11,20 @@ function Search() {
   const [searchProducts, setSearchProducts] = useState<productTypes[] | null>(
     null
   );
-  const [products, setProducts] = useState<productTypes[]>([]);
-
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const fetchedProducts = await getProducts();
-        setProducts(fetchedProducts);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    }
-
-    fetchProducts();
-  }, []);
+  const { products } = useProducts();
 
   useEffect(() => {
     if (search && search.length >= 3) {
       setLoadingSearch(true);
       setTimeout(() => {
         const searchLower = search.toLowerCase();
-        const productsInSearch = products.filter(
+        const productsInSearch = products && products.filter(
           (product) =>
             product.title.toLowerCase().includes(searchLower) ||
             product.code.toLowerCase().includes(searchLower)
         );
 
-        setSearchProducts(productsInSearch);
+        productsInSearch && setSearchProducts(productsInSearch);
         setLoadingSearch(false);
       }, 500);
     } else {

@@ -10,6 +10,7 @@ import {
 import CustomButton from "@/components/others/CustomButton";
 import { getProducts } from "@/lib/utils/Product/getProducts";
 import { mainCategoryTypes } from "@/types/categoryTypes";
+import { useProducts } from "@/hooks/useProduct";
 
 interface IStoreMainProps {
   mainCategorySlug?: string;
@@ -58,55 +59,59 @@ function StoreMain({
     [key: string]: string[];
   }>({});
 
+  const { products } = useProducts();
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const products = await getProducts();
-        const filtered = products.filter((product: productTypes) => {
-          const matchesSearch =
-            product.title.toLowerCase().includes(search.toLowerCase()) ||
-            product.code.toLowerCase().includes(search.toLowerCase());
-          const matchesMainCategory = mainCategorySlug
-            ? product.mainCategory_slug === mainCategorySlug
-            : true;
-          const matchesCategory = categorySlug
-            ? product.category_slug === categorySlug
-            : true;
-          const matchesSubCategory = subCategorySlug
-            ? product.subCategory_slug === subCategorySlug
-            : true;
-          return matchesSearch && matchesMainCategory && matchesCategory && matchesSubCategory;
-        });
-
-        setInitialProducts(filtered);
-        const priceValues = filtered.map(
-          (product: productTypes) => product.price
+    if (products) {
+      const filtered = products.filter((product: productTypes) => {
+        const matchesSearch =
+          product.title.toLowerCase().includes(search.toLowerCase()) ||
+          product.code.toLowerCase().includes(search.toLowerCase());
+        const matchesMainCategory = mainCategorySlug
+          ? product.mainCategory_slug === mainCategorySlug
+          : true;
+        const matchesCategory = categorySlug
+          ? product.category_slug === categorySlug
+          : true;
+        const matchesSubCategory = subCategorySlug
+          ? product.subCategory_slug === subCategorySlug
+          : true;
+        return (
+          matchesSearch &&
+          matchesMainCategory &&
+          matchesCategory &&
+          matchesSubCategory
         );
-        setPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
-        setInitialPriceRange([
-          Math.min(...priceValues),
-          Math.max(...priceValues),
-        ]);
-        setFilteredProducts(filtered);
+      });
 
-        const brandSet: Set<string> = new Set(
-          filtered
-            .map((product: productTypes) => product.brand)
-            .filter((brand: string) => brand !== null)
+      setInitialProducts(filtered);
+      const priceValues = filtered.map(
+        (product: productTypes) => product.price
+      );
+      setPriceRange([Math.min(...priceValues), Math.max(...priceValues)]);
+      setInitialPriceRange([
+        Math.min(...priceValues),
+        Math.max(...priceValues),
+      ]);
+      setFilteredProducts(filtered);
+
+      const brandSet: Set<string> = new Set(
+        filtered
+          .map((product: productTypes) => product.brand)
+          .filter((brand): brand is string => brand !== null)
+      );
+      setBrands(Array.from(brandSet));
+
+      const attributes = filtered
+        .map((product: productTypes) => product.attributes)
+        .filter(
+          (attributes): attributes is productAttributesTypes[] =>
+            attributes !== null
         );
-        setBrands(Array.from(brandSet));
 
-        const attributes = filtered
-          .map((product: productTypes) => product.attributes)
-          .filter((attributes: productAttributesTypes[]) => !!attributes);
-        setProductAttributes(attributes.length > 0 ? attributes.flat() : null);
-      } catch (error) {
-        console.error("Failed to fetch products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, [search, mainCategorySlug, categorySlug, subCategorySlug]);
+      setProductAttributes(attributes.length > 0 ? attributes.flat() : null);
+    }
+  }, [products, search, mainCategorySlug, categorySlug, subCategorySlug]);
 
   const filterProducts = (
     searchTerm: string,
@@ -181,7 +186,6 @@ function StoreMain({
 
     setFilteredProducts(sorted);
 
-    // Tüm ürünlerden benzersiz öznitelikleri topla
     const mergedAttributes: { [key: string]: any[] } = {};
 
     filtered.forEach((product) => {

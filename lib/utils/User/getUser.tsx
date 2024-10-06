@@ -1,7 +1,7 @@
-import axios from "axios";
+import { axios } from "@/lib/axios";
 import { baseURL } from "@/constants/(front)";
 
-export async function getUser() {
+export async function getUsers() {
   try {
     const response = await axios.get(`${baseURL}/user/index`);
     return response.data;

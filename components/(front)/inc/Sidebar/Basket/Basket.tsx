@@ -6,9 +6,9 @@ import { IoFileTrayOutline } from "react-icons/io5";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import BasketProperty from "@/components/(front)/inc/Sidebar/Basket/BasketProperty";
-import { getProducts } from "@/lib/utils/Product/getProducts";
 import { productTypes } from "@/types/product/productTypes";
 import { generalsTypes } from "@/types/generalTypes";
+import { useProducts } from "@/hooks/useProduct";
 
 interface IBasketProps {
   isDetail?: boolean;
@@ -25,6 +25,8 @@ function Basket({ isDetail, generals }: IBasketProps) {
     basketProductTypes[] | null
   >(null);
   const freeShipping: number | null = generals ? generals.free_shipping : 0;
+
+  const { products } = useProducts();
 
   const mergeSameProducts = (products: basketProductTypes[]) => {
     const mergedProducts: Record<string, basketProductTypes> = {};
@@ -44,38 +46,33 @@ function Basket({ isDetail, generals }: IBasketProps) {
   };
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      if (basketItems && basketItems.length > 0) {
-        try {
-          const productsList = await getProducts();
-          const productsInBasket = basketItems
-            .map((item) => {
-              const product = productsList.find(
-                (p: productTypes) => p.code === item.product_code
-              );
-              if (product) {
-                return {
-                  ...product,
-                  quantity: item.quantity,
-                  attributes: item.attributes,
-                };
-              }
-              return null;
-            })
-            .filter(Boolean) as unknown as basketProductTypes[];
+    if (basketItems && basketItems.length > 0) {
+      try {
+        const productsInBasket = basketItems
+          .map((item) => {
+            const product =
+              products &&
+              products.find((p: productTypes) => p.code === item.product_code);
+            if (product) {
+              return {
+                ...product,
+                quantity: item.quantity,
+                attributes: item.attributes,
+              };
+            }
+            return null;
+          })
+          .filter(Boolean) as unknown as basketProductTypes[];
 
-          const mergedProducts = mergeSameProducts(productsInBasket);
+        const mergedProducts = mergeSameProducts(productsInBasket);
 
-          setBasketProducts(mergedProducts);
-        } catch (error) {
-          console.error("Failed to fetch products", error);
-        }
-      } else {
-        setBasketProducts(null);
+        setBasketProducts(mergedProducts);
+      } catch (error) {
+        console.error("Failed to fetch products", error);
       }
-    };
-
-    fetchProducts();
+    } else {
+      setBasketProducts(null);
+    }
   }, [basketItems]);
 
   const calculateSubTotal = useCallback(() => {

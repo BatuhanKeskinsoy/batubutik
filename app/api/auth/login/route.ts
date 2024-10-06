@@ -1,4 +1,4 @@
-import { getUser } from "@/lib/utils/User/getUser";
+import { getUsers } from "@/lib/utils/User/getUser";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
@@ -8,7 +8,7 @@ export async function POST(request: Request) {
 
     let users;
     try {
-      users = await getUser();
+      users = await getUsers();
     } catch (error) {
       console.error("Kullanıcıları alma işlemi başarısız oldu:", error);
       return NextResponse.json(

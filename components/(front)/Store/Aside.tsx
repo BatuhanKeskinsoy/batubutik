@@ -5,7 +5,6 @@ import {
   IoCaretForwardOutline,
   IoCheckmark,
   IoChevronDown,
-  IoChevronForwardOutline,
   IoChevronUp,
   IoSearchOutline,
 } from "react-icons/io5";

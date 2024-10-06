@@ -1,6 +1,6 @@
 import { userAuthTypes } from "@/types/user/userAuthTypes";
 import { toast } from "react-toastify";
-import axios from "axios";
+import { axios } from "@/lib/axios";
 import { Dispatch, SetStateAction } from "react";
 import { baseURL } from "@/constants/(front)";
 

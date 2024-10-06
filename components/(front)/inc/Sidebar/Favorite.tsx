@@ -5,7 +5,7 @@ import { useGlobalContext } from "@/app/Context/store";
 import { IoFileTrayOutline } from "react-icons/io5";
 import FavoriteProducts from "@/components/(front)/Favorite/FavoriteProducts";
 import { productTypes } from "@/types/product/productTypes";
-import { getProducts } from "@/lib/utils/Product/getProducts";
+import { useProducts } from "@/hooks/useProduct";
 
 function Favorite() {
   const { favoriteItems, setFavoriteItems } = useGlobalContext();
@@ -13,23 +13,11 @@ function Favorite() {
   const [favoriteProducts, setFavoriteProducts] = useState<
     productTypes[] | null
   >(null);
-  const [products, setProducts] = useState<productTypes[]>([]);
+
+  const { products, isLoading } = useProducts();
 
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const fetchedProducts = await getProducts();
-        setProducts(fetchedProducts);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    }
-
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    if (favoriteItems && favoriteItems.length > 0) {
+    if (favoriteItems && favoriteItems.length > 0 && products) {
       const groupedProducts = favoriteItems.reduce((acc, code) => {
         acc[code] = acc[code] ? acc[code] + 1 : 1;
         return acc;
@@ -37,7 +25,7 @@ function Favorite() {
 
       const productsInFavorite = Object.keys(groupedProducts)
         .map((code) => {
-          const product = products.find((p) => p.code === code);
+          const product = products.find((p: productTypes) => p.code === code);
           if (product) {
             return {
               ...product,
@@ -79,7 +67,7 @@ function Favorite() {
   return (
     <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
       <div className="flex flex-col w-full overflow-y-auto h-full lg:px-8 px-4 py-4">
-        <FavoriteProducts products={favoriteProducts} />
+        <FavoriteProducts products={favoriteProducts} isLoading={isLoading} />
       </div>
       <div className="flex flex-col w-full lg:px-8 px-4 py-4 items-center text-center gap-4">
         <hr className="w-full dark:border-zinc-800" />

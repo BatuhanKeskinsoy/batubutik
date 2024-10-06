@@ -40,11 +40,6 @@ async function page({ params }: { params: { slug?: string[] } }) {
 
   const product: productDetailTypes | null = await getProductShow(productSlug);
 
-  console.log("mainCategory: ", mainCategory);
-  console.log("category: ", category);
-  console.log("subCategory: ", subCategory);
-  console.log("product: ", product);
-
   if (
     mainCategory === undefined ||
     (product === undefined &&

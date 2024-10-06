@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axios } from "@/lib/axios";
 import { baseURL } from "@/constants/(front)";
 
 export async function getProducts() {

@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { generalsTypes } from "@/types/generalTypes";
 import { getDiscounts } from "@/lib/utils/General/getDiscounts";
 import { discountTypes } from "@/types/discountTypes";
+import { useDiscountCodes } from "@/hooks/useDiscountCodes";
 
 interface IBasketPropertyProps {
   generals: generalsTypes;
@@ -43,22 +44,10 @@ function BasketProperty({
   freeShipping,
 }: IBasketPropertyProps) {
   const [loadingEmptyBasket, setLoadingEmptyBasket] = useState(false);
-  const [discountCodes, setDiscountCodes] = useState<discountTypes[]>([]);
   const [discountCode, setDiscountCode] = useState<string | null>(null);
   const [discountPercentage, setDiscountPercentage] = useState<number>(0);
 
-  useEffect(() => {
-    async function fetchDiscountCodes() {
-      try {
-        const codes: discountTypes[] = await getDiscounts();
-        setDiscountCodes(codes);
-      } catch (error) {
-        console.error("Error fetching discount codes:", error);
-      }
-    }
-
-    fetchDiscountCodes();
-  }, []);
+  const { discountCodes } = useDiscountCodes();
 
   const router = useRouter();
 
@@ -89,9 +78,8 @@ function BasketProperty({
   };
 
   const handleDiscountCode = () => {
-    const appliedDiscount = discountCodes.find(
-      (code) => code.code === discountCode
-    );
+    const appliedDiscount =
+      discountCodes && discountCodes.find((code) => code.code === discountCode);
 
     if (appliedDiscount?.isPercentage) {
       setDiscountPercentage(appliedDiscount.discount);
@@ -119,12 +107,11 @@ function BasketProperty({
     }
   };
 
-  // Add this useEffect to update discountAmount whenever subTotal changes
   useEffect(() => {
     if (discountApplied) {
-      const appliedDiscount = discountCodes.find(
-        (code) => code.code === discountCode
-      );
+      const appliedDiscount =
+        discountCodes &&
+        discountCodes.find((code) => code.code === discountCode);
 
       if (appliedDiscount) {
         const discountAmount = appliedDiscount.isPercentage
