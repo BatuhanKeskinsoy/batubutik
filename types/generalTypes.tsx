@@ -7,6 +7,7 @@ export type generalsTypes = {
   shipping_price: number;
   socials: socialTypes[] | null;
   address: string;
+  addressIframe: string;
   email: string;
   phone: string;
   whatsapp_number: string;

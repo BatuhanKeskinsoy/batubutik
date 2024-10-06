@@ -75,8 +75,8 @@ function Register({
         onSubmit={(e) => (registerControl ? handleRegister(e) : undefined)}
         className="flex flex-col w-full h-full lg:gap-6 gap-3 justify-between"
       >
-        <div className="flex flex-col lg:gap-8 gap-4 w-full lg:h-full h-max overflow-y-auto pr-2">
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+        <div className="flex flex-col lg:gap-8 gap-4 w-full lg:h-full h-max overflow-y-auto pr-3">
+          <div className="grid grid-cols-1 gap-4">
             <label htmlFor="firstname" className="flex flex-col gap-4 w-full">
               <span className="text-gray-600 dark:text-gray-200 tracking-wide">
                 Adınız
@@ -107,7 +107,7 @@ function Register({
                 value={lastName}
                 autoComplete="family-name"
                 inputMode="email"
-                tabIndex={0}
+                tabIndex={1}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </label>
@@ -124,7 +124,7 @@ function Register({
                 value={email}
                 autoComplete="email"
                 inputMode="email"
-                tabIndex={0}
+                tabIndex={2}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </label>
@@ -141,7 +141,7 @@ function Register({
                 value={phone}
                 autoComplete="phone"
                 inputMode="tel"
-                tabIndex={0}
+                tabIndex={3}
                 onChange={(e) => setPhone(e.target.value)}
               />
             </label>
@@ -170,7 +170,7 @@ function Register({
                 placeholder="Şifrenizi giriniz"
                 value={password}
                 autoComplete="off"
-                tabIndex={1}
+                tabIndex={4}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
@@ -186,7 +186,7 @@ function Register({
                 placeholder="Şifrenizi Tekrar giriniz"
                 value={passwordConfirm}
                 autoComplete="off"
-                tabIndex={1}
+                tabIndex={5}
                 onChange={(e) => setPasswordConfirm(e.target.value)}
               />
             </label>
@@ -230,41 +230,51 @@ function Register({
           )}
           <hr className="dark:border-zinc-800 border-gray-200" />
 
-          <div
-            onClick={() => setAccept(!accept)}
-            className="flex gap-2 cursor-pointer"
-          >
-            <div
-              className={`size-5 min-w-5 flex items-center justify-center rounded-full p-0.5 transition-all duration-300 ${
-                accept ? "bg-site" : "bg-white dark:bg-zinc-900"
-              } border border-gray-300 dark:border-zinc-700`}
+          <div className="flex items-center gap-3 cursor-pointer group">
+            <CustomButton
+              title=""
+              leftIcon={<IoCheckmark className="text-base" />}
+              textStyles="hidden"
+              btnType="button"
+              containerStyles={`flex items-center justify-center gap-2 size-5 min-w-5 border rounded-md transition-all duration-300 ${
+                accept
+                  ? "border-transparent bg-site text-white"
+                  : "dark:border-zinc-800 border-gray-300 lg:group-hover:border-site/50 text-transparent lg:group-hover:text-site"
+              }`}
+              id="accept"
+              handleClick={() => setAccept(!accept)}
+            />
+            <label
+              htmlFor="accept"
+              className={`transition-all duration-300 -mb-0.5 cursor-pointer text-gray-600 dark:text-gray-200 tracking-wide select-none ${
+                accept ? "text-site" : "lg:group-hover:text-site"
+              }`}
             >
-              {accept && (
-                <IoCheckmark className="text-xl animate-modalContentSmooth text-white" />
-              )}
-            </div>
-            <p className="text-sm dark:text-gray-400 text-gray-600">
-              <Link
-                className="font-medium mx-1 text-gray-800 dark:text-gray-200 dark:hover:text-site hover:text-site transition-all"
-                href="/"
-              >
-                Kullanıcı Sözleşmesi
-              </Link>
-              <span className="font-normal">ve</span>
-              <Link
-                className="font-medium mx-1 text-gray-800 dark:text-gray-200 dark:hover:text-site hover:text-site transition-all"
-                href="/"
-              >
-                Çerez Aydınlatma Metni'ni
-              </Link>
-              <span className="font-normal">Okudum, Kabul Ediyorum.</span>
-            </p>
+              <p className="text-sm dark:text-gray-400 text-gray-600">
+                <Link
+                  className="font-medium text-gray-800 dark:text-gray-200 dark:hover:text-site hover:text-site transition-all"
+                  href="/"
+                >
+                  Kullanıcı Sözleşmesi
+                </Link>{" "}
+                <span className="font-normal">ve</span>{" "}
+                <Link
+                  className="font-medium text-gray-800 dark:text-gray-200 dark:hover:text-site hover:text-site transition-all"
+                  href="/"
+                >
+                  Çerez Aydınlatma Metni'ni
+                </Link>{" "}
+                <span className="font-normal">Okudum, Kabul Ediyorum.</span>
+              </p>
+            </label>
           </div>
         </div>
 
         <div className="flex w-full items-center justify-center gap-4">
           <div className="h-[1px] flex-1 bg-[#d2d6d8] dark:bg-zinc-800"></div>
-          <p className="font-normal lg:text-base text-sm dark:text-gray-400">Ya da</p>
+          <p className="font-normal lg:text-base text-sm dark:text-gray-400">
+            Ya da
+          </p>
           <div className="h-[1px] flex-1 bg-[#d2d6d8] dark:bg-zinc-800"></div>
         </div>
         <div className="flex gap-4 text-base text-gray-600 dark:text-gray-400">

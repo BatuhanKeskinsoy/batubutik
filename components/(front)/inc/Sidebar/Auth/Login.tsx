@@ -83,7 +83,7 @@ function Login({ setUser, authLoading, setAuthLoading, setAuth }: ILoginProps) {
                 containerStyles={`flex items-center justify-center gap-2 w-5 h-5 border rounded-md transition-all duration-300 ${
                   rememberMe
                     ? "border-transparent bg-site text-white"
-                    : "border-gray-300 lg:group-hover:border-site/50 text-transparent lg:group-hover:text-site"
+                    : "dark:border-zinc-800 border-gray-300 lg:group-hover:border-site/50 text-transparent lg:group-hover:text-site"
                 }`}
                 id="rememberMe"
                 handleClick={() => setRememberMe(!rememberMe)}

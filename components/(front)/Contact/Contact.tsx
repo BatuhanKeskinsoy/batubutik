@@ -171,16 +171,18 @@ function Contact({ generals }: IContactProps) {
             <CustomButton
               title="Haritayı Göster"
               textStyles="opacity-70 group-hover:opacity-100 group-hover:text-site transition-all font-gemunu text-xl"
-              leftIcon={<IoMapOutline className="text-4xl opacity-50 group-hover:opacity-100 group-hover:text-site transition-all" />}
+              leftIcon={
+                <IoMapOutline className="text-4xl opacity-50 group-hover:opacity-100 group-hover:text-site transition-all" />
+              }
               handleClick={() => setShowMap(true)}
               containerStyles="h-full w-full flex items-center justify-center bg-gray-100 dark:bg-zinc-800 hover:bg-site/10 dark:hover:bg-site/10 transition-all duration-300 flex flex-col gap-4 group"
             />
           ) : (
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3010.6196665425136!2d29.188785612436945!3d41.01169707123056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v1719828314969!5m2!1str!2str"
-              className="w-full h-full border-0"
-              loading="lazy"
-              title="Adres Haritası"
+            <div
+              className="*:w-full *:h-full h-full w-full"
+              dangerouslySetInnerHTML={{
+                __html: generals.addressIframe,
+              }}
             />
           )}
         </div>

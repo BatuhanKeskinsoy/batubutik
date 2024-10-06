@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { IoAdd, IoBagRemoveOutline, IoRemove } from "react-icons/io5";
+import { useGlobalContext } from "@/app/Context/store";
 
 interface IBasketProductItemProps {
   isDetail?: boolean;
@@ -26,6 +27,7 @@ function BasketProductItem({
   onUpdateQuantity,
   onRemoveItem,
 }: IBasketProductItemProps) {
+  const { isMobile } = useGlobalContext();
   const [loadingQuantity, setLoadingQuantity] = useState(false);
   const [productQuantity, setProductQuantity] = useState(product.quantity);
 
@@ -77,7 +79,11 @@ function BasketProductItem({
           }`}
         >
           <Image
-            src={product.images[0]}
+            src={
+              isMobile
+                ? product.images[0].thumbnail
+                : product.images[0].original
+            }
             fill
             sizes="(max-width: 768px) 100%, 25%"
             alt={`${product.brand || ""} ${product.title}`}
@@ -94,9 +100,17 @@ function BasketProductItem({
           )}
         </Link>
       )}
-      <div className={`flex flex-col justify-around h-full items-start  w-full ${!isDetail ? "gap-2" : "lg:gap-8 gap-4"}`}>
+      <div
+        className={`flex flex-col justify-around h-full items-start  w-full ${
+          !isDetail ? "gap-2" : "lg:gap-8 gap-4"
+        }`}
+      >
         <div className="flex flex-col gap-2 w-full h-full justify-around">
-          <div className={`flex flex-col w-full ${!isDetail ? "gap-1" : "lg:gap-2 gap-1"}`}>
+          <div
+            className={`flex flex-col w-full ${
+              !isDetail ? "gap-1" : "lg:gap-2 gap-1"
+            }`}
+          >
             <Link
               href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
               title={`${product.brand || ""} ${product.title}`}
@@ -114,6 +128,7 @@ function BasketProductItem({
             >
               {product.mainCategory}
               {product.category && ` / ${product.category}`}
+              {product.subCategory && ` / ${product.subCategory}`}
             </span>
             <div
               className={`flex  flex-wrap gap-x-2 gap-y-1 line-clamp-2 max-w-full ${
@@ -176,7 +191,13 @@ function BasketProductItem({
                 )
               }
             />
-            <span className={`select-none ${!isDetail ? "text-base" : "lg:text-xl text-base"}`}>{productQuantity}</span>
+            <span
+              className={`select-none ${
+                !isDetail ? "text-base" : "lg:text-xl text-base"
+              }`}
+            >
+              {productQuantity}
+            </span>
             <CustomButton
               handleClick={
                 product.stock > productQuantity ? increaseQuantity : undefined

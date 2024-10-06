@@ -23,6 +23,7 @@ interface IFavoriteProductItemProps {
 }
 
 function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
+  const { isMobile } = useGlobalContext();
   const [loadingRemoveFavorite, setLoadingRemoveFavorite] = useState(false);
   const [loadingAddToBasket, setLoadingAddToBasket] = useState(false);
   const [showProductArea, setShowProductArea] = useState(false);
@@ -97,7 +98,7 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
             className="relative lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40 rounded-2xl shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 hover:scale-95"
           >
             <Image
-              src={product.images[0]}
+              src={isMobile ? product.images[0].thumbnail : product.images[0].original}
               fill
               sizes="(max-width: 768px) 100%, 25%"
               alt={`${product.brand || ""} ${product.title}`}
@@ -122,6 +123,7 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
               <span className="text-gray-500 dark:text-gray-400 text-xs">
                 {product.mainCategory}
                 {product.category && ` / ${product.category}`}
+                {product.subCategory && ` / ${product.subCategory}`}
               </span>
               <div className="text-sm tracking-wide">
                 {product.stock > 0 ? (

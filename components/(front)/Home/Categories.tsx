@@ -2,10 +2,9 @@
 import React from "react";
 import { FaTags } from "react-icons/fa";
 import Link from "next/link";
-import { mainCategoryTypes } from "@/types/categoryTypes";
 
 interface ICategoriesProps {
-  categories: mainCategoryTypes[];
+  categories: { name: string; slug: string }[];
 }
 function Categories({ categories }: ICategoriesProps) {
   if (categories.length > 1) {

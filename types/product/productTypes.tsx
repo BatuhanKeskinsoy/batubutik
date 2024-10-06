@@ -1,3 +1,5 @@
+import { imageTypes } from "../imageTypes";
+
 export type productAttributeOptionsTypes = {
   option_name: string;
   option_stock: number;
@@ -21,7 +23,7 @@ export type productTypes = {
   category_slug: string | null;
   subCategory: string | null;
   subCategory_slug: string | null;
-  images: string[] | null;
+  images: imageTypes[] | null;
   rating: number | null;
   price: number;
   discount: number;

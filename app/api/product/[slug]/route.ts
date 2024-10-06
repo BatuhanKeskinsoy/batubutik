@@ -33,11 +33,26 @@ const products = [
     subCategory: "Takım",
     subCategory_slug: "takim",
     images: [
-      "/assets/products/product5.webp",
-      "/assets/products/product2.webp",
-      "/assets/products/product3.webp",
-      "/assets/products/product4.webp",
-      "/assets/products/product.webp",
+      {
+        original: "/assets/products/product5.webp",
+        thumbnail: "/assets/products/product5.webp",
+      },
+      {
+        original: "/assets/products/product2.webp",
+        thumbnail: "/assets/products/product2.webp",
+      },
+      {
+        original: "/assets/products/product3.webp",
+        thumbnail: "/assets/products/product3.webp",
+      },
+      {
+        original: "/assets/products/product4.webp",
+        thumbnail: "/assets/products/product4.webp",
+      },
+      {
+        original: "/assets/products/product.webp",
+        thumbnail: "/assets/products/product.webp",
+      },
     ],
     rating: 4.9,
     total_comment: 864,
@@ -62,11 +77,26 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product5.webp",
-              "/assets/products/product2.webp",
-              "/assets/products/product3.webp",
-              "/assets/products/product4.webp",
-              "/assets/products/product.webp",
+              {
+                original: "/assets/products/product5.webp",
+                thumbnail: "/assets/products/product5.webp",
+              },
+              {
+                original: "/assets/products/product2.webp",
+                thumbnail: "/assets/products/product2.webp",
+              },
+              {
+                original: "/assets/products/product3.webp",
+                thumbnail: "/assets/products/product3.webp",
+              },
+              {
+                original: "/assets/products/product4.webp",
+                thumbnail: "/assets/products/product4.webp",
+              },
+              {
+                original: "/assets/products/product.webp",
+                thumbnail: "/assets/products/product.webp",
+              },
             ],
           },
         },
@@ -80,10 +110,22 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product6.webp",
-              "/assets/products/product7.webp",
-              "/assets/products/product8.webp",
-              "/assets/products/product9.webp",
+              {
+                original: "/assets/products/product6.webp",
+                thumbnail: "/assets/products/product6.webp",
+              },
+              {
+                original: "/assets/products/product7.webp",
+                thumbnail: "/assets/products/product7.webp",
+              },
+              {
+                original: "/assets/products/product8.webp",
+                thumbnail: "/assets/products/product8.webp",
+              },
+              {
+                original: "/assets/products/product9.webp",
+                thumbnail: "/assets/products/product9.webp",
+              },
             ],
           },
         },
@@ -97,9 +139,18 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product14.webp",
-              "/assets/products/product15.webp",
-              "/assets/products/product16.webp",
+              {
+                original: "/assets/products/product14.webp",
+                thumbnail: "/assets/products/product14.webp",
+              },
+              {
+                original: "/assets/products/product15.webp",
+                thumbnail: "/assets/products/product15.webp",
+              },
+              {
+                original: "/assets/products/product16.webp",
+                thumbnail: "/assets/products/product16.webp",
+              },
             ],
           },
         },
@@ -113,10 +164,22 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product11.webp",
-              "/assets/products/product12.webp",
-              "/assets/products/product16.webp",
-              "/assets/products/product17.webp",
+              {
+                original: "/assets/products/product11.webp",
+                thumbnail: "/assets/products/product11.webp",
+              },
+              {
+                original: "/assets/products/product12.webp",
+                thumbnail: "/assets/products/product12.webp",
+              },
+              {
+                original: "/assets/products/product16.webp",
+                thumbnail: "/assets/products/product16.webp",
+              },
+              {
+                original: "/assets/products/product17.webp",
+                thumbnail: "/assets/products/product17.webp",
+              },
             ],
           },
         },
@@ -204,10 +267,22 @@ const products = [
     subCategory: "Takım",
     subCategory_slug: "takim",
     images: [
-      "/assets/products/product6.webp",
-      "/assets/products/product7.webp",
-      "/assets/products/product8.webp",
-      "/assets/products/product9.webp",
+      {
+        original: "/assets/products/product6.webp",
+        thumbnail: "/assets/products/product6.webp",
+      },
+      {
+        original: "/assets/products/product7.webp",
+        thumbnail: "/assets/products/product7.webp",
+      },
+      {
+        original: "/assets/products/product8.webp",
+        thumbnail: "/assets/products/product8.webp",
+      },
+      {
+        original: "/assets/products/product9.webp",
+        thumbnail: "/assets/products/product9.webp",
+      },
     ],
     rating: 4.4,
     total_comment: 864,
@@ -232,10 +307,22 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product6.webp",
-              "/assets/products/product7.webp",
-              "/assets/products/product8.webp",
-              "/assets/products/product9.webp",
+              {
+                original: "/assets/products/product6.webp",
+                thumbnail: "/assets/products/product6.webp",
+              },
+              {
+                original: "/assets/products/product7.webp",
+                thumbnail: "/assets/products/product7.webp",
+              },
+              {
+                original: "/assets/products/product8.webp",
+                thumbnail: "/assets/products/product8.webp",
+              },
+              {
+                original: "/assets/products/product9.webp",
+                thumbnail: "/assets/products/product9.webp",
+              },
             ],
           },
         },
@@ -249,11 +336,26 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product5.webp",
-              "/assets/products/product2.webp",
-              "/assets/products/product3.webp",
-              "/assets/products/product4.webp",
-              "/assets/products/product.webp",
+              {
+                original: "/assets/products/product5.webp",
+                thumbnail: "/assets/products/product5.webp",
+              },
+              {
+                original: "/assets/products/product2.webp",
+                thumbnail: "/assets/products/product2.webp",
+              },
+              {
+                original: "/assets/products/product3.webp",
+                thumbnail: "/assets/products/product3.webp",
+              },
+              {
+                original: "/assets/products/product4.webp",
+                thumbnail: "/assets/products/product4.webp",
+              },
+              {
+                original: "/assets/products/product.webp",
+                thumbnail: "/assets/products/product.webp",
+              },
             ],
           },
         },
@@ -267,9 +369,18 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product14.webp",
-              "/assets/products/product15.webp",
-              "/assets/products/product16.webp",
+              {
+                original: "/assets/products/product14.webp",
+                thumbnail: "/assets/products/product14.webp",
+              },
+              {
+                original: "/assets/products/product15.webp",
+                thumbnail: "/assets/products/product15.webp",
+              },
+              {
+                original: "/assets/products/product16.webp",
+                thumbnail: "/assets/products/product16.webp",
+              },
             ],
           },
         },
@@ -283,10 +394,22 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product11.webp",
-              "/assets/products/product12.webp",
-              "/assets/products/product16.webp",
-              "/assets/products/product17.webp",
+              {
+                original: "/assets/products/product11.webp",
+                thumbnail: "/assets/products/product11.webp",
+              },
+              {
+                original: "/assets/products/product12.webp",
+                thumbnail: "/assets/products/product12.webp",
+              },
+              {
+                original: "/assets/products/product16.webp",
+                thumbnail: "/assets/products/product16.webp",
+              },
+              {
+                original: "/assets/products/product17.webp",
+                thumbnail: "/assets/products/product17.webp",
+              },
             ],
           },
         },
@@ -365,10 +488,22 @@ const products = [
     subCategory: "Takım",
     subCategory_slug: "takim",
     images: [
-      "/assets/products/product11.webp",
-      "/assets/products/product12.webp",
-      "/assets/products/product16.webp",
-      "/assets/products/product17.webp",
+      {
+        original: "/assets/products/product11.webp",
+        thumbnail: "/assets/products/product11.webp",
+      },
+      {
+        original: "/assets/products/product12.webp",
+        thumbnail: "/assets/products/product12.webp",
+      },
+      {
+        original: "/assets/products/product16.webp",
+        thumbnail: "/assets/products/product16.webp",
+      },
+      {
+        original: "/assets/products/product17.webp",
+        thumbnail: "/assets/products/product17.webp",
+      },
     ],
     rating: 4.1,
     total_comment: 864,
@@ -393,10 +528,22 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product11.webp",
-              "/assets/products/product12.webp",
-              "/assets/products/product16.webp",
-              "/assets/products/product17.webp",
+              {
+                original: "/assets/products/product11.webp",
+                thumbnail: "/assets/products/product11.webp",
+              },
+              {
+                original: "/assets/products/product12.webp",
+                thumbnail: "/assets/products/product12.webp",
+              },
+              {
+                original: "/assets/products/product16.webp",
+                thumbnail: "/assets/products/product16.webp",
+              },
+              {
+                original: "/assets/products/product17.webp",
+                thumbnail: "/assets/products/product17.webp",
+              },
             ],
           },
         },
@@ -410,10 +557,22 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product6.webp",
-              "/assets/products/product7.webp",
-              "/assets/products/product8.webp",
-              "/assets/products/product9.webp",
+              {
+                original: "/assets/products/product6.webp",
+                thumbnail: "/assets/products/product6.webp",
+              },
+              {
+                original: "/assets/products/product7.webp",
+                thumbnail: "/assets/products/product7.webp",
+              },
+              {
+                original: "/assets/products/product8.webp",
+                thumbnail: "/assets/products/product8.webp",
+              },
+              {
+                original: "/assets/products/product9.webp",
+                thumbnail: "/assets/products/product9.webp",
+              },
             ],
           },
         },
@@ -427,11 +586,26 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product5.webp",
-              "/assets/products/product2.webp",
-              "/assets/products/product3.webp",
-              "/assets/products/product4.webp",
-              "/assets/products/product.webp",
+              {
+                original: "/assets/products/product5.webp",
+                thumbnail: "/assets/products/product5.webp",
+              },
+              {
+                original: "/assets/products/product2.webp",
+                thumbnail: "/assets/products/product2.webp",
+              },
+              {
+                original: "/assets/products/product3.webp",
+                thumbnail: "/assets/products/product3.webp",
+              },
+              {
+                original: "/assets/products/product4.webp",
+                thumbnail: "/assets/products/product4.webp",
+              },
+              {
+                original: "/assets/products/product.webp",
+                thumbnail: "/assets/products/product.webp",
+              },
             ],
           },
         },
@@ -445,9 +619,18 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product14.webp",
-              "/assets/products/product15.webp",
-              "/assets/products/product16.webp",
+              {
+                original: "/assets/products/product14.webp",
+                thumbnail: "/assets/products/product14.webp",
+              },
+              {
+                original: "/assets/products/product15.webp",
+                thumbnail: "/assets/products/product15.webp",
+              },
+              {
+                original: "/assets/products/product16.webp",
+                thumbnail: "/assets/products/product16.webp",
+              },
             ],
           },
         },
@@ -527,9 +710,18 @@ const products = [
     subCategory: "Takım",
     subCategory_slug: "takim",
     images: [
-      "/assets/products/product14.webp",
-      "/assets/products/product15.webp",
-      "/assets/products/product16.webp",
+      {
+        original: "/assets/products/product14.webp",
+        thumbnail: "/assets/products/product14.webp",
+      },
+      {
+        original: "/assets/products/product15.webp",
+        thumbnail: "/assets/products/product15.webp",
+      },
+      {
+        original: "/assets/products/product16.webp",
+        thumbnail: "/assets/products/product16.webp",
+      },
     ],
     rating: 3.8,
     total_comment: 864,
@@ -554,9 +746,18 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product14.webp",
-              "/assets/products/product15.webp",
-              "/assets/products/product16.webp",
+              {
+                original: "/assets/products/product14.webp",
+                thumbnail: "/assets/products/product14.webp",
+              },
+              {
+                original: "/assets/products/product15.webp",
+                thumbnail: "/assets/products/product15.webp",
+              },
+              {
+                original: "/assets/products/product16.webp",
+                thumbnail: "/assets/products/product16.webp",
+              },
             ],
           },
         },
@@ -570,10 +771,22 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product11.webp",
-              "/assets/products/product12.webp",
-              "/assets/products/product16.webp",
-              "/assets/products/product17.webp",
+              {
+                original: "/assets/products/product11.webp",
+                thumbnail: "/assets/products/product11.webp",
+              },
+              {
+                original: "/assets/products/product12.webp",
+                thumbnail: "/assets/products/product12.webp",
+              },
+              {
+                original: "/assets/products/product16.webp",
+                thumbnail: "/assets/products/product16.webp",
+              },
+              {
+                original: "/assets/products/product17.webp",
+                thumbnail: "/assets/products/product17.webp",
+              },
             ],
           },
         },
@@ -587,10 +800,22 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product6.webp",
-              "/assets/products/product7.webp",
-              "/assets/products/product8.webp",
-              "/assets/products/product9.webp",
+              {
+                original: "/assets/products/product6.webp",
+                thumbnail: "/assets/products/product6.webp",
+              },
+              {
+                original: "/assets/products/product7.webp",
+                thumbnail: "/assets/products/product7.webp",
+              },
+              {
+                original: "/assets/products/product8.webp",
+                thumbnail: "/assets/products/product8.webp",
+              },
+              {
+                original: "/assets/products/product9.webp",
+                thumbnail: "/assets/products/product9.webp",
+              },
             ],
           },
         },
@@ -604,11 +829,26 @@ const products = [
             category_slug: "ic-giyim",
             subCategory_slug: null,
             images: [
-              "/assets/products/product5.webp",
-              "/assets/products/product2.webp",
-              "/assets/products/product3.webp",
-              "/assets/products/product4.webp",
-              "/assets/products/product.webp",
+              {
+                original: "/assets/products/product5.webp",
+                thumbnail: "/assets/products/product5.webp",
+              },
+              {
+                original: "/assets/products/product2.webp",
+                thumbnail: "/assets/products/product2.webp",
+              },
+              {
+                original: "/assets/products/product3.webp",
+                thumbnail: "/assets/products/product3.webp",
+              },
+              {
+                original: "/assets/products/product4.webp",
+                thumbnail: "/assets/products/product4.webp",
+              },
+              {
+                original: "/assets/products/product.webp",
+                thumbnail: "/assets/products/product.webp",
+              },
             ],
           },
         },
@@ -687,10 +927,22 @@ const products = [
     subCategory: null,
     subCategory_slug: null,
     images: [
-      "/assets/products/product17.webp",
-      "/assets/products/product11.webp",
-      "/assets/products/product12.webp",
-      "/assets/products/product16.webp",
+      {
+        original: "/assets/products/product17.webp",
+        thumbnail: "/assets/products/product17.webp",
+      },
+      {
+        original: "/assets/products/product11.webp",
+        thumbnail: "/assets/products/product11.webp",
+      },
+      {
+        original: "/assets/products/product12.webp",
+        thumbnail: "/assets/products/product12.webp",
+      },
+      {
+        original: "/assets/products/product16.webp",
+        thumbnail: "/assets/products/product16.webp",
+      },
     ],
     rating: 2.4,
     total_comment: 864,
@@ -772,7 +1024,12 @@ const products = [
     category_slug: null,
     subCategory: null,
     subCategory_slug: null,
-    images: ["/assets/products/product15.webp"],
+    images: [
+      {
+        original: "/assets/products/product15.webp",
+        thumbnail: "/assets/products/product15.webp",
+      },
+    ],
     rating: 2.4,
     total_comment: 864,
     price: 410,

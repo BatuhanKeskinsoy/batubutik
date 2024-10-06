@@ -5,17 +5,13 @@ import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import CustomButton from "@/components/others/CustomButton";
 import { IoChevronForwardOutline } from "react-icons/io5";
-import { generalsTypes } from "@/types/generalTypes";
-
-const sliderPictures = [
-  "/assets/banner/banner.webp",
-  "/assets/banner/banner2.webp",
-  "/assets/banner/banner3.webp",
-];
+import { homeFullViewSliderTypes } from "@/types/pages/homeTypes";
+import { useRouter } from "next/navigation";
+import { useGlobalContext } from "@/app/Context/store";
 
 interface ISliderOneProps {
   perView: number;
-  generals: generalsTypes;
+  data: homeFullViewSliderTypes[];
 }
 
 function createBreakpoints(perView: number) {
@@ -38,8 +34,10 @@ function createBreakpoints(perView: number) {
   return breakpoints;
 }
 
-function SliderFullWidth({ perView, generals }: ISliderOneProps) {
+function SliderFullWidth({ perView, data }: ISliderOneProps) {
+  const { isMobile } = useGlobalContext();
   const breakpoints = createBreakpoints(perView);
+  const router = useRouter();
 
   return (
     <Swiper
@@ -50,7 +48,7 @@ function SliderFullWidth({ perView, generals }: ISliderOneProps) {
       className="relative lg:bg-black-900/30 bg-black-900/50 !z-0"
       breakpoints={breakpoints}
     >
-      {sliderPictures.map((picture, key) => (
+      {data.map((slide, key) => (
         <SwiperSlide
           key={key}
           className="relative !flex items-end justify-center group bg-white"
@@ -60,17 +58,18 @@ function SliderFullWidth({ perView, generals }: ISliderOneProps) {
               <div className="flex flex-col w-full lg:h-full justify-center max-lg:gap-12 gap-28 py-12">
                 <div className="max-lg:text-center flex flex-col max-lg:items-center max-lg:justify-betweenw-full max-lg:h-full max-lg:gap-4 gap-12">
                   <span className="font-gemunu tracking-widest font-semibold lg:text-4xl text-xl text-white/80">
-                    2024 {generals.site_name} Koleksiyonu
+                    {slide.text_1}
                   </span>
                   <span className="font-semibold lg:text-7xl text-5xl text-white font-gemunu tracking-wide">
-                    Zarafetin Özgürlüğü
+                    {slide.text_2}
                   </span>
                   <p className="lg:text-2xl text-base tracking-wide font-light text-white/70">
-                    Ayrıcalıklı {generals.site_name} koleksiyonunu keşfedin!
+                    {slide.text_3}
                   </p>
                 </div>
                 <CustomButton
-                  title="KOLEKSİYONU KEŞFET"
+                  title={slide.button_text}
+                  handleClick={() => router.push(slide.button_redirect)}
                   rightIcon={
                     <IoChevronForwardOutline className="text-2xl -mr-2" />
                   }
@@ -83,8 +82,9 @@ function SliderFullWidth({ perView, generals }: ISliderOneProps) {
           <div className="absolute w-full h-full bg-site/10 z-20"></div>
           <div className="absolute w-full h-full bg-black-900/50 z-10"></div>
           <Image
-            src={picture}
-            alt="banner"
+            src={isMobile ? slide.image.thumbnail : slide.image.original}
+            alt={slide.text_1}
+            title={slide.text_1}
             fill
             sizes="100vw"
             className="object-cover"

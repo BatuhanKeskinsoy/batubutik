@@ -1,6 +1,6 @@
 import BasketDetail from "@/components/(front)/Basket/BasketDetail";
 import Breadcrumb from "@/components/others/Breadcrumb";
-import { getGenerals } from "@/lib/utils/getGenerals";
+import { getGenerals } from "@/lib/utils/General/getGenerals";
 import { generalsTypes } from "@/types/generalTypes";
 import React from "react";
 

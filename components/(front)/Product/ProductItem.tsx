@@ -37,7 +37,11 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
     useGlobalContext();
   const [isHovered, setIsHovered] = useState(false);
   const [productImage, setProductImage] = useState(
-    product.images ? product.images[0] : null
+    product.images
+      ? isMobile
+        ? product.images[0].thumbnail
+        : product.images[0].original
+      : null
   );
   const [FavoriteIcon, setFavoriteIcon] = useState(
     <IoHeartOutline className="text-xl" />
@@ -55,13 +59,19 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
 
   const handleMouseEnter = (index: number) => {
     if (product.images) {
-      setProductImage(product.images[index]);
+      setProductImage(
+        isMobile
+          ? product.images[index].thumbnail
+          : product.images[index].original
+      );
     }
   };
 
   const handleMouseLeave = () => {
     if (product.images) {
-      setProductImage(product.images[0]);
+      setProductImage(
+        isMobile ? product.images[0].thumbnail : product.images[0].original
+      );
     }
   };
 
@@ -195,7 +205,13 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
               {animate && (
                 <div className="relative w-full h-full">
                   <Image
-                    src={product.images ? product.images[0] : ""}
+                    src={
+                      product.images
+                        ? isMobile
+                          ? product.images[0].thumbnail
+                          : product.images[0].original
+                        : ""
+                    }
                     alt="add to cart product"
                     fill
                     sizes="(max-width: 768px) 50%, 20%"
@@ -211,7 +227,13 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
             >
               {product.images && product.images.length > 0 && (
                 <Image
-                  src={productImage ? productImage : product.images[0]}
+                  src={
+                    productImage
+                      ? productImage
+                      : isMobile
+                      ? product.images[0].thumbnail
+                      : product.images[0].original
+                  }
                   fill
                   sizes="(max-width: 768px) 50vw, 25vw"
                   alt={`${product.brand || ""} ${product.title}`}
@@ -332,6 +354,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
               <span className="text-gray-500 text-xs dark:text-gray-400">
                 {product.mainCategory}
                 {product.category && ` / ${product.category}`}
+                {product.subCategory && ` / ${product.subCategory}`}
               </span>
               <span className="text-gray-500 text-xs dark:text-gray-400">
                 #{product.code}

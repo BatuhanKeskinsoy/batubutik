@@ -57,7 +57,9 @@ function ProductArea({
 
   useEffect(() => {
     if (product && product.images && product.images.length > 0) {
-      setCurrentProductImage(product.images[0]);
+      setCurrentProductImage(
+        isMobile ? product.images[0].thumbnail : product.images[0].original
+      );
     } else {
       setCurrentProductImage(null);
     }
@@ -209,17 +211,22 @@ function ProductArea({
               <div
                 key={key}
                 className="relative lg:min-w-[105px] min-w-[80px] lg:min-h-[calc(21%-3px)] lg:h-[calc(21%-3px)] min-h-[calc(25%-3px)] h-[calc(25%-3px)] cursor-pointer"
-                onClick={() => handleChangeCurrentImage(image)}
+                onClick={() =>
+                  handleChangeCurrentImage(
+                    isMobile ? image.thumbnail : image.original
+                  )
+                }
               >
                 <Image
-                  src={image}
+                  src={isMobile ? image.thumbnail : image.original}
                   fill
                   quality={50}
                   sizes="(max-width: 768px) 30%, 20%"
                   alt={`${product.brand || ""} ${product.title}`}
                   title={`${product.brand || ""} ${product.title}`}
                   className={`object-cover object-center transition-all duration-300 ${
-                    currentProductImage !== image
+                    currentProductImage !==
+                    (isMobile ? image.thumbnail : image.original)
                       ? "brightness-50 hover:brightness-100"
                       : ""
                   }`}
@@ -391,7 +398,11 @@ function ProductArea({
                           {item.product.images && (
                             <div className="relative w-full h-28 overflow-hidden rounded-md">
                               <Image
-                                src={item.product.images[0]}
+                                src={
+                                  isMobile
+                                    ? item.product.images[0].thumbnail
+                                    : item.product.images[0].original
+                                }
                                 alt={item.product.title}
                                 title={item.product.title}
                                 fill

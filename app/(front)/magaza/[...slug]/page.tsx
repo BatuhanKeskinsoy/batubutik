@@ -2,11 +2,11 @@ import ProductDetail from "@/components/(front)/Product/ProductDetail";
 import ProductSidebar from "@/components/(front)/Product/ProductSidebar";
 import StoreMain from "@/components/(front)/Store/StoreMain";
 import Breadcrumb from "@/components/others/Breadcrumb";
-import { getCategories } from "@/lib/utils/getCategories";
+import { getCategories } from "@/lib/utils/General/getCategories";
 import { mainCategoryTypes } from "@/types/categoryTypes";
 import { getProductShow } from "@/lib/utils/Product/getProductShow";
 import { productDetailTypes } from "@/types/product/productDetailTypes";
-import { getGenerals } from "@/lib/utils/getGenerals";
+import { getGenerals } from "@/lib/utils/General/getGenerals";
 import React from "react";
 
 async function page({ params }: { params: { slug?: string[] } }) {

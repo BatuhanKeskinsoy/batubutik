@@ -1,3 +1,5 @@
+import { imageTypes } from "../imageTypes";
+
 export type productGroupProductsTypes = {
   choise_name: string;
   product: {
@@ -7,7 +9,7 @@ export type productGroupProductsTypes = {
     mainCategory_slug: string;
     category_slug: string | null;
     subCategory_slug: string | null;
-    images: string[] | null;
+    images: imageTypes[] | null;
   };
 };
 
@@ -24,7 +26,7 @@ export type productDetailTypes = {
   category_slug: string | null;
   subCategory: string | null;
   subCategory_slug: string | null;
-  images: string[] | null;
+  images: imageTypes[] | null;
   rating: number | null;
   total_comment: number;
   price: number;

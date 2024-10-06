@@ -9,74 +9,64 @@ import About from "@/components/(front)/About/About";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { getProducts } from "@/lib/utils/Product/getProducts";
-import { getGenerals } from "@/lib/utils/getGenerals";
-import { generalsTypes } from "@/types/generalTypes";
-import { productTypes } from "@/types/product/productTypes";
-import { mainCategoryTypes } from "@/types/categoryTypes";
-import { getCategories } from "@/lib/utils/getCategories";
+import { homeTypes } from "@/types/pages/homeTypes";
+import { getHome } from "@/lib/utils/Pages/getHome";
 
 async function page() {
-  const products: productTypes[] = await getProducts();
-  const generals: generalsTypes = await getGenerals();
-  const categories: mainCategoryTypes[] = await getCategories();
+  const home: homeTypes = await getHome();
   return (
     <main className="flex flex-col w-full gap-12">
       <section>
-        <Banner generals={generals} />
+        <Banner data={home.fullViewSlider} />
       </section>
 
       <section className="container mx-auto px-4 lg:-mt-28">
-        <Categories categories={categories} />
+        <Categories categories={home.categories} />
       </section>
 
       <section className="container mx-auto px-4">
         <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
           <h1 className="text-4xl font-gemunu font-semibold tracking-wider">
-            <span className="text-site">{generals.site_name}</span> Öne Çıkan
-            Ürünler
+            {home.featuredProducts.title}
           </h1>
           <p className="text-gray-500 dark:text-gray-400">
-            {generals.site_name} koleksiyonu içerisinde öne çıkan ürünler
+            {home.featuredProducts.description}
           </p>
         </div>
-        <FeaturedProducts products={products} />
+        <FeaturedProducts products={home.featuredProducts.products} />
       </section>
 
       <section className="bg-gray-100 dark:bg-zinc-800 py-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
             <h2 className="text-4xl font-gemunu font-semibold tracking-wider">
-              <span className="text-site">{generals.site_name}</span> Yeni
-              Ürünler
+              {home.newProducts.title}
             </h2>
             <p className="text-gray-500 dark:text-gray-400">
-              {generals.site_name} koleksiyonuna eklenen en yeni ürünler
+              {home.newProducts.description}
             </p>
           </div>
-          <NewProducts products={products} />
+          <NewProducts products={home.newProducts.products} />
         </div>
       </section>
 
       <section className="container mx-auto px-4">
         <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
           <h2 className="text-4xl font-gemunu font-semibold tracking-wider">
-            <span className="text-site">{generals.site_name}</span> En Çok
-            Satılan Ürünler
+            {home.bestSellingProducts.title}
           </h2>
           <p className="text-gray-500 dark:text-gray-400">
-            {generals.site_name} koleksiyonu içerisinde en çok talep edilen ve
-            en çok satılan ürünler
+            {home.bestSellingProducts.description}
           </p>
         </div>
-        <BestSellingProducts products={products} />
+        <BestSellingProducts products={home.bestSellingProducts.products} />
       </section>
 
       <section className="bg-gray-100 dark:bg-zinc-800 py-12">
-        <About generals={generals} />
+        <About about={home.about} />
       </section>
       <section>
-        <Contact generals={generals} />
+        <Contact generals={home.generals} />
       </section>
     </main>
   );

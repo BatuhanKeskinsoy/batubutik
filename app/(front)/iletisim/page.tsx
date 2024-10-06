@@ -1,5 +1,5 @@
 import Contact from '@/components/(front)/Contact/Contact'
-import { getGenerals } from '@/lib/utils/getGenerals'
+import { getGenerals } from '@/lib/utils/General/getGenerals'
 import { generalsTypes } from '@/types/generalTypes'
 import React from 'react'
 

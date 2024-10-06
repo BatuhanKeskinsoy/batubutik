@@ -4,11 +4,11 @@ import FixedBottomRight from "@/components/others/FixedBottomRight/FixedBottomRi
 import "@/public/styles/globals.css";
 import React from "react";
 import { generalsTypes } from "@/types/generalTypes";
-import { getGenerals } from "@/lib/utils/getGenerals";
+import { getGenerals } from "@/lib/utils/General/getGenerals";
 import { productTypes } from "@/types/product/productTypes";
 import { getProducts } from "@/lib/utils/Product/getProducts";
 import { mainCategoryTypes } from "@/types/categoryTypes";
-import { getCategories } from "@/lib/utils/getCategories";
+import { getCategories } from "@/lib/utils/General/getCategories";
 
 export const dynamic = "force-dynamic";
 
