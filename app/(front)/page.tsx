@@ -27,7 +27,10 @@ async function page() {
       <section className="container mx-auto px-4">
         <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
           <h1 className="text-4xl font-gemunu font-semibold tracking-wider">
-            {home.featuredProducts.title}
+            <span className="text-site">
+              {home.featuredProducts.title.split(" ")[0]}
+            </span>{" "}
+            {home.featuredProducts.title.split(" ").slice(1).join(" ")}{" "}
           </h1>
           <p className="text-gray-500 dark:text-gray-400">
             {home.featuredProducts.description}
@@ -40,7 +43,10 @@ async function page() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
             <h2 className="text-4xl font-gemunu font-semibold tracking-wider">
-              {home.newProducts.title}
+              <span className="text-site">
+                {home.newProducts.title.split(" ")[0]}
+              </span>{" "}
+              {home.newProducts.title.split(" ").slice(1).join(" ")}{" "}
             </h2>
             <p className="text-gray-500 dark:text-gray-400">
               {home.newProducts.description}
@@ -53,7 +59,10 @@ async function page() {
       <section className="container mx-auto px-4">
         <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
           <h2 className="text-4xl font-gemunu font-semibold tracking-wider">
-            {home.bestSellingProducts.title}
+            <span className="text-site">
+              {home.bestSellingProducts.title.split(" ")[0]}
+            </span>{" "}
+            {home.bestSellingProducts.title.split(" ").slice(1).join(" ")}{" "}
           </h2>
           <p className="text-gray-500 dark:text-gray-400">
             {home.bestSellingProducts.description}
