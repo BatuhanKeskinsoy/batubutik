@@ -8,6 +8,7 @@ import { getProductShow } from "@/lib/utils/Product/getProductShow";
 import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { getGenerals } from "@/lib/utils/General/getGenerals";
 import React from "react";
+import { redirect } from "next/navigation";
 
 async function page({ params }: { params: { slug?: string[] } }) {
   const categories: mainCategoryTypes[] = await getCategories();
@@ -31,11 +32,26 @@ async function page({ params }: { params: { slug?: string[] } }) {
     ? category?.sub_categories?.find((sub) => sub.slug === subCategorySlug)
     : null;
 
-  const pageTitle = `${mainCategory?.name || ""} ${category?.name || ""} ${subCategory?.name || ""}`;
+  const pageTitle = `${mainCategory?.name || ""} ${category?.name || ""} ${
+    subCategory?.name || ""
+  }`;
 
   const generals = await getGenerals();
 
   const product: productDetailTypes | null = await getProductShow(productSlug);
+
+  console.log("mainCategory: ", mainCategory);
+  console.log("category: ", category);
+  console.log("subCategory: ", subCategory);
+  console.log("product: ", product);
+
+  if (
+    mainCategory === undefined ||
+    (product === undefined &&
+      (category === undefined || subCategory === undefined))
+  ) {
+    return redirect("/404");
+  }
 
   if (product) {
     return (

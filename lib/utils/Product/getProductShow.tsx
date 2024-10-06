@@ -14,6 +14,6 @@ export async function getProductShow(slug: string) {
     } else {
       console.error("Error fetching product detail:", axiosError);
     }
-    return null; // Hata alırsa null döndür
+    return undefined;
   }
 }

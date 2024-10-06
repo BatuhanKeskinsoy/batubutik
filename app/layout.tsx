@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { GlobalContextProvider } from "@/app/Context/store";
 import MetaFavicon from "@/meta/Favicon";
 import Providers from "./providers";
+import "@/public/styles/globals.css";
 
 export const metadata: Metadata = {
   title: "Batubutik",

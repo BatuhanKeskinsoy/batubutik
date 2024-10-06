@@ -1,7 +1,6 @@
 import Footer from "@/components/(front)/inc/Footer/Footer";
 import Header from "@/components/(front)/inc/Header/Header";
 import FixedBottomRight from "@/components/others/FixedBottomRight/FixedBottomRight";
-import "@/public/styles/globals.css";
 import React from "react";
 import { generalsTypes } from "@/types/generalTypes";
 import { getGenerals } from "@/lib/utils/General/getGenerals";
