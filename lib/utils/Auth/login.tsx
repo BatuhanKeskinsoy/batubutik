@@ -1,52 +1,21 @@
-import { userAuthTypes } from "@/types/user/userAuthTypes";
 import { toast } from "react-toastify";
 import { axios } from "@/lib/axios";
-import { Dispatch, SetStateAction } from "react";
 import { baseURL } from "@/constants/(front)";
 
-export function login(
+export async function login(
   email: string,
   password: string,
-  rememberMe: boolean,
-  setUser: Dispatch<SetStateAction<userAuthTypes | null>>
+  rememberMe: boolean
 ) {
-  axios
-    .post(`${baseURL}/auth/login`, {
+  try {
+    const res = await axios.post(`${baseURL}/auth/login`, {
       email,
       password,
       remember: rememberMe,
-    })
-    .then((res) => {
-      if (res.status === 200) {
-        toast(res.data.message);
-
-        const { uid, fullName, email, role } = res.data.user;
-        const userData: userAuthTypes = { uid, fullName, email, role };
-        setUser(userData);
-
-        const userString = JSON.stringify(userData);
-        if (rememberMe) {
-          localStorage.setItem("user", userString);
-        } else {
-          sessionStorage.setItem("user", userString);
-        }
-
-        const token = res.data.token;
-        if (token) {
-          if (rememberMe) {
-            typeof window !== "undefined" &&
-              localStorage.setItem("token", token);
-          } else {
-            typeof window !== "undefined" &&
-              sessionStorage.setItem("token", token);
-          }
-        } else {
-          console.error("Token not found in the response.");
-        }
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      toast(err.response?.data?.message || "API Hatası");
     });
+    return res;
+  } catch (err: any) {
+    console.error(err);
+    toast(err.response?.data?.message || "API Hatası");
+  }
 }

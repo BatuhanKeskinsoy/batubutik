@@ -5,6 +5,7 @@ import { login } from "@/lib/utils/Auth/login";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { IoCheckmark, IoLogoFacebook, IoLogoGoogle } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 interface ILoginProps {
   setUser: Dispatch<SetStateAction<userAuthTypes | null>>;
@@ -24,9 +25,34 @@ function Login({ setUser, authLoading, setAuthLoading, setAuth }: ILoginProps) {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setAuthLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+
     try {
-      await login(email, password, rememberMe, setUser);
+      const res = await login(email, password, rememberMe);
+
+      if (res && res.status === 200) {
+        toast.success(res.data.message);
+
+        const { uid, fullName, email, role } = res.data.user;
+        const userData: userAuthTypes = { uid, fullName, email, role };
+        setUser(userData);
+
+        document.cookie = `swr-auth-token=${res.data.token}; path=/; ${
+          rememberMe ? "expires=Fri, 31 Dec 9999 23:59:59 GMT" : ""
+        }`;
+
+        // Burada bilgileri localstorageye kaydiyorum ama useUser SWR'si yapıldıktan sonra localstorageden çekilmeyecek ve context'den user kaldırılacak.
+
+        const userString = JSON.stringify(userData);
+        if (rememberMe) {
+          localStorage.setItem("user", userString);
+        } else {
+          sessionStorage.setItem("user", userString);
+        }
+      } else {
+        console.error("Login failed:", res && res.data.message);
+      }
+    } catch (error) {
+      console.error("Login error:", error);
     } finally {
       setAuthLoading(false);
     }

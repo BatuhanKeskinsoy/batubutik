@@ -2,7 +2,6 @@
 import { getShortName } from "@/lib/functions/getShortName";
 import CustomButton from "@/components/others/CustomButton";
 import { userAuthTypes } from "@/types/user/userAuthTypes";
-import Link from "next/link";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { IoChevronForwardOutline, IoLogOutOutline } from "react-icons/io5";
 
@@ -13,19 +12,17 @@ interface IProfileProps {
 }
 
 function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
-  const [loadingLogout, setLoadingLogout] = useState(false);
-
   const handleLogout = (e: any) => {
     e.preventDefault();
-    setLoadingLogout(true);
+    setUser(null);
+    document.cookie =
+      "swr-auth-token=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";
 
-    if (!loadingLogout) {
-      localStorage.removeItem("user");
-      sessionStorage.removeItem("user");
-      setUser(null);
-      setLoadingLogout(false);
-    }
+    // Burada bilgileri localstorageden siliyorum ama useUser SWR'si yapıldıktan sonra localstoragede olmayacak ve context'den user kaldırılacak.
+    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
   };
+
   return (
     <div className="flex flex-col gap-4 w-full h-full">
       {user && (
@@ -78,13 +75,9 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
             />
             <hr className="my-2 dark:border-zinc-800" />
             <CustomButton
-              title={!loadingLogout ? "Çıkış Yap" : "Çıkış Yapılıyor.."}
+              title={"Çıkış Yap"}
               btnType="submit"
-              containerStyles={`flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 transition-all duration-300 text-left ${
-                !loadingLogout
-                  ? "hover:bg-site/10 dark:hover:bg-site/10 hover:text-site"
-                  : "bg-site/10 text-site"
-              }`}
+              containerStyles={`flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 transition-all duration-300 text-left hover:bg-site/10 dark:hover:bg-site/10 hover:text-site`}
               rightIcon={<IoLogOutOutline className="text-xl opacity-70" />}
               handleClick={(e) => handleLogout(e)}
             />
