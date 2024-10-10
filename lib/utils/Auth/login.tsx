@@ -16,6 +16,6 @@ export async function login(
     return res;
   } catch (err: any) {
     console.error(err);
-    toast(err.response?.data?.message || "API Hatası");
+    toast.error(err.response?.data?.message || "API Hatası");
   }
 }

@@ -4,7 +4,13 @@ import { userAuthTypes } from "@/types/user/userAuthTypes";
 import { login } from "@/lib/utils/Auth/login";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { IoCheckmark, IoLogoFacebook, IoLogoGoogle } from "react-icons/io5";
+import {
+  IoCheckmark,
+  IoEye,
+  IoEyeOff,
+  IoLogoFacebook,
+  IoLogoGoogle,
+} from "react-icons/io5";
 import { toast } from "react-toastify";
 
 interface ILoginProps {
@@ -16,10 +22,11 @@ interface ILoginProps {
 
 function Login({ setUser, authLoading, setAuthLoading, setAuth }: ILoginProps) {
   const [rememberMe, setRememberMe] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   /* FORM STATES */
   const [email, setEmail] = useState("batuhankeskinsoy55@gmail.com");
-  const [password, setPassword] = useState("123456+");
+  const [password, setPassword] = useState("Bk123456+");
   /* FORM STATES END */
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,15 +39,21 @@ function Login({ setUser, authLoading, setAuthLoading, setAuth }: ILoginProps) {
       if (res && res.status === 200) {
         toast.success(res.data.message);
 
-        const { uid, fullName, email, role } = res.data.user;
-        const userData: userAuthTypes = { uid, fullName, email, role };
+        const { uid, firstName, lastName, email, role } = res.data.user;
+        const userData: userAuthTypes = {
+          uid,
+          firstName,
+          lastName,
+          email,
+          role,
+        };
         setUser(userData);
 
         document.cookie = `swr-auth-token=${res.data.token}; path=/; ${
           rememberMe ? "expires=Fri, 31 Dec 9999 23:59:59 GMT" : ""
         }`;
 
-        // Burada bilgileri localstorageye kaydiyorum ama useUser SWR'si yapıldıktan sonra localstorageden çekilmeyecek ve context'den user kaldırılacak.
+        // Burada bilgileri localstorageye kaydiyorum ama useUsers SWR'si yapıldıktan sonra localstorageden çekilmeyecek ve context'den user kaldırılacak.
 
         const userString = JSON.stringify(userData);
         if (rememberMe) {
@@ -85,11 +98,24 @@ function Login({ setUser, authLoading, setAuthLoading, setAuth }: ILoginProps) {
             />
           </label>
           <label htmlFor="password" className="flex flex-col gap-4 w-full">
-            <span className="text-gray-600 dark:text-gray-200 tracking-wide">
-              Şifreniz
-            </span>
+            <div className="flex w-full justify-between items-center">
+              <span className="text-gray-600 dark:text-gray-200 tracking-wide">
+                Şifreniz
+              </span>
+              <CustomButton
+                btnType="button"
+                leftIcon={
+                  showPassword ? (
+                    <IoEye className="text-xl animate-modalContentSmooth text-site" />
+                  ) : (
+                    <IoEyeOff className="text-xl animate-modalContentSmooth" />
+                  )
+                }
+                handleClick={() => setShowPassword(!showPassword)}
+              />
+            </div>
             <input
-              type="password"
+              type={!showPassword ? "password" : "text"}
               id="password"
               required
               className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:border-site/50 dark:focus:border-site/50 rounded-lg py-3 px-6 outline-none text-base lg:min-w-[350px] max-lg:w-full"

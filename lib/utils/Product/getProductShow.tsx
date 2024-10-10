@@ -6,7 +6,7 @@ export async function getProductShow(slug: string) {
     const response = await axios.get(`${baseURL}/product/${slug}`);
     return response.data;
   } catch (error: any) {
-    console.error("An unexpected error occurred:", error);
+    console.error("Error fetching product:", error);
     return undefined;
   }
 }

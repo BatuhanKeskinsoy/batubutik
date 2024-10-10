@@ -66,7 +66,8 @@ export const GlobalContextProvider = ({ children }: any) => {
       if (storedUser) {
         return {
           uid: storedUser.uid,
-          fullName: storedUser.fullName,
+          firstName: storedUser.firstName,
+          lastName: storedUser.lastName,
           email: storedUser.email,
           role: storedUser.role,
         };

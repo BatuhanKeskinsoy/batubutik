@@ -16,20 +16,23 @@ function Comments({ comments, generals }: ICommentsProps) {
   return (
     <ul className="flex flex-col w-full gap-6">
       {Array.from({ length: 3 }).map((_, index) => {
-        const name = "Batuhan Keskinsoy";
+        const firstName = "Batuhan";
+        const lastName = "Keskinsoy";
+
+        const commentName = "Batuhan Keskinsoy"
         return (
           <React.Fragment key={index}>
             <li className="flex max-lg:flex-col gap-4 lg:items-center">
               <div className="flex gap-4 max-lg:items-center">
-                {name && (
+                {firstName && lastName && (
                   <div className="flex items-center justify-center lg:min-w-20 lg:w-20 lg:h-20 min-w-16 w-16 h-16 bg-site/10 text-site rounded-full select-none font-gemunu text-3xl uppercase font-light">
-                    {getShortName(name)}
+                    {getShortName(firstName, lastName)}
                   </div>
                 )}
                 <div className="flex flex-col gap-2 w-full">
                   <div className="flex max-lg:flex-col lg:items-center lg:gap-4 gap-2">
                     <span className="font-gemunu text-xl tracking-wide">
-                      {getStarredName(name)}
+                      {getStarredName(commentName)}
                     </span>
                     {(() => {
                       const size = 16;

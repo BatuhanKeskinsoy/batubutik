@@ -1,10 +1,33 @@
 import useSWR from "swr";
-import { getUsers } from "@/lib/utils/User/getUser";
+import { getUsers } from "@/lib/utils/User/getUsers";
 import { userAuthTypes } from "@/types/user/userAuthTypes";
+import { getUser } from "@/lib/utils/User/getUser";
+import { userProfileTypes } from "@/types/user/userProfileTypes";
 
-const fetcher = () => getUsers();
+
+export function useUser() {
+  const fetcher = () => getUser();
+  const {
+    data: user,
+    error,
+    mutate,
+    isValidating,
+    isLoading,
+  } = useSWR<userProfileTypes>(`user`, fetcher);
+
+  return {
+    user,
+    error,
+    mutate,
+    isValidating,
+    isLoading: user === undefined && isLoading,
+  };
+}
+
+
 
 export function useUsers() {
+  const fetcher = () => getUsers();
   const {
     data: users,
     error,

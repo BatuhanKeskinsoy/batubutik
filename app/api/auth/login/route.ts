@@ -1,4 +1,4 @@
-import { getUsers } from "@/lib/utils/User/getUser";
+import { getUsers } from "@/lib/utils/User/getUsers";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
@@ -34,7 +34,8 @@ export async function POST(request: Request) {
 
         user: {
           uid: user.uid,
-          fullName: user.fullName,
+          firstName: user.firstName,
+          lastName: user.lastName,
           email: user.email,
           role: user.role,
         },

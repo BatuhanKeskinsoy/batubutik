@@ -1,34 +1,13 @@
 "use client";
 import CustomButton from "@/components/others/CustomButton";
-import { userAuthTypes } from "@/types/user/userAuthTypes";
-import { login } from "@/lib/utils/Auth/login";
-import Link from "next/link";
-import React, { Dispatch, SetStateAction, useState } from "react";
-import {
-  IoCheckmark,
-  IoClose,
-  IoEye,
-  IoEyeOff,
-  IoLogoFacebook,
-  IoLogoGoogle,
-} from "react-icons/io5";
-import Image from "next/image";
+import { useUser } from "@/hooks/useUser";
+import React, { useEffect, useState } from "react";
+import { IoCheckmark, IoClose, IoEye, IoEyeOff } from "react-icons/io5";
+import { toast } from "react-toastify";
 
-interface ILoginProps {
-  setUser: Dispatch<SetStateAction<userAuthTypes | null>>;
-  authLoading: boolean;
-  setAuthLoading: Dispatch<SetStateAction<boolean>>;
-  setAuth: Dispatch<SetStateAction<string>>;
-}
-
-function Register({
-  setUser,
-  authLoading,
-  setAuthLoading,
-  setAuth,
-}: ILoginProps) {
+function Profile() {
+  const { user, isLoading, mutate, error } = useUser();
   const [showPassword, setShowPassword] = useState(false);
-  const [accept, setAccept] = useState(false);
 
   /* FORM STATES */
   const [firstName, setFirstName] = useState("");
@@ -39,10 +18,21 @@ function Register({
   const [passwordConfirm, setPasswordConfirm] = useState("");
   /* FORM STATES END */
 
+  useEffect(() => {
+    if (user) {
+      setFirstName(user.firstName || "");
+      setLastName(user.lastName || "");
+      setEmail(user.email || "");
+      setPhone(user.phone || "");
+      setPassword(user.password || "");
+      setPasswordConfirm(user.password || "");
+    }
+  }, [user]);
+
   const regexNumber = /\d/;
   const regexUppercase = /[A-Z]/;
 
-  const registerControl =
+  const profileControl =
     firstName !== "" &&
     lastName !== "" &&
     email !== "" &&
@@ -50,33 +40,22 @@ function Register({
     password.length >= 8 &&
     regexNumber.test(password) &&
     regexUppercase.test(password) &&
-    accept &&
     password === passwordConfirm;
 
-  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSaveProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    /* register({
-        name: firstName + " " + lastName,
-        email: email,
-        phone: phone,
-        password: password,
-        password_confirmation: passwordConfirm,
-        setErrors,
-        setStatus: () => { }
-      }).catch((err) => {
-        toast.error(err.response.data.message);
-      }); */
+    toast("Profil değişikliği henüz hazır değil!")
   };
 
   return (
-    <div className="flex flex-col gap-4 w-full h-full">
-      <form
-        onSubmit={(e) => (registerControl ? handleRegister(e) : undefined)}
-        className="flex flex-col w-full h-full lg:gap-6 gap-3 justify-between"
-      >
-        <div className="flex flex-col lg:gap-8 gap-4 w-full lg:h-full h-max overflow-y-auto pr-3">
-          <div className="grid grid-cols-1 gap-4">
+    <>
+      {!isLoading ? (
+        <form
+          onSubmit={(e) => (profileControl ? handleSaveProfile(e) : undefined)}
+          className="flex flex-col lg:gap-8 gap-4 w-full"
+        >
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-8 gap-4">
             <label htmlFor="firstname" className="flex flex-col gap-4 w-full">
               <span className="text-gray-600 dark:text-gray-200 tracking-wide">
                 Adınız
@@ -200,7 +179,9 @@ function Register({
                 ) : (
                   <IoClose className="text-xl text-red-500 animate-modalContentSmooth" />
                 )}
-                <span className="-mb-0.5">Şifreniz, en az 8 karakter olmalıdır.</span>
+                <span className="-mb-0.5">
+                  Şifreniz, en az 8 karakter olmalıdır.
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 {regexNumber.test(password) ? (
@@ -228,95 +209,21 @@ function Register({
               </div>
             </div>
           )}
-          <hr className="dark:border-zinc-800 border-gray-200" />
 
-          <div className="flex items-center gap-3 cursor-pointer group">
-            <CustomButton
-              title=""
-              leftIcon={<IoCheckmark className="text-base" />}
-              textStyles="hidden"
-              btnType="button"
-              containerStyles={`flex items-center justify-center gap-2 size-5 min-w-5 border rounded-md transition-all duration-300 ${
-                accept
-                  ? "border-transparent bg-site text-white"
-                  : "dark:border-zinc-800 border-gray-300 lg:group-hover:border-site/50 text-transparent lg:group-hover:text-site"
-              }`}
-              id="accept"
-              handleClick={() => setAccept(!accept)}
-            />
-            <label
-              htmlFor="accept"
-              className={`transition-all duration-300 -mb-0.5 cursor-pointer text-gray-600 dark:text-gray-200 tracking-wide select-none ${
-                accept ? "text-site" : "lg:group-hover:text-site"
-              }`}
-            >
-              <p className="text-sm dark:text-gray-400 text-gray-600">
-                <Link
-                  className="font-medium text-gray-800 dark:text-gray-200 dark:hover:text-site hover:text-site transition-all"
-                  href="/"
-                >
-                  Kullanıcı Sözleşmesi
-                </Link>{" "}
-                <span className="font-normal">ve</span>{" "}
-                <Link
-                  className="font-medium text-gray-800 dark:text-gray-200 dark:hover:text-site hover:text-site transition-all"
-                  href="/"
-                >
-                  Çerez Aydınlatma Metni'ni
-                </Link>{" "}
-                <span className="font-normal">Okudum, Kabul Ediyorum.</span>
-              </p>
-            </label>
-          </div>
-        </div>
-
-        <div className="flex w-full items-center justify-center gap-4">
-          <div className="h-[1px] flex-1 bg-[#d2d6d8] dark:bg-zinc-800"></div>
-          <p className="font-normal lg:text-base text-sm dark:text-gray-400">
-            Ya da
-          </p>
-          <div className="h-[1px] flex-1 bg-[#d2d6d8] dark:bg-zinc-800"></div>
-        </div>
-        <div className="flex gap-4 text-base text-gray-600 dark:text-gray-400">
-          <div className="flex lg:gap-3 gap-4 items-center justify-center border border-gray-200 dark:border-zinc-800 rounded-md px-2 py-3 w-full cursor-pointer hover:bg-site/10 hover:border-site/10 hover:text-site transition-all duration-300">
-            <IoLogoGoogle className="text-4xl" />
-            <div className="flex flex-col items-start justify-center capitalize">
-              <span className="font-medium text-sm">Google</span>
-              <span className="font-light text-xs">İle kayıt ol</span>
-            </div>
-          </div>
-          <div className="flex lg:gap-3 gap-4 items-center justify-center border border-gray-200 dark:border-zinc-800 rounded-md px-2 py-3 w-full cursor-pointer hover:bg-site/10 hover:border-site/10 hover:text-site transition-all duration-300">
-            <IoLogoFacebook className="text-4xl" />
-            <div className="flex flex-col items-start justify-center capitalize">
-              <span className="font-medium text-sm">Facebook</span>
-              <span className="font-light text-xs">İle kayıt ol</span>
-            </div>
-          </div>
-        </div>
-        <hr className="dark:border-zinc-800" />
-        <div className="flex lg:flex-row flex-col items-center gap-2 w-full">
           <CustomButton
-            title={"Giriş Yap"}
-            btnType="button"
-            containerStyles={`py-3 px-4 w-full rounded-md transition-all duration-300 bg-gray-200 dark:bg-zinc-800 hover:bg-gray-500 dark:hover:bg-gray-200 text-gray-600 dark:text-gray-200 hover:text-white dark:hover:text-gray-700 lg:order-1 order-2`}
-            handleClick={() => setAuth("login")}
-          />
-          <CustomButton
-            title={!authLoading ? "Kayıt Ol" : "Kayıt Olunuyor.."}
+            title={"Değişiklikleri Kaydet"}
             btnType="submit"
-            containerStyles={`py-3 px-4 w-full rounded-md transition-all duration-300 lg:order-2 order-1 ${
-              registerControl ? "opacity-100" : "opacity-50 cursor-not-allowed"
-            } ${
-              !authLoading
-                ? "bg-site/80 hover:bg-site text-white"
-                : "bg-site text-white hover:bg-site"
+            containerStyles={`py-3 px-4 lg:w-fit w-full rounded-md transition-all duration-300 lg:order-2 order-1 bg-site/80 hover:bg-site text-white ml-auto ${
+              profileControl ? "opacity-100" : "opacity-50 cursor-not-allowed"
             }`}
-            isDisabled={!registerControl}
+            isDisabled={!profileControl}
           />
-        </div>
-      </form>
-    </div>
+        </form>
+      ) : (
+        <div>Yükleniyor...</div>
+      )}
+    </>
   );
 }
 
-export default Register;
+export default Profile;

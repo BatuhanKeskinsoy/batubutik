@@ -1,6 +1,5 @@
-export function getShortName(name: string): string {
-  const parts = name.split(" ");
-  const firstInitial = parts[0].charAt(0).toUpperCase();
-  const lastInitial = parts.slice(-1)[0].charAt(0).toUpperCase();
+export function getShortName(firstName: string, lastName: string): string {
+  const firstInitial = firstName?.charAt(0).toUpperCase() || "";
+  const lastInitial = lastName?.charAt(0).toUpperCase() || "";
   return `${firstInitial}.${lastInitial}`;
 }

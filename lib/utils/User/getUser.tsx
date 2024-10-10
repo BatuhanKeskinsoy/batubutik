@@ -1,12 +1,12 @@
 import { axios } from "@/lib/axios";
 import { baseURL } from "@/constants/(front)";
 
-export async function getUsers() {
+export async function getUser() {
   try {
-    const response = await axios.get(`${baseURL}/user/index`);
+    const response = await axios.get(`${baseURL}/user/profile`);
     return response.data;
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    throw error;
+  } catch (error: any) {
+    console.error("Error fetching user:", error);
+    return error;
   }
 }

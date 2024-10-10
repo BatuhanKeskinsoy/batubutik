@@ -2,8 +2,10 @@
 import { getShortName } from "@/lib/functions/getShortName";
 import CustomButton from "@/components/others/CustomButton";
 import { userAuthTypes } from "@/types/user/userAuthTypes";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { IoChevronForwardOutline, IoLogOutOutline } from "react-icons/io5";
+import { navLinksAuthAdmin, navLinksAuthUser } from "@/constants/(front)";
+import Link from "next/link";
 
 interface IProfileProps {
   user: userAuthTypes | null;
@@ -18,7 +20,7 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
     document.cookie =
       "swr-auth-token=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";
 
-    // Burada bilgileri localstorageden siliyorum ama useUser SWR'si yapıldıktan sonra localstoragede olmayacak ve context'den user kaldırılacak.
+    // Burada bilgileri localstorageden siliyorum ama useUsers SWR'si yapıldıktan sonra localstoragede olmayacak ve context'den user kaldırılacak.
     localStorage.removeItem("user");
     sessionStorage.removeItem("user");
   };
@@ -27,16 +29,18 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
     <div className="flex flex-col gap-4 w-full h-full">
       {user && (
         <div className="flex flex-col w-full h-full gap-6">
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center select-none">
             <div
-              className={`flex items-center justify-center size-16 min-w-16 rounded-full bg-site/10 text-site select-none font-gemunu text-2xl max-lg:text-3xl uppercase shadow-lg`}
+              className={`flex items-center justify-center size-20 min-w-20 rounded-full bg-site/10 text-site select-none font-gemunu text-4xl max-lg:text-3xl uppercase shadow-lg`}
             >
-              {getShortName(user.fullName)}
+              {getShortName(user.firstName, user.lastName)}
             </div>
-            <div className="flex flex-col gap-1.5">
-              <span className="text-site font-medium tracking-wider font-gemunu text-xl">
-                {user.fullName}
-              </span>
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-col leading-4">
+                <span className="text-site font-semibold tracking-wider font-gemunu text-xl">
+                  {user.firstName} {user.lastName}
+                </span>
+              </div>
               <small className="text-gray-600 dark:text-gray-400 tracking-wide">
                 {user.email}
               </small>
@@ -44,35 +48,23 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
           </div>
           <hr className="dark:border-zinc-800" />
           <div className="flex flex-col w-full gap-2">
-            <CustomButton
-              title="Profilim"
-              containerStyles="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-leftflex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
-              rightIcon={
+            {(user.role === "user"
+              ? navLinksAuthUser
+              : navLinksAuthAdmin
+            ).map((link, key) => (
+              <Link
+                key={key}
+                title={link.title}
+                href={link.url}
+                className="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
+                onClick={() => {
+                  setSidebarStatus("");
+                }}
+              >
+                {link.title}
                 <IoChevronForwardOutline className="text-xl opacity-70" />
-              }
-            />
-            <CustomButton
-              title="Siparişlerim"
-              containerStyles="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
-              rightIcon={
-                <IoChevronForwardOutline className="text-xl opacity-70" />
-              }
-            />
-            <CustomButton
-              title="Favorilerim"
-              containerStyles="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
-              rightIcon={
-                <IoChevronForwardOutline className="text-xl opacity-70" />
-              }
-              handleClick={() => setSidebarStatus("Favorite")}
-            />
-            <CustomButton
-              title="Kargo Takibi"
-              containerStyles="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
-              rightIcon={
-                <IoChevronForwardOutline className="text-xl opacity-70" />
-              }
-            />
+              </Link>
+            ))}
             <hr className="my-2 dark:border-zinc-800" />
             <CustomButton
               title={"Çıkış Yap"}

@@ -15,3 +15,41 @@ export const navLinks = [
     url: "/iletisim",
   },
 ];
+
+export const navLinksAuthUser = [
+  {
+    title: "Profilim",
+    url: "/profilim",
+  },
+  {
+    title: "Siparişlerim",
+    url: "/profilim/siparislerim",
+  },
+  {
+    title: "Favorilerim",
+    url: "/profilim/favorilerim",
+  },
+  {
+    title: "Kargo Takibi",
+    url: "/profilim/kargo-takibi",
+  },
+];
+
+export const navLinksAuthAdmin = [
+  {
+    title: "Yönetici Paneli",
+    url: "/panel",
+  },
+  {
+    title: "Ürünler",
+    url: "/panel",
+  },
+  {
+    title: "Kategoriler",
+    url: "/panel",
+  },
+  {
+    title: "Site Ayarları",
+    url: "/panel",
+  },
+];

@@ -1,4 +1,3 @@
-"use client";
 import { useGlobalContext } from "@/app/Context/store";
 import { getShortName } from "@/lib/functions/getShortName";
 import CustomButton from "@/components/others/CustomButton";
@@ -7,6 +6,7 @@ import { IoPersonOutline } from "react-icons/io5";
 
 function Auth() {
   const { setSidebarStatus, user } = useGlobalContext();
+
   return (
     <div
       className="relative flex items-center rounded-full lg:hover:scale-110 transition-all duration-300 h-full cursor-pointer"
@@ -19,7 +19,7 @@ function Auth() {
         />
       ) : (
         <CustomButton
-          title={getShortName(user.fullName)}
+          title={getShortName(user.firstName, user.lastName)}
           containerStyles={`py-1.5 px-2.5 transition-all duration-300 rounded-full bg-site/10 text-site shadow-lg select-none font-gemunu text-lg max-lg:text-xl uppercase hover:bg-site hover:text-white`}
         />
       )}

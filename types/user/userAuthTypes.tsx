@@ -1,6 +1,7 @@
 export type userAuthTypes = {
   uid: number;
-  fullName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password?: string;
   role: string;
