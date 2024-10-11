@@ -28,6 +28,7 @@ const config: Config = {
         sidebarRightSmooth: "sidebarRightSmooth .3s ease-in-out",
         sidebarBgSmooth: "sidebarBgSmooth .3s ease-in-out",
         modalContentSmooth: "modalContentSmooth .3s ease-in-out",
+        shine: 'shine 1.5s infinite'
       },
       keyframes: {
         scaleMobile: {
@@ -40,7 +41,7 @@ const config: Config = {
         },
         sidebarLeftSmooth: {
           "0%": { transform: "translate(-100%)" },
-          "100%%": { transform: "translate(0%)" },
+          "100%": { transform: "translate(0%)" },
         },
         sidebarRightSmooth: {
           "0%": { transform: "translate(100%)" },
@@ -53,6 +54,10 @@ const config: Config = {
         modalContentSmooth: {
           "0%": { transform: "scale(0)", opacity: "0" },
           "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        shine: {
+          "0%": { transform: "translate(-100%)" },
+          "100%": { transform: "translate(100%)" },
         },
       },
       backgroundColor: {

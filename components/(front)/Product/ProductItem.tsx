@@ -323,7 +323,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                         ? "Sepete Ekle"
                         : "Ekleniyor.."
                     }
-                    containerStyles={`flex items-center justify-center gap-2 lg:text-base text-sm font-medium tracking-wide lg:px-6 px-3 lg:py-4 py-2 rounded-lg ${
+                    containerStyles={`flex items-center justify-center gap-2 lg:text-base text-sm font-medium tracking-wide lg:px-6 px-3 lg:py-3 py-2 rounded-lg ${
                       product.choise_required || !loadingAddToBasket
                         ? "bg-white/70 dark:bg-zinc-900/70 hover:bg-site/70 dark:hover:bg-site/70 hover:text-white"
                         : "bg-green-500 text-white !transition-none"
