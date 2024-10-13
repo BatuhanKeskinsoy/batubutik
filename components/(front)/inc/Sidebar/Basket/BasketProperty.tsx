@@ -10,8 +10,6 @@ import { useGlobalContext } from "@/app/Context/store";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { generalsTypes } from "@/types/generalTypes";
-import { getDiscounts } from "@/lib/utils/General/getDiscounts";
-import { discountTypes } from "@/types/discountTypes";
 import { useDiscountCodes } from "@/hooks/useDiscountCodes";
 
 interface IBasketPropertyProps {

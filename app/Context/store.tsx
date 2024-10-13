@@ -47,6 +47,7 @@ export const GlobalContextProvider = ({ children }: any) => {
       return localStorageBasket ? JSON.parse(localStorageBasket) : null;
     }
   );
+  
   const [favoriteItems, setFavoriteItems] = useState<string[] | null>(() => {
     const localStorageFavorite =
       typeof window !== "undefined" && localStorage.getItem("favoriteItems");

@@ -1,6 +1,5 @@
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import React from "react";
-import { toast } from "react-toastify";
 
 function addToBasket(
   product: basketItemTypes,

@@ -185,6 +185,7 @@ const products = [
         },
       ],
     },
+    choise_required: true,
     attributes: [
       {
         required: true,
@@ -224,7 +225,6 @@ const products = [
         ],
       },
     ],
-    choise_required: true,
     status: true,
     featured_status: false,
     total_sold: 0,
@@ -415,9 +415,10 @@ const products = [
         },
       ],
     },
-    choise_required: false,
+    choise_required: true,
     attributes: [
       {
+        required: true,
         attr_title: "Beden",
         attr_options: [
           { option_name: "XS", option_stock: 50 },
@@ -426,6 +427,7 @@ const products = [
         ],
       },
       {
+        required: true,
         attr_title: "Boy",
         attr_options: [
           { option_name: "150", option_stock: 50 },
@@ -639,6 +641,7 @@ const products = [
     choise_required: true,
     attributes: [
       {
+        required: true,
         attr_title: "Beden",
         attr_options: [
           { option_name: "XS", option_stock: 50 },
@@ -647,6 +650,7 @@ const products = [
         ],
       },
       {
+        required: true,
         attr_title: "Boy",
         attr_options: [
           { option_name: "150", option_stock: 50 },
@@ -857,6 +861,7 @@ const products = [
     choise_required: true,
     attributes: [
       {
+        required: true,
         attr_title: "Beden",
         attr_options: [
           { option_name: "XS", option_stock: 50 },
@@ -864,6 +869,7 @@ const products = [
         ],
       },
       {
+        required: false,
         attr_title: "Boy",
         attr_options: [
           { option_name: "150", option_stock: 50 },
@@ -958,10 +964,12 @@ const products = [
     choise_required: true,
     attributes: [
       {
+        required: true,
         attr_title: "Beden",
         attr_options: [{ option_name: "5XL", option_stock: 50 }],
       },
       {
+        required: true,
         attr_title: "Boy",
         attr_options: [
           { option_name: "150", option_stock: 50 },
@@ -1044,10 +1052,12 @@ const products = [
     choise_required: true,
     attributes: [
       {
+        required: true,
         attr_title: "Beden",
         attr_options: [{ option_name: "5XL", option_stock: 50 }],
       },
       {
+        required: true,
         attr_title: "Boy",
         attr_options: [
           { option_name: "150", option_stock: 50 },

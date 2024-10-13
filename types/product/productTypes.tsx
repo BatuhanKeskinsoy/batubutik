@@ -6,6 +6,7 @@ export type productAttributeOptionsTypes = {
 };
 
 export type productAttributesTypes = {
+  required: boolean; 
   attr_title: string;
   attr_options: productAttributeOptionsTypes[];
 };

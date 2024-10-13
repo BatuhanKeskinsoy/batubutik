@@ -8,6 +8,7 @@ import { basketItemTypes } from "@/types/product/basketItemTypes";
 import BasketProperty from "@/components/(front)/inc/Sidebar/Basket/BasketProperty";
 import { productTypes } from "@/types/product/productTypes";
 import { generalsTypes } from "@/types/generalTypes";
+import { getProducts } from "@/lib/utils/Product/getProducts";
 import { useProducts } from "@/hooks/useProduct";
 
 interface IBasketProps {
@@ -26,7 +27,7 @@ function Basket({ isDetail, generals }: IBasketProps) {
   >(null);
   const freeShipping: number | null = generals ? generals.free_shipping : 0;
 
-  const { products } = useProducts();
+  const { products, isLoading } = useProducts();
 
   const mergeSameProducts = (products: basketProductTypes[]) => {
     const mergedProducts: Record<string, basketProductTypes> = {};
@@ -46,34 +47,25 @@ function Basket({ isDetail, generals }: IBasketProps) {
   };
 
   useEffect(() => {
-    if (basketItems && basketItems.length > 0) {
-      try {
-        const productsInBasket = basketItems
-          .map((item) => {
-            const product =
-              products &&
-              products.find((p: productTypes) => p.code === item.product_code);
-            if (product) {
-              return {
-                ...product,
-                quantity: item.quantity,
-                attributes: item.attributes,
-              };
-            }
-            return null;
-          })
-          .filter(Boolean) as unknown as basketProductTypes[];
+    if (!isLoading && products && basketItems?.length) {
+      const productsInBasket = basketItems
+        .map((item) => {
+          const product = products.find((p) => p.code === item.product_code);
+          if (product) {
+            return {
+              ...product,
+              quantity: item.quantity,
+              attributes: item.attributes,
+            };
+          }
+          return null;
+        })
+        .filter(Boolean) as basketProductTypes[];
 
-        const mergedProducts = mergeSameProducts(productsInBasket);
-
-        setBasketProducts(mergedProducts);
-      } catch (error) {
-        console.error("Failed to fetch products", error);
-      }
-    } else {
-      setBasketProducts(null);
+      const mergedProducts = mergeSameProducts(productsInBasket);
+      setBasketProducts(mergedProducts);
     }
-  }, [basketItems]);
+  }, [products, basketItems, isLoading]);
 
   const calculateSubTotal = useCallback(() => {
     if (!basketProducts || basketProducts.length === 0) {
@@ -200,9 +192,21 @@ function Basket({ isDetail, generals }: IBasketProps) {
     }
   }, [basketProducts, setBasketItems]);
 
+  if (isLoading)
+    return (
+      <div className="flex flex-col gap-4 w-full h-[calc(100dvh-77px)] justify-center items-center text-gray-500 dark:text-zinc-600">
+        <div className="flex flex-col gap-8 justify-center items-center animate-pulse">
+          <div className="animate-spin rounded-full m-0.5 lg:size-24 size-16 border-t-4 border-b-4 border-gray-500 dark:border-zinc-600"></div>
+          <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
+            Ürünler Yükleniyor.
+          </span>
+        </div>
+      </div>
+    );
+
   if (!basketProducts)
     return (
-      <div className="flex flex-col gap-4 w-full h-[calc(100dvh-77px)] justify-center items-center text-gray-300 dark:text-zinc-600">
+      <div className="flex flex-col gap-4 w-full h-[calc(100dvh-77px)] justify-center items-center text-gray-500 dark:text-zinc-600">
         <div className="flex flex-col gap-4 justify-center items-center animate-pulse">
           <IoFileTrayOutline className="lg:text-7xl text-6xl" />
           <span className="font-gemunu tracking-wide lg:text-2xl text-xl">

@@ -49,7 +49,7 @@ export async function GET() {
               choise_required: false,
               attributes: [
                 {
-                  required: true,
+                  required: false,
                   attr_title: "Beden",
                   attr_options: [
                     { option_name: "XS", option_stock: 50 },
@@ -64,7 +64,7 @@ export async function GET() {
                   ],
                 },
                 {
-                  required: true,
+                  required: false,
                   attr_title: "Boy",
                   attr_options: [
                     { option_name: "150", option_stock: 50 },
@@ -147,6 +147,7 @@ export async function GET() {
             choise_required: false,
             attributes: [
               {
+                required: false,
                 attr_title: "Beden",
                 attr_options: [
                   { option_name: "XS", option_stock: 50 },
@@ -155,6 +156,7 @@ export async function GET() {
                 ],
               },
               {
+                required: false,
                 attr_title: "Boy",
                 attr_options: [
                   { option_name: "150", option_stock: 50 },
@@ -223,6 +225,7 @@ export async function GET() {
             choise_required: false,
             attributes: [
               {
+                required: false,
                 attr_title: "Beden",
                 attr_options: [
                   { option_name: "XS", option_stock: 50 },
@@ -231,6 +234,7 @@ export async function GET() {
                 ],
               },
               {
+                required: false,
                 attr_title: "Boy",
                 attr_options: [
                   { option_name: "150", option_stock: 50 },
@@ -299,6 +303,7 @@ export async function GET() {
             choise_required: false,
             attributes: [
               {
+                required: false,
                 attr_title: "Beden",
                 attr_options: [
                   { option_name: "XS", option_stock: 50 },
@@ -307,6 +312,7 @@ export async function GET() {
                 ],
               },
               {
+                required: false,
                 attr_title: "Boy",
                 attr_options: [
                   { option_name: "150", option_stock: 50 },
@@ -375,6 +381,7 @@ export async function GET() {
             choise_required: false,
             attributes: [
               {
+                required: false,
                 attr_title: "Beden",
                 attr_options: [
                   { option_name: "XS", option_stock: 50 },
@@ -383,6 +390,7 @@ export async function GET() {
                 ],
               },
               {
+                required: false,
                 attr_title: "Boy",
                 attr_options: [
                   { option_name: "150", option_stock: 50 },
@@ -460,6 +468,7 @@ export async function GET() {
             choise_required: true,
             attributes: [
               {
+                required: true,
                 attr_title: "Beden",
                 attr_options: [
                   { option_name: "XS", option_stock: 50 },
@@ -468,6 +477,7 @@ export async function GET() {
                 ],
               },
               {
+                required: false,
                 attr_title: "Boy",
                 attr_options: [
                   { option_name: "150", option_stock: 50 },
@@ -548,6 +558,7 @@ export async function GET() {
             choise_required: true,
             attributes: [
               {
+                required: true,
                 attr_title: "Beden",
                 attr_options: [
                   { option_name: "XS", option_stock: 50 },
@@ -555,6 +566,7 @@ export async function GET() {
                 ],
               },
               {
+                required: true,
                 attr_title: "Boy",
                 attr_options: [
                   { option_name: "150", option_stock: 50 },

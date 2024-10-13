@@ -117,6 +117,7 @@ function OrderItem({ order }: IProfileOrderItemProps) {
         </div>
         <hr className="border-gray-200 dark:border-zinc-700" />
         Ödenen Tutar: {getPrice(order.price)}
+        {" "}Ürünü değerlendir, Tekrar satın al, Kargo takibi, Faturayı Görüntüle, Ürün iadesi
       </div>
     </div>
   );
