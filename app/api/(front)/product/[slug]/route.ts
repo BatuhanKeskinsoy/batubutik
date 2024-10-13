@@ -185,10 +185,10 @@ const products = [
         },
       ],
     },
-    choise_required: true,
+    choise_required: false,
     attributes: [
       {
-        required: true,
+        required: false,
         attr_title: "Beden",
         attr_options: [
           { option_name: "XS", option_stock: 50 },
@@ -203,7 +203,7 @@ const products = [
         ],
       },
       {
-        required: true,
+        required: false,
         attr_title: "Boy",
         attr_options: [
           { option_name: "150", option_stock: 50 },
