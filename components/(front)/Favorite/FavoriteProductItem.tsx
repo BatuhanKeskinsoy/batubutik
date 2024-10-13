@@ -28,7 +28,7 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
   const [loadingAddToBasket, setLoadingAddToBasket] = useState(false);
   const [showProductArea, setShowProductArea] = useState(false);
   const [productDetail, setProductDetail] = useState<productDetailTypes>();
-  const { setFavoriteItems, setBasketItems } = useGlobalContext();
+  const { setFavoriteItems, setBasketItems, setSidebarStatus } = useGlobalContext();
 
   const removeFavorite = () => {
     if (!loadingRemoveFavorite) {
@@ -93,12 +93,17 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
       <div className="flex gap-4 items-center lg:h-[156px] h-40">
         {product.images && (
           <Link
-            href={"/"}
+            href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
             title={`${product.brand || ""} ${product.title}`}
             className="relative lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40 rounded-2xl shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 hover:scale-95"
+            onClick={() => setSidebarStatus("")}
           >
             <Image
-              src={isMobile ? product.images[0].thumbnail : product.images[0].original}
+              src={
+                isMobile
+                  ? product.images[0].thumbnail
+                  : product.images[0].original
+              }
               fill
               sizes="(max-width: 768px) 100%, 25%"
               alt={`${product.brand || ""} ${product.title}`}
@@ -111,9 +116,10 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
           <div className="flex flex-col gap-2 w-full h-full justify-around">
             <div className="flex flex-col w-full gap-1">
               <Link
-                href={"/magaza"}
+                href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
                 title={`${product.brand || ""} ${product.title}`}
                 className="font-medium line-clamp-1 transition-all duration-300 hover:text-site text-base w-fit"
+                onClick={() => setSidebarStatus("")}
               >
                 <span className="font-bold tracking-wide text-site">
                   {product.brand || ""}

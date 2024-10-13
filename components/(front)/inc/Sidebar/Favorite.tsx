@@ -6,8 +6,13 @@ import { IoFileTrayOutline } from "react-icons/io5";
 import FavoriteProducts from "@/components/(front)/Favorite/FavoriteProducts";
 import { productTypes } from "@/types/product/productTypes";
 import { useProducts } from "@/hooks/useProduct";
+import ProfileFavoriteProducts from "@/components/(front)/UserProfile/Favorite/ProfileFavoriteProducts";
 
-function Favorite() {
+interface IFavoriteProps {
+  profile?: boolean;
+}
+
+function Favorite({ profile }: IFavoriteProps) {
   const { favoriteItems, setFavoriteItems } = useGlobalContext();
   const [loadingEmptyFavorite, setLoadingEmptyFavorite] = useState(false);
   const [favoriteProducts, setFavoriteProducts] = useState<
@@ -55,9 +60,19 @@ function Favorite() {
 
   if (!favoriteProducts)
     return (
-      <div className="flex flex-col gap-4 w-full h-[calc(100dvh-77px)] justify-center items-center text-gray-300">
-        <div className="flex flex-col gap-4 justify-center items-center animate-pulse">
-          <IoFileTrayOutline className="lg:text-7xl text-6xl" />
+      <div
+        className={`flex flex-col gap-4 w-full ${
+          !profile ? "h-[calc(100dvh-77px)]" : "py-8"
+        }  justify-center items-center text-gray-300 dark:text-zinc-600`}
+      >
+        <div
+          className={`flex  gap-4 justify-center items-center animate-pulse ${
+            !profile ? "flex-col" : ""
+          }`}
+        >
+          <IoFileTrayOutline
+            className={`text-6xl ${!profile ? "lg:text-7xl" : ""}`}
+          />
           <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
             Favori Ürününüz Yok
           </span>
@@ -65,11 +80,30 @@ function Favorite() {
       </div>
     );
   return (
-    <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
-      <div className="flex flex-col w-full overflow-y-auto h-full lg:px-8 px-4 py-4">
-        <FavoriteProducts products={favoriteProducts} isLoading={isLoading} />
+    <div
+      className={`flex flex-col w-full ${
+        !profile ? "h-[calc(100dvh-77px)]" : ""
+      } justify-between`}
+    >
+      <div
+        className={`w-full h-full flex flex-col ${
+          !profile ? "lg:px-8 px-4 py-4 overflow-y-auto" : ""
+        } `}
+      >
+        {!profile ? (
+          <FavoriteProducts products={favoriteProducts} isLoading={isLoading} />
+        ) : (
+          <ProfileFavoriteProducts
+            products={favoriteProducts}
+            isLoading={isLoading}
+          />
+        )}
       </div>
-      <div className="flex flex-col w-full lg:px-8 px-4 py-4 items-center text-center gap-4">
+      <div
+        className={`flex flex-col w-full ${
+          !profile ? "lg:px-8 px-4 gap-4 py-4" : "gap-6 py-6"
+        } items-center text-center`}
+      >
         <hr className="w-full dark:border-zinc-800" />
         <div className="flex lg:flex-row flex-col items-center gap-2 w-full">
           <CustomButton
@@ -78,7 +112,9 @@ function Favorite() {
                 ? "Favorileri Temizle"
                 : "Favoriler Temizleniyor.."
             }
-            containerStyles="py-3 px-4 w-full bg-gray-200 dark:bg-zinc-800 text-gray-600 dark:text-gray-400 rounded-md hover:bg-gray-700 dark:hover:bg-gray-200 hover:text-white dark:hover:text-gray-700 transition-all duration-300"
+            containerStyles={`py-3 px-4 ${
+              !profile ? "w-full" : "max-lg:w-full ml-auto"
+            } bg-gray-200 dark:bg-zinc-800 text-gray-600 dark:text-gray-400 rounded-md hover:bg-gray-700 dark:hover:bg-gray-200 hover:text-white dark:hover:text-gray-700 transition-all duration-300`}
             handleClick={handleEmptyFavorite}
           />
         </div>

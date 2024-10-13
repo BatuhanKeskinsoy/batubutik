@@ -3,18 +3,21 @@ import FavoriteProductItem from "@/components/(front)/Favorite/FavoriteProductIt
 import { productTypes } from "@/types/product/productTypes";
 import LoadingData from "@/components/others/LoadingData";
 
-interface IFavoriteProductsProps {
+interface IProfileFavoriteProductsProps {
   products: productTypes[] | null;
   isLoading: boolean;
 }
-function FavoriteProducts({ products, isLoading }: IFavoriteProductsProps) {
+function ProfileFavoriteProducts({
+  products,
+  isLoading,
+}: IProfileFavoriteProductsProps) {
   if (products === null) return null;
   return (
-    <div className="flex flex-col w-full h-full gap-6">
+    <div className={`w-full h-full gap-4 grid 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2`}>
       {products.map((product, key) => (
         <div
           key={key}
-          className="border-b pb-6 last:border-0 dark:border-zinc-800"
+          className="max-lg:border-b max-lg:pb-6 max-lg:last:border-0 max-lg:dark:border-zinc-800 border-2 dark:border-zinc-800 p-3 rounded-2xl"
         >
           {isLoading ? (
             <LoadingData count={5} />
@@ -27,4 +30,4 @@ function FavoriteProducts({ products, isLoading }: IFavoriteProductsProps) {
   );
 }
 
-export default FavoriteProducts;
+export default ProfileFavoriteProducts;

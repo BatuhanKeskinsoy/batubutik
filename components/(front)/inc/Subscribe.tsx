@@ -22,7 +22,7 @@ function Subscribe() {
         fill
         className="object-cover -z-20 blur-[1px]"
       />
-      <div className="absolute w-full left-0 top-0 h-full bg-black-900/70 -z-10"></div>
+      <div className="absolute w-full left-0 top-0 h-full dark:bg-black-900/90 bg-black-900/70 -z-10"></div>
       <div className="container mx-auto px-4 flex max-lg:flex-col gap-8 justify-between items-center">
         <div className="flex flex-col gap-4 max-lg:items-center max-lg:*:text-center">
           <span className="font-gemunu tracking-wider text-4xl text-white font-medium">

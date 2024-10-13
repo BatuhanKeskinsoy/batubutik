@@ -1,9 +1,8 @@
-import React from 'react'
+import Favorite from "@/components/(front)/inc/Sidebar/Favorite";
+import React from "react";
 
 function page() {
-  return (
-    <div>Favorileriniz burada da görünecek!</div>
-  )
+  return <Favorite profile />;
 }
 
-export default page
+export default page;

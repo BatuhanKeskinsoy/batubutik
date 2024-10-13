@@ -202,7 +202,7 @@ function Basket({ isDetail, generals }: IBasketProps) {
 
   if (!basketProducts)
     return (
-      <div className="flex flex-col gap-4 w-full h-[calc(100dvh-77px)] justify-center items-center text-gray-300">
+      <div className="flex flex-col gap-4 w-full h-[calc(100dvh-77px)] justify-center items-center text-gray-300 dark:text-zinc-600">
         <div className="flex flex-col gap-4 justify-center items-center animate-pulse">
           <IoFileTrayOutline className="lg:text-7xl text-6xl" />
           <span className="font-gemunu tracking-wide lg:text-2xl text-xl">

@@ -27,7 +27,7 @@ function BasketProductItem({
   onUpdateQuantity,
   onRemoveItem,
 }: IBasketProductItemProps) {
-  const { isMobile } = useGlobalContext();
+  const { isMobile, setSidebarStatus } = useGlobalContext();
   const [loadingQuantity, setLoadingQuantity] = useState(false);
   const [productQuantity, setProductQuantity] = useState(product.quantity);
 
@@ -77,6 +77,7 @@ function BasketProductItem({
               ? "lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40"
               : "lg:min-w-[150px] lg:w-[150px] lg:h-[234px] min-w-28 w-28 h-44"
           }`}
+          onClick={() => setSidebarStatus("")}
         >
           <Image
             src={
@@ -117,6 +118,7 @@ function BasketProductItem({
               className={`font-medium line-clamp-1 transition-all duration-300 hover:text-site w-fit ${
                 !isDetail ? "text-base" : "lg:text-2xl text-xl"
               }`}
+              onClick={() => setSidebarStatus("")}
             >
               <span className="font-bold tracking-wide text-site">
                 {product.brand || ""}
