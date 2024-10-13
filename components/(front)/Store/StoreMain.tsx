@@ -8,7 +8,6 @@ import {
   productTypes,
 } from "@/types/product/productTypes";
 import CustomButton from "@/components/others/CustomButton";
-import { getProducts } from "@/lib/utils/Product/getProducts";
 import { mainCategoryTypes } from "@/types/categoryTypes";
 import { useProducts } from "@/hooks/useProduct";
 
