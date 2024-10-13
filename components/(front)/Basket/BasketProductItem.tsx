@@ -72,7 +72,7 @@ function BasketProductItem({
         <Link
           href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
           title={`${product.brand || ""} ${product.title}`}
-          className={`relative  rounded-2xl shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 hover:scale-95 ${
+          className={`relative rounded-2xl shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 hover:scale-95 ${
             !isDetail
               ? "lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40"
               : "lg:min-w-[150px] lg:w-[150px] lg:h-[234px] min-w-28 w-28 h-44"

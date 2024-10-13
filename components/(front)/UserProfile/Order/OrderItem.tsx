@@ -2,6 +2,7 @@ import { convertDate } from "@/lib/functions/convertDate";
 import { getPrice } from "@/lib/functions/getPrice";
 import { orderTypes } from "@/types/order/orderTypes";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface IProfileOrderItemProps {
@@ -19,7 +20,7 @@ function OrderItem({ order }: IProfileOrderItemProps) {
           <div className="flex items-center gap-1">
             <span className="hidden lg:block">Sipariş No :</span>
             <span className="block lg:hidden">S. No :</span>
-            <span className="font-system lg:text-base text-xs -mb-0.5">
+            <span className="font-system lg:text-base text-sm -mb-0.5">
               {order.order_no}
             </span>
           </div>
@@ -28,9 +29,14 @@ function OrderItem({ order }: IProfileOrderItemProps) {
       <div className="bg-gray-100 dark:bg-zinc-800 p-4 flex flex-col gap-4">
         <div className="w-full h-full gap-4 grid 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2">
           {order.products.map((item, key) => (
-            <div key={key} className="flex gap-4 items-center dark:bg-zinc-900 rounded-xl bg-white shadow-lg p-3 pr-2">
+            <div
+              key={key}
+              className="flex gap-4 items-center dark:bg-zinc-900 rounded-xl bg-white shadow-lg p-3 pr-2"
+            >
               {item.product.images && (
-                <div
+                <Link
+                  href={`/magaza/${item.product.mainCategory_slug}/${item.product.category_slug}/${item.product.slug}`}
+                  title={`${item.product.brand || ""} ${item.product.title}`}
                   className={`relative rounded-lg shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40`}
                 >
                   <Image
@@ -41,21 +47,25 @@ function OrderItem({ order }: IProfileOrderItemProps) {
                     title={`${item.product.brand || ""} ${item.product.title}`}
                     className="object-cover"
                   />
-                </div>
+                </Link>
               )}
               <div
                 className={`flex flex-col justify-around h-full items-start w-full gap-2`}
               >
                 <div className="flex flex-col gap-2 w-full h-full justify-around">
                   <div className={`flex flex-col w-full gap-1`}>
-                    <div
-                      className={`font-medium line-clamp-1 transition-all duration-300 w-fit text-base`}
+                    <Link
+                      href={`/magaza/${item.product.mainCategory_slug}/${item.product.category_slug}/${item.product.slug}`}
+                      title={`${item.product.brand || ""} ${
+                        item.product.title
+                      }`}
+                      className={`font-medium line-clamp-1 transition-all duration-300 hover:text-site w-fit text-base`}
                     >
                       <span className="font-bold tracking-wide text-site">
                         {item.product.brand || ""}
                       </span>{" "}
                       {item.product.title}
-                    </div>
+                    </Link>
                     <span className={`text-gray-500 text-xs`}>
                       {item.product.mainCategory}
                       {item.product.category && ` / ${item.product.category}`}
@@ -63,22 +73,24 @@ function OrderItem({ order }: IProfileOrderItemProps) {
                         ` / ${item.product.subCategory}`}
                     </span>
                   </div>
-                    <div
-                      className={`flex  flex-wrap gap-x-2 gap-y-1 line-clamp-2 max-w-full text-xs`}
-                    >
-                      {item.product.attributes &&
-                        item.attributes?.map((attr, key) => (
-                          <div
-                            key={key}
-                            className="flex after:content-[','] last:after:content-none max-w-full"
-                          >
-                            <div className="flex items-center gap-1 min-w-max">
-                              <span className="text-site">{attr?.attr_title} :</span>
-                              <span>{attr?.attr_options.option_name}</span>
-                            </div>
+                  <div
+                    className={`flex  flex-wrap gap-x-2 gap-y-1 line-clamp-2 max-w-full text-xs`}
+                  >
+                    {item.product.attributes &&
+                      item.attributes?.map((attr, key) => (
+                        <div
+                          key={key}
+                          className="flex after:content-[','] last:after:content-none max-w-full"
+                        >
+                          <div className="flex items-center gap-1 min-w-max">
+                            <span className="text-site">
+                              {attr?.attr_title} :
+                            </span>
+                            <span>{attr?.attr_options.option_name}</span>
                           </div>
-                        ))}
-                    </div>
+                        </div>
+                      ))}
+                  </div>
                   <div className={`flex items-center gap-2 text-sm`}>
                     <span
                       className={`font-medium ${
