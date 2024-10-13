@@ -4,9 +4,10 @@ import CustomButton from "@/components/others/CustomButton";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoAdd, IoBagRemoveOutline, IoRemove } from "react-icons/io5";
 import { useGlobalContext } from "@/app/Context/store";
+import { siteURL } from "@/constants/(front)";
 
 interface IBasketProductItemProps {
   isDetail?: boolean;
@@ -30,6 +31,11 @@ function BasketProductItem({
   const { isMobile, setSidebarStatus } = useGlobalContext();
   const [loadingQuantity, setLoadingQuantity] = useState(false);
   const [productQuantity, setProductQuantity] = useState(product.quantity);
+  const [productPrice, setProductPrice] = useState(product.price);
+
+  useEffect(() => {
+    setProductPrice(product.price * productQuantity);
+  }, [productQuantity]);
 
   const decreaseQuantity = () => {
     if (!loadingQuantity && productQuantity > 1) {
@@ -66,16 +72,23 @@ function BasketProductItem({
     }
   };
 
+  
+  const categorySlug = product.category_slug ? `/${product.category_slug}` : "";
+  const subCategorySlug = product.subCategory_slug
+    ? `/${product.subCategory_slug}`
+    : "";
+  const redirect = `${siteURL}/magaza/${product.mainCategory_slug}${categorySlug}${subCategorySlug}/${product.slug}`;
+
   return (
     <div className="flex gap-4 items-center">
       {product.images && (
         <Link
-          href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
+          href={redirect}
           title={`${product.brand || ""} ${product.title}`}
           className={`relative rounded-2xl shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 hover:scale-95 ${
             !isDetail
               ? "lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40"
-              : "lg:min-w-[150px] lg:w-[150px] lg:h-[234px] min-w-28 w-28 h-44"
+              : "lg:min-w-[140px] lg:w-[140px] lg:h-[210px] min-w-28 w-28 h-44"
           }`}
           onClick={() => setSidebarStatus("")}
         >
@@ -102,18 +115,18 @@ function BasketProductItem({
         </Link>
       )}
       <div
-        className={`flex flex-col justify-around h-full items-start  w-full ${
-          !isDetail ? "gap-2" : "lg:gap-8 gap-4"
+        className={`flex justify-around items-start w-full ${
+          !isDetail ? "gap-2 flex-col lg:h-[156px]" : "lg:gap-8 gap-4 lg:flex-row flex-col lg:h-[210px]"
         }`}
       >
-        <div className="flex flex-col gap-2 w-full h-full justify-around">
+        <div className={`flex flex-col gap-3 w-full h-full justify-start`}>
           <div
             className={`flex flex-col w-full ${
               !isDetail ? "gap-1" : "lg:gap-2 gap-1"
             }`}
           >
             <Link
-              href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
+              href={redirect}
               title={`${product.brand || ""} ${product.title}`}
               className={`font-medium line-clamp-1 transition-all duration-300 hover:text-site w-fit ${
                 !isDetail ? "text-base" : "lg:text-2xl text-xl"
@@ -152,7 +165,7 @@ function BasketProductItem({
             </div>
           </div>
           <div
-            className={`flex items-center  gap-2 ${
+            className={`flex items-center gap-2 ${
               !isDetail ? "text-sm" : "lg:text-lg text-base"
             }`}
           >
@@ -161,12 +174,12 @@ function BasketProductItem({
                 product.discount > 0 ? "text-green-500 text-base" : ""
               } ${!isDetail ? "" : "lg:!text-2xl !text-xl"}`}
             >
-              {getPrice(product.price)}
+              {getPrice(productPrice)}
             </span>
             {product.discount > 0 && (
               <span className="line-through text-gray-500">
                 {getPrice(
-                  (product.discount * product.price) / 100 + product.price
+                  (product.discount * productPrice) / 100 + productPrice
                 )}{" "}
               </span>
             )}

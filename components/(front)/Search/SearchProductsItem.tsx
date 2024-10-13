@@ -19,6 +19,7 @@ import { basketItemTypes } from "@/types/product/basketItemTypes";
 import toggleToFavorite from "@/lib/functions/toggleToFavorite";
 import ModalProductDetail from "@/components/modals/ModalProductDetail";
 import { getProductShow } from "@/lib/utils/Product/getProductShow";
+import { siteURL } from "@/constants/(front)";
 
 interface IFavoriteProductItemProps {
   product: productTypes;
@@ -99,6 +100,12 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
     );
   }, [favoriteItems]);
 
+  const categorySlug = product.category_slug ? `/${product.category_slug}` : "";
+  const subCategorySlug = product.subCategory_slug
+    ? `/${product.subCategory_slug}`
+    : "";
+  const redirect = `${siteURL}/magaza/${product?.mainCategory_slug}${categorySlug}${subCategorySlug}/${product.slug}`;
+
   return (
     <>
       {showProductArea && (
@@ -110,7 +117,7 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
       <div className="flex gap-4 items-center lg:h-[156px] h-40">
         {product.images && (
           <Link
-            href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
+            href={redirect}
             title={`${product.brand || ""} ${product.title}`}
             className="relative lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40 rounded-2xl shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 hover:scale-95"
             onClick={() => setSidebarStatus("")}
@@ -133,7 +140,7 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
           <div className="flex flex-col gap-2 w-full h-full justify-around">
             <div className="flex flex-col w-full gap-1">
               <Link
-                href={`/magaza/${product.mainCategory_slug}/${product.category_slug}/${product.slug}`}
+                href={redirect}
                 title={`${product.brand || ""} ${product.title}`}
                 className="font-medium line-clamp-1 transition-all duration-300 hover:text-site text-base w-fit"
                 onClick={() => setSidebarStatus("")}

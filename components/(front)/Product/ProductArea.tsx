@@ -69,6 +69,7 @@ function ProductArea({
   const [selectedAttributes, setSelectedAttributes] = useState<{
     [key: string]: string;
   }>({});
+  const [productPrice, setProductPrice] = useState(product?.price || 0);
 
   const handleChangeCurrentImage = (image: string) => {
     setCurrentProductImage(image);
@@ -76,6 +77,12 @@ function ProductArea({
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (product) {
+      setProductPrice(product.price * productQuantity);
+    }
+  }, [productQuantity, product]);
 
   const handleMouseMove = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -187,6 +194,13 @@ function ProductArea({
     }
   };
 
+  
+  const categorySlug = product?.category_slug ? `/${product.category_slug}` : "";
+  const subCategorySlug = product?.subCategory_slug
+    ? `/${product.subCategory_slug}`
+    : "";
+  const redirect = `${siteURL}/magaza/${product?.mainCategory_slug}${categorySlug}${subCategorySlug}/${product?.slug}`;
+
   return (
     <div
       className={`flex max-lg:flex-col h-full w-full  ${
@@ -294,7 +308,7 @@ function ProductArea({
                 </span>
               ) : (
                 <Link
-                  href={`/magaza/${product?.mainCategory_slug}/${product?.category_slug}/${product?.slug}`}
+                  href={redirect}
                   title={product?.title}
                   className="font-medium text-2xl transition-all duration-300 hover:text-site"
                 >
@@ -348,13 +362,13 @@ function ProductArea({
                   product && product.discount > 0 ? "text-green-500" : ""
                 }`}
               >
-                {getPrice(product ? product.price : 0)}
+                {getPrice(product ? productPrice : 0)}
               </span>
               {product && product.discount > 0 && (
                 <>
                   <span className="line-through font-light text-lg text-gray-400">
                     {getPrice(
-                      (product.discount * product.price) / 100 + product.price
+                      (product.discount * productPrice) / 100 + productPrice
                     )}{" "}
                   </span>
                   <span className="flex px-4 py-1 bg-green-500/10 text-green-500 rounded-full text-sm">

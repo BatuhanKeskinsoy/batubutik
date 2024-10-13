@@ -2,7 +2,7 @@ import useSWR from "swr";
 import { productTypes } from "@/types/product/productTypes";
 import { getProducts } from "@/lib/utils/Product/getProducts";
 
-const fetcher = () => getProducts();
+const fetcherProducts = () => getProducts();
 
 export function useProducts() {
   const {
@@ -11,7 +11,7 @@ export function useProducts() {
     mutate,
     isValidating,
     isLoading,
-  } = useSWR<productTypes[]>(`products`, fetcher);
+  } = useSWR<productTypes[]>(`products`, fetcherProducts);
 
   return {
     products,
