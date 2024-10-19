@@ -17,7 +17,7 @@ export type orderTypes = {
   id: number;
   order_no: string;
   products: orderProductTypes[];
-  discount: number | null;
+  discount: number;
   price: number;
   created_at: Date;
 };
