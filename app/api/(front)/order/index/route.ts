@@ -4,7 +4,7 @@ export async function GET() {
   const orders = [
     {
       id: 1,
-      order_no: "4123056789",
+      order_no: "412 305 678",
       products: [
         {
           product: {
@@ -427,7 +427,7 @@ export async function GET() {
     },
     {
       id: 2,
-      order_no: "1234567890",
+      order_no: "123 456 789",
       products: [
         {
           product: {
@@ -516,12 +516,13 @@ export async function GET() {
           ],
         },
       ],
+      discount: null,
       price: 3000,
       created_at: "2024-10-14T13:20:00.000000Z",
     },
     {
       id: 3,
-      order_no: "2345678901",
+      order_no: "234 567 890",
       products: [
         {
           product: {
@@ -598,6 +599,7 @@ export async function GET() {
           attributes: null,
         },
       ],
+      discount: null,
       price: 2000,
       created_at: "2024-10-13T16:40:00.000000Z",
     },

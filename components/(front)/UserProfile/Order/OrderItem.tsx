@@ -14,20 +14,20 @@ function OrderItem({ order }: IProfileOrderItemProps) {
   return (
     <div className="relative w-full pl-6 py-4 first:pt-0 last:pb-0">
       <div className="border-l-2 border-gray-200 dark:border-zinc-800 absolute h-full left-2 top-0 first:mt-4"></div>
-      <div className="relative mb-2">
-        <span className="absolute w-4 h-4 bg-gray-600 dark:bg-zinc-500 rounded-full left-[-23px] top-1/2 transform -translate-y-1/2"></span>
-        <div className="flex items-center justify-between pl-1 font-gemunu lg:tracking-wider tracking-wide lg:text-lg text-base text-gray-600 dark:text-gray-400">
+      <div className="relative flex justify-between mb-4 dark:bg-green-900 bg-green-500 rounded-lg">
+        <span className="absolute w-4 h-4 dark:bg-green-900 bg-green-500 rounded-full left-[-23px] top-1/2 transform -translate-y-1/2"></span>
+        <div className="flex w-full items-center justify-between lg:px-4 px-2 font-gemunu font-light lg:tracking-widest tracking-wider lg:text-base text-sm text-white py-2">
           <span>{convertDate(order.created_at)}</span>
           <div className="flex items-center gap-1">
             <span className="hidden lg:block">Sipariş No :</span>
             <span className="block lg:hidden">S. No :</span>
-            <span className="font-system lg:text-base text-sm -mb-0.5">
+            <span className="font-system lg:text-sm text-xs lg:-mb-0.5">
               {order.order_no}
             </span>
           </div>
         </div>
       </div>
-      <div className="bg-gray-100 dark:bg-zinc-800 p-4 flex flex-col gap-4">
+      <div className="bg-gray-100 dark:bg-zinc-800 p-4 flex flex-col gap-4 rounded-lg">
         <div className="w-full h-full gap-4 grid 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2">
           {order.products.map((item, key) => {
             const categorySlug = item.product.category_slug
@@ -46,7 +46,7 @@ function OrderItem({ order }: IProfileOrderItemProps) {
                   <Link
                     href={redirect}
                     title={`${item.product.brand || ""} ${item.product.title}`}
-                    className={`relative rounded-lg shadow-lg shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40`}
+                    className={`relative rounded-lg shadow-md shadow-gray-400 dark:shadow-gray-800 overflow-hidden transition-all duration-300 lg:min-w-[100px] lg:w-[100px] lg:h-[156px] min-w-24 w-24 h-40`}
                   >
                     <Image
                       src={item.product.images[0].thumbnail}
@@ -56,7 +56,7 @@ function OrderItem({ order }: IProfileOrderItemProps) {
                       title={`${item.product.brand || ""} ${
                         item.product.title
                       }`}
-                      className="object-cover"
+                      className="object-cover hover:scale-105 transition-all duration-300"
                     />
                   </Link>
                 )}
@@ -85,7 +85,7 @@ function OrderItem({ order }: IProfileOrderItemProps) {
                       </span>
                     </div>
                     <div
-                      className={`flex  flex-wrap gap-x-2 gap-y-1 line-clamp-2 max-w-full text-xs`}
+                      className={`flex flex-wrap gap-x-2 gap-y-1 line-clamp-2 max-w-full text-xs`}
                     >
                       {item.product.attributes &&
                         item.attributes?.map((attr, key) => (
@@ -128,7 +128,7 @@ function OrderItem({ order }: IProfileOrderItemProps) {
           })}
         </div>
         <hr className="border-gray-200 dark:border-zinc-700" />
-        Ödenen Tutar: {getPrice(order.price)}
+        Ödenen Tutar : {getPrice(order.price)}
         {/* Ürünü değerlendir, Tekrar satın al, Kargo takibi, Faturayı Görüntüle, Ürün iadesi */}
       </div>
     </div>
