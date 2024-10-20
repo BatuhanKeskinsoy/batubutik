@@ -4,8 +4,6 @@ import FixedBottomRight from "@/components/others/FixedBottomRight/FixedBottomRi
 import React from "react";
 import { generalsTypes } from "@/types/generalTypes";
 import { getGenerals } from "@/lib/utils/General/getGenerals";
-import { productTypes } from "@/types/product/productTypes";
-import { getProducts } from "@/lib/utils/Product/getProducts";
 import { mainCategoryTypes } from "@/types/categoryTypes";
 import { getCategories } from "@/lib/utils/General/getCategories";
 
@@ -18,10 +16,9 @@ export default async function RootLayout({
 }>) {
   const generals: generalsTypes = await getGenerals();
   const categories: mainCategoryTypes[] = await getCategories();
-  const products: productTypes[] = await getProducts();
   return (
     <>
-      <Header generals={generals} products={products} categories={categories} />
+      <Header generals={generals} categories={categories} />
       {children}
       <FixedBottomRight generals={generals} />
       <Footer generals={generals} categories={categories} />

@@ -6,9 +6,7 @@ import { IoFileTrayOutline } from "react-icons/io5";
 import { basketProductTypes } from "@/types/product/basketProductTypes";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import BasketProperty from "@/components/(front)/inc/Sidebar/Basket/BasketProperty";
-import { productTypes } from "@/types/product/productTypes";
 import { generalsTypes } from "@/types/generalTypes";
-import { getProducts } from "@/lib/utils/Product/getProducts";
 import { useProducts } from "@/hooks/useProduct";
 
 interface IBasketProps {

@@ -46,7 +46,7 @@ const WhatsAppButton = ({ generals }: IFixedBottomRightProps) => {
 
   return (
     <Link
-      href={`https://api.whatsapp.com/send?phone=9${generals.whatsapp_number}&amp;text=Merhaba, site web sitenizden ulaşıyorum.`}
+      href={`https://api.whatsapp.com/send?phone=9${generals.whatsapp_number}&amp;text=Merhaba, size web sitenizden ulaşıyorum.`}
       title="WhatsApp"
       target="_blank"
       className=" bg-green-500/80 hover:bg-green-500 hover:translate-x-0"

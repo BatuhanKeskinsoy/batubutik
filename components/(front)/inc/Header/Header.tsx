@@ -19,21 +19,21 @@ import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Theme from "@/components/others/Theme";
 import { generalsTypes } from "@/types/generalTypes";
-import { productTypes } from "@/types/product/productTypes";
 import { useTheme } from "next-themes";
 import { mainCategoryTypes } from "@/types/categoryTypes";
+import { useProducts } from "@/hooks/useProduct";
 
 interface IHeaderProps {
   generals: generalsTypes;
-  products: productTypes[];
   categories: mainCategoryTypes[];
 }
-function Header({ generals, products, categories }: IHeaderProps) {
+function Header({ generals, categories }: IHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const { sidebarStatus, setSidebarStatus, isMobile } = useGlobalContext();
   const router = useRouter();
   const pathname = usePathname();
   const { resolvedTheme } = useTheme();
+  const { products } = useProducts();
 
   useEffect(() => {
     const handleScroll = () => {

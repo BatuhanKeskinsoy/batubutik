@@ -4,7 +4,6 @@ import addToBasket from "@/lib/functions/addToBasket";
 import { getPrice } from "@/lib/functions/getPrice";
 import CustomButton from "@/components/others/CustomButton";
 import { productTypes } from "@/types/product/productTypes";
-import { productDetailTypes } from "@/types/product/productDetailTypes";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -16,7 +15,6 @@ import {
 } from "react-icons/io5";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import ModalProductDetail from "@/components/modals/ModalProductDetail";
-import { getProductShow } from "@/lib/utils/Product/getProductShow";
 import { siteURL } from "@/constants/(front)";
 
 interface IFavoriteProductItemProps {

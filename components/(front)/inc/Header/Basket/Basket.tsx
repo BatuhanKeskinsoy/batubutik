@@ -7,7 +7,7 @@ import { IoBagHandleOutline, IoBagHandle } from "react-icons/io5";
 import { productTypes } from "@/types/product/productTypes";
 
 interface IBasketProps {
-  products: productTypes[];
+  products: productTypes[] | undefined;
 }
 
 function Basket({ products }: IBasketProps) {
@@ -22,7 +22,7 @@ function Basket({ products }: IBasketProps) {
   useEffect(() => {
     if (basketItems && basketItems.length > 0) {
       const totalPrice = basketItems.reduce((total, basketItem) => {
-        const matchedProduct = products.find(
+        const matchedProduct = products && products.find(
           (product) => product.code === basketItem.product_code
         );
 
