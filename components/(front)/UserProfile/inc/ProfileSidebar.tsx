@@ -13,16 +13,16 @@ function ProfileSidebar() {
   const Title = currentNavLink ? currentNavLink.title : "Profilim";
 
   return (
-    <div className="flex flex-col gap-2 w-full rounded-sm overflow-hidden sticky top-32">
+    <div className="flex flex-col gap-2 w-full rounded-md overflow-hidden sticky top-28 pb-4">
       {navLinksAuthUser.map((link, key) => (
         <Link
           key={key}
           href={link.url}
           title={link.title}
-          className={`lg:py-2.5 py-3 px-4 w-full font-gemunu tracking-wider text-lg transition-all duration-300 rounded-md ${
+          className={`lg:py-2.5 py-3 px-4 w-full font-gemunu tracking-wider text-lg transition-all duration-300 rounded-md shadow-md ${
             Title === link.title
-              ? "text-white bg-site dark:bg-site"
-              : "dark:bg-zinc-800 bg-gray-100 hover:text-site hover:bg-site/10 dark:hover:bg-site/10 "
+              ? "text-white bg-site dark:bg-site shadow-site/20"
+              : "dark:bg-zinc-800 bg-gray-100 hover:text-site hover:bg-site/10 dark:hover:bg-site/10"
           }`}
         >
           {link.title}
