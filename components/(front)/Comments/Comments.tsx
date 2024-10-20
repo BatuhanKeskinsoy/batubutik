@@ -99,7 +99,7 @@ function Comments({ comments, generals }: ICommentsProps) {
                 </div>
               )}
             </li>
-            <hr />
+            <hr className="dark:border-zinc-800" />
           </React.Fragment>
         );
       })}

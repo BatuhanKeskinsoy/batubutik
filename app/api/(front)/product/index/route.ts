@@ -16,24 +16,24 @@ const products = [
     subCategory_slug: "takim",
     images: [
       {
-        original: "/assets/products/product5.webp",
-        thumbnail: "/assets/products/product5.webp",
+        original: "/assets/products/original/product5.webp",
+        thumbnail: "/assets/products/thumbnail/product5.webp",
       },
       {
-        original: "/assets/products/product2.webp",
-        thumbnail: "/assets/products/product2.webp",
+        original: "/assets/products/original/product2.webp",
+        thumbnail: "/assets/products/thumbnail/product2.webp",
       },
       {
-        original: "/assets/products/product3.webp",
-        thumbnail: "/assets/products/product3.webp",
+        original: "/assets/products/original/product3.webp",
+        thumbnail: "/assets/products/thumbnail/product3.webp",
       },
       {
-        original: "/assets/products/product4.webp",
-        thumbnail: "/assets/products/product4.webp",
+        original: "/assets/products/original/product4.webp",
+        thumbnail: "/assets/products/thumbnail/product4.webp",
       },
       {
-        original: "/assets/products/product.webp",
-        thumbnail: "/assets/products/product.webp",
+        original: "/assets/products/original/product.webp",
+        thumbnail: "/assets/products/thumbnail/product.webp",
       },
     ],
     rating: 4.9,
@@ -101,20 +101,20 @@ const products = [
     subCategory_slug: "takim",
     images: [
       {
-        original: "/assets/products/product6.webp",
-        thumbnail: "/assets/products/product6.webp",
+        original: "/assets/products/original/product6.webp",
+        thumbnail: "/assets/products/thumbnail/product6.webp",
       },
       {
-        original: "/assets/products/product7.webp",
-        thumbnail: "/assets/products/product7.webp",
+        original: "/assets/products/original/product7.webp",
+        thumbnail: "/assets/products/thumbnail/product7.webp",
       },
       {
-        original: "/assets/products/product8.webp",
-        thumbnail: "/assets/products/product8.webp",
+        original: "/assets/products/original/product8.webp",
+        thumbnail: "/assets/products/thumbnail/product8.webp",
       },
       {
-        original: "/assets/products/product9.webp",
-        thumbnail: "/assets/products/product9.webp",
+        original: "/assets/products/original/product9.webp",
+        thumbnail: "/assets/products/thumbnail/product9.webp",
       },
     ],
     rating: 4.4,
@@ -175,20 +175,20 @@ const products = [
     subCategory_slug: "takim",
     images: [
       {
-        original: "/assets/products/product11.webp",
-        thumbnail: "/assets/products/product11.webp",
+        original: "/assets/products/original/product11.webp",
+        thumbnail: "/assets/products/thumbnail/product11.webp",
       },
       {
-        original: "/assets/products/product12.webp",
-        thumbnail: "/assets/products/product12.webp",
+        original: "/assets/products/original/product12.webp",
+        thumbnail: "/assets/products/thumbnail/product12.webp",
       },
       {
-        original: "/assets/products/product16.webp",
-        thumbnail: "/assets/products/product16.webp",
+        original: "/assets/products/original/product13.webp",
+        thumbnail: "/assets/products/thumbnail/product13.webp",
       },
       {
-        original: "/assets/products/product17.webp",
-        thumbnail: "/assets/products/product17.webp",
+        original: "/assets/products/original/product10.webp",
+        thumbnail: "/assets/products/thumbnail/product10.webp",
       },
     ],
     rating: 4.1,
@@ -250,16 +250,16 @@ const products = [
     subCategory_slug: "takim",
     images: [
       {
-        original: "/assets/products/product14.webp",
-        thumbnail: "/assets/products/product14.webp",
+        original: "/assets/products/original/product14.webp",
+        thumbnail: "/assets/products/thumbnail/product14.webp",
       },
       {
-        original: "/assets/products/product15.webp",
-        thumbnail: "/assets/products/product15.webp",
+        original: "/assets/products/original/product15.webp",
+        thumbnail: "/assets/products/thumbnail/product15.webp",
       },
       {
-        original: "/assets/products/product16.webp",
-        thumbnail: "/assets/products/product16.webp",
+        original: "/assets/products/original/product16.webp",
+        thumbnail: "/assets/products/thumbnail/product16.webp",
       },
     ],
     rating: 3.8,
@@ -320,20 +320,20 @@ const products = [
     subCategory_slug: null,
     images: [
       {
-        original: "/assets/products/product17.webp",
-        thumbnail: "/assets/products/product17.webp",
+        original: "/assets/products/original/product17.webp",
+        thumbnail: "/assets/products/thumbnail/product17.webp",
       },
       {
-        original: "/assets/products/product11.webp",
-        thumbnail: "/assets/products/product11.webp",
+        original: "/assets/products/original/product11.webp",
+        thumbnail: "/assets/products/thumbnail/product11.webp",
       },
       {
-        original: "/assets/products/product12.webp",
-        thumbnail: "/assets/products/product12.webp",
+        original: "/assets/products/original/product12.webp",
+        thumbnail: "/assets/products/thumbnail/product12.webp",
       },
       {
-        original: "/assets/products/product16.webp",
-        thumbnail: "/assets/products/product16.webp",
+        original: "/assets/products/original/product16.webp",
+        thumbnail: "/assets/products/thumbnail/product16.webp",
       },
     ],
     rating: 2.4,
@@ -391,8 +391,8 @@ const products = [
     subCategory_slug: null,
     images: [
       {
-        original: "/assets/products/product15.webp",
-        thumbnail: "/assets/products/product15.webp",
+        original: "/assets/products/original/product15.webp",
+        thumbnail: "/assets/products/thumbnail/product15.webp",
       },
     ],
     rating: 2.4,

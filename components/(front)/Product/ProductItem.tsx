@@ -32,11 +32,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
     useGlobalContext();
   const [isHovered, setIsHovered] = useState(false);
   const [productImage, setProductImage] = useState(
-    product.images
-      ? isMobile
-        ? product.images[0].thumbnail
-        : product.images[0].original
-      : null
+    product.images ? product.images[0].thumbnail : null
   );
   const [FavoriteIcon, setFavoriteIcon] = useState(
     <IoHeartOutline className="text-xl" />
@@ -54,19 +50,13 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
 
   const handleMouseEnter = (index: number) => {
     if (product.images) {
-      setProductImage(
-        isMobile
-          ? product.images[index].thumbnail
-          : product.images[index].original
-      );
+      setProductImage(product.images[index].thumbnail);
     }
   };
 
   const handleMouseLeave = () => {
     if (product.images) {
-      setProductImage(
-        isMobile ? product.images[0].thumbnail : product.images[0].original
-      );
+      setProductImage(product.images[0].thumbnail);
     }
   };
 
@@ -194,13 +184,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
               {animate && (
                 <div className="relative w-full h-full">
                   <Image
-                    src={
-                      product.images
-                        ? isMobile
-                          ? product.images[0].thumbnail
-                          : product.images[0].original
-                        : ""
-                    }
+                    src={product.images ? product.images[0].thumbnail : ""}
                     alt="add to cart product"
                     fill
                     sizes="(max-width: 768px) 50%, 20%"
@@ -217,11 +201,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
               {product.images && product.images.length > 0 && (
                 <Image
                   src={
-                    productImage
-                      ? productImage
-                      : isMobile
-                      ? product.images[0].thumbnail
-                      : product.images[0].original
+                    productImage ? productImage : product.images[0].thumbnail
                   }
                   fill
                   sizes="(max-width: 768px) 50vw, 25vw"

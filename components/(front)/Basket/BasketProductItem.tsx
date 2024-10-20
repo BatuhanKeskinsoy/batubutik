@@ -93,11 +93,7 @@ function BasketProductItem({
           onClick={() => setSidebarStatus("")}
         >
           <Image
-            src={
-              isMobile
-                ? product.images[0].thumbnail
-                : product.images[0].original
-            }
+            src={product.images[0].thumbnail}
             fill
             sizes="(max-width: 768px) 100%, 25%"
             alt={`${product.brand || ""} ${product.title}`}

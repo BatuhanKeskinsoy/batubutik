@@ -22,7 +22,7 @@ const ModalProductDetail: React.FC<ModalProps> = ({ slug, onClose }) => {
   const { productDetail, isLoading } = useProductDetail(slug);
 
   return ReactDOM.createPortal(
-    <div className="fixed w-screen h-screen top-0 left-0 flex lg:items-center items-start lg:justify-center justify-start z-20">
+    <div className="fixed w-screen h-screen top-0 left-0 flex items-center justify-center z-20">
       <div
         className="bg-gray-900/80 w-screen h-screen fixed left-0 top-0 transition-all duration-300 animate-sidebarBgSmooth z-10"
         onClick={onClose}

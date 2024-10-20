@@ -50,10 +50,11 @@ function ProductArea({
     null
   );
   useEffect(() => {
+    setLoadingProduct(true);
     setTimeout(() => {
       setLoadingProduct(false);
-    }, 1000);
-  }, []);
+    }, 1100);
+  }, [currentProductImage]);
 
   useEffect(() => {
     if (product && product.images && product.images.length > 0) {
@@ -194,8 +195,9 @@ function ProductArea({
     }
   };
 
-  
-  const categorySlug = product?.category_slug ? `/${product.category_slug}` : "";
+  const categorySlug = product?.category_slug
+    ? `/${product.category_slug}`
+    : "";
   const subCategorySlug = product?.subCategory_slug
     ? `/${product.subCategory_slug}`
     : "";
@@ -210,11 +212,6 @@ function ProductArea({
       <div
         className={`relative flex h-full ${isDetail ? "lg:w-2/5" : "lg:w-1/2"}`}
       >
-        {loadingProduct && (
-          <div className="absolute w-full h-full backdrop-blur-sm z-10 bg-site/10 flex items-center justify-center">
-            <div className="animate-spin rounded-full m-0.5 lg:size-32 size-16 border-t-4 border-b-4 border-gray-200 group-hover:border-white"></div>
-          </div>
-        )}
         {product?.images && product.images?.length > 1 && (
           <div
             className={`flex flex-col gap-1 max-h-full min-w-max pr-1 max-lg:pl-1 overflow-y-auto overflow-x-hidden scrollbar-thick ${
@@ -232,7 +229,7 @@ function ProductArea({
                 }
               >
                 <Image
-                  src={isMobile ? image.thumbnail : image.original}
+                  src={image.thumbnail}
                   fill
                   quality={50}
                   sizes="(max-width: 768px) 30%, 20%"
@@ -258,11 +255,16 @@ function ProductArea({
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
+            {loadingProduct && (
+              <div className="absolute w-full h-full backdrop-blur-sm z-10 bg-site/10 flex items-center justify-center">
+                <div className="animate-spin rounded-full m-0.5 lg:size-32 size-16 border-t-4 border-b-4 border-gray-200 group-hover:border-white"></div>
+              </div>
+            )}
             <div className="absolute inset-0 overflow-hidden">
               <Image
                 src={currentProductImage}
                 fill
-                sizes="(max-width: 768px) 100%, 50%"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 alt={product ? product.title : "Ürün Başlığı"}
                 title={product ? product.title : "Ürün Başlığı"}
                 className={`object-cover origin-top-left`}
@@ -412,11 +414,7 @@ function ProductArea({
                           {item.product.images && (
                             <div className="relative w-full h-28 overflow-hidden rounded-md">
                               <Image
-                                src={
-                                  isMobile
-                                    ? item.product.images[0].thumbnail
-                                    : item.product.images[0].original
-                                }
+                                src={item.product.images[0].thumbnail}
                                 alt={item.product.title}
                                 title={item.product.title}
                                 fill
@@ -555,12 +553,14 @@ function ProductArea({
             </div>
             <CustomButton
               title={
-                product && favoriteItems?.includes(product.code)
-                  ? "Bu Ürün Favori Listenizde"
+                product && isMobile && favoriteItems
+                  ? favoriteItems.includes(product.code)
+                    ? "Bu Ürün Favori Listenizde"
+                    : "Favorilere Ekle"
                   : "Favorilere Ekle"
               }
               textStyles="lg:hidden"
-              containerStyles="flex items-center justify-center gap-2 max-lg:w-full px-4 bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-gray-500 rounded-md h-[50px] transition-all duration-300 hover:bg-site dark:hover:bg-site hover:border-site dark:hover:border-site hover:text-white h-[50px] group/favorite"
+              containerStyles="flex items-center justify-center gap-2 max-lg:w-full px-4 bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 rounded-md h-[50px] transition-all duration-300 hover:bg-site dark:hover:bg-site hover:border-site dark:hover:border-site hover:text-white h-[50px] group/favorite"
               leftIcon={
                 !loadingAddToFavorite ? (
                   FavoriteIcon
