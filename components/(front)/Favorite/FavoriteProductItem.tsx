@@ -28,8 +28,8 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
   const [loadingRemoveFavorite, setLoadingRemoveFavorite] = useState(false);
   const [loadingAddToBasket, setLoadingAddToBasket] = useState(false);
   const [showProductArea, setShowProductArea] = useState(false);
-  const [productDetail, setProductDetail] = useState<productDetailTypes>();
-  const { setFavoriteItems, setBasketItems, setSidebarStatus } = useGlobalContext();
+  const { setFavoriteItems, setBasketItems, setSidebarStatus } =
+    useGlobalContext();
 
   const removeFavorite = () => {
     if (!loadingRemoveFavorite) {
@@ -75,14 +75,8 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
   const handleShowProductArea = async (e: any) => {
     e.preventDefault();
     setShowProductArea(true);
-    try {
-      const fetchedProductDetail = await getProductShow(product.slug);
-      setProductDetail(fetchedProductDetail);
-    } catch (error) {
-      console.error("Failed to fetch product details", error);
-    }
   };
-  
+
   const categorySlug = product.category_slug ? `/${product.category_slug}` : "";
   const subCategorySlug = product.subCategory_slug
     ? `/${product.subCategory_slug}`
@@ -91,9 +85,9 @@ function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
 
   return (
     <>
-      {showProductArea && productDetail && (
+      {showProductArea && (
         <ModalProductDetail
-          productDetail={productDetail}
+          slug={product.slug}
           onClose={() => setShowProductArea(false)}
         />
       )}

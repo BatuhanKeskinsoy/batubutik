@@ -4,7 +4,6 @@ import addToBasket from "@/lib/functions/addToBasket";
 import { getPrice } from "@/lib/functions/getPrice";
 import CustomButton from "@/components/others/CustomButton";
 import { productTypes } from "@/types/product/productTypes";
-import { productDetailTypes } from "@/types/product/productDetailTypes";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -18,7 +17,6 @@ import {
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import toggleToFavorite from "@/lib/functions/toggleToFavorite";
 import ModalProductDetail from "@/components/modals/ModalProductDetail";
-import { getProductShow } from "@/lib/utils/Product/getProductShow";
 import { siteURL } from "@/constants/(front)";
 
 interface IFavoriteProductItemProps {
@@ -29,9 +27,6 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
   const [loadingAddToFavorite, setLoadingAddToFavorite] = useState(false);
   const [loadingAddToBasket, setLoadingAddToBasket] = useState(false);
   const [showProductArea, setShowProductArea] = useState(false);
-  const [productDetail, setProductDetail] = useState<
-    productDetailTypes | undefined
-  >();
   const {
     favoriteItems,
     setFavoriteItems,
@@ -82,12 +77,6 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
   const handleShowProductArea = async (e: any) => {
     e.preventDefault();
     setShowProductArea(true);
-    try {
-      const fetchedProductDetail = await getProductShow(product.slug);
-      setProductDetail(fetchedProductDetail);
-    } catch (error) {
-      console.error("Failed to fetch product details", error);
-    }
   };
 
   useEffect(() => {
@@ -110,7 +99,7 @@ function SearchProductItem({ product }: IFavoriteProductItemProps) {
     <>
       {showProductArea && (
         <ModalProductDetail
-          productDetail={productDetail}
+          slug={product.slug}
           onClose={() => setShowProductArea(false)}
         />
       )}

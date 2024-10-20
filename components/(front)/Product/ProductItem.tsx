@@ -15,10 +15,8 @@ import {
   IoHeart,
   IoHeartOutline,
 } from "react-icons/io5";
-import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { basketItemTypes } from "@/types/product/basketItemTypes";
 import ModalProductDetail from "@/components/modals/ModalProductDetail";
-import { getProductShow } from "@/lib/utils/Product/getProductShow";
 import { siteURL } from "@/constants/(front)";
 
 interface IProductItemProps {
@@ -28,9 +26,6 @@ interface IProductItemProps {
 }
 
 function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
-  const [productDetail, setProductDetail] = useState<
-    productDetailTypes | undefined
-  >();
   const [loadingAddToBasket, setLoadingAddToBasket] = useState(false);
   const [loadingAddToFavorite, setLoadingAddToFavorite] = useState(false);
   const { isMobile, favoriteItems, setBasketItems, setFavoriteItems } =
@@ -150,12 +145,6 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
   const handleShowProductArea = async (e: any) => {
     e.preventDefault();
     setShowProductArea(true);
-    try {
-      const fetchedProductDetail = await getProductShow(product.slug);
-      setProductDetail(fetchedProductDetail);
-    } catch (error) {
-      console.error("Failed to fetch product details", error);
-    }
   };
 
   useEffect(() => {
@@ -174,7 +163,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
     <>
       {showProductArea && (
         <ModalProductDetail
-          productDetail={productDetail}
+          slug={product.slug}
           onClose={() => setShowProductArea(false)}
         />
       )}

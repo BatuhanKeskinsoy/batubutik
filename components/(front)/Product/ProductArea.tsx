@@ -52,7 +52,7 @@ function ProductArea({
   useEffect(() => {
     setTimeout(() => {
       setLoadingProduct(false);
-    }, 1200);
+    }, 1000);
   }, []);
 
   useEffect(() => {
