@@ -8,11 +8,9 @@ interface IBasketDetailProps {
 
 function BasketDetail({ generals }: IBasketDetailProps) {
   return (
-    <main>
-      <div className="container mx-auto px-4 flex flex-col gap-4 max-lg:pt-4">
-        <Basket isDetail generals={generals} />
-      </div>
-    </main>
+    <div className="container mx-auto px-4 flex flex-col gap-4 max-lg:pt-4">
+      <Basket isDetail generals={generals} />
+    </div>
   );
 }
 

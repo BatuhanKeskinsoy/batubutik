@@ -6,6 +6,7 @@ import { generalsTypes } from "@/types/generalTypes";
 import { getGenerals } from "@/lib/utils/General/getGenerals";
 import { mainCategoryTypes } from "@/types/categoryTypes";
 import { getCategories } from "@/lib/utils/General/getCategories";
+import Subscribe from "@/components/(front)/inc/Subscribe";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +20,10 @@ export default async function RootLayout({
   return (
     <>
       <Header generals={generals} categories={categories} />
-      {children}
+      <main>{children}</main>
+      <aside className="mt-12">
+        <Subscribe />
+      </aside>
       <FixedBottomRight generals={generals} />
       <Footer generals={generals} categories={categories} />
     </>

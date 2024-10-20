@@ -260,7 +260,7 @@ function StoreMain({
           setSelectedAttributes={setSelectedAttributes}
           categories={categories}
         />
-        <main className="flex flex-col w-full gap-6">
+        <div className="flex flex-col w-full gap-6">
           <div className="flex lg:flex-row flex-col justify-between max-lg:text-center gap-4 items-center -mb-3.5">
             <div className="flex flex-col gap-2 *:leading-6 w-full">
               <h1 className="flex items-center max-lg:justify-center font-semibold text-2xl text-site">
@@ -351,7 +351,7 @@ function StoreMain({
               </div>
             )}
           </>
-        </main>
+        </div>
       </div>
     </div>
   );

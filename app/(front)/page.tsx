@@ -15,7 +15,7 @@ import { getHome } from "@/lib/utils/Pages/getHome";
 async function page() {
   const home: homeTypes = await getHome();
   return (
-    <main className="flex flex-col w-full gap-12">
+    <div className="flex flex-col w-full gap-12">
       <section>
         <Banner data={home.fullViewSlider} />
       </section>
@@ -77,7 +77,7 @@ async function page() {
       <section>
         <Contact generals={home.generals} />
       </section>
-    </main>
+    </div>
   );
 }
 
