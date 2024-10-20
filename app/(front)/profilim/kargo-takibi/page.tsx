@@ -1,9 +1,8 @@
-import React from 'react'
+import ShippingTracking from "@/components/(front)/UserProfile/ShippingTracking/ShippingTracking";
+import React from "react";
 
 function page() {
-  return (
-    <div>Kargo Takibini burada yapabileceksiniz!</div>
-  )
+  return <ShippingTracking />;
 }
 
-export default page
+export default page;
