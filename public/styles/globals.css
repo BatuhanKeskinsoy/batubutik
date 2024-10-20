@@ -103,7 +103,7 @@
 }
 
 .dangeriousContent {
-  @apply pt-4 pb-8 mb-8 border-b w-full dark:border-zinc-800;
+  @apply pt-4 pb-8 mb-8 border-b w-full dark:border-zinc-800 text-gray-500 dark:text-gray-400;
 }
 .dangeriousContent h1 {
   @apply text-3xl;
@@ -123,11 +123,19 @@
 .dangeriousContent h4,
 .dangeriousContent h5,
 .dangeriousContent h6 {
-  @apply mt-6 first:mt-0;
+  @apply mt-6 first:mt-0 mb-2 dark:text-gray-200 text-gray-700;
+}
+
+.dangeriousContent ul {
+  @apply pl-4;
+}
+
+.dangeriousContent ul li{
+  @apply list-disc;
 }
 
 .dangeriousContent p {
-  @apply text-gray-500 dark:text-gray-400 leading-7;
+  @apply leading-7;
 }
 
 .dangeriousContent img {

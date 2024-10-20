@@ -20,51 +20,25 @@ function ProductSidebar({ product }: IProductSidebarProps) {
               tags={product.tags}
             />
           </div>
-          <div className="flex flex-col w-full gap-4">
-            <span className="font-gemunu text-2xl">Etiketler</span>
-            <ul className="tags flex flex-wrap gap-3">
-              <li className="flex gap-x-1.5 items-center">
-                <span className="text-site text-xl">#</span>
-                <Link
-                  href=""
-                  title="İç Giyim"
-                  className="text-base text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
-                >
-                  Amor Bralet
-                </Link>
-              </li>
-              <li className="flex gap-x-1.5 items-center">
-                <span className="text-site text-xl">#</span>
-                <Link
-                  href=""
-                  title="İç Giyim"
-                  className="text-base text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
-                >
-                  İç Giyim
-                </Link>
-              </li>
-              <li className="flex gap-x-1.5 items-center">
-                <span className="text-site text-xl">#</span>
-                <Link
-                  href=""
-                  title="İç Giyim"
-                  className="text-base text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
-                >
-                  Jartiyer Takımı
-                </Link>
-              </li>
-              <li className="flex gap-x-1.5 items-center">
-                <span className="text-site text-xl">#</span>
-                <Link
-                  href=""
-                  title="İç Giyim"
-                  className="text-base text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
-                >
-                  İç Çamaşır
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {product.tags && (
+            <div className="flex flex-col w-full gap-4">
+              <span className="font-gemunu text-2xl">Etiketler</span>
+              <ul className="tags flex flex-wrap gap-3">
+                {product.tags.map((tag, key) => (
+                  <li key={key} className="flex gap-x-1.5 items-center">
+                    <span className="text-site text-xl">#</span>
+                    <Link
+                      href=""
+                      title={tag}
+                      className="text-base text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
+                    >
+                      {tag}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </aside>

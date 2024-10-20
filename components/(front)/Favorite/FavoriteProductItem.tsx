@@ -22,7 +22,6 @@ interface IFavoriteProductItemProps {
 }
 
 function FavoriteProductItem({ product }: IFavoriteProductItemProps) {
-  const { isMobile } = useGlobalContext();
   const [loadingRemoveFavorite, setLoadingRemoveFavorite] = useState(false);
   const [loadingAddToBasket, setLoadingAddToBasket] = useState(false);
   const [showProductArea, setShowProductArea] = useState(false);

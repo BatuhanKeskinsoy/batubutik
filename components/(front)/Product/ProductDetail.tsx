@@ -5,13 +5,15 @@ import { productDetailTypes } from "@/types/product/productDetailTypes";
 import CustomButton from "@/components/others/CustomButton";
 import Comments from "@/components/(front)/Comments/Comments";
 import { generalsTypes } from "@/types/generalTypes";
+import { ProductCommentsTypes } from "@/types/product/comments/productCommentsTypes";
 
 interface IProductDetailProps {
   product: productDetailTypes;
+  comments: ProductCommentsTypes[];
   generals: generalsTypes;
 }
 
-function ProductDetail({ product, generals }: IProductDetailProps) {
+function ProductDetail({ product, comments, generals }: IProductDetailProps) {
   const [activeTab, setActiveTab] = useState("info");
   const tabMenuRef = useRef<HTMLDivElement | null>(null);
 
@@ -64,18 +66,16 @@ function ProductDetail({ product, generals }: IProductDetailProps) {
                 dangerouslySetInnerHTML={{ __html: product.content }}
               />
             ) : activeTab === "comments" ? (
-              <Comments generals={generals} />
+              <Comments generals={generals} comments={comments} />
             ) : activeTab === "return" ? (
-              <>
-                {generals && (
-                  <div
-                    className="dangeriousContent lg:leading-8 leading-7"
-                    dangerouslySetInnerHTML={{
-                      __html: generals.return_conditions,
-                    }}
-                  />
-                )}
-              </>
+              generals && generals.return_conditions ? (
+                <div
+                  className="dangeriousContent lg:leading-8 leading-7"
+                  dangerouslySetInnerHTML={{
+                    __html: generals.return_conditions,
+                  }}
+                />
+              ) : null
             ) : null}
           </div>
         </div>

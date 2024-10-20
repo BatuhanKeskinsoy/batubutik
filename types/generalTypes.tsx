@@ -12,5 +12,5 @@ export type generalsTypes = {
   phone: string;
   whatsapp_number: string;
   tags: string[];
-  return_conditions: string;
+  return_conditions: string | null;
 };

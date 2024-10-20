@@ -14,7 +14,7 @@ export default function AuthenticatedLayout({
   children: React.ReactNode;
   generals: generalsTypes;
 }) {
-  const { user } = useGlobalContext();
+  const { user, setSidebarStatus } = useGlobalContext();
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -28,6 +28,7 @@ export default function AuthenticatedLayout({
 
     if (!user && !loading) {
       router.push("/");
+      setSidebarStatus("Auth")
     }
 
     return () => clearTimeout(timer); // Cleanup timer on unmount

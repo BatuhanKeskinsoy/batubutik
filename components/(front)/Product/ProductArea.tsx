@@ -297,10 +297,15 @@ function ProductArea({
         <div className="flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-3 w-full">
             <div className="flex flex-col gap-2 w-full">
-              <span className="textbase text-gray-600 dark:text-gray-500">
-                {product?.mainCategory}
-                {product?.category && ` / ${product.category}`}
-              </span>
+              <div className="flex items-center max-lg:justify-between gap-2 text-gray-600 dark:text-gray-500">
+                <span className="dark:bg-zinc-800 bg-gray-100 text-gray-700 dark:text-gray-400 py-1 px-2 rounded-md leading-[21px] lg:order-1 order-2">
+                  #{product?.code}
+                </span>
+                <span className="lg:order-2 order-1">
+                  {product?.mainCategory}
+                  {product?.category && ` / ${product.category}`}
+                </span>
+              </div>
               {isDetail ? (
                 <span className="font-medium text-2xl">
                   <span className="font-bold tracking-wide text-site">

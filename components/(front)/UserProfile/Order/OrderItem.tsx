@@ -7,11 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { HiArrowUturnLeft } from "react-icons/hi2";
-import {
-  IoChatbubbleEllipsesOutline,
-  IoDocumentTextOutline,
-  IoOpenOutline,
-} from "react-icons/io5";
+import { IoChatbubbleEllipsesOutline, IoOpenOutline } from "react-icons/io5";
 import { LiaShippingFastSolid } from "react-icons/lia";
 
 interface IProfileOrderItemProps {

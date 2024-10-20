@@ -741,7 +741,24 @@ export async function GET() {
         "Lüks İç Giyim",
         "Takım İç Giyim",
       ],
-      return_conditions: "İptal ve İade Koşulları Henüz Belirtilmemiş!",
+      return_conditions: `
+        <h2>İptal ve İade Koşulları</h2>
+        <p>Almış olduğunuz ürünleri, teslim aldığınız tarihten itibaren 14 gün içinde iade edebilirsiniz. İade işlemleri için aşağıdaki şartların sağlanması gerekmektedir:</p>
+        <h3>İade Şartları:</h3>
+        <ul>
+          <li>Ürün, orijinal ambalajında ve kullanılmamış olmalıdır.</li>
+          <li>Ürünün etiketleri ve ambalajı, kullanılmamış ve zarar görmemiş olmalıdır.</li>
+          <li>İade talebi, teslimat tarihinden itibaren 14 gün içinde yapılmalıdır.</li>
+          <li>İade formunun doldurulması gerekmektedir.</li>
+        </ul>
+        <h3>İade Süreci:</h3>
+        <p>İade talebinizi, <strong>info@batubutik.com</strong> e-posta adresine yazarak bildirebilirsiniz. İade talebiniz onaylandığında, ürünleri belirtilen adrese gönderebilirsiniz.</p>
+        <h3>İade Ücretleri:</h3>
+        <p>İade kargo ücretleri, müşteriye aittir. Ürünün iade sürecinde zarar görmesi durumunda, ürün bedeli iade edilmeyecektir.</p>
+        <h3>İptal Koşulları:</h3>
+        <p>Almış olduğunuz ürünlerin siparişini, ürün henüz kargoya verilmeden iptal edebilirsiniz. Sipariş iptali için müşteri hizmetlerimizle iletişime geçmeniz gerekmektedir.</p>
+        <p>Herhangi bir sorunla karşılaştığınızda, <strong>08505058515</strong> numarasından müşteri hizmetlerimizle iletişime geçebilirsiniz.</p>
+      `,
     },
   };
 

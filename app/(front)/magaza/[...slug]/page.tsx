@@ -9,6 +9,7 @@ import { productDetailTypes } from "@/types/product/productDetailTypes";
 import { getGenerals } from "@/lib/utils/General/getGenerals";
 import React from "react";
 import { redirect } from "next/navigation";
+import { getProductComments } from "@/lib/utils/Product/Comment/getProductComments";
 
 async function page({ params }: { params: { slug?: string[] } }) {
   const categories: mainCategoryTypes[] = await getCategories();
@@ -49,6 +50,7 @@ async function page({ params }: { params: { slug?: string[] } }) {
   }
 
   if (product) {
+    const comments = await getProductComments(product.code);
     return (
       <>
         <div className="container mx-auto px-4 lg:flex hidden">
@@ -70,7 +72,7 @@ async function page({ params }: { params: { slug?: string[] } }) {
             title5={product.title}
           />
         </div>
-        <ProductDetail product={product} generals={generals} />
+        <ProductDetail product={product} generals={generals} comments={comments} />
         <ProductSidebar product={product} />
         <hr className="lg:my-12 my-6 dark:border-zinc-800" />
       </>

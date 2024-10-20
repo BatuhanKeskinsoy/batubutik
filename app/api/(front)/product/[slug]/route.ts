@@ -7,22 +7,16 @@ const products = [
     slug: "amor-bralet-jartiyer-ic-camasir-takimi",
     content:
       `<h1>Başlık H1</h1>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h4>Başlık H4</h4>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
     code: "ABJ-100",
     brand: "Penti",
@@ -241,22 +235,16 @@ const products = [
     slug: "black-bralet-dress",
     content:
       `<h1>Başlık H1</h1>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h4>Başlık H4</h4>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
     code: "BBD-101",
     brand: "Penti",
@@ -464,22 +452,16 @@ const products = [
     slug: "burgundy-bralet-dress",
     content:
       `<h1>Başlık H1</h1>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h4>Başlık H4</h4>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
     code: "BBD-102",
     brand: "Penti",
@@ -688,22 +670,16 @@ const products = [
     slug: "blue-bralet-dress",
     content:
       `<h1>Başlık H1</h1>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h4>Başlık H4</h4>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
     code: "BBD-103",
     brand: "Penti",
@@ -907,22 +883,16 @@ const products = [
     slug: "burgundy-bralet-dress-2",
     content:
       `<h1>Başlık H1</h1>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h4>Başlık H4</h4>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
     code: "BBD-104",
     brand: "LC Waikiki",
@@ -1007,22 +977,16 @@ const products = [
     slug: "tek-fotograf-urun",
     content:
       `<h1>Başlık H1</h1>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h2>Başlık H2</h2>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h3>Başlık H3</h3>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>` +
       `<h4>Başlık H4</h4>` +
-      `</br>` +
       `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae doloremque, praesentium autem placeat obcaecati voluptates, at adipisci laborum nulla temporibus assumenda laudantium sit labore? Architecto dicta repudiandae quisquam minus mollitia.</p>`,
     code: "TFU-100",
     brand: null,

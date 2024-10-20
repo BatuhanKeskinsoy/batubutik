@@ -57,7 +57,7 @@ const Breadcrumb = ({
   );
 
   return (
-    <nav aria-label="breadcrumb">
+    <div aria-label="breadcrumb">
       <ul className="md:flex hidden items-center my-5 gap-3">
         <li>
           <Link
@@ -74,7 +74,7 @@ const Breadcrumb = ({
         {title4 && renderLink(title4, slug4, !title5)}
         {title5 && renderLink(title5, slug5, true)}
       </ul>
-    </nav>
+    </div>
   );
 };
 
