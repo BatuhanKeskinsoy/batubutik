@@ -28,8 +28,8 @@ const Breadcrumb = ({
   slug5,
 }: IBreadcrumbProps) => {
   const renderLink = (linkText: string, href?: string, isBold?: boolean) => (
-    <>
-      <div className="relative w-4 h-4 opacity-70">
+    <li className="flex gap-2">
+      <div className="relative w-5 h-5 opacity-70 p-0.5">
         <IoChevronForwardOutline size={16} />
       </div>
       {href ? (
@@ -53,23 +53,27 @@ const Breadcrumb = ({
           {linkText}
         </p>
       )}
-    </>
+    </li>
   );
 
   return (
-    <nav aria-label="breadcrumb" className="md:flex hidden items-center my-5 gap-3">
-      <Link
-        href={"/"}
-        className="text-sm text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
-        title="Ana Sayfa"
-      >
-        Anasayfa
-      </Link>
-      {renderLink(title, slug, !title2)}
-      {title2 && renderLink(title2, slug2, !title3)}
-      {title3 && renderLink(title3, slug3, !title4)}
-      {title4 && renderLink(title4, slug4, !title5)}
-      {title5 && renderLink(title5, slug5, true)}
+    <nav aria-label="breadcrumb">
+      <ul className="md:flex hidden items-center my-5 gap-3">
+        <li>
+          <Link
+            href={"/"}
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-site dark:hover:text-site transition-all duration-300"
+            title="Ana Sayfa"
+          >
+            Anasayfa
+          </Link>
+        </li>
+        {renderLink(title, slug, !title2)}
+        {title2 && renderLink(title2, slug2, !title3)}
+        {title3 && renderLink(title3, slug3, !title4)}
+        {title4 && renderLink(title4, slug4, !title5)}
+        {title5 && renderLink(title5, slug5, true)}
+      </ul>
     </nav>
   );
 };
