@@ -63,7 +63,7 @@ function Favorite({ profile }: IFavoriteProps) {
       <div
         className={`flex flex-col gap-4 w-full ${
           !profile ? "h-[calc(100dvh-77px)]" : "py-8"
-        }  justify-center items-center text-gray-300 dark:text-zinc-600`}
+        }  justify-center items-center text-gray-500 dark:text-zinc-600`}
       >
         <div
           className={`flex  gap-4 justify-center items-center animate-pulse ${

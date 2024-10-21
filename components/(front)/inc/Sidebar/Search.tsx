@@ -54,7 +54,7 @@ function Search() {
         </div>
         <hr className="dark:border-zinc-800" />
         {loadingSearch ? (
-          <div className="flex flex-col gap-4 h-[calc(100dvh-136px)] justify-center items-center text-gray-300 dark:text-zinc-600">
+          <div className="flex flex-col gap-4 h-[calc(100dvh-136px)] justify-center items-center text-gray-500 dark:text-zinc-600">
             <IoFileTrayFullOutline className="lg:text-7xl text-6xl" />
             <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
               Ürün aranıyor...
@@ -70,7 +70,7 @@ function Search() {
                 </span>
               </div>
             ) : searchProducts.length === 0 ? (
-              <div className="flex flex-col gap-4 h-[calc(100dvh-136px)] justify-center items-center animate-pulse text-gray-300 dark:text-zinc-600">
+              <div className="flex flex-col gap-4 h-[calc(100dvh-136px)] justify-center items-center animate-pulse text-gray-500 dark:text-zinc-600">
                 <IoFileTrayOutline className="lg:text-7xl text-6xl" />
                 <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
                   Aradığınız Ürün Bulunamadı

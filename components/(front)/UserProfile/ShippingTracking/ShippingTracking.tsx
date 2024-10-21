@@ -29,7 +29,7 @@ function ShippingTracking({ code }: IShippingTrackingProps) {
   return (
     <div className="flex flex-col w-full gap-4">
       <div className="flex items-center">
-        <div className="relative flex gap-2 lg:px-8 px-4 !pr-0 bg-gray-100 dark:bg-zinc-800 items-center w-full rounded-lg shadow-md overflow-hidden">
+        <div className="relative flex gap-2 lg:px-6 px-4 !pr-0 bg-gray-100 dark:bg-zinc-800 items-center w-full rounded-lg shadow-md overflow-hidden">
           <label className="relative w-full flex rounded-sm py-2">
             <input
               type="text"
@@ -50,7 +50,7 @@ function ShippingTracking({ code }: IShippingTrackingProps) {
             handleClick={() =>
               router.push(`/profilim/kargo-takibi/${shippingCode}`)
             }
-            containerStyles={`min-w-max px-6 py-3.5 font-gemunu text-lg tracking-wider dark:bg-zinc-800 bg-gray-100 border-l-2 dark:border-zinc-900 border-white flex items-center justify-center h-full transition-all duration-300 enabled:hover:bg-site enabled:dark:hover:bg-site enabled:hover:text-white disabled:opacity-30 disabled:cursor-not-allowed`}
+            containerStyles={`min-w-max px-6 py-3.5 font-gemunu text-lg tracking-wider dark:bg-zinc-700 bg-gray-200 border-l-2 dark:border-zinc-900 border-white flex items-center justify-center h-full transition-all duration-300 enabled:hover:bg-site enabled:dark:hover:bg-site enabled:hover:text-white disabled:opacity-30 disabled:cursor-not-allowed`}
             isDisabled={!(shippingCode.length > 0)}
           />
         </div>
@@ -62,7 +62,7 @@ function ShippingTracking({ code }: IShippingTrackingProps) {
         </div>
       ) : (
         <div
-          className={`flex flex-col gap-4 w-full py-8 justify-center items-center text-gray-300 dark:text-zinc-600`}
+          className={`flex flex-col gap-4 w-full py-8 justify-center items-center text-gray-500 dark:text-zinc-600`}
         >
           <div
             className={`flex  gap-4 justify-center items-center animate-pulse`}

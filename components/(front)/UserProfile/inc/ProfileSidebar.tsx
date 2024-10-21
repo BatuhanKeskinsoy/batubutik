@@ -12,7 +12,7 @@ function ProfileSidebar() {
   };
 
   return (
-    <div className="flex flex-col gap-2 w-full rounded-md overflow-hidden sticky top-28 pb-4">
+    <div className="flex flex-col gap-2 w-full rounded-md">
       {navLinksAuthUser.map((link, key) => (
         <Link
           key={key}

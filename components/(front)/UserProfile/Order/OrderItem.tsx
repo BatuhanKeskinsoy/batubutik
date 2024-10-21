@@ -176,14 +176,14 @@ function OrderItem({ order }: IProfileOrderItemProps) {
           <div className="flex max-lg:flex-col gap-3 items-center max-lg:w-full">
             <Link
               href={"/profilim/kargo-takibi/999999999"}
-              className="flex justify-between items-center gap-2 dark:bg-zinc-900 max-lg:w-full bg-white shadow-md py-2 px-4 rounded-md font-gemunu text-lg tracking-wider hover:bg-site dark:hover:bg-site transition-all duration-300"
+              className="flex justify-between items-center gap-2 dark:bg-zinc-900 max-lg:w-full bg-white shadow-md py-2 px-4 rounded-md font-gemunu text-lg tracking-wider hover:bg-site dark:hover:bg-site hover:text-white transition-all duration-300"
             >
               <LiaShippingFastSolid />
               Kargo Takibi
             </Link>
             <CustomButton
               title="İade Et"
-              containerStyles="flex justify-between items-center gap-2 dark:bg-zinc-900 max-lg:w-full bg-white shadow-md py-2 px-4 rounded-md font-gemunu text-lg tracking-wider hover:bg-site dark:hover:bg-site transition-all duration-300"
+              containerStyles="flex justify-between items-center gap-2 dark:bg-zinc-900 max-lg:w-full bg-white shadow-md py-2 px-4 rounded-md font-gemunu text-lg tracking-wider hover:bg-site dark:hover:bg-site hover:text-white transition-all duration-300"
               leftIcon={<HiArrowUturnLeft />}
             />
           </div>

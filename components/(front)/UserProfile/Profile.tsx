@@ -7,7 +7,7 @@ import { IoCheckmark, IoClose, IoEye, IoEyeOff } from "react-icons/io5";
 import { toast } from "react-toastify";
 
 function Profile() {
-  const { user, isLoading, mutate } = useUser();
+  const { user, isLoading } = useUser();
   const [showPassword, setShowPassword] = useState(false);
 
   /* FORM STATES */
