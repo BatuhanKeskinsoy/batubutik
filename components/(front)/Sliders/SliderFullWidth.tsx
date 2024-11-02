@@ -43,7 +43,7 @@ function SliderFullWidth({ perView, data }: ISliderOneProps) {
     <Swiper
       spaceBetween={0}
       modules={[Autoplay]}
-      autoplay={{ delay: 5000 }}
+      //autoplay={{ delay: 5000 }}
       loop={true}
       className="relative lg:bg-black-900/30 bg-black-900/50 !z-0"
       breakpoints={breakpoints}
@@ -53,14 +53,14 @@ function SliderFullWidth({ perView, data }: ISliderOneProps) {
           key={key}
           className="relative !flex items-end justify-center group bg-white"
         >
-          <div className="container mx-auto px-4 grid grid-cols-1 lg:h-[800px] z-30">
+          <div className="container mx-auto px-4 grid grid-cols-1 lg:h-[800px] h-[600px] z-30">
             <div className="relative flex items-center text-left h-full w-full">
-              <div className="flex flex-col w-full lg:h-full justify-center max-lg:gap-12 gap-28 py-12">
-                <div className="max-lg:text-center flex flex-col max-lg:items-center max-lg:justify-betweenw-full max-lg:h-full max-lg:gap-4 gap-12">
+              <div className="flex flex-col w-full h-full justify-center max-lg:gap-12 gap-28 py-12">
+                <div className="max-lg:text-center flex flex-col max-lg:items-center max-lg:justify-center w-full max-lg:h-full max-lg:gap-8 gap-12">
                   <span className="font-gemunu tracking-widest font-semibold lg:text-4xl text-xl text-white/80">
                     {slide.text_1}
                   </span>
-                  <span className="font-semibold lg:text-7xl text-5xl text-white font-gemunu tracking-wide">
+                  <span className="font-semibold lg:text-7xl text-5xl !leading-[6rem] max-lg:!leading-[3.5rem] text-white font-gemunu tracking-wide">
                     {slide.text_2}
                   </span>
                   <p className="lg:text-2xl text-base tracking-wide font-light text-white/70">

@@ -35,7 +35,7 @@ const ModalProductComment: React.FC<ModalProps> = ({ slug, onClose }) => {
       {!isLoading ? (
         <>
           {productDetail && (
-            <div className="relative bg-white dark:bg-zinc-900 rounded-sm 2xl:w-[calc(100vw-55%)] xl:w-[calc(100vw-50%)] lg:w-[calc(100vw-40%)] lg:h-[calc(100dvh-54%)] md:h-[calc(100dvh-54%)] w-[90vw] h-[95dvh] shadow-lg shadow-gray-600 dark:shadow-gray-800 transition-all duration-300 animate-modalContentSmooth z-20">
+            <div className="relative bg-white dark:bg-zinc-900 rounded-lg 2xl:w-[calc(100vw-55%)] xl:w-[calc(100vw-50%)] lg:w-[calc(100vw-40%)] lg:h-[calc(100dvh-54%)] md:h-[calc(100dvh-54%)] w-[90vw] h-[95dvh] shadow-lg shadow-gray-600 dark:shadow-gray-800 transition-all duration-300 animate-modalContentSmooth z-20">
               <CustomButton
                 containerStyles="absolute lg:-right-4 lg:-top-4 -right-4 -top-4 text-gray-600 dark:text-gray-200 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white transition-all duration-300 z-10 bg-white dark:bg-zinc-800 rounded-full"
                 leftIcon={<IoCloseOutline className="text-4xl" />}
@@ -52,7 +52,7 @@ const ModalProductComment: React.FC<ModalProps> = ({ slug, onClose }) => {
                             alt="add to cart product"
                             fill
                             sizes="(max-width: 768px) 50%, 20%"
-                            className="object-cover"
+                            className="object-cover lg:rounded-l-xl max-lg:rounded-t-xl"
                           />
                         </div>
                       )}

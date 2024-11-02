@@ -259,7 +259,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                     handleClick={handleAddToFavorite}
                   />
                   <CustomButton
-                    containerStyles={`p-1.5 bg-white dark:bg-zinc-900 rounded-md shadow-lg hover:bg-site dark:hover:bg-site transition-all duration-700 ${
+                    containerStyles={`p-1.5 bg-white dark:bg-zinc-900 rounded-md shadow-lg hover:bg-site dark:hover:bg-site transition-all duration-700 group/expand ${
                       !isMobile && isHovered
                         ? "-translate-x-2 opacity-100 hover:scale-110"
                         : !isMobile
@@ -267,7 +267,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                         : "-translate-x-2 opacity-100"
                     }
             `}
-                    leftIcon={<IoExpand className="text-xl" />}
+                    leftIcon={<IoExpand className="text-xl group-hover/expand:text-white transition-all duration-300" />}
                     handleClick={handleShowProductArea}
                   />
                 </div>

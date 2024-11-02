@@ -156,7 +156,7 @@ function Aside({
   }, [isMobile]);
 
   return (
-    <aside className="lg:w-[320px] w-full h-fit rounded-sm lg:sticky lg:top-24 transition-all duration-300">
+    <aside className="lg:w-[320px] w-full h-fit rounded-sm transition-all duration-300">
       <div className="flex flex-col gap-3 w-full lg:text-sm text-gray-600">
         <label
           htmlFor="search"
