@@ -35,7 +35,7 @@ const ModalProductComment: React.FC<ModalProps> = ({ slug, onClose }) => {
       {!isLoading ? (
         <>
           {productDetail && (
-            <div className="relative bg-white dark:bg-zinc-900 rounded-sm 2xl:w-[calc(100vw-55%)] xl:w-[calc(100vw-50%)] lg:w-[calc(100vw-40%)] lg:h-[calc(100dvh-54%)] w-[80%] h-[90%] shadow-lg shadow-gray-600 dark:shadow-gray-800 transition-all duration-300 animate-modalContentSmooth z-20">
+            <div className="relative bg-white dark:bg-zinc-900 rounded-sm 2xl:w-[calc(100vw-55%)] xl:w-[calc(100vw-50%)] lg:w-[calc(100vw-40%)] lg:h-[calc(100dvh-54%)] md:h-[calc(100dvh-54%)] w-[90vw] h-[95dvh] shadow-lg shadow-gray-600 dark:shadow-gray-800 transition-all duration-300 animate-modalContentSmooth z-20">
               <CustomButton
                 containerStyles="absolute lg:-right-4 lg:-top-4 -right-4 -top-4 text-gray-600 dark:text-gray-200 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white transition-all duration-300 z-10 bg-white dark:bg-zinc-800 rounded-full"
                 leftIcon={<IoCloseOutline className="text-4xl" />}
@@ -119,7 +119,7 @@ const ModalProductComment: React.FC<ModalProps> = ({ slug, onClose }) => {
                       <hr className="dark:border-zinc-800" />
                       <div className="flex flex-col gap-2">
                         <span className="font-gemunu text-lg tracking-wider">
-                          Yorum
+                          Yorum Yapın
                         </span>
                         <label
                           htmlFor="comment"
@@ -139,7 +139,7 @@ const ModalProductComment: React.FC<ModalProps> = ({ slug, onClose }) => {
                       <div className="flex max-lg:flex-col justify-between items-center mt-2 gap-2">
                         <div className="flex lg:flex-col max-lg:justify-between max-lg:w-full gap-2">
                           <span className="font-gemunu text-lg tracking-wider">
-                            Değerlendirme
+                            Puan Verin
                           </span>
                           {(() => {
                             const size = 20;
