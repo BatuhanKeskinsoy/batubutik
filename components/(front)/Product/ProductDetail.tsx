@@ -5,11 +5,11 @@ import { productDetailTypes } from "@/types/product/productDetailTypes";
 import CustomButton from "@/components/others/CustomButton";
 import Comments from "@/components/(front)/Comments/Comments";
 import { generalsTypes } from "@/types/generalTypes";
-import { ProductCommentsTypes } from "@/types/product/comments/productCommentsTypes";
+import { ProductCommentTypes } from "@/types/product/comments/productCommentTypes";
 
 interface IProductDetailProps {
   product: productDetailTypes;
-  comments: ProductCommentsTypes[];
+  comments: ProductCommentTypes[];
   generals: generalsTypes;
 }
 

@@ -3,13 +3,13 @@ import { getShortName } from "@/lib/functions/getShortName";
 import { getStar } from "@/lib/functions/getStar";
 import { getStarredName } from "@/lib/functions/getStarredName";
 import { generalsTypes } from "@/types/generalTypes";
-import { ProductCommentsTypes } from "@/types/product/comments/productCommentsTypes";
+import { ProductCommentTypes } from "@/types/product/comments/productCommentTypes";
 import Link from "next/link";
 import React from "react";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 
 interface ICommentsProps {
-  comments: ProductCommentsTypes[];
+  comments: ProductCommentTypes[];
   generals: generalsTypes;
 }
 

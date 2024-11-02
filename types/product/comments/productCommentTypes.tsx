@@ -1,4 +1,4 @@
-export type ProductCommentsTypes = {
+export type ProductCommentTypes = {
   id: number;
   code: string;
   comment: string;
