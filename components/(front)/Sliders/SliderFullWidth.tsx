@@ -53,7 +53,7 @@ function SliderFullWidth({ perView, data }: ISliderOneProps) {
           key={key}
           className="relative !flex items-end justify-center group bg-white"
         >
-          <div className="container mx-auto px-4 grid grid-cols-1 lg:h-[800px] h-[600px] z-30">
+          <div className="container mx-auto px-4 grid grid-cols-1 lg:h-[800px] h-[400px] z-30">
             <div className="relative flex items-center text-left h-full w-full">
               <div className="flex flex-col w-full h-full justify-center max-lg:gap-12 gap-28 py-12">
                 <div className="max-lg:text-center flex flex-col max-lg:items-center max-lg:justify-center w-full max-lg:h-full max-lg:gap-8 gap-12">
