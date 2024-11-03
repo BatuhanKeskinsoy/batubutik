@@ -14,7 +14,7 @@ export type productAttributesTypes = {
 export type productTypes = {
   id: number;
   title: string;
-  short_content: string;
+  short_text: string;
   slug: string;
   code: string;
   brand: string | null;

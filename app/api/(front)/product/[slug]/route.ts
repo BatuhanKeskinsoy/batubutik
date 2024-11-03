@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 const products = [
   {
     title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "amor-bralet-jartiyer-ic-camasir-takimi",
     content:
       `<h1>Başlık H1</h1>` +
@@ -231,7 +231,7 @@ const products = [
   {
     id: 2,
     title: "Black Bralet Dress",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "black-bralet-dress",
     content:
       `<h1>Başlık H1</h1>` +
@@ -448,7 +448,7 @@ const products = [
   {
     id: 3,
     title: "Burgundy Bralet Dress",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "burgundy-bralet-dress",
     content:
       `<h1>Başlık H1</h1>` +
@@ -666,7 +666,7 @@ const products = [
   {
     id: 4,
     title: "Blue Bralet Dress",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "blue-bralet-dress",
     content:
       `<h1>Başlık H1</h1>` +
@@ -879,7 +879,7 @@ const products = [
   {
     id: 5,
     title: "Burgundy Bralet Dress 2",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "burgundy-bralet-dress-2",
     content:
       `<h1>Başlık H1</h1>` +
@@ -973,7 +973,7 @@ const products = [
   {
     id: 6,
     title: "Tek Fotoğraflı Ürün",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "tek-fotograf-urun",
     content:
       `<h1>Başlık H1</h1>` +

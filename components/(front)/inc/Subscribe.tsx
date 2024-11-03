@@ -49,9 +49,9 @@ function Subscribe() {
           <CustomButton
             title="ABONE OL"
             btnType="submit"
-            rightIcon={<IoChevronForwardOutline className="text-2xl -mr-2" />}
+            rightIcon={<IoChevronForwardOutline className="text-xl -mr-2" />}
             containerStyles="flex items-center justify-center text-center gap-4 py-3 px-8 w-fit bg-white/20 text-white max-lg:w-full rounded-lg font-gemunu tracking-widest shadow-[0_-5px_30px_0_rgba(0,0,0,0.15)] hover:bg-site/20 hover:text-site transition-all duration-300"
-            textStyles="uppercase font-medium lg:text-2xl text-xl"
+            textStyles="uppercase font-medium text-xl"
           />
         </form>
       </div>

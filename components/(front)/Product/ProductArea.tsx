@@ -385,11 +385,11 @@ function ProductArea({
               )}
             </div>
           </div>
-          {product?.short_content && (
+          {product?.short_text && (
             <div className="flex flex-col gap-4 w-full">
               <span>Ürün Hakkında :</span>
               <div className="flex lg:text-base text-sm flex-col gap-2 text-gray-600 dark:text-gray-400">
-                {product?.short_content}
+                {product?.short_text}
               </div>
             </div>
           )}

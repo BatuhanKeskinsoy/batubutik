@@ -10,8 +10,8 @@ export async function GET() {
         button_text: "Koleksiyonu Keşfet",
         button_redirect: "/magaza/kadin",
         image: {
-          original: "/assets/banner/banner.webp",
-          thumbnail: "/assets/banner/banner.webp",
+          original: "/assets/banner/original/banner.webp",
+          thumbnail: "/assets/banner/thumbnail/banner.webp",
         },
       },
       {
@@ -21,8 +21,8 @@ export async function GET() {
         button_text: "İç Giyim Ürünleri",
         button_redirect: "/magaza/kadin/ic-giyim",
         image: {
-          original: "/assets/banner/banner2.webp",
-          thumbnail: "/assets/banner/banner2.webp",
+          original: "/assets/banner/original/banner2.webp",
+          thumbnail: "/assets/banner/thumbnail/banner2.webp",
         },
       },
       {
@@ -32,8 +32,8 @@ export async function GET() {
         button_text: "Takımları İncele",
         button_redirect: "/magaza/kadin/ic-giyim/takim",
         image: {
-          original: "/assets/banner/banner3.webp",
-          thumbnail: "/assets/banner/banner3.webp",
+          original: "/assets/banner/original/banner3.webp",
+          thumbnail: "/assets/banner/thumbnail/banner3.webp",
         },
       },
     ],
@@ -61,7 +61,7 @@ export async function GET() {
       products: [
         {
           title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "amor-bralet-jartiyer-ic-camasir-takimi",
           code: "ABJ-100",
@@ -102,7 +102,7 @@ export async function GET() {
         },
         {
           title: "Black Bralet Dress",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "black-bralet-dress",
           code: "BBD-101",
@@ -139,7 +139,7 @@ export async function GET() {
         },
         {
           title: "Burgundy Bralet Dress",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "burgundy-bralet-dress",
           code: "BBD-102",
@@ -176,7 +176,7 @@ export async function GET() {
         },
         {
           title: "Blue Bralet Dress",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "blue-bralet-dress",
           code: "BBD-103",
@@ -209,7 +209,7 @@ export async function GET() {
         },
         {
           title: "Burgundy Bralet Dress 2",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "burgundy-bralet-dress-2",
           code: "BBD-104",
@@ -246,7 +246,7 @@ export async function GET() {
         },
         {
           title: "Tek Fotoğraflı Ürün",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "tek-fotograf-urun",
           code: "TFU-100",
@@ -277,7 +277,7 @@ export async function GET() {
       products: [
         {
           title: "Burgundy Bralet Dress 2",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "burgundy-bralet-dress-2",
           code: "BBD-104",
@@ -314,7 +314,7 @@ export async function GET() {
         },
         {
           title: "Black Bralet Dress",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "black-bralet-dress",
           code: "BBD-101",
@@ -351,7 +351,7 @@ export async function GET() {
         },
         {
           title: "Blue Bralet Dress",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "blue-bralet-dress",
           code: "BBD-103",
@@ -384,7 +384,7 @@ export async function GET() {
         },
         {
           title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "amor-bralet-jartiyer-ic-camasir-takimi",
           code: "ABJ-100",
@@ -425,7 +425,7 @@ export async function GET() {
         },
         {
           title: "Burgundy Bralet Dress",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "burgundy-bralet-dress",
           code: "BBD-102",
@@ -462,7 +462,7 @@ export async function GET() {
         },
         {
           title: "Tek Fotoğraflı Ürün",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "tek-fotograf-urun",
           code: "TFU-100",
@@ -494,7 +494,7 @@ export async function GET() {
       products: [
         {
           title: "Tek Fotoğraflı Ürün",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "tek-fotograf-urun",
           code: "TFU-100",
@@ -519,7 +519,7 @@ export async function GET() {
         },
         {
           title: "Burgundy Bralet Dress",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "burgundy-bralet-dress",
           code: "BBD-102",
@@ -556,7 +556,7 @@ export async function GET() {
         },
         {
           title: "Blue Bralet Dress",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "blue-bralet-dress",
           code: "BBD-103",
@@ -589,7 +589,7 @@ export async function GET() {
         },
         {
           title: "Burgundy Bralet Dress 2",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "burgundy-bralet-dress-2",
           code: "BBD-104",
@@ -626,7 +626,7 @@ export async function GET() {
         },
         {
           title: "Black Bralet Dress",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "black-bralet-dress",
           code: "BBD-101",
@@ -663,7 +663,7 @@ export async function GET() {
         },
         {
           title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
-          short_content:
+          short_text:
             "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
           slug: "amor-bralet-jartiyer-ic-camasir-takimi",
           code: "ABJ-100",
@@ -770,5 +770,5 @@ export async function GET() {
     slug, mainCategory_slug, category_slug, subCategory_slug, 
     brand, title, stock, discount, 
     mainCategory, category, subCategory, 
-    short_content, rating, price 
+    short_text, rating, price 
 */

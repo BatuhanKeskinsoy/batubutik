@@ -113,7 +113,7 @@ const ModalProductComment: React.FC<ModalProps> = ({ slug, onClose }) => {
                           {productDetail.title}
                         </span>
                         <p className="line-clamp-2 text-gray-600 dark:text-gray-400 text-sm">
-                          {productDetail.short_content}
+                          {productDetail.short_text}
                         </p>
                       </div>
                       <hr className="dark:border-zinc-800" />

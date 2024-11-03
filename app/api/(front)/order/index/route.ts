@@ -10,7 +10,7 @@ export async function GET() {
           product: {
               id: 1,
               title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
-              short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+              short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
               slug: "amor-bralet-jartiyer-ic-camasir-takimi",
               code: "ABJ-100",
               brand: "Penti",
@@ -112,7 +112,7 @@ export async function GET() {
           product: {
             id: 2,
             title: "Black Bralet Dress",
-            short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+            short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
             slug: "black-bralet-dress",
             code: "BBD-101",
             brand: "Penti",
@@ -190,7 +190,7 @@ export async function GET() {
           product: {
             id: 2,
             title: "Black Bralet Dress",
-            short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+            short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
             slug: "black-bralet-dress",
             code: "BBD-101",
             brand: "Penti",
@@ -268,7 +268,7 @@ export async function GET() {
           product: {
             id: 2,
             title: "Black Bralet Dress",
-            short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+            short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
             slug: "black-bralet-dress",
             code: "BBD-101",
             brand: "Penti",
@@ -346,7 +346,7 @@ export async function GET() {
           product: {
             id: 2,
             title: "Black Bralet Dress",
-            short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+            short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
             slug: "black-bralet-dress",
             code: "BBD-101",
             brand: "Penti",
@@ -433,7 +433,7 @@ export async function GET() {
           product: {
             id: 3,
             title: "Burgundy Bralet Dress",
-            short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+            short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
             slug: "burgundy-bralet-dress",
             code: "BBD-102",
             brand: "Penti",
@@ -528,7 +528,7 @@ export async function GET() {
           product: {
             id: 4,
             title: "Blue Bralet Dress",
-            short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+            short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
             slug: "blue-bralet-dress",
             code: "BBD-103",
             brand: "Penti",

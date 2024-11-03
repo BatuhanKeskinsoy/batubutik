@@ -15,7 +15,7 @@ export type productGroupProductsTypes = {
 
 export type productDetailTypes = {
   title: string;
-  short_content: string;
+  short_text: string;
   slug: string;
   content: string;
   code: string;

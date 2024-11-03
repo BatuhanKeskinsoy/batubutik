@@ -1,6 +1,6 @@
 import { imageTypes } from "./imageTypes";
 
-export interface Blog {
+export interface blogTypes {
   id: number;
   title: string;
   short_text: string;
@@ -10,9 +10,9 @@ export interface Blog {
   created_at: Date;
 }
 
-export interface FullBlog extends Blog {
+export interface fullBlogTypes extends blogTypes {
   keywords: string;
   content: string;
-  other_blogs: Blog[];
+  other_blogs: blogTypes[];
   updated_at: Date | null;
 }

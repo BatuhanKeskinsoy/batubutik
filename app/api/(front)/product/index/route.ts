@@ -4,7 +4,7 @@ const products = [
   {
     id: 1,
     title: "Amor Bralet Jartiyer İç Çamaşır Takımı",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "amor-bralet-jartiyer-ic-camasir-takimi",
     code: "ABJ-100",
     brand: "Penti",
@@ -89,7 +89,7 @@ const products = [
   {
     id: 2,
     title: "Black Bralet Dress",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "black-bralet-dress",
     code: "BBD-101",
     brand: "Penti",
@@ -163,7 +163,7 @@ const products = [
   {
     id: 3,
     title: "Burgundy Bralet Dress",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "burgundy-bralet-dress",
     code: "BBD-102",
     brand: "Penti",
@@ -238,7 +238,7 @@ const products = [
   {
     id: 4,
     title: "Blue Bralet Dress",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "blue-bralet-dress",
     code: "BBD-103",
     brand: "Penti",
@@ -308,7 +308,7 @@ const products = [
   {
     id: 5,
     title: "Burgundy Bralet Dress 2",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "burgundy-bralet-dress-2",
     code: "BBD-104",
     brand: "Batubutik",
@@ -379,7 +379,7 @@ const products = [
   {
     id: 6,
     title: "Tek Fotoğraflı Ürün",
-    short_content: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
+    short_text: "Ürünümüz standart bedenler için uygundur. Rahat kalıptır.",
     slug: "tek-fotograf-urun",
     code: "TFU-100",
     brand: null,

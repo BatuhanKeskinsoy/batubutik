@@ -10,6 +10,41 @@ import { getGenerals } from "@/lib/utils/General/getGenerals";
 import React from "react";
 import { redirect } from "next/navigation";
 import { getProductComments } from "@/lib/utils/Product/Comment/getProductComments";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug?: string[] };
+}): Promise<Metadata> {
+  const categorySlugs = params.slug || [];
+  const productSlug = categorySlugs[categorySlugs.length - 1];
+
+  // Ürün detayını getirmeyi dene
+  const product: productDetailTypes | null = await getProductShow(productSlug);
+
+  if (product) {
+    // Eğer ürün varsa, ürün detay bilgilerini döndür
+    return {
+      title: product.meta_title ? product.meta_title : product.title,
+      description: product.meta_description
+        ? product.meta_description
+        : product.short_text,
+    };
+  } else {
+    // Ürün yoksa, kategorilere göre genel başlık bilgileri döndür
+    const categories: mainCategoryTypes[] = await getCategories();
+    const mainCategorySlug = categorySlugs[0];
+    const category = categories.find((cat) => cat.slug === mainCategorySlug);
+
+    return {
+      title: category ? `${category.name} Ürünleri` : "Mağaza",
+      description: category
+        ? `${category.name} kategorisindeki ürünleri keşfedin.`
+        : "Mağazamızdaki ürünleri inceleyin.",
+    };
+  }
+}
 
 async function page({ params }: { params: { slug?: string[] } }) {
   const categories: mainCategoryTypes[] = await getCategories();
@@ -72,7 +107,11 @@ async function page({ params }: { params: { slug?: string[] } }) {
             title5={product.title}
           />
         </div>
-        <ProductDetail product={product} generals={generals} comments={comments} />
+        <ProductDetail
+          product={product}
+          generals={generals}
+          comments={comments}
+        />
         <ProductSidebar product={product} />
         <hr className="lg:my-12 my-6 dark:border-zinc-800" />
       </>

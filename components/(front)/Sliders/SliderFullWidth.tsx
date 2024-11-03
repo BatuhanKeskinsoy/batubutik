@@ -43,7 +43,7 @@ function SliderFullWidth({ perView, data }: ISliderOneProps) {
     <Swiper
       spaceBetween={0}
       modules={[Autoplay]}
-      autoplay={{ delay: 5000 }}
+      autoplay={{ delay: 3000 }}
       loop={true}
       className="relative lg:bg-black-900/30 bg-black-900/50 !z-0"
       breakpoints={breakpoints}
@@ -55,7 +55,7 @@ function SliderFullWidth({ perView, data }: ISliderOneProps) {
         >
           <div className="container mx-auto px-4 grid grid-cols-1 lg:h-[800px] h-[400px] z-30">
             <div className="relative flex items-center text-left h-full w-full">
-              <div className="flex flex-col w-full h-full justify-center max-lg:gap-12 gap-28 py-12">
+              <div className="flex flex-col w-full h-full justify-center lg:gap-24">
                 <div className="max-lg:text-center flex flex-col max-lg:items-center max-lg:justify-center w-full max-lg:h-full max-lg:gap-8 gap-12">
                   <span className="font-gemunu tracking-widest font-semibold lg:text-4xl text-xl text-white/80">
                     {slide.text_1}
@@ -73,7 +73,7 @@ function SliderFullWidth({ perView, data }: ISliderOneProps) {
                   rightIcon={
                     <IoChevronForwardOutline className="text-2xl -mr-2" />
                   }
-                  containerStyles="flex items-center justify-center text-center gap-4 py-3 px-6 w-fit bg-white/20 text-white max-lg:w-full rounded-lg font-gemunu tracking-widest shadow-[0_-5px_30px_0_rgba(0,0,0,0.15)] hover:bg-site/20 hover:text-site transition-all duration-300"
+                  containerStyles="flex items-center justify-center text-center gap-4 mb-12 py-3 px-6 w-fit bg-white/20 text-white max-lg:w-full rounded-lg font-gemunu tracking-widest shadow-[0_-5px_30px_0_rgba(0,0,0,0.15)] hover:bg-site/20 hover:text-site transition-all duration-300"
                   textStyles="uppercase font-medium lg:text-2xl text-xl"
                 />
               </div>
@@ -88,7 +88,7 @@ function SliderFullWidth({ perView, data }: ISliderOneProps) {
             fill
             sizes="100vw"
             className="object-cover"
-            quality={90}
+            quality={isMobile ? 50 : 90}
             priority={key === 0}
             decoding={key === 0 ? "async" : "auto"}
             fetchPriority={key === 0 ? "high" : "low"}

@@ -2,7 +2,7 @@ import { imageTypes } from "../imageTypes";
 
 export type basketProductTypes = {
   title: string;
-  short_content: string;
+  short_text: string;
   slug: string;
   code: string;
   brand: string | null;

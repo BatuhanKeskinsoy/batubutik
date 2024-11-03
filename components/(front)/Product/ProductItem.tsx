@@ -365,7 +365,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                 {product.title}
               </span>
               <p className="line-clamp-2 text-gray-600 dark:text-gray-400 text-sm">
-                {product.short_content}
+                {product.short_text}
               </p>
             </div>
             <div className="flex items-center lg:justify-between justify-center gap-0 bg-black-400/10 dark:bg-white/10 rounded-md mt-1 overflow-hidden">
