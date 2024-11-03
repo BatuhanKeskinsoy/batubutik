@@ -17,6 +17,7 @@ function BlogImage({ title, thumbnail, original }: IBlogImageProps) {
       title={title}
       alt={title}
       fill
+      priority
       className="object-cover"
     />
   );
