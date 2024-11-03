@@ -103,7 +103,7 @@
 }
 
 .dangeriousContent {
-  @apply pt-4 pb-8 mb-8 border-b w-full dark:border-zinc-800 text-gray-500 dark:text-gray-400;
+  @apply py-4 w-full text-gray-500 dark:text-gray-400;
 }
 .dangeriousContent h1 {
   @apply text-3xl;

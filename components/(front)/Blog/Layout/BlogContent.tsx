@@ -60,14 +60,6 @@ function BlogContent({ blog }: IBlogContentProps) {
           className="dangeriousContent lg:leading-8 leading-7"
           dangerouslySetInnerHTML={{ __html: blog.content }}
         />
-        <div className="flex flex-col w-full gap-4">
-          <span className="font-gemunu text-2xl">Paylaş</span>
-          <ProductShares
-            title={blog.title}
-            description={blog.short_text}
-            tags={blog.keywords}
-          />
-        </div>
       </div>
     </div>
   );

@@ -6,7 +6,6 @@ import { WhatsappShareButton, WhatsappIcon } from "next-share";
 import { LinkedinShareButton, LinkedinIcon } from "next-share";
 import { TelegramShareButton, TelegramIcon } from "next-share";
 import { RedditShareButton, RedditIcon } from "next-share";
-import { EmailShareButton, EmailIcon } from "next-share";
 import { usePathname } from "next/navigation";
 
 function ProductShares(props: any) {
@@ -87,14 +86,6 @@ function ProductShares(props: any) {
           className="hover:scale-110 transition-all duration-300"
         />
       </RedditShareButton>
-
-      <EmailShareButton
-        url={fullUrl}
-        subject={props.title}
-        body={props.description}
-      >
-        <EmailIcon size={40} round className="hover:scale-110 transition-all duration-300" />
-      </EmailShareButton>
     </div>
   );
 }

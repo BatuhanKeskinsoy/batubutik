@@ -43,6 +43,7 @@ function BlogItem({ blog }: IBlogItemProps) {
             sizes="(max-width: 768px) 100vw, 35vw"
             loading="lazy"
             alt={`${blog.title} Hakkında Blog İçeriği`}
+            quality={90}
             title={blog.title}
             className="object-cover object-center rounded-t-xl group-hover:scale-105 transition-all duration-300"
           />

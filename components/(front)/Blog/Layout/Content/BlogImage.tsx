@@ -17,7 +17,9 @@ function BlogImage({ title, thumbnail, original }: IBlogImageProps) {
       title={title}
       alt={title}
       fill
+      sizes="(max-width: 768px) 100vw, 70vw"
       priority
+      quality={90}
       className="object-cover"
     />
   );

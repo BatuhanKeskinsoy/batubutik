@@ -15,7 +15,7 @@ function About({ about }: IAboutProps) {
         </span>
         <div className="flex flex-col w-full text-gray-600 dark:text-gray-400">
           <div
-            className="dangeriousContent lg:leading-8 leading-7 !border-b-0"
+            className="dangeriousContent lg:leading-8 leading-7"
             dangerouslySetInnerHTML={{
               __html: about.content,
             }}

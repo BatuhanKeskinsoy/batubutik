@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import CustomButton from "@/components/others/CustomButton";
-import ProductArea from "@/components/(front)/Product/ProductArea";
+import ProductArea from "@/components/(front)/Product/Layout/Content/ProductArea";
 import { IoCloseOutline } from "react-icons/io5";
 import { useProductDetail } from "@/hooks/useProduct";
 

@@ -1,4 +1,5 @@
 import { imageTypes } from "../imageTypes";
+import { productTypes } from "./productTypes";
 
 export type productGroupProductsTypes = {
   choise_name: string;
@@ -45,6 +46,7 @@ export type productDetailTypes = {
       }[]
     | null;
   choise_required: boolean;
+  other_products: productTypes[];
   status: boolean;
   featured_status: boolean;
   total_sold: number;

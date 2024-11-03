@@ -209,9 +209,7 @@ function ProductArea({
         isDetail ? (!isMobile ? "container gap-4" : "container px-0 gap-4") : ""
       }`}
     >
-      <div
-        className={`relative flex h-full ${isDetail ? "lg:w-2/5" : "lg:w-1/2"}`}
-      >
+      <div className={`relative flex h-full lg:w-1/2`}>
         {product?.images && product.images?.length > 1 && (
           <div
             className={`flex flex-col gap-1 max-h-full min-w-max pr-1 max-lg:pl-1 overflow-y-auto overflow-x-hidden scrollbar-thick ${
@@ -249,7 +247,7 @@ function ProductArea({
 
         {currentProductImage && (
           <div
-            className={`relative w-full max-w-full h-full lg:min-h-[790px] min-h-[510px] overflow-hidden cursor-crosshair ${
+            className={`relative w-full max-w-full h-full lg:min-h-[660px] min-h-[510px] overflow-hidden cursor-crosshair ${
               product?.images && product.images?.length > 4 ? "lg:ml-1" : ""
             }`}
             onMouseMove={handleMouseMove}
@@ -361,39 +359,13 @@ function ProductArea({
                 })()}
               </>
             )}
-          </div>
-          <div className="flex flex-col gap-4 w-full">
-            <div className="flex items-center gap-3">
-              <span
-                className={`font-medium text-2xl ${
-                  product && product.discount > 0 ? "text-green-500" : ""
-                }`}
-              >
-                {getPrice(product ? productPrice : 0)}
-              </span>
-              {product && product.discount > 0 && (
-                <>
-                  <span className="line-through font-light text-lg text-gray-400">
-                    {getPrice(
-                      (product.discount * productPrice) / 100 + productPrice
-                    )}{" "}
-                  </span>
-                  <span className="flex px-4 py-1 bg-green-500/10 text-green-500 rounded-full text-sm">
-                    %{product.discount} İndirim
-                  </span>
-                </>
-              )}
-            </div>
-          </div>
-          {product?.short_text && (
-            <div className="flex flex-col gap-4 w-full">
-              <span>Ürün Hakkında :</span>
+            {product?.short_text && (
               <div className="flex lg:text-base text-sm flex-col gap-2 text-gray-600 dark:text-gray-400">
                 {product?.short_text}
               </div>
-            </div>
-          )}
-          <div className="flex flex-col gap-6 w-full">
+            )}
+          </div>
+          <div className="flex flex-col gap-4 w-full">
             {product?.product_group && (
               <div className="flex flex-col gap-2">
                 <span>{product.product_group.group_name} :</span>
@@ -412,12 +384,12 @@ function ProductArea({
                       <Link
                         href={redirect}
                         key={key}
-                        className={`p-2 bg-gray-200 min-w-24 dark:bg-zinc-800 overflow-hidden rounded-md cursor-pointer hover:bg-site/10 dark:hover:bg-site/10 transition-all duration-300 group first:bg-site/30 dark:first:bg-site/30 first:hover:bg-site/30 dark:first:hover:bg-site/30 first:text-site`}
+                        className={`p-1.2 bg-gray-200 min-w-[70px] dark:bg-zinc-800 overflow-hidden rounded-md cursor-pointer hover:bg-site/10 dark:hover:bg-site/10 transition-all duration-300 group first:bg-site/30 dark:first:bg-site/30  first:hover:bg-site/30 dark:first:hover:bg-site/30 first:text-site`}
                         title={item.product.title}
                       >
                         <div className="flex flex-col text-center gap-2 w-full">
                           {item.product.images && (
-                            <div className="relative w-full h-28 overflow-hidden rounded-md">
+                            <div className="relative w-full h-24 overflow-hidden rounded-t-md">
                               <Image
                                 src={item.product.images[0].thumbnail}
                                 alt={item.product.title}
@@ -425,11 +397,12 @@ function ProductArea({
                                 fill
                                 quality={100}
                                 sizes="80px"
-                                className="object-cover"
+                                className="object-cover group-hover:scale-105 first:group-hover:scale-100 transition-all duration-300"
                               />
+                              <div className="absolute w-full h-full z-10 bg-site/20 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
                             </div>
                           )}
-                          <span className="text-xs group-hover:text-site font-medium transition-all duration-300 line-clamp-1 tracking-wide">
+                          <span className="text-xs group-hover:text-site font-medium transition-all duration-300 line-clamp-1 tracking-wide pb-2">
                             {item.choise_name}
                           </span>
                         </div>
@@ -478,8 +451,27 @@ function ProductArea({
               </div>
             )}
           </div>
-          <div className="flex lg:flex-row flex-col items-center max-lg:w-full lg:gap-2 gap-4">
-            <div className={`flex items-center max-lg:w-full gap-2 h-[50px]`}>
+          <div className="flex items-center gap-3 h-full">
+            <span
+              className={`font-medium text-2xl dark:bg-green-500/10 bg-green-500 dark:text-green-500 text-white py-2 px-4 rounded-lg max-lg:w-full text-center`}
+            >
+              {getPrice(product ? productPrice : 0)}
+            </span>
+            {product && product.discount > 0 && (
+              <>
+                <span className="line-through font-light text-lg text-gray-400 min-w-max">
+                  {getPrice(
+                    (product.discount * productPrice) / 100 + productPrice
+                  )}{" "}
+                </span>
+                <span className="flex px-4 py-2 bg-green-500/10 text-green-500 rounded-full text-sm min-w-max">
+                  %{product.discount} İndirim
+                </span>
+              </>
+            )}
+          </div>
+          <div className="flex lg:flex-row flex-col items-center w-full lg:gap-2 gap-4 min-w-max">
+            <div className={`flex items-center w-full gap-2 h-[50px]`}>
               <div className="flex items-center justify-between gap-3 bg-gray-100 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg p-1 h-full">
                 <CustomButton
                   handleClick={
@@ -541,7 +533,7 @@ function ProductArea({
                   )
                 }
                 textStyles="-mb-0.5"
-                containerStyles={`flex items-center max-lg:w-full gap-2 justify-center h-full lg:px-20 px-2 ${
+                containerStyles={`flex items-center w-full gap-2 justify-center h-full min-w-max lg:px-20 px-2 ${
                   product && product.stock > 0
                     ? loadingAddToBasket
                       ? "bg-green-500 text-white"

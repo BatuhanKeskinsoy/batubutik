@@ -5,8 +5,6 @@ import { Autoplay, Navigation } from "swiper/modules";
 import ProductItem from "@/components/(front)/Product/ProductItem";
 import { productTypes } from "@/types/product/productTypes";
 
-// https://razziwp.com/fashion/
-
 interface ISliderOneProps {
   products: productTypes[];
   perView: number;

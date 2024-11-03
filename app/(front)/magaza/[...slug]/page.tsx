@@ -1,5 +1,4 @@
-import ProductDetail from "@/components/(front)/Product/ProductDetail";
-import ProductSidebar from "@/components/(front)/Product/ProductSidebar";
+import ProductDetail from "@/components/(front)/Product/Layout/ProductDetail";
 import StoreMain from "@/components/(front)/Store/StoreMain";
 import Breadcrumb from "@/components/others/Breadcrumb";
 import { getCategories } from "@/lib/utils/General/getCategories";
@@ -112,8 +111,6 @@ async function page({ params }: { params: { slug?: string[] } }) {
           generals={generals}
           comments={comments}
         />
-        <ProductSidebar product={product} />
-        <hr className="lg:my-12 my-6 dark:border-zinc-800" />
       </>
     );
   } else {

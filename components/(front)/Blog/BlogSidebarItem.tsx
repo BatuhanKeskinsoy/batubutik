@@ -34,7 +34,7 @@ function BlogSidebarItem({ blog }: IBlogItemProps) {
       <Link
         href={`/blog/${blog.slug}`}
         title={blog.title}
-        className="w-full left-0 bg-gradient-to-t h-full flex justify-between dark:bg-zinc-800 bg-gray-100 shadow-lg rounded-lg dark:text-gray-200 text-black-900 transition-all duration-300 group"
+        className="w-full left-0 bg-gradient-to-t h-full flex justify-start dark:bg-zinc-800 bg-gray-100 dark:hover:bg-site/10 hover:bg-site/10 shadow-lg rounded-lg dark:text-gray-200 text-black-900 transition-all duration-300 group"
       >
         <div className="relative w-28 h-20 min-w-28 flex items-center justify-center rounded-lg overflow-hidden">
           <Image
