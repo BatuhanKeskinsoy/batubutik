@@ -230,9 +230,9 @@ function Footer({ generals, categories }: IFooterProps) {
               Copyright ©{" "}
               <span className="text-site select-none font-semibold">
                 {" "}
-                {new Date().getFullYear() === 2024
+                {new Date().getFullYear() === 2025
                   ? new Date().getFullYear()
-                  : "2024 - " + new Date().getFullYear()}{" "}
+                  : "2025 - " + new Date().getFullYear()}{" "}
               </span>
             </div>
             <div className="md:my-0 my-1">

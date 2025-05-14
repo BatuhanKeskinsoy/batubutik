@@ -4,7 +4,7 @@ export async function GET() {
   const home = {
     fullViewSlider: [
       {
-        text_1: "2024 Batubutik Koleksiyonu",
+        text_1: "2025 Batubutik Koleksiyonu",
         text_2: "Zarafetin Özgürlüğü",
         text_3: "Kadın ürünlerini inceleyin!",
         button_text: "Koleksiyonu Keşfet",
@@ -15,7 +15,7 @@ export async function GET() {
         },
       },
       {
-        text_1: "2024 Batubutik Koleksiyonu",
+        text_1: "2025 Batubutik Koleksiyonu",
         text_2: "İç Giyim Ürünlerimiz",
         text_3: "Kadın iç giyim ürünlerini inceleyin!",
         button_text: "İç Giyim Ürünleri",
@@ -26,7 +26,7 @@ export async function GET() {
         },
       },
       {
-        text_1: "2024 Batubutik Koleksiyonu",
+        text_1: "2025 Batubutik Koleksiyonu",
         text_2: "Kadın İç Takım Ürünlerimiz",
         text_3: "Kadın iç giyim takım ürünlerini inceleyin!",
         button_text: "Takımları İncele",
