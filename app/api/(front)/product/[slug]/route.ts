@@ -3244,9 +3244,9 @@ export async function GET(
 ) {
   const product = products.find((product) => product.slug === params.slug);
 
-  if (!product) {
+  if (product) {
+    return NextResponse.json(product);
+  } else {
     return NextResponse.json({ error: "Ürün bulunamadı" }, { status: 404 });
   }
-
-  return NextResponse.json(product);
 }
