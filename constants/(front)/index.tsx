@@ -1,4 +1,5 @@
 export const baseURL = process.env.NEXT_PUBLIC_API_BASEURL;
+export const siteName = process.env.NEXT_PUBLIC_SITE_NAME;
 export const siteURL = process.env.NEXT_PUBLIC_SITE_URL;
 
 export const navLinks = [
@@ -37,19 +38,34 @@ export const navLinksAuthUser = [
 
 export const navLinksAuthAdmin = [
   {
-    title: "Yönetici Paneli",
-    url: "/panel",
+    name: "Genel",
+    links: [
+      {
+        title: "Yönetim Paneli",
+        url: "/panel",
+      },
+      {
+        title: "Ürünler",
+        url: "/panel/urunler",
+      },
+    ],
   },
   {
-    title: "Ürünler",
-    url: "/panel",
+    name: "Kategoriler",
+    links: [
+      {
+        title: "Kategoriler",
+        url: "/panel/kategoriler",
+      },
+    ],
   },
   {
-    title: "Kategoriler",
-    url: "/panel",
-  },
-  {
-    title: "Site Ayarları",
-    url: "/panel",
+    name: "Ayarlar",
+    links: [
+      {
+        title: "Site Ayarları",
+        url: "/panel/site-ayarlari",
+      },
+    ],
   },
 ];

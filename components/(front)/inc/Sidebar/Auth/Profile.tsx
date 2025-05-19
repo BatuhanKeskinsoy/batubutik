@@ -48,23 +48,40 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
           </div>
           <hr className="dark:border-zinc-800" />
           <div className="flex flex-col w-full gap-2">
-            {(user.role === "user"
-              ? navLinksAuthUser
-              : navLinksAuthAdmin
-            ).map((link, key) => (
-              <Link
-                key={key}
-                title={link.title}
-                href={link.url}
-                className="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
-                onClick={() => {
-                  setSidebarStatus("");
-                }}
-              >
-                {link.title}
-                <IoChevronForwardOutline className="text-xl opacity-70" />
-              </Link>
-            ))}
+            {user.role === "user"
+              ?
+                navLinksAuthUser.map((link, key) => (
+                  <Link
+                    key={key}
+                    title={link.title}
+                    href={link.url}
+                    className="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
+                    onClick={() => setSidebarStatus("")}
+                  >
+                    {link.title}
+                    <IoChevronForwardOutline className="text-xl opacity-70" />
+                  </Link>
+                ))
+              :
+                navLinksAuthAdmin.map((group, groupKey) => (
+                  <div key={groupKey} className="flex flex-col gap-1">
+                    <span className="text-sm text-gray-500 pt-3 font-medium tracking-wide uppercase">
+                      {group.name}
+                    </span>
+                    {group.links.map((link, linkKey) => (
+                      <Link
+                        key={linkKey}
+                        title={link.title}
+                        href={link.url}
+                        className="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
+                        onClick={() => setSidebarStatus("")}
+                      >
+                        {link.title}
+                        <IoChevronForwardOutline className="text-xl opacity-70" />
+                      </Link>
+                    ))}
+                  </div>
+                ))}
             <hr className="my-2 dark:border-zinc-800" />
             <CustomButton
               title={"Çıkış Yap"}

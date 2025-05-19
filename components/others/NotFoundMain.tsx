@@ -25,13 +25,24 @@ function NotFoundMain({ generals }: INotFoundMainProps) {
         >
           Anasayfa'ya Dön!
         </Link>
-        <Image
-          src={generals.logo}
-          alt="s"
-          width={150}
-          height={0}
-          className="max-w-full mt-10"
-        />
+        <Link
+          href={"/"}
+          className="relative capitalize font-medium font-gemunu text-5xl text-site"
+          title={generals.site_name}
+        >
+          {generals.logo ? (
+            <Image
+              src={generals.logo}
+              alt={generals.site_name}
+              title={generals.site_name}
+              width={0}
+              height={0}
+              className="h-10 w-auto"
+            />
+          ) : (
+            <span>{generals.site_name}</span>
+          )}
+        </Link>
       </div>
     </div>
   );
