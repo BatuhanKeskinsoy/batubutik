@@ -49,7 +49,7 @@ function BlogSidebarItem({ blog }: IBlogItemProps) {
         </div>
 
         <div className="px-3 flex flex-col justify-center">
-          <h2 className="font-gemunu text-base tracking-wider transition-all group-hover:text-site line-clamp-2">
+          <h2 className="text-sm transition-all group-hover:text-site line-clamp-2">
             {blog.title}
           </h2>
           <time

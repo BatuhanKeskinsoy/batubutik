@@ -20,7 +20,7 @@ function Auth() {
       ) : (
         <CustomButton
           title={getShortName(user.firstName, user.lastName)}
-          containerStyles={`py-1.5 px-2.5 transition-all duration-300 rounded-full bg-site/10 text-site shadow-lg select-none font-gemunu text-lg max-lg:text-xl uppercase hover:bg-site hover:text-white`}
+          containerStyles={`py-1.5 px-2.5 transition-all duration-300 rounded-full bg-site/10 text-site shadow-lg select-none text-base max-lg:text-xl uppercase hover:bg-site hover:text-white`}
         />
       )}
     </div>

@@ -127,7 +127,7 @@ function Header({ generals, categories }: IHeaderProps) {
                 <Link
                   href={"/"}
                   title={generals.site_name}
-                  className="capitalize font-medium font-gemunu text-4xl text-site"
+                  className="capitalize font-medium text-3xl text-site"
                 >
                   {generals.logo ? (
                     <Image
@@ -153,7 +153,7 @@ function Header({ generals, categories }: IHeaderProps) {
                   }
                   handleClick={() => setSidebarStatus("MobileMenu")}
                 />
-                <nav className="flex items-center text-lg font-gemunu tracking-wide *:px-3 *:flex *:items-center *:h-full *:transition-all *:duration-300 *:min-w-max max-lg:hidden">
+                <nav className="flex items-center text-base font-medium *:px-3 *:flex *:items-center *:h-full *:transition-all *:duration-300 *:min-w-max max-lg:hidden">
                   <CustomButton
                     btnType="button"
                     title={"Anasayfa"}

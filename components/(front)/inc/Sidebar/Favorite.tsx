@@ -73,7 +73,7 @@ function Favorite({ profile }: IFavoriteProps) {
           <IoFileTrayOutline
             className={`text-6xl ${!profile ? "lg:text-7xl" : ""}`}
           />
-          <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
+          <span className="text-xl">
             Favori Ürününüz Yok
           </span>
         </div>

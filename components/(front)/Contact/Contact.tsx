@@ -42,7 +42,7 @@ function Contact({ generals }: IContactProps) {
   return (
     <div className="container mx-auto px-4 flex lg:flex-row flex-col gap-8">
       <div className="flex flex-col gap-4 lg:w-2/3 w-full lg:order-1 order-2">
-        <span className="font-gemunu text-3xl tracking-wider font-medium">
+        <span className="text-2xl font-medium">
           Bize Ulaşın
         </span>
         <hr className="dark:border-zinc-800" />
@@ -117,15 +117,15 @@ function Contact({ generals }: IContactProps) {
               title="Mesajı Gönder"
               btnType="submit"
               rightIcon={<IoChevronForwardOutline className="text-2xl -mr-2" />}
-              containerStyles="flex items-center justify-center text-center gap-4 py-3 px-6 w-fit bg-white/20 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 max-lg:w-full rounded-lg font-gemunu tracking-widest hover:border-transparent dark:hover:border-transparent hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300"
-              textStyles="font-medium text-xl"
+              containerStyles="flex items-center justify-center text-center gap-4 py-3 px-6 w-fit bg-white/20 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 max-lg:w-full rounded-lg hover:border-transparent dark:hover:border-transparent hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300"
+              textStyles="font-medium text-lg"
             />
           </div>
         </form>
       </div>
       <div className="w-0.5 h-[600px] border-r border-gray-200 order-2 max-lg:hidden"></div>
       <div className="flex flex-col gap-4 lg:w-1/3 w-full tracking-wide lg:order-2 order-1">
-        <span className="font-gemunu text-3xl tracking-wider font-medium">
+        <span className="text-2xl font-medium">
           Sosyal Medya
         </span>
         {generals.socials && (
@@ -144,7 +144,7 @@ function Contact({ generals }: IContactProps) {
           </div>
         )}
         <hr />
-        <span className="font-gemunu text-3xl tracking-wider font-medium">
+        <span className="text-2xl font-medium">
           İletişim
         </span>
         <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400 leading-6">
@@ -170,7 +170,7 @@ function Contact({ generals }: IContactProps) {
           {!showMap ? (
             <CustomButton
               title="Haritayı Göster"
-              textStyles="opacity-70 group-hover:opacity-100 group-hover:text-site transition-all font-gemunu text-xl"
+              textStyles="opacity-70 group-hover:opacity-100 group-hover:text-site transition-all text-lg"
               leftIcon={
                 <IoMapOutline className="text-4xl opacity-50 group-hover:opacity-100 group-hover:text-site transition-all" />
               }

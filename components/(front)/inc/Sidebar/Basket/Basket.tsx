@@ -195,7 +195,7 @@ function Basket({ isDetail, generals }: IBasketProps) {
       <div className="flex flex-col gap-4 w-full h-[calc(100dvh-77px)] justify-center items-center text-gray-500 dark:text-zinc-600">
         <div className="flex flex-col gap-8 justify-center items-center animate-pulse">
           <div className="animate-spin rounded-full m-0.5 lg:size-24 size-16 border-t-4 border-b-4 border-gray-500 dark:border-zinc-600"></div>
-          <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
+          <span className="text-xl">
             Ürünler Yükleniyor.
           </span>
         </div>
@@ -207,7 +207,7 @@ function Basket({ isDetail, generals }: IBasketProps) {
       <div className="flex flex-col gap-4 w-full h-[calc(100dvh-77px)] justify-center items-center text-gray-500 dark:text-zinc-600">
         <div className="flex flex-col gap-4 justify-center items-center animate-pulse">
           <IoFileTrayOutline className="lg:text-7xl text-6xl" />
-          <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
+          <span className="text-xl">
             Sepetinizde Ürün Bulunamadı
           </span>
         </div>
@@ -223,7 +223,7 @@ function Basket({ isDetail, generals }: IBasketProps) {
       >
         {isDetail && (
           <div className="w-full flex flex-col gap-4">
-            <h1 className="text-4xl font-gemunu font-semibold tracking-wider">
+            <h1 className="text-3xl font-semibold">
               Sepet
             </h1>
           </div>

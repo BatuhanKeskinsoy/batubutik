@@ -279,7 +279,7 @@ function ProductArea({
             {product && product.stock < 1 && (
               <div className="absolute flex items-center justify-center w-full h-full overflow-hidden bg-black-900/70 animate-pulse">
                 <div className="absolute w-full h-full left-0 -z-10 bg-site/30"></div>
-                <span className="text-white font-gemunu lg:text-5xl text-2xl text-center font-medium tracking-wider -rotate-[35deg]">
+                <span className="text-white lg:text-4xl text-2xl text-center font-medium -rotate-[35deg]">
                   Stokta Yok
                 </span>
               </div>

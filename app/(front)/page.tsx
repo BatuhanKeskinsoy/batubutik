@@ -26,7 +26,7 @@ async function page() {
 
       <section className="container mx-auto px-4">
         <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
-          <h1 className="text-4xl font-gemunu font-semibold tracking-wider">
+          <h1 className="text-3xl font-semibold">
             <span className="text-site">
               {home.featuredProducts.title.split(" ")[0]}
             </span>{" "}
@@ -42,7 +42,7 @@ async function page() {
       <section className="bg-gray-100 dark:bg-zinc-800 py-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
-            <h2 className="text-4xl font-gemunu font-semibold tracking-wider">
+            <h2 className="text-3xl font-semibold">
               <span className="text-site">
                 {home.newProducts.title.split(" ")[0]}
               </span>{" "}
@@ -58,7 +58,7 @@ async function page() {
 
       <section className="container mx-auto px-4">
         <div className="flex flex-col gap-2 w-full mb-8 max-lg:text-center">
-          <h2 className="text-4xl font-gemunu font-semibold tracking-wider">
+          <h2 className="text-3xl font-semibold">
             <span className="text-site">
               {home.bestSellingProducts.title.split(" ")[0]}
             </span>{" "}

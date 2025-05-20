@@ -31,13 +31,13 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
         <div className="flex flex-col w-full h-full gap-6">
           <div className="flex gap-4 items-center select-none">
             <div
-              className={`flex items-center justify-center size-20 min-w-20 rounded-full bg-site/10 text-site select-none font-gemunu text-4xl max-lg:text-3xl uppercase shadow-lg`}
+              className={`flex items-center justify-center size-20 min-w-20 rounded-full bg-site/10 text-site select-none text-3xl uppercase shadow-lg`}
             >
               {getShortName(user.firstName, user.lastName)}
             </div>
             <div className="flex flex-col gap-3">
               <div className="flex flex-col leading-4">
-                <span className="text-site font-semibold tracking-wider font-gemunu text-xl">
+                <span className="text-site font-semibold text-lg">
                   {user.firstName} {user.lastName}
                 </span>
               </div>
@@ -55,7 +55,7 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
                     key={key}
                     title={link.title}
                     href={link.url}
-                    className="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
+                    className="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 text-base hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
                     onClick={() => setSidebarStatus("")}
                   >
                     {link.title}
@@ -73,7 +73,7 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
                         key={linkKey}
                         title={link.title}
                         href={link.url}
-                        className="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
+                        className="flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 text-base hover:pl-6 hover:bg-site/10 dark:hover:bg-site/10 hover:text-site transition-all duration-300 text-left"
                         onClick={() => setSidebarStatus("")}
                       >
                         {link.title}
@@ -86,7 +86,7 @@ function Profile({ user, setUser, setSidebarStatus }: IProfileProps) {
             <CustomButton
               title={"Çıkış Yap"}
               btnType="submit"
-              containerStyles={`flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 font-gemunu text-lg tracking-wide hover:pl-6 transition-all duration-300 text-left hover:bg-site/10 dark:hover:bg-site/10 hover:text-site`}
+              containerStyles={`flex items-center gap-4 justify-between bg-gray-100 dark:bg-zinc-800 py-3 px-4 text-base hover:pl-6 transition-all duration-300 text-left hover:bg-site/10 dark:hover:bg-site/10 hover:text-site`}
               rightIcon={<IoLogOutOutline className="text-xl opacity-70" />}
               handleClick={(e) => handleLogout(e)}
             />

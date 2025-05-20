@@ -214,7 +214,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
               {product.stock < 1 && (
                 <div className="absolute flex items-center justify-center w-full h-full overflow-hidden bg-black-900/50 animate-pulse">
                   <div className="absolute w-full h-full left-0 -z-10 bg-site/30"></div>
-                  <span className="text-white font-gemunu lg:text-5xl text-2xl text-center font-medium tracking-wider -rotate-[35deg]">
+                  <span className="text-white lg:text-4xl text-2xl text-center font-medium tracking-wider -rotate-[35deg]">
                     Stokta Yok
                   </span>
                 </div>
@@ -385,7 +385,7 @@ function ProductItem({ product, height, mobileHeight }: IProductItemProps) {
                   </span>
                 )}
               </div>
-              <span className="min-w-max max-lg:hidden group-hover:bg-site group-hover:text-white py-2.5 px-6 font-gemunu font-medium text-lg tracking-wider transition-all duration-300 border-l dark:border-zinc-900 border-white">
+              <span className="min-w-max max-lg:hidden group-hover:bg-site group-hover:text-white py-2.5 px-6 font-medium text-base transition-all duration-300 border-l dark:border-zinc-900 border-white">
                 Ürüne Git
               </span>
             </div>

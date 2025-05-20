@@ -183,7 +183,7 @@ function Aside({
                 <IoChevronDown className="text-2xl" />
               )
             }
-            containerStyles={`flex justify-between font-gemunu items-center border border-gray-200 dark:border-zinc-800 w-full px-4 py-3 text-2xl ${
+            containerStyles={`flex justify-between items-center border border-gray-200 dark:border-zinc-800 w-full px-4 py-3 text-xl ${
               isFilterNav
                 ? "bg-site/10 text-site border-b-0"
                 : " bg-white dark:bg-zinc-900 text-gray-600 dark:text-gray-200"
@@ -193,7 +193,7 @@ function Aside({
         )}
         {isFilterNav && (
           <div className="flex flex-col py-2 gap-4">
-            <span className="font-medium text-xl font-gemunu tracking-wide dark:text-gray-200">
+            <span className="font-medium text-lg dark:text-gray-200">
               Kategori
             </span>
             <div className="flex flex-col w-full gap-2">
@@ -336,7 +336,7 @@ function Aside({
               priceRange[1] !== 0 && (
                 <>
                   <hr className="dark:border-zinc-800" />
-                  <span className="font-medium text-xl font-gemunu tracking-wide dark:text-gray-200">
+                  <span className="font-medium text-lg dark:text-gray-200">
                     Fiyat Aralığı
                   </span>
                   <div className="flex flex-col gap-4 w-full">
@@ -378,7 +378,7 @@ function Aside({
             {brands && brands.length > 1 && (
               <>
                 <div className="flex flex-col gap-3">
-                  <label className="font-medium text-xl font-gemunu tracking-wide dark:text-gray-200">
+                  <label className="font-medium text-lg dark:text-gray-200">
                     Markalar
                   </label>
 
@@ -419,7 +419,7 @@ function Aside({
             {productAttributes &&
               productAttributes.map((attribute, key) => (
                 <div key={key} className="flex flex-col gap-4 group/border">
-                  <span className="font-medium text-xl font-gemunu tracking-wide dark:text-gray-200">
+                  <span className="font-medium text-lg dark:text-gray-200">
                     {attribute.attr_title}
                   </span>
                   <div className="flex flex-wrap gap-y-1 gap-x-4">

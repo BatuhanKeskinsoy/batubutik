@@ -18,7 +18,7 @@ function Orders({ orders }: IProfileOrdersProps) {
           className={`flex  gap-4 justify-center items-center animate-pulse`}
         >
           <IoFileTrayOutline className={`text-6xl`} />
-          <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
+          <span className="text-xl">
             Henüz Siparişiniz Yok
           </span>
         </div>

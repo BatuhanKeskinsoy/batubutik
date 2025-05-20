@@ -55,7 +55,7 @@ function Footer({ generals, categories }: IFooterProps) {
             <div className="flex flex-col gap-4 lg:w-1/4 w-full">
               <Link
                 href={"/"}
-                className="relative capitalize font-medium font-gemunu text-5xl text-site"
+                className="relative capitalize font-medium text-4xl text-site"
                 title={generals.site_name}
               >
                 {generals.logo ? (
@@ -95,7 +95,7 @@ function Footer({ generals, categories }: IFooterProps) {
             </div>
             <div className="flex lg:flex-row flex-col gap-4 lg:w-3/4 w-full">
               <div className="flex-1">
-                <span className="font-gemunu text-2xl tracking-wide dark:text-gray-200">
+                <span className="text-xl dark:text-gray-200">
                   Hızlı Linkler
                 </span>
                 <hr className="my-2 border-gray-300 dark:border-zinc-800" />
@@ -103,7 +103,7 @@ function Footer({ generals, categories }: IFooterProps) {
                   <li>
                     <Link
                       title="Mağaza"
-                      className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
+                      className="w-fit flex items-center gap-x-1 py-1 text-base hover:text-site hover:pl-1 transition-all line-clamp-1"
                       href="/magaza"
                     >
                       Mağaza
@@ -112,7 +112,7 @@ function Footer({ generals, categories }: IFooterProps) {
                   <li>
                     <Link
                       title="Blog"
-                      className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
+                      className="w-fit flex items-center gap-x-1 py-1 text-base hover:text-site hover:pl-1 transition-all line-clamp-1"
                       href="/blog"
                     >
                       Blog
@@ -121,7 +121,7 @@ function Footer({ generals, categories }: IFooterProps) {
                   <li>
                     <Link
                       title="Hakkımızda"
-                      className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
+                      className="w-fit flex items-center gap-x-1 py-1 text-base hover:text-site hover:pl-1 transition-all line-clamp-1"
                       href="/hakkimizda"
                     >
                       Hakkımızda
@@ -130,7 +130,7 @@ function Footer({ generals, categories }: IFooterProps) {
                   <li>
                     <Link
                       title="İletişim"
-                      className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
+                      className="w-fit flex items-center gap-x-1 py-1 text-base hover:text-site hover:pl-1 transition-all line-clamp-1"
                       href="/iletisim"
                     >
                       İletişim
@@ -139,7 +139,7 @@ function Footer({ generals, categories }: IFooterProps) {
                 </ul>
               </div>
               <div className="flex-1">
-                <span className="font-gemunu text-2xl tracking-wide dark:text-gray-200">
+                <span className="text-xl dark:text-gray-200">
                   Kategoriler
                 </span>
                 <hr className="my-2 border-gray-300 dark:border-zinc-800" />
@@ -148,7 +148,7 @@ function Footer({ generals, categories }: IFooterProps) {
                     <li key={key}>
                       <Link
                         title={category.name}
-                        className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
+                        className="w-fit flex items-center gap-x-1 py-1 text-base hover:text-site hover:pl-1 transition-all line-clamp-1"
                         href={`/magaza/${category.slug}`}
                       >
                         {category.name}
@@ -158,7 +158,7 @@ function Footer({ generals, categories }: IFooterProps) {
                 </ul>
               </div>
               <div className="flex-1">
-                <span className="font-gemunu text-2xl tracking-wide dark:text-gray-200">
+                <span className="text-xl dark:text-gray-200">
                   Sözleşme ve Politikalar
                 </span>
                 <hr className="my-2 border-gray-300 dark:border-zinc-800" />
@@ -166,7 +166,7 @@ function Footer({ generals, categories }: IFooterProps) {
                   <li>
                     <Link
                       title="Gizlilik Politikası"
-                      className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
+                      className="w-fit flex items-center gap-x-1 py-1 text-base hover:text-site hover:pl-1 transition-all line-clamp-1"
                       href="/"
                     >
                       Gizlilik Politikası
@@ -175,7 +175,7 @@ function Footer({ generals, categories }: IFooterProps) {
                   <li>
                     <Link
                       title="Şartlar ve Koşullar"
-                      className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
+                      className="w-fit flex items-center gap-x-1 py-1 text-base hover:text-site hover:pl-1 transition-all line-clamp-1"
                       href="/"
                     >
                       Şartlar ve Koşullar
@@ -184,7 +184,7 @@ function Footer({ generals, categories }: IFooterProps) {
                   <li>
                     <Link
                       title="İptal ve İade Politikası"
-                      className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
+                      className="w-fit flex items-center gap-x-1 py-1 text-base hover:text-site hover:pl-1 transition-all line-clamp-1"
                       href="/"
                     >
                       İptal ve İade Politikası
@@ -193,7 +193,7 @@ function Footer({ generals, categories }: IFooterProps) {
                   <li>
                     <Link
                       title="Mesafeli Satış Sözleşmesi"
-                      className="w-fit flex items-center gap-x-1 py-1 font-gemunu tracking-wide text-lg hover:text-site hover:pl-1 transition-all line-clamp-1"
+                      className="w-fit flex items-center gap-x-1 py-1 text-base hover:text-site hover:pl-1 transition-all line-clamp-1"
                       href="/"
                     >
                       Mesafeli Satış Sözleşmesi
@@ -202,7 +202,7 @@ function Footer({ generals, categories }: IFooterProps) {
                 </ul>
               </div>
               <div className="flex-1">
-                <span className="font-gemunu text-2xl tracking-wide dark:text-gray-200">
+                <span className="text-xl dark:text-gray-200">
                   Popüler Etiketler
                 </span>
                 <hr className="my-2 border-gray-300 dark:border-zinc-800" />
@@ -211,7 +211,7 @@ function Footer({ generals, categories }: IFooterProps) {
                     <li key={key}>
                       <Link
                         title={tag}
-                        className="w-fit flex items-center gap-x-1 font-gemunu tracking-wide text-lg hover:text-site transition-all line-clamp-1"
+                        className="w-fit flex items-center gap-x-1 text-base hover:text-site transition-all line-clamp-1"
                         href="/"
                       >
                         {tag}

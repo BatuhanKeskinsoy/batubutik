@@ -57,10 +57,10 @@ function SliderFullWidth({ perView, data }: ISliderOneProps) {
             <div className="relative flex items-center text-left h-full w-full">
               <div className="flex flex-col w-full h-full justify-center lg:gap-24">
                 <div className="max-lg:text-center flex flex-col max-lg:items-center max-lg:justify-center w-full max-lg:h-full max-lg:gap-8 gap-12">
-                  <span className="font-gemunu tracking-widest font-semibold lg:text-4xl text-xl text-white/80">
+                  <span className="font-semibold lg:text-3xl text-xl text-white/80">
                     {slide.text_1}
                   </span>
-                  <span className="font-semibold lg:text-7xl text-5xl !leading-[6rem] max-lg:!leading-[3.5rem] text-white font-gemunu tracking-wide">
+                  <span className="font-semibold lg:text-6xl text-5xl !leading-[6rem] max-lg:!leading-[3.5rem] text-white">
                     {slide.text_2}
                   </span>
                   <p className="lg:text-2xl text-base tracking-wide font-light text-white/70">
@@ -73,8 +73,8 @@ function SliderFullWidth({ perView, data }: ISliderOneProps) {
                   rightIcon={
                     <IoChevronForwardOutline className="text-2xl -mr-2" />
                   }
-                  containerStyles="flex items-center justify-center text-center gap-4 mb-12 py-3 px-6 w-fit bg-white/20 text-white max-lg:w-full rounded-lg font-gemunu tracking-widest shadow-[0_-5px_30px_0_rgba(0,0,0,0.15)] hover:bg-site/20 hover:text-site transition-all duration-300"
-                  textStyles="uppercase font-medium lg:text-2xl text-xl"
+                  containerStyles="flex items-center justify-center text-center gap-4 mb-12 py-3 px-6 w-fit bg-white/20 text-white max-lg:w-full rounded-lg shadow-[0_-5px_30px_0_rgba(0,0,0,0.15)] hover:bg-site/20 hover:text-site transition-all duration-300"
+                  textStyles="uppercase font-medium text-xl"
                 />
               </div>
             </div>

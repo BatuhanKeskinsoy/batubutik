@@ -15,7 +15,7 @@ function Sidebar({ generals }: ISidebarProps) {
       <div className="flex items-center justify-center h-14 py-4 border-b dark:border-zinc-800 border-gray-200">
         <Link
           href={"/"}
-          className="relative flex items-center justify-center w-full h-full capitalize font-medium font-gemunu text-3xl text-site"
+          className="relative flex items-center justify-center w-full h-full capitalize font-medium text-2xl text-site"
           title={generals.site_name}
         >
           {generals.logo ? (
@@ -34,7 +34,7 @@ function Sidebar({ generals }: ISidebarProps) {
       <ul className="flex flex-col w-full gap-4 py-4">
         {navLinksAuthAdmin.map((group, groupKey) => (
           <li key={groupKey} className="flex flex-col items-center w-full">
-            <span className="text-md text-gray-500 font-medium font-gemunu tracking-wider uppercase flex w-full px-2">
+            <span className="text-sm text-gray-500 font-medium uppercase flex w-full px-2">
               {group.name}
             </span>
             {group.links.map((link, linkKey) => (
@@ -42,7 +42,7 @@ function Sidebar({ generals }: ISidebarProps) {
                 key={linkKey}
                 title={link.title}
                 href={link.url}
-                className="flex items-center justify-between gap-1 font-gemunu text-base tracking-wide w-full hover:bg-site/10 hover:text-site transition-all duration-300 py-1.5 px-3.5"
+                className="flex items-center justify-between gap-1 text-sm w-full hover:bg-site/10 hover:text-site transition-all duration-300 py-1.5 px-3.5"
               >
                 {link.title}
                 <IoChevronForwardOutline className="text-base opacity-70" />

@@ -34,7 +34,7 @@ function Sidebar({ generals, categories }: ISidebarProps) {
       >
         <div className="flex flex-col w-full h-full">
           <div className="flex justify-between items-center border-b dark:border-zinc-800 lg:px-8 px-4 py-5">
-            <div className="font-gemunu tracking-wide text-2xl">
+            <div className="text-xl">
               {sidebarStatus === "Basket" ? (
                 "Sepetim"
               ) : sidebarStatus === "Favorite" ? (
@@ -48,7 +48,7 @@ function Sidebar({ generals, categories }: ISidebarProps) {
                   <Link
                     href={"/"}
                     title={generals.site_name}
-                    className="capitalize font-medium font-gemunu text-4xl text-site"
+                    className="capitalize font-medium text-3xl text-site"
                   >
                     {generals.logo ? (
                       <Image

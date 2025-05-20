@@ -25,7 +25,7 @@ function Subscribe() {
       <div className="absolute w-full left-0 top-0 h-full dark:bg-black-900/90 bg-black-900/70 -z-10"></div>
       <div className="container mx-auto px-4 flex max-lg:flex-col gap-8 justify-between items-center">
         <div className="flex flex-col gap-4 max-lg:items-center max-lg:*:text-center">
-          <span className="font-gemunu tracking-wider text-4xl text-white font-medium">
+          <span className="text-3xl text-white font-medium">
             Bültene Abone Ol
           </span>
           <p className="text-white opacity-70 tracking-wider font-light">
@@ -50,8 +50,8 @@ function Subscribe() {
             title="ABONE OL"
             btnType="submit"
             rightIcon={<IoChevronForwardOutline className="text-xl -mr-2" />}
-            containerStyles="flex items-center justify-center text-center gap-4 py-3 px-8 w-fit bg-white/20 text-white max-lg:w-full rounded-lg font-gemunu tracking-widest shadow-[0_-5px_30px_0_rgba(0,0,0,0.15)] hover:bg-site/20 hover:text-site transition-all duration-300"
-            textStyles="uppercase font-medium text-xl"
+            containerStyles="flex items-center justify-center text-center gap-4 py-3 px-8 w-fit bg-white/20 text-white max-lg:w-full rounded-lg shadow-[0_-5px_30px_0_rgba(0,0,0,0.15)] hover:bg-site/20 hover:text-site transition-all duration-300"
+            textStyles="uppercase font-medium text-lg"
           />
         </form>
       </div>

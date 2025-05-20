@@ -50,7 +50,7 @@ function ShippingTracking({ code }: IShippingTrackingProps) {
             handleClick={() =>
               router.push(`/profilim/kargo-takibi/${shippingCode}`)
             }
-            containerStyles={`min-w-max px-6 py-3.5 font-gemunu text-lg tracking-wider dark:bg-zinc-700 bg-gray-200 border-l-2 dark:border-zinc-900 border-white flex items-center justify-center h-full transition-all duration-300 enabled:hover:bg-site enabled:dark:hover:bg-site enabled:hover:text-white disabled:opacity-30 disabled:cursor-not-allowed`}
+            containerStyles={`min-w-max px-6 py-3.5 text-base dark:bg-zinc-700 bg-gray-200 border-l-2 dark:border-zinc-900 border-white flex items-center justify-center h-full transition-all duration-300 enabled:hover:bg-site enabled:dark:hover:bg-site enabled:hover:text-white disabled:opacity-30 disabled:cursor-not-allowed`}
             isDisabled={!(shippingCode.length > 0)}
           />
         </div>
@@ -68,7 +68,7 @@ function ShippingTracking({ code }: IShippingTrackingProps) {
             className={`flex  gap-4 justify-center items-center animate-pulse`}
           >
             <LiaShippingFastSolid className={`text-6xl lg:text-7xl`} />
-            <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
+            <span className="text-xl">
               Henüz Kargo Kodu Girilmedi
             </span>
           </div>

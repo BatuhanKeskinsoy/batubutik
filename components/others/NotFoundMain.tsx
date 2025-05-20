@@ -15,19 +15,19 @@ function NotFoundMain({ generals }: INotFoundMainProps) {
         <div className="lg:p-12 p-6 bg-site/10 rounded-full">
           <TbError404 className="lg:size-72 size-52 max-w-full text-site" />
         </div>
-        <span className="font-gemunu lg:text-4xl text-xl tracking-wider text-center">
+        <span className="lg:text-3xl text-xl text-center">
           Aradığınız Sayfa Bulunamadı!
         </span>
         <Link
           href="/"
           title={generals.site_name}
-          className="px-8 lg:py-6 py-4 bg-site/10 text-site font-gemunu lg:text-4xl text-2xl rounded-xl dark:hover:bg-site hover:bg-site hover:text-white transition-all duration-300"
+          className="px-8 lg:py-6 py-4 bg-site/10 text-site lg:text-3xl text-2xl rounded-xl dark:hover:bg-site hover:bg-site hover:text-white transition-all duration-300"
         >
           Anasayfa'ya Dön!
         </Link>
         <Link
           href={"/"}
-          className="relative capitalize font-medium font-gemunu text-5xl text-site"
+          className="relative capitalize font-medium text-4xl text-site"
           title={generals.site_name}
         >
           {generals.logo ? (

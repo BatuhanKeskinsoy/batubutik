@@ -118,7 +118,7 @@ const ModalProductComment: React.FC<ModalProps> = ({ slug, onClose }) => {
                       </div>
                       <hr className="dark:border-zinc-800" />
                       <div className="flex flex-col gap-2">
-                        <span className="font-gemunu text-lg tracking-wider">
+                        <span className="text-base">
                           Yorum Yapın
                         </span>
                         <label
@@ -138,7 +138,7 @@ const ModalProductComment: React.FC<ModalProps> = ({ slug, onClose }) => {
                       </div>
                       <div className="flex max-lg:flex-col justify-between items-center mt-2 gap-2">
                         <div className="flex lg:flex-col max-lg:justify-between max-lg:w-full gap-2">
-                          <span className="font-gemunu text-lg tracking-wider">
+                          <span className="text-base">
                             Puan Verin
                           </span>
                           {(() => {
@@ -162,7 +162,7 @@ const ModalProductComment: React.FC<ModalProps> = ({ slug, onClose }) => {
                         </div>
                         <CustomButton
                           title="Değerlendirmeyi Onayla"
-                          containerStyles="mt-1.5 flex lg:justify-end justify-center font-gemunu tracking-wider text-lg dark:bg-zinc-800 bg-gray-200 hover:bg-site dark:hover:bg-site hover:text-white w-full lg:w-fit py-2 px-4 rounded-md transition-all duration-300"
+                          containerStyles="mt-1.5 flex lg:justify-end justify-center text-base dark:bg-zinc-800 bg-gray-200 hover:bg-site dark:hover:bg-site hover:text-white w-full lg:w-fit py-2 px-4 rounded-md transition-all duration-300"
                         />
                       </div>
                     </div>

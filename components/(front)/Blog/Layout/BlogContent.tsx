@@ -53,7 +53,7 @@ function BlogContent({ blog }: IBlogContentProps) {
         </div>
       </div>
       <div className="blogContent max-lg:px-4">
-        <h1 className="text-3xl font-gemunu font-semibold tracking-wider">
+        <h1 className="text-2xl font-semibold tracking-wider">
           {blog.title}
         </h1>
         <div

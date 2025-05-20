@@ -37,7 +37,7 @@ function ProductDetail({ product, comments, generals }: IProductDetailProps) {
               <div className="flex gap-2 overflow-x-auto lg:w-fit max-lg:pb-2">
                 <CustomButton
                   title="Ürün Bilgileri"
-                  containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
+                  containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max text-lg ${
                     activeTab === "info"
                       ? "border-transparent bg-site text-white"
                       : "bg-white/20 dark:bg-zinc-900 hover:border-transparent dark:hover:border-transparent hover:bg-site/10 dark:hover:bg-site/10 hover:text-site dark:hover:text-site border-gray-200 dark:border-zinc-800"
@@ -46,7 +46,7 @@ function ProductDetail({ product, comments, generals }: IProductDetailProps) {
                 />
                 <CustomButton
                   title="Ürün Değerlendirmeleri"
-                  containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
+                  containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max text-lg ${
                     activeTab === "comments"
                       ? "border-transparent bg-site text-white"
                       : "bg-white/20 dark:bg-zinc-900 hover:border-transparent dark:hover:border-transparent hover:bg-site/10 dark:hover:bg-site/10 hover:text-site dark:hover:text-site border-gray-200 dark:border-zinc-800"
@@ -56,7 +56,7 @@ function ProductDetail({ product, comments, generals }: IProductDetailProps) {
                 {generals.return_conditions && (
                   <CustomButton
                     title="İptal ve İade Koşulları"
-                    containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max font-gemunu text-xl tracking-wider ${
+                    containerStyles={`flex items-center justify-center text-center gap-4 py-3 px-6 w-fit border max-lg:w-full transition-all duration-300 max-lg:min-w-max text-lg ${
                       activeTab === "return"
                         ? "border-transparent bg-site text-white"
                         : "bg-white/20 dark:bg-zinc-900 hover:border-transparent dark:hover:border-transparent hover:bg-site/10 dark:hover:bg-site/10 hover:text-site dark:hover:text-site border-gray-200 dark:border-zinc-800"
@@ -101,7 +101,7 @@ function ProductDetail({ product, comments, generals }: IProductDetailProps) {
       </div>
       <hr className="dark:border-zinc-800" />
       <section className="container mx-auto px-4 flex flex-col gap-8">
-        <span className="font-gemunu lg:text-4xl text-3xl tracking-wider font-medium">
+        <span className=" text-3xl font-medium">
           Sizin İçin Seçtiklerimiz
         </span>
         <SliderOne perView={5} products={product.other_products} />

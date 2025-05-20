@@ -38,7 +38,7 @@ function NavMenu({ generals, categories }: INavMenuProps) {
   return (
     <div className="flex flex-col w-full h-[calc(100dvh-77px)] justify-between">
       <div className="flex flex-col w-full">
-        <nav className="flex flex-col items-start text-lg font-gemunu tracking-wide *:px-4 *:py-2 *:flex *:items-center *:h-full *:transition-all *:duration-300 *:border-b *:dark:border-zinc-800 last:*:border-b-0 *:w-full *:min-w-max">
+        <nav className="flex flex-col items-start text-base *:px-4 *:py-2 *:flex *:items-center *:h-full *:transition-all *:duration-300 *:border-b *:dark:border-zinc-800 last:*:border-b-0 *:w-full *:min-w-max">
           <CustomButton
             title={"Anasayfa"}
             containerStyles={getLinkClasses(`/`)}
@@ -78,7 +78,7 @@ function NavMenu({ generals, categories }: INavMenuProps) {
       </div>
       <div className="flex flex-col w-full">
         {isMobile && (
-          <div className="flex items-center justify-between py-4 px-4 font-gemunu text-xl tracking-wider">
+          <div className="flex items-center justify-between py-4 px-4 text-lg">
             <span>Tema</span>
             <Theme />
           </div>

@@ -59,7 +59,7 @@ function BlogItem({ blog }: IBlogItemProps) {
         </div>
 
         <div className="p-4 h-full flex flex-col justify-between">
-          <h2 className="font-gemunu text-xl tracking-wider mb-2 transition-all group-hover:text-site line-clamp-2">
+          <h2 className="text-lg mb-2 transition-all group-hover:text-site line-clamp-2">
             {blog.title}
           </h2>
           <p className="text-sm opacity-70 transition-all line-clamp-3 font-normal">

@@ -113,7 +113,7 @@ function OrderProductItem({ item }: IOrderProductItemProps) {
             <CustomButton
               leftIcon={<IoChatbubbleEllipsesOutline />}
               title={"Ürünü Değerlendir"}
-              containerStyles="flex gap-2 items-center justify-center px-2 py-1.5 dark:bg-zinc-800 bg-gray-100 rounded-lg hover:bg-site dark:hover:bg-site hover:text-white transition-all duration-300 text-sm font-gemunu tracking-wider"
+              containerStyles="flex gap-2 items-center justify-center px-2 py-1.5 dark:bg-zinc-800 bg-gray-100 rounded-lg hover:bg-site dark:hover:bg-site hover:text-white transition-all duration-300 text-xs"
               handleClick={(e) => handleSendProductCommentModal(e)}
             />
           </div>

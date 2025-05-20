@@ -23,21 +23,21 @@ function ProductDetailSidebar({ title, description, tags }: IBlogSidebarProps) {
             className="bg-green-500 hover:bg-green-500/80 text-white flex items-center gap-4 justify-center py-3 px-4 w-full rounded-lg transition-all duration-300"
           >
             <IoLogoWhatsapp className="text-3xl" />
-            <span className="font-gemunu text-xl tracking-wider">WhatsApp'tan Ulaşın</span>
+            <span className="text-lg">WhatsApp'tan Ulaşın</span>
           </Link>
           <hr className="dark:border-zinc-800" />
         </>
       )}
       <div className="flex flex-col w-full gap-8">
         <div className="flex flex-col gap-6 w-full">
-          <span className="font-gemunu text-xl font-medium tracking-wider rounded-lg bg-gray-100 dark:bg-zinc-800 py-2 px-4 dark:shadow-lg select-none">
+          <span className="text-lg tracking-wider rounded-lg bg-gray-100 dark:bg-zinc-800 py-2 px-4 dark:shadow-lg select-none">
             Paylaş
           </span>
           <ProductShares title={title} description={description} tags={tags} />
         </div>
         {tags && (
           <div className="flex flex-col gap-6 w-full">
-            <span className="font-gemunu text-xl font-medium tracking-wider rounded-lg bg-gray-100 dark:bg-zinc-800 py-2 px-4 dark:shadow-lg select-none">
+            <span className="text-lg tracking-wider rounded-lg bg-gray-100 dark:bg-zinc-800 py-2 px-4 dark:shadow-lg select-none">
               Etiketler
             </span>
             <ul className="tags flex flex-wrap gap-3">

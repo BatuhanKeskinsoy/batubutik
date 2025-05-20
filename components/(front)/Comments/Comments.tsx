@@ -28,7 +28,7 @@ function Comments({ comments, generals }: ICommentsProps) {
                 className={`text-5xl lg:text-6xl min-w-[60px]`}
               />
             </div>
-            <span className="font-gemunu tracking-wide lg:text-xl text-lg">
+            <span className="text-lg">
               Bu ürüne henüz yorum yapılmamış. Doğru değerlendirme amacıyla
               ürünü satın almadan yorum yapamazsınız, eğer ürünü zaten satın
               aldıysanız giriş yaptıktan sonra ilk yorumu{" "}
@@ -57,7 +57,7 @@ function Comments({ comments, generals }: ICommentsProps) {
                 className={`text-5xl lg:text-6xl min-w-[60px]`}
               />
             </div>
-            <span className="font-gemunu tracking-wide lg:text-xl text-lg">
+            <span className="text-lg">
               Doğru değerlendirme amacıyla ürünü satın almadan yorum
               yapamazsınız, eğer ürünü zaten satın aldıysanız giriş yaptıktan
               sonra ilk yorumu{" "}
@@ -84,7 +84,7 @@ function Comments({ comments, generals }: ICommentsProps) {
                 <React.Fragment key={index}>
                   <li className="flex max-lg:flex-col gap-4 lg:items-center">
                     <div className="flex gap-4 max-lg:items-center">
-                      <div className="flex items-center justify-center lg:min-w-20 lg:w-20 lg:h-20 min-w-16 w-16 h-16 bg-site/10 text-site rounded-full select-none font-gemunu text-3xl uppercase font-light">
+                      <div className="flex items-center justify-center lg:min-w-20 lg:w-20 lg:h-20 min-w-16 w-16 h-16 bg-site/10 text-site rounded-full select-none text-2xl uppercase font-light">
                         {getShortName(
                           comment.user.firstName,
                           comment.user.lastName
@@ -92,7 +92,7 @@ function Comments({ comments, generals }: ICommentsProps) {
                       </div>
                       <div className="flex flex-col gap-2 w-full">
                         <div className="flex max-lg:flex-col lg:items-center lg:gap-4 gap-2">
-                          <span className="font-gemunu text-xl tracking-wide">
+                          <span className="text-lg">
                             {getStarredName(
                               comment.user.firstName,
                               comment.user.lastName
@@ -133,7 +133,7 @@ function Comments({ comments, generals }: ICommentsProps) {
                         )}
                         {!isMobile && comment.reply && (
                           <div className="flex flex-col w-full gap-2 px-4 py-3 border-l-4 border-site/70 bg-site/10">
-                            <span className="text-site font-gemunu text-xl font-semibold tracking-wide">
+                            <span className="text-site text-lg font-semibold">
                               {generals.site_name} Yanıtladı :
                             </span>
                             <p className="text-gray-600 dark:text-gray-300">
@@ -150,7 +150,7 @@ function Comments({ comments, generals }: ICommentsProps) {
                     )}
                     {isMobile && comment.reply && (
                       <div className="flex flex-col w-full gap-2 px-4 py-3 border-l-4 border-site/70 bg-site/10">
-                        <span className="text-site font-gemunu text-xl font-semibold tracking-wide">
+                        <span className="text-site text-lg font-semibold">
                           {generals.site_name} Yanıtladı :
                         </span>
                         <p className="text-gray-600 dark:text-gray-300">

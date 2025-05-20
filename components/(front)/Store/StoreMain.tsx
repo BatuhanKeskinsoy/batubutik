@@ -333,7 +333,7 @@ function StoreMain({
             {filteredProducts && filteredProducts.length === 0 ? (
               <div className="flex flex-col gap-4 h-[500px] justify-center items-center animate-pulse text-gray-600">
                 <IoFileTrayOutline className="lg:text-7xl text-6xl" />
-                <span className="font-gemunu tracking-wide lg:text-2xl text-xl">
+                <span className="text-xl">
                   Aradığınız Ürün Bulunamadı
                 </span>
               </div>
