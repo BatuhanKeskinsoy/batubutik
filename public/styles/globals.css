@@ -27,7 +27,7 @@
 
 @layer utilities {
   .scrollbar-thick::-webkit-scrollbar {
-    @apply w-1.5;
+    @apply w-1;
   }
   body.noScroll {
     @apply overflow-hidden;

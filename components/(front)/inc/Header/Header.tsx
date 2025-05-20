@@ -191,12 +191,18 @@ function Header({ generals, categories }: IHeaderProps) {
                 <Search />
                 <Favorite />
               </div>
-              {!isMobile && <Theme />}
+              {!isMobile && (
+                <div className="md:pl-3 lg:border-l dark:border-zinc-800 order-2">
+                  <Theme />
+                </div>
+              )}
               <Basket products={products} />
             </div>
           </div>
         </div>
-        {sidebarStatus && <Sidebar generals={generals} categories={categories} />}
+        {sidebarStatus && (
+          <Sidebar generals={generals} categories={categories} />
+        )}
       </header>
     </>
   );

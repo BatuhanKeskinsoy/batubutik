@@ -16,7 +16,7 @@ const Theme = () => {
   }
 
   return (
-    <label className="flex relative items-center cursor-pointer order-2 md:pl-3 lg:border-l dark:border-zinc-800 h-full">
+    <label className="flex relative items-center cursor-pointer h-full">
       <input
         type="checkbox"
         className="sr-only"

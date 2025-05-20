@@ -1,3 +1,5 @@
+import { IoBagAddOutline, IoBagHandleOutline, IoCarOutline, IoCartOutline, IoColorPaletteOutline, IoGiftOutline, IoGridOutline, IoHomeOutline, IoSettingsOutline } from "react-icons/io5";
+
 export const baseURL = process.env.NEXT_PUBLIC_API_BASEURL;
 export const siteName = process.env.NEXT_PUBLIC_SITE_NAME;
 export const siteURL = process.env.NEXT_PUBLIC_SITE_URL;
@@ -38,32 +40,66 @@ export const navLinksAuthUser = [
 
 export const navLinksAuthAdmin = [
   {
-    name: "Genel",
+    name: "GENEL",
     links: [
       {
-        title: "Yönetim Paneli",
+        icon: <IoHomeOutline />,
+                title: "Yönetim Paneli",
         url: "/panel",
-      },
-      {
-        title: "Ürünler",
-        url: "/panel/urunler",
       },
     ],
   },
   {
-    name: "Kategoriler",
+    name: "ÜRÜNLER",
     links: [
       {
+        icon: <IoBagHandleOutline />,
+        title: "Ürünler",
+        url: "/panel/urunler",
+      },
+      {
+        icon: <IoGiftOutline />,
+        title: "İndirim Kodları",
+        url: "/panel/indirim-kodlari",
+      },
+    ],
+  },
+  {
+    name: "SİPARİŞLER",
+    links: [
+      {
+        icon: <IoCartOutline />,
+        title: "Siparişler",
+        url: "/panel/siparisler",
+      },
+    ],
+  },
+  {
+    name: "KATEGORİLER",
+    links: [
+      {
+        icon: <IoGridOutline />,
         title: "Kategoriler",
         url: "/panel/kategoriler",
       },
     ],
   },
   {
-    name: "Ayarlar",
+    name: "AYARLAR",
     links: [
       {
-        title: "Site Ayarları",
+        icon: <IoCarOutline />,
+        title: "Kargo Ayarları",
+        url: "/panel/kargo-ayarlari",
+      },
+      {
+        icon: <IoColorPaletteOutline />,
+        title: "Tema Ayarları",
+        url: "/panel/tema-ayarlari",
+      },
+      {
+        icon: <IoSettingsOutline />,
+        title: "Genel Ayarlar",
         url: "/panel/site-ayarlari",
       },
     ],
