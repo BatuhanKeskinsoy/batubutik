@@ -3,7 +3,11 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
-const Theme = () => {
+interface IThemeProps {
+  isSmall?: boolean;
+}
+
+const Theme = ({ isSmall }: IThemeProps) => {
   const { resolvedTheme, setTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -24,11 +28,17 @@ const Theme = () => {
         onChange={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       />
       <div
-        className={`w-20 h-10 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-full flex items-center duration-300 relative`}
+        className={`  bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-full flex items-center duration-300 relative ${
+          isSmall ? "w-14 h-6" : "w-20 h-10"
+        }`}
       >
         <div
-          className={`absolute top-[5px] left-[6px] size-7 transition-transform duration-300 flex justify-center items-center ${
+          className={`absolute  transition-transform duration-300 flex justify-center items-center ${
             resolvedTheme === "dark" ? "scale-100" : "scale-0"
+          } ${
+            isSmall
+              ? "top-[4px] left-[4.5px] size-3.5"
+              : "top-[5px] left-[6px] size-7"
           }`}
         >
           <Image
@@ -36,13 +46,17 @@ const Theme = () => {
             alt="Açık Tema"
             width={0}
             height={0}
-            className="size-6 invert"
+            className={`invert ${isSmall ? "size-3.5" : "size-6"}`}
           />
         </div>
 
         <div
-          className={`absolute top-[5px] right-[6px] size-7 transition-transform duration-300 flex justify-center items-center ${
+          className={`absolute transition-transform duration-300 flex justify-center items-center ${
             resolvedTheme === "light" ? "scale-100" : "scale-0"
+          } ${
+            isSmall
+              ? "top-[4px] right-[4.5px] size-3.5"
+              : "top-[5px] right-[6px] size-7"
           }`}
         >
           <Image
@@ -50,16 +64,21 @@ const Theme = () => {
             src={"/theme/sun.svg"}
             width={0}
             height={0}
-            className="size-6"
+            className={`${isSmall ? "size-3.5" : "size-6"}`}
           />
         </div>
 
         <div
-          className={`size-6 rounded-full shadow-md z-10 transform transition-all duration-300 bg-site dark:bg-gray-200 ${
+          className={`rounded-full shadow-md z-10 transform transition-all duration-300 bg-site dark:bg-gray-200 ${
             resolvedTheme === "dark"
-              ? "translate-x-[46px]"
+              ? isSmall
+                ? "translate-x-[34px]"
+                : "translate-x-[46px]"
+              : isSmall
+              ? "translate-x-[4px]"
               : "translate-x-[8px]"
-          }`}
+          } ${isSmall ? "size-4" : "size-6"}
+          `}
         ></div>
       </div>
     </label>

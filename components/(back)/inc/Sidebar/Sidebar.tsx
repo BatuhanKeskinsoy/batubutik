@@ -1,4 +1,5 @@
 "use client";
+import Theme from "@/components/others/Theme";
 import { navLinksAuthAdmin } from "@/constants/(front)";
 import { generalsTypes } from "@/types/generalTypes";
 import Image from "next/image";
@@ -29,15 +30,15 @@ function Sidebar({ generals, sidebarShow, setSidebarShow }: ISidebarProps) {
     <>
       <div
         className={`transition-all duration-500 fixed sm:hidden bg-black-900/50 w-full h-full left-0 top-0 z-10 origin-right ${
-          sidebarShow ? "max-sm:opacity-100 visible" : "max-sm:opacity-0 invisible"
+          sidebarShow
+            ? "max-sm:opacity-100 visible"
+            : "max-sm:opacity-0 invisible"
         }`}
         onClick={() => setSidebarShow(false)}
       ></div>
       <nav
-        className={`transition-all duration-500 sm:relative fixed w-[80%] sm:min-w-[240px] sm:w-[240px] h-full dark:bg-zinc-900 bg-white min-h-screen z-10 dark:border-r dark:border-zinc-800 dark:shadow-none shadow-lg sm:shadow-gray-300 shadow-gray-500 ${
-          sidebarShow
-            ? "max-sm:translate-x-0"
-            : "max-sm:-translate-x-full"
+        className={`transition-all duration-500 sm:relative fixed w-[80%] sm:min-w-[240px] sm:w-[240px] h-full dark:bg-zinc-900 bg-white min-h-screen z-20 dark:border-r dark:border-zinc-800 dark:shadow-none shadow-lg sm:shadow-gray-300 shadow-gray-500 ${
+          sidebarShow ? "max-sm:translate-x-0" : "max-sm:-translate-x-full"
         }`}
       >
         <div className="flex items-center justify-start h-14 py-4 border-b dark:border-zinc-800 border-gray-200">
@@ -59,7 +60,7 @@ function Sidebar({ generals, sidebarShow, setSidebarShow }: ISidebarProps) {
             )}
           </Link>
         </div>
-        <ul className="flex flex-col w-full gap-4 py-4 md:max-h-[calc(100vh-88px)] min-h-[calc(100vh-120px)] overflow-y-auto scrollbar-thick">
+        <ul className="flex flex-col w-full gap-4 py-4 min-h-[calc(100vh-88px)] overflow-y-auto scrollbar-thick">
           {navLinksAuthAdmin.map((group, groupKey) => (
             <li key={groupKey} className="flex flex-col items-center w-full">
               <span className="text-xs text-gray-500 font-medium uppercase flex w-full px-2 mb-2">
@@ -87,6 +88,10 @@ function Sidebar({ generals, sidebarShow, setSidebarShow }: ISidebarProps) {
             </li>
           ))}
         </ul>
+        <div className="h-8 flex items-center justify-between px-2 w-full border-t dark:border-zinc-800">
+          <small className="text-xs select-none text-gray-600 dark:text-gray-400">Versiyon = 0.001</small>
+          <Theme isSmall />
+        </div>
       </nav>
     </>
   );
